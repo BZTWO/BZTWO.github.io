@@ -6,22 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>hexo.md | BZTWO</title>
+  <title>函数对象理解及bind1st和bind2nd.md | BZTWO</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="init1$ hexo init [folder]  新建一个网站。如果没有设置 folder ，Hexo 默认在目前的文件夹建立网站。 new1$ hexo new [layout] &lt;title&gt;  新建一篇文章。如果没有设置 layout 的话，默认使用 config.yml中的 default_layout 参数代替。如果标题包含空格的话，请使用引号括起来。    参数 描">
+  <meta name="description" content="函数对象函数对象就是重载了“()”运算符的类的对象，这样的话，对象就可以像函数一样使用。如下面的一段代码： 123456789101112131415161718192021222324252627282930313233343536373839#include &quot;stdafx.h&quot;#include &lt;iostream&gt;#include &lt;string&amp;g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo.md">
-<meta property="og:url" content="http://example.com/2023/11/09/hexo-md/index.html">
+<meta property="og:title" content="函数对象理解及bind1st和bind2nd.md">
+<meta property="og:url" content="http://example.com/2023/11/09/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E7%90%86%E8%A7%A3%E5%8F%8Abind1st%E5%92%8Cbind2nd-md/index.html">
 <meta property="og:site_name" content="BZTWO">
-<meta property="og:description" content="init1$ hexo init [folder]  新建一个网站。如果没有设置 folder ，Hexo 默认在目前的文件夹建立网站。 new1$ hexo new [layout] &lt;title&gt;  新建一篇文章。如果没有设置 layout 的话，默认使用 config.yml中的 default_layout 参数代替。如果标题包含空格的话，请使用引号括起来。    参数 描">
+<meta property="og:description" content="函数对象函数对象就是重载了“()”运算符的类的对象，这样的话，对象就可以像函数一样使用。如下面的一段代码： 123456789101112131415161718192021222324252627282930313233343536373839#include &quot;stdafx.h&quot;#include &lt;iostream&gt;#include &lt;string&amp;g">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-09T06:30:29.000Z">
-<meta property="article:modified_time" content="2023-11-09T06:59:27.840Z">
+<meta property="og:image" content="c:\Users\Public\hexo%E6%A0%B9%E7%9B%AE%E5%BD%95\source\images\%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1result.png">
+<meta property="article:published_time" content="2023-11-09T09:12:39.000Z">
+<meta property="article:modified_time" content="2023-11-09T09:34:30.972Z">
 <meta property="article:author" content="an">
-<meta property="article:tag" content="hexo相关">
+<meta property="article:tag" content="学习使用记录函数C++">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\Public\hexo%E6%A0%B9%E7%9B%AE%E5%BD%95\source\images\%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1result.png">
   
     <link rel="alternative" href="/atom.xml" title="BZTWO" type="application/atom+xml">
   
@@ -140,14 +142,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hexo-md" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-函数对象理解及bind1st和bind2nd-md" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      hexo.md
+      函数对象理解及bind1st和bind2nd.md
     </h1>
   
 
@@ -159,8 +161,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2023/11/09/hexo-md/" class="archive-article-date">
-        <time datetime="2023-11-09T06:30:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-09</time>
+<a href="/2023/11/09/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E7%90%86%E8%A7%A3%E5%8F%8Abind1st%E5%92%8Cbind2nd-md/" class="archive-article-date">
+        <time datetime="2023-11-09T09:12:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-09</time>
 </a>
 
   
@@ -173,7 +175,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">338字</span>
+      <span class="post-count">1k字</span>
     </span>
   </span>
 
@@ -182,7 +184,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">5分</span>
     </span>
   </span>
 </div>
@@ -195,74 +197,16 @@
     
     <span id="more"></span>
 
-<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init [folder]</span><br></pre></td></tr></table></figure>
+<h4 id="函数对象"><a href="#函数对象" class="headerlink" title="函数对象"></a>函数对象</h4><p>函数对象就是重载了“()”运算符的类的对象，这样的话，对象就可以像函数一样使用。如下面的一段代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdafx.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> <span class="keyword">warning</span>(disable:4996)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">test_add</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a + b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">test_sub</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a - b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="type">int</span> b = <span class="number">20</span>;</span><br><span class="line"> </span><br><span class="line">	test_add add;</span><br><span class="line">	test_sub sub;</span><br><span class="line"> </span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;a+b= &quot;</span> &lt;&lt; <span class="built_in">add</span>(a, b) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;a-b= &quot;</span> &lt;&lt; <span class="built_in">sub</span>(a, b) &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>新建一个网站。如果没有设置 <code>folder</code> ，Hexo 默认在目前的文件夹建立网站。</p>
-<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="STL中提供使用函数对象"><a href="#STL中提供使用函数对象" class="headerlink" title="STL中提供使用函数对象"></a>STL中提供使用函数对象</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdafx.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> <span class="keyword">warning</span>(disable:4996)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="type">int</span> b = <span class="number">20</span>;</span><br><span class="line"> </span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;a= &quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;b= &quot;</span> &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	plus&lt;<span class="type">int</span>&gt; int_plus;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;a+b= &quot;</span> &lt;&lt; <span class="built_in">int_plus</span>(a, b) &lt;&lt; endl;</span><br><span class="line">	minus&lt;<span class="type">int</span>&gt; int_min;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;a-b= &quot;</span> &lt;&lt; <span class="built_in">int_min</span>(a, b) &lt;&lt; endl;</span><br><span class="line">	negate&lt;<span class="type">int</span>&gt; int_neg;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;-a= &quot;</span> &lt;&lt; <span class="built_in">int_neg</span>(a) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;-b= &quot;</span> &lt;&lt; <span class="built_in">int_neg</span>(b) &lt;&lt; endl;</span><br><span class="line">	multiplies&lt;<span class="type">int</span>&gt; int_multi;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;a*b= &quot;</span> &lt;&lt; <span class="built_in">int_multi</span>(a, b) &lt;&lt; endl;</span><br><span class="line">	divides&lt;<span class="type">int</span>&gt; int_div;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;a/b = &quot;</span> &lt;&lt; <span class="built_in">int_div</span>(a, b) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;b/a = &quot;</span> &lt;&lt; <span class="built_in">int_div</span>(b, a) &lt;&lt; endl;</span><br><span class="line">	modulus&lt;<span class="type">int</span>&gt; int_mod;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;a%b = &quot;</span> &lt;&lt; <span class="built_in">int_mod</span>(a, b) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;b/a = &quot;</span> &lt;&lt; <span class="built_in">int_mod</span>(b, a) &lt;&lt; endl;</span><br><span class="line">	equal_to&lt;<span class="type">int</span>&gt; int_equ;<span class="comment">//if = return 1  else return 0</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;a!=b &quot;</span> &lt;&lt; <span class="built_in">int_equ</span>(a, b) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;(b-a) = a &quot;</span> &lt;&lt; <span class="built_in">int_equ</span>(<span class="built_in">int_min</span>(b, a), a) &lt;&lt; endl;</span><br><span class="line">	not_equal_to&lt;<span class="type">int</span>&gt; int_not_equ;<span class="comment">//</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;not_equ a!=b &quot;</span> &lt;&lt; <span class="built_in">int_not_equ</span>(a, b) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;not_equ (b-a) = a &quot;</span> &lt;&lt; <span class="built_in">int_not_equ</span>(<span class="built_in">int_min</span>(b, a), a) &lt;&lt; endl;</span><br><span class="line">	greater&lt;<span class="type">int</span>&gt; int_gre;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;a&gt;b &quot;</span> &lt;&lt; <span class="built_in">int_gre</span>(a, b) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;b&gt;a &quot;</span> &lt;&lt; <span class="built_in">int_gre</span>(b, a) &lt;&lt; endl;</span><br><span class="line">	greater_equal&lt;<span class="type">int</span>&gt; int_gre_equ;<span class="comment">//&gt;or=</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;b-a = a  &quot;</span> &lt;&lt; <span class="built_in">int_gre_equ</span>(<span class="built_in">int_min</span>(b, a), a) &lt;&lt; endl;</span><br><span class="line">	less&lt;<span class="type">int</span>&gt; int_less;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;less a&lt;b &quot;</span> &lt;&lt; <span class="built_in">int_less</span>(a, b) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;less b&lt;a &quot;</span> &lt;&lt; <span class="built_in">int_less</span>(b, a) &lt;&lt; endl;</span><br><span class="line">	less_equal&lt;<span class="type">int</span>&gt; int_less_equ;<span class="comment">//&lt;or=</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;b-a = a  &quot;</span> &lt;&lt; <span class="built_in">int_less_equ</span>(<span class="built_in">int_min</span>(b, a), a) &lt;&lt; endl;</span><br><span class="line">	logical_and&lt;<span class="type">int</span>&gt; int_logical_and;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;a&amp;&amp;b = &quot;</span> &lt;&lt; <span class="built_in">int_logical_and</span>(a, b) &lt;&lt; endl;</span><br><span class="line">	logical_or&lt;<span class="type">int</span>&gt; int_logical_or;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;a||b = &quot;</span> &lt;&lt; <span class="built_in">int_logical_or</span>(a, b) &lt;&lt; endl;</span><br><span class="line">	logical_not&lt;<span class="type">int</span>&gt; int_logical_not;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;!a = &quot;</span> &lt;&lt; <span class="built_in">int_logical_not</span>(a) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;!0 = &quot;</span> &lt;&lt; <span class="built_in">int_logical_not</span>(<span class="number">0</span>) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;!-1 = &quot;</span> &lt;&lt; <span class="built_in">int_logical_not</span>(<span class="number">-1</span>) &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>新建一篇文章。如果没有设置 <code>layout</code> 的话，默认使用 config.yml中的 <code>default_layout</code> 参数代替。如果标题包含空格的话，请使用引号括起来。</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-p, –pass</td>
-<td>自定义新文章路径</td>
-</tr>
-<tr>
-<td>-r, –replace</td>
-<td>如果存在同名文章，将其替换</td>
-</tr>
-<tr>
-<td>-s, –slug</td>
-<td>文章的Slug作为新文章的文件名和发布后的URL</td>
-</tr>
-</tbody></table>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new post 博客名.md</span><br></pre></td></tr></table></figure>
+<p><img src="C:\Users\Public\hexo根目录\source\images\函数对象result.png"></p>
+<h4 id="binder1st-，binder2nd使用方法"><a href="#binder1st-，binder2nd使用方法" class="headerlink" title="binder1st ，binder2nd使用方法"></a>binder1st ，binder2nd使用方法</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdafx.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> <span class="keyword">warning</span>(disable:4996)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="type">int</span> b = <span class="number">20</span>;</span><br><span class="line"> </span><br><span class="line">	binder1st&lt;plus&lt;<span class="type">int</span>&gt;&gt; b1st_plus = <span class="built_in">bind1st</span>(<span class="built_in">plus</span>&lt;<span class="type">int</span>&gt;(), <span class="number">10</span>);</span><br><span class="line">	binder1st&lt;minus&lt;<span class="type">int</span>&gt;&gt; b1st_minus = <span class="built_in">bind1st</span>(<span class="built_in">minus</span>&lt;<span class="type">int</span>&gt;(), <span class="number">10</span>);</span><br><span class="line"> </span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;10+b=&quot;</span> &lt;&lt; <span class="built_in">b1st_plus</span>(b) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;10-5=&quot;</span> &lt;&lt; <span class="built_in">b1st_minus</span>(<span class="number">5</span>) &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">	binder2nd&lt;plus&lt;<span class="type">int</span>&gt;&gt; b2nd_plus = <span class="built_in">bind2nd</span>(<span class="built_in">plus</span>&lt;<span class="type">int</span>&gt;(), <span class="number">10</span>);</span><br><span class="line">	binder2nd&lt;minus&lt;<span class="type">int</span>&gt;&gt; b2nd_minus = <span class="built_in">bind2nd</span>(<span class="built_in">minus</span>&lt;<span class="type">int</span>&gt;(), <span class="number">10</span>);</span><br><span class="line"> </span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;b+10=&quot;</span> &lt;&lt; <span class="built_in">b2nd_plus</span>(b) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;5-10=&quot;</span> &lt;&lt; <span class="built_in">b2nd_minus</span>(<span class="number">5</span>) &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; v1;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		v1.<span class="built_in">push_back</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//使用count_if获得容器v1中大于或等于4的个数</span></span><br><span class="line">	<span class="type">int</span> count = <span class="built_in">count_if</span>(v1.<span class="built_in">begin</span>(),v1.<span class="built_in">end</span>(),<span class="built_in">bind1st</span>(<span class="built_in">less_equal</span>&lt;<span class="type">int</span>&gt;(),<span class="number">4</span>));</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;bind1st v1 &gt;= 4 count=&quot;</span> &lt;&lt; count &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">	count = <span class="built_in">count_if</span>(v1.<span class="built_in">begin</span>(), v1.<span class="built_in">end</span>(), <span class="built_in">bind2nd</span>(<span class="built_in">greater_equal</span>&lt;<span class="type">int</span>&gt;(), <span class="number">4</span>));</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;bind2nd v1 &gt;= 4 count=&quot;</span> &lt;&lt; count &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="service"><a href="#service" class="headerlink" title="service"></a>service</h3><p>启动服务,生成页面本地预览</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s  或 hexo service</span><br></pre></td></tr></table></figure>
-
-<h3 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
-
-<p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
-<p>在某些情况（尤其是更换主题后），如果发现对站点的更改无论如何也不生效，可能需要运行该命令。</p>
-<h4 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>部署网站。</p>
-<table>
-<thead>
-<tr>
-<th align="left">参数</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>-g</code>, <code>--generate</code></td>
-<td align="left">部署之前预先生成静态文件</td>
-</tr>
-</tbody></table>
-<p>该命令可以简写为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-
-
-
-<p>一般执行顺序为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo clean       清除静态缓存</span><br><span class="line">hexo g           生成博客文章</span><br><span class="line">hexo s           生成页面进行本地预览</span><br><span class="line">hexo d           部署博客文章</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="migrate"><a href="#migrate" class="headerlink" title="migrate"></a>migrate</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo migrate &lt;type&gt;</span><br></pre></td></tr></table></figure>
-
-<p>从其他博客系统 迁移内容。</p>
-<h4 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h4><h5 id="显示草稿"><a href="#显示草稿" class="headerlink" title="显示草稿"></a>显示草稿</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo --draft</span><br></pre></td></tr></table></figure>
-
-<h5 id="简洁模式"><a href="#简洁模式" class="headerlink" title="简洁模式"></a>简洁模式</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo --silent</span><br></pre></td></tr></table></figure>
-
-<p>隐藏终端信息。</p>
+<p>即当使用binder1st创建bind1st()后调用时，传入的第一个参数在前面，已经给定的默认参数在后面；</p>
+<p>反之使用binder2nd创建bind2nd()后调用时，传入的第一个参数在后面，已经给定的默认参数在前面。</p>
 
     
 
@@ -309,7 +253,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/2023/11/09/hexo-md/" title="hexo.md" target="_blank">http://example.com/2023/11/09/hexo-md/</a>
+          <a href="http://example.com/2023/11/09/函数对象理解及bind1st和bind2nd-md/" title="函数对象理解及bind1st和bind2nd.md" target="_blank">http://example.com/2023/11/09/函数对象理解及bind1st和bind2nd-md/</a>
         </li>
         
         <li>
@@ -331,7 +275,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hexo相关</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">学习使用记录函数C++</a>
         		</li>
       		
 		</ul>
@@ -387,7 +331,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/11/09/hexo-md/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/11/09/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E7%90%86%E8%A7%A3%E5%8F%8Abind1st%E5%92%8Cbind2nd-md/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -402,18 +346,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2023/11/09/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E7%90%86%E8%A7%A3%E5%8F%8Abind1st%E5%92%8Cbind2nd-md/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          函数对象理解及bind1st和bind2nd.md
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/11/08/for-each-md/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C++for_each.md</div>
+    <a href="/2023/11/09/hexo-md/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hexo.md</div>
       <i class="icon-circle-right"></i>
     </a>
   
