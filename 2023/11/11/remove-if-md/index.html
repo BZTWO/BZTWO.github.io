@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>men_fun和men_fun_ref.md | BZTWO</title>
+  <title>remove_if.md | BZTWO</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="std::mem_fun 和 std::mem_fun_ref 是 C++ 标准库中的函数适配器，用于调用成员函数。 以下是它们的官方定义：  std::mem_fun：这是一个函数对象适配器，可以将一个成员函数转换为具有固定参数的函数对象。它接受一个成员函数指针，并返回一个可以调用具有固定参数的函数对象。  std::mem_fun_ref：这是一个函数对象适配器，可以将一个成员函数引用转换">
+  <meta name="description" content="std::remove_if 是 C++ 标准库中的一个算法，它根据指定的条件，将满足条件的元素从输入序列中移除，并返回新的逻辑结束位置。其函数原型如下： 1iterator remove_if(iterator first, iterator last, const Predicate&amp; pred); 其中：  first 和 last 是输入序列的开始和结束迭代器。 pred 是一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="men_fun和men_fun_ref.md">
-<meta property="og:url" content="http://example.com/2023/11/09/men-fun%E5%92%8Cmen-fun-ref-md/index.html">
+<meta property="og:title" content="remove_if.md">
+<meta property="og:url" content="http://example.com/2023/11/11/remove-if-md/index.html">
 <meta property="og:site_name" content="BZTWO">
-<meta property="og:description" content="std::mem_fun 和 std::mem_fun_ref 是 C++ 标准库中的函数适配器，用于调用成员函数。 以下是它们的官方定义：  std::mem_fun：这是一个函数对象适配器，可以将一个成员函数转换为具有固定参数的函数对象。它接受一个成员函数指针，并返回一个可以调用具有固定参数的函数对象。  std::mem_fun_ref：这是一个函数对象适配器，可以将一个成员函数引用转换">
+<meta property="og:description" content="std::remove_if 是 C++ 标准库中的一个算法，它根据指定的条件，将满足条件的元素从输入序列中移除，并返回新的逻辑结束位置。其函数原型如下： 1iterator remove_if(iterator first, iterator last, const Predicate&amp; pred); 其中：  first 和 last 是输入序列的开始和结束迭代器。 pred 是一">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-09T12:49:22.000Z">
-<meta property="article:modified_time" content="2023-11-09T13:18:25.261Z">
+<meta property="article:published_time" content="2023-11-11T03:17:54.000Z">
+<meta property="article:modified_time" content="2023-11-11T04:39:36.499Z">
 <meta property="article:author" content="an">
 <meta property="article:tag" content="学习使用记录函数C++">
 <meta name="twitter:card" content="summary">
@@ -140,14 +140,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-men-fun和men-fun-ref-md" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-remove-if-md" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      men_fun和men_fun_ref.md
+      remove_if.md
     </h1>
   
 
@@ -159,8 +159,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2023/11/09/men-fun%E5%92%8Cmen-fun-ref-md/" class="archive-article-date">
-        <time datetime="2023-11-09T12:49:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-09</time>
+<a href="/2023/11/11/remove-if-md/" class="archive-article-date">
+        <time datetime="2023-11-11T03:17:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-11</time>
 </a>
 
   
@@ -173,7 +173,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">504字</span>
+      <span class="post-count">686字</span>
     </span>
   </span>
 
@@ -195,23 +195,26 @@
     
     <span id="more"></span>
 
-<p><code>std::mem_fun</code> 和 <code>std::mem_fun_ref</code> 是 C++ 标准库中的函数适配器，用于调用成员函数。</p>
-<p>以下是它们的官方定义：</p>
+<p><code>std::remove_if</code> 是 C++ 标准库中的一个算法，它根据指定的条件，将满足条件的元素从输入序列中移除，并返回新的逻辑结束位置。其函数原型如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">remove_if</span><span class="params">(iterator first, iterator last, <span class="type">const</span> Predicate&amp; pred)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>其中：</p>
 <ul>
-<li><p><code>std::mem_fun</code>：这是一个函数对象适配器，可以将一个成员函数转换为具有固定参数的函数对象。它接受一个成员函数指针，并返回一个可以调用具有固定参数的函数对象。</p>
-</li>
-<li><p><code>std::mem_fun_ref</code>：这是一个函数对象适配器，可以将一个成员函数引用转换为具有固定参数的函数对象。它接受一个成员函数引用，并返回一个可以调用具有固定参数的函数对象。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ClxECS</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">DoSomething</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Output from method DoSomething!&quot;</span> &lt;&lt; endl; <span class="comment">// 这里以输出一句话来代替具体的操作</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">vector&lt;ClxECS*&gt; vECS;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">13</span>; i++)&#123;</span><br><span class="line">    ClxECS *pECS = <span class="keyword">new</span> ClxECS;</span><br><span class="line">    vECS.<span class="built_in">push_back</span>(pECS);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">DoSomething</span><span class="params">(ClxECS *pECS)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> pECS-&gt;<span class="built_in">DoSomething</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>用for_each来实现我们想要的功能：for_each(vECS.begin(), vECS.end(), &amp;DoSomething);</p>
-</li>
+<li><code>first</code> 和 <code>last</code> 是输入序列的开始和结束迭代器。</li>
+<li><code>pred</code> 是一个函数或函数对象，用于判断哪些元素应该被移除。</li>
 </ul>
-<p>这两个适配器的目的是允许您使用成员函数作为常规函数对象进行操作，例如使用它们作为算法的参数。它们的主要区别在于 <code>std::mem_fun</code> 接受成员函数指针，而 <code>std::mem_fun_ref</code> 接受成员函数引用。这意味着 <code>std::mem_fun</code> 需要一个静态类型的对象来调用成员函数，而 <code>std::mem_fun_ref</code> 可以直接使用一个对象的引用。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">list&lt;Widget *&gt; lpw;</span><br><span class="line">for_each(lpw.<span class="built_in">begin</span>(), lpw.<span class="built_in">end</span>(),<span class="built_in">mem_fun</span>(&amp;Widget::test)); <span class="comment">// pw-&gt;test();</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">vector&lt;Widget&gt; vw;</span><br><span class="line">for_each(vw.<span class="built_in">begin</span>(), vw.<span class="built_in">end</span>(),<span class="built_in">mem_fun_ref</span>(&amp;Widget::test)); <span class="comment">// w.test();</span></span><br><span class="line"><span class="comment">//成员函数有参数的情况：将值传入，再bind1st为this</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//3</span></span><br><span class="line">std::for_each(m_erased.<span class="built_in">begin</span>(), m_erased.<span class="built_in">end</span>(),std::<span class="built_in">bind1st</span>(std::<span class="built_in">mem_fun</span>(&amp;SocketSet::_replace_with_last), <span class="keyword">this</span>));</span><br><span class="line"><span class="comment">//相当于this-&gt;_replace_with_last(iter)  //iter</span></span><br></pre></td></tr></table></figure>
+<p>返回值是一个迭代器，指向输入序列中第一个被移除元素之后的位置。</p>
+<p>下面是一个<strong>简单</strong>的实现示例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> Predicate&gt;</span></span><br><span class="line"><span class="function">Iterator <span class="title">my_remove_if</span><span class="params">(Iterator first, Iterator last, <span class="type">const</span> Predicate&amp; pred)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Iterator next = first;</span><br><span class="line">    <span class="keyword">while</span> (first != last) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">pred</span>(*first)) &#123;</span><br><span class="line">            *next = *first;</span><br><span class="line">            ++next;</span><br><span class="line">        &#125;</span><br><span class="line">        ++first;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个实现中，我们使用了一个 <code>next</code> 迭代器，用于保存当前处理过的最后一个不满足条件的元素的位置。然后我们遍历输入序列，对于每个元素，如果它满足条件，我们就将其保留在原位，否则我们将它移动到 <code>next</code> 所指向的位置，并将 <code>next</code> 向后移动一位。最后返回 <code>next</code>，即为新的逻辑结束位置。</p>
+<p>示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isSpace</span><span class="params">(<span class="type">char</span> x)</span> </span>&#123; <span class="keyword">return</span> x == <span class="string">&#x27; &#x27;</span>; &#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">string <span class="title">s2</span><span class="params">(<span class="string">&quot;Text with    spaces&quot;</span>)</span></span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;删除之前&quot;</span>&lt;&lt;s2 &lt;&lt; endl;</span><br><span class="line">	s2.<span class="built_in">erase</span>(<span class="built_in">remove_if</span>(s2.<span class="built_in">begin</span>(), s2.<span class="built_in">end</span>(), isSpace), s2.<span class="built_in">end</span>());</span><br><span class="line">	cout &lt;&lt;<span class="string">&quot;删除之后&quot;</span>&lt;&lt; s2 &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>两者区别:</strong><br>mem_fun_ref的作用和用法跟mem_fun一样，唯一的不同就是：</p>
-<p><strong>当容器中存放的是对象实体的时候用mem_fun_ref，</strong></p>
-<p><strong>当容器中存放的是对象的指针的时候用mem_fun。</strong></p>
+<p>本例中remove_if()函数传入的第三个参数是一个判断空格的函数，那么<code>remove_if</code>将会移除字符串中所有空格，并返回一个迭代器，指向移除空格后的字符串的末尾。</p>
+<p>对于提供的示例字符串 <code>&quot;Text with    spaces&quot;</code>，移除所有空格后，剩下的字符串是 <code>&quot;Textwithspaces&quot;</code>。因此，<code>remove_if</code>函数的返回迭代器的值应该是 <code>&quot;Textwithspaces&quot;</code> 字符串的末尾位置。</p>
+<p>真实情况：</p>
+<p>当 <code>std::remove_if()</code> 算法被调用时，它会<strong>重新排列序列</strong>，将所有不满足条件的元素移动到序列的前面，并将满足条件的元素（要删除元素）移动到序列的末尾。然而，它并不会减少序列的总长度，也就是说，序列的元素个数不会因为 <code>std::remove_if()</code> 的调用而减少。</p>
+<p><code>remove_if()</code> 算法不会直接修改原始序列，而是返回一个指向新的逻辑结束位置的迭代器。如果希望将结果存储在另一个序列中，可以使用 <code>std::remove_copy_if()</code> 算法。</p>
+<p>如果想要<strong>真正删除</strong>（对原序列进行修改），通常需要配合<strong>erase函数</strong>使用。</p>
 
     
 
@@ -258,7 +261,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/2023/11/09/men-fun和men-fun-ref-md/" title="men_fun和men_fun_ref.md" target="_blank">http://example.com/2023/11/09/men-fun和men-fun-ref-md/</a>
+          <a href="http://example.com/2023/11/11/remove-if-md/" title="remove_if.md" target="_blank">http://example.com/2023/11/11/remove-if-md/</a>
         </li>
         
         <li>
@@ -336,7 +339,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/11/09/men-fun%E5%92%8Cmen-fun-ref-md/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/11/11/remove-if-md/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -351,18 +354,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2023/11/11/remove-if-md/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          remove_if.md
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/11/09/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E7%90%86%E8%A7%A3%E5%8F%8Abind1st%E5%92%8Cbind2nd-md/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">函数对象理解及bind1st和bind2nd.md</div>
+    <a href="/2023/11/09/men-fun%E5%92%8Cmen-fun-ref-md/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">men_fun和men_fun_ref.md</div>
       <i class="icon-circle-right"></i>
     </a>
   
