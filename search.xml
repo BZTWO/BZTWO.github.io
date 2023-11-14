@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Lambda表达式.md</title>
+      <link href="/2023/11/14/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F-md/"/>
+      <url>/2023/11/14/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F-md/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><p>Lambda表达式概述</p><p> Lambda表达式是现代C++在C ++ 11和更高版本中的一个新的语法糖 ，在C++11、C++14、C++17和C++20中Lambda表达的内容还在不断更新。 lambda表达式（也称为lambda函数）是在调用或作为函数参数传递的位置处定义匿名函数对象的便捷方法。通常，lambda用于封装传递给算法或异步方法的几行代码 。本文主要介绍Lambda的工作原理以及使用方法。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 学习使用记录函数C++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++remove_if.md</title>
       <link href="/2023/11/11/remove-if-md/"/>
       <url>/2023/11/11/remove-if-md/</url>
