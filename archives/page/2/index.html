@@ -6,25 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>快速排序.md | BZTWO</title>
+  <title>Archives | BZTWO</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="快速排序（Quicksort）是一种分治算法，通过不断交换数组中的元素使得数组变得有序。它的基本思想是选择一个基准元素，将数组分为两个部分，使得左边的部分的所有元素都小于等于基准元素，右边的部分的所有元素都大于等于基准元素，然后递归地排序两个子数组。 快速排序的单指针实现通常被称为单指针遍历法（Split Method），双指针实现通常被称为双指针遍历法（Partition Method）。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="快速排序.md">
-<meta property="og:url" content="http://example.com/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="BZTWO">
+<meta property="og:url" content="http://example.com/archives/page/2/index.html">
 <meta property="og:site_name" content="BZTWO">
-<meta property="og:description" content="快速排序（Quicksort）是一种分治算法，通过不断交换数组中的元素使得数组变得有序。它的基本思想是选择一个基准元素，将数组分为两个部分，使得左边的部分的所有元素都小于等于基准元素，右边的部分的所有元素都大于等于基准元素，然后递归地排序两个子数组。 快速排序的单指针实现通常被称为单指针遍历法（Split Method），双指针实现通常被称为双指针遍历法（Partition Method）。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/Snipaste_2023-11-21_11-58-58.png">
-<meta property="og:image" content="http://example.com/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/Snipaste_2023-11-21_11-58-58.png">
-<meta property="article:published_time" content="2023-11-21T03:50:20.000Z">
-<meta property="article:modified_time" content="2023-11-21T04:21:44.337Z">
 <meta property="article:author" content="an">
-<meta property="article:tag" content="排序算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/Snipaste_2023-11-21_11-58-58.png">
   
     <link rel="alternative" href="/atom.xml" title="BZTWO" type="application/atom+xml">
   
@@ -143,256 +135,112 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-快速排序-md" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2023" class="archive-year">2023</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2023/11/09/hexo-md/" class="archive-article-date">
+        <time datetime="2023-11-09T06:30:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-09</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/2023/11/09/hexo-md/" target="_blank">hexo.md</a>
   
-    <h1 class="article-title" itemprop="name">
-      快速排序.md
     </h1>
   
 
 
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/" class="archive-article-date">
-        <time datetime="2023-11-21T03:50:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-21</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">565字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>快速排序（Quicksort）是一种<strong>分治算法</strong>，通过不断交换数组中的元素使得数组变得有序。它的基本思想是选择一个基准元素，将数组分为两个部分，使得左边的部分的所有元素都小于等于基准元素，右边的部分的所有元素都大于等于基准元素，然后递归地排序两个子数组。</p>
-<p>快速排序的单指针实现通常被称为<strong>单指针遍历法</strong>（Split Method），双指针实现通常被称为<strong>双指针遍历法</strong>（Partition Method）。</p>
-<h4 id="单指针遍历法"><a href="#单指针遍历法" class="headerlink" title="单指针遍历法"></a>单指针遍历法</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">quickSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> left, <span class="type">int</span> right)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (right &lt;= left)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> i = left;</span><br><span class="line">	<span class="type">int</span> key = nums[left];</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt;= right; j++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (nums[j] &lt;= key) &#123;      <span class="comment">//如果当前元素小于基准元素</span></span><br><span class="line">			i++;      </span><br><span class="line">			<span class="keyword">if</span> (i != j)</span><br><span class="line">				<span class="built_in">swap</span>(nums[i], nums[j]);      <span class="comment">//慢指针填充</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">swap</span>(nums[left], nums[i]);</span><br><span class="line">	<span class="built_in">quickSort</span>(nums, left, i - <span class="number">1</span>);      <span class="comment">//第 i 个元素位置已经确定（当前值 j == i）将 nums[i] 作为一个分隔</span></span><br><span class="line">	<span class="built_in">quickSort</span>(nums, i + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<img src="/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/Snipaste_2023-11-21_11-58-58.png" class="" title="Snipaste_2023-11-21_11-58-58">
-
-<h4 id="双指针遍历法"><a href="#双指针遍历法" class="headerlink" title="双指针遍历法"></a>双指针遍历法</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">quickSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> left, <span class="type">int</span> right)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (right &lt;= left)      <span class="comment">//当起点小于等于终点时直接返回，当 right == right 时没有不必进行交换因为此时只有一个元素 </span></span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> i = left, j = right;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">		<span class="keyword">while</span> (i &lt; j &amp;&amp; nums[j] &gt;= nums[left]) &#123;      <span class="comment">//从右边开始找到第一个比 nums[left] 小的元素下标</span></span><br><span class="line">			j--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (i &lt; j &amp;&amp; nums[i] &lt;= nums[left]) &#123;      <span class="comment">//从左边开始找到第一个比 nums[left] 大的元素下标</span></span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (i != j)      <span class="comment">//当满足条件的 i 和 j 在不同位置上时（相同则不必交换）</span></span><br><span class="line">			<span class="built_in">swap</span>(nums[i], nums[j]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">swap</span>(nums[left], nums[i]);      <span class="comment">//将基准元素 nums[left] 与比当前值小的元素 nums[i] 进行交换</span></span><br><span class="line">	<span class="built_in">quickSort</span>(nums, left, i - <span class="number">1</span>);      <span class="comment">//第 i 个元素位置已经确定（当前值 j == i）将 nums[i] 作为一个分隔</span></span><br><span class="line">	<span class="built_in">quickSort</span>(nums, i + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; nums = &#123; <span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span> &#125;;</span><br><span class="line">	<span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">	<span class="built_in">quickSort</span>(nums, <span class="number">0</span>, n - <span class="number">1</span>);</span><br><span class="line">	for_each(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), [](<span class="keyword">auto</span> i) &#123;cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span>; &#125;);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<img src="/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/Snipaste_2023-11-21_11-58-58.png" class="" title="Snipaste_2023-11-21_11-58-58">
-
-    
-
-    
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/alipay.jpg">
-                    <span class="reward-type">支付宝</span>
-                  </div>
-                  
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/weixin.png">
-                    <span class="reward-type">微信</span>
-                  </div>
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          an
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="http://example.com/2023/11/21/快速排序-md/" title="快速排序.md" target="_blank">http://example.com/2023/11/21/快速排序-md/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
+        <div class="article-info info-on-right">
           
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">排序算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hexo相关</a>
         		</li>
       		
 		</ul>
 	</div>
 
-    
+          
 
-    
-
-    
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-    
-    <div class="clearfix"></div>
-  </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
   
-    <a href="/2023/11/21/%E6%8F%92%E5%85%A5and%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F-md/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          插入and希尔排序.md
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2023/11/20/%E7%BA%BF%E6%AE%B5%E6%A0%91-md/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">线段树.md</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2023/11/08/for-each-md/" class="archive-article-date">
+        <time datetime="2023-11-08T15:00:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-08</time>
+</a>
 
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
         </div>
-        
-        
-    </div>
-</aside>
+    	 
+  
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/2023/11/08/for-each-md/" target="_blank">C++for_each.md</a>
+  
+    </h1>
+  
 
 
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">学习使用记录函数C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
+          
 
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
 
-
-
-
-
-
-
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 
 
           </div>
@@ -433,8 +281,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

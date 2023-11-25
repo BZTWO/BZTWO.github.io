@@ -142,6 +142,271 @@
             
 
   
+    <article id="post-线程函数-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/" target="_blank">线程函数.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/" class="archive-article-date">
+        <time datetime="2023-11-25T05:20:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-25</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<h4 id="joinable"><a href="#joinable" class="headerlink" title="joinable()"></a>joinable()</h4><p><code>joinable()</code> 是 C++ 中的一个函数，用于检查一个线程是否可以被加入（joined）。如果一个线程是可加入的，那么就可以通过 <code>join()</code> 或 <code>detach()</code> 函数来等待它结束。如果一个线程已经被 <code>join()</code> 或 <code>detach()</code>，那么再次调用 <code>joinable()</code> 会返回 false。</p>
+<p>在 <code>std::thread</code> 对象上调用 <code>joinable()</code> 可以返回一个布尔值，表示该线程是否可以被加入。如果返回 true，则该线程可以被加入；如果返回 false，则该线程已经结束或者尚未被启动。</p>
+<p>以下是 <code>joinable()</code> 的一个简单示例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(foo)</span></span>;</span><br><span class="line">    <span class="keyword">if</span> (t.<span class="built_in">joinable</span>()) &#123;</span><br><span class="line">        t.<span class="built_in">join</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个示例中，我们创建了一个名为 <code>t</code> 的新线程，然后检查它是否可以被加入。如果可以，我们就调用 <code>join()</code> 等待它结束。</p>
+<h4 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h4><p>在C++中，<code>std::join</code>函数是用于等待一个线程结束的函数，可以使用C++的多线程库（例如<code>std::thread</code>）来创建和管理多个线程，并使用<code>std::join</code>函数来等待这些线程的结束。</p>
+<p>使用<code>std::thread</code>和<code>std::join</code>函数的多线程示例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">threadFunction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Hello from thread!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(threadFunction)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (t.<span class="built_in">joinable</span>()) &#123;</span><br><span class="line">        t.<span class="built_in">join</span>();</span><br><span class="line">    &#125;   </span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Hello from main thread!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/Snipaste_2023-11-25_13-37-41.png" class="" title="Snipaste_2023-11-25_13-37-41">
+
+<p>我们创建了一个新的线程<code>t</code>，并将它绑定到一个名为<code>threadFunction</code>的函数上。然后，使用<code>std::join</code>函数等待该线程的结束。注意，在调用<code>std::join</code>之前，我们必须先检查线程是否可加入（使用<code>joinable</code>函数）。如果线程已经终止，那么调用<code>std::join</code>将导致程序立即终止。最后，在主线程中打印一条消息。</p>
+<p>由于线程的执行顺序是不确定的，因此输出顺序可能会有所不同。</p>
+<h4 id="detach"><a href="#detach" class="headerlink" title="detach()"></a>detach()</h4><p><code>detach()</code>函数用于将线程从主线程中分离出去，使其成为一个独立的线程。当一个线程被<code>detach()</code>后，它将不再与主线程关联，不会受到主线程的影响。具体来说，被<code>detach()</code>的线程会继续执行，直到其完成或发生异常退出。但是，被<code>detach()</code>的线程无法再被主线程控制或访问。</p>
+<p>使用场景：</p>
+<ol>
+<li>在主线程结束时，将其他线程<code>detach()</code>可以确保这些线程能够继续执行，而不会受到主线程结束的影响。</li>
+<li>在某些情况下，我们可能希望将一些任务交给另一个线程去执行，但是这些任务完成后并不需要主线程进行任何操作。这时，可以使用<code>detach()</code>将该线程与主线程分离，让其在后台独立执行。</li>
+</ol>
+<p>需要注意的是，被<code>detach()</code>的线程在完成执行后会自动退出，但是其资源并不会被自动回收。如果需要手动回收资源，可以通过使用<code>join()</code>函数等待线程结束。</p>
+<p><code>detach</code>函数在多线程中的示例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">workerThread</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">1</span>));</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Worker thread finished&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(workerThread)</span></span>;</span><br><span class="line">    </span><br><span class="line">    t.<span class="built_in">detach</span>(); <span class="comment">// 将线程与当前对象分离</span></span><br><span class="line">    </span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Main thread is running&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 在主线程中执行其他任务</span></span><br><span class="line">    std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">2</span>));</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Main thread finished&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/Snipaste_2023-11-25_13-36-06.png" class="" title="Snipaste_2023-11-25_13-36-06">
+
+<p>在这个示例中，创建了一个名为<code>t</code>的线程对象，并将其绑定到名为<code>workerThread</code>的函数上。然后，使用<code>detach</code>函数将线程与当前对象分离，使其在后台运行。接着，在主线程中执行其他任务。当主线程执行完毕后，即使后台线程仍在运行，程序也会正常结束。</p>
+<p><code>注意共享空间的使用配合 detach() 函数可能会导致崩溃。</code></p>
+<p><code>并且不能和 join() 函数一起使用，只能使用其中一个</code></p>
+<h4 id="ref（）"><a href="#ref（）" class="headerlink" title="ref（）"></a>ref（）</h4>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C++多线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-多线程使用-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/11/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8-md/" target="_blank">多线程使用.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/11/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8-md/" class="archive-article-date">
+        <time datetime="2023-11-25T02:52:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-25</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>多线程（Multithreading）是指在一个程序中<strong>同时运行</strong>多个线程，每个线程都可以独立执行不同的任务或代码片段，从而使程序具有并发执行的能力。</p>
+<p>头文件：<thread></p>
+<h4 id="多线程与单线程的区别"><a href="#多线程与单线程的区别" class="headerlink" title="多线程与单线程的区别"></a>多线程与单线程的区别</h4><p>主要体现在以下几个方面：</p>
+<ol>
+<li><strong>地址空间和资源</strong>：同一进程的线程之间共享本进程的地址空间和资源，而进程之间则是独立的。</li>
+<li><strong>通信方式</strong>：同一进程内的线程之间可以直接读写彼此的数据空间，这使得线程间通信非常方便。但进程通信时必须通过操作系统来进行，相对要复杂得多。</li>
+<li><strong>运行开销</strong>：创建和撤销一个进程需要保存寄存器、栈信息以及进行资源分配和回收等操作，开销较大。而线程的创建和撤销只需保存寄存器和栈信息，开销较小。</li>
+<li><strong>执行过程</strong>：每个独立的进程都有一个程序运行的入口、顺序执行序列和程序入口。但是线程不能独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。</li>
+<li><strong>调度</strong>：线程是处理器调度的基本单位，但是进程不是。</li>
+<li><strong>开销</strong>：创建和撤销一个进程需要保存寄存器、栈信息以及进行资源分配和回收等操作，开销较大。而线程的创建和撤销只需保存寄存器和栈信息，开销较小。</li>
+</ol>
+<p>​	多线程和多进程虽然都是实现并发执行的技术，但在地址空间、资源拥有、通信方式、运行开销、执行过程以及调度等方面存在明显的差异。</p>
+<h4 id="多线程适用场景"><a href="#多线程适用场景" class="headerlink" title="多线程适用场景"></a>多线程适用场景</h4><p>多线程在编程中适合解决以下问题：</p>
+<ol>
+<li><strong>处理大量并发任务</strong>：当需要处理大量并发任务时，例如在服务器端处理大量客户端请求，多线程可以提高程序的响应速度和吞吐量。</li>
+<li><strong>充分利用CPU资源</strong>：多线程可以同时执行多个任务，充分利用计算机的CPU资源，提高程序的运行效率。</li>
+<li><strong>实现并行计算</strong>：多线程可以用于实现并行计算，将一个任务分解成多个子任务，并在多个处理器上同时执行，提高计算速度和效率。</li>
+<li><strong>提高用户体验</strong>：在图形界面、游戏、多媒体处理等应用中，多线程可以提高程序的流畅度和响应速度，从而提高用户体验。</li>
+<li><strong>实现分布式计算</strong>：多线程可以用于实现分布式计算，将任务分配给多个计算机节点，提高计算效率和可靠性。</li>
+<li><strong>处理I&#x2F;O密集型任务</strong>：多线程可以用于处理I&#x2F;O密集型任务，例如网络通信、文件读写等，提高程序的响应速度和吞吐量。</li>
+<li><strong>实现高并发程序设计</strong>：多线程可以用于实现高并发程序设计，提高程序的并发执行能力和响应速度。</li>
+</ol>
+<p>​	多线程在编程中适合解决各种并发任务的处理、提高程序的运行效率和响应速度、充分利用计算机资源、提高用户体验等问题。</p>
+<h4 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//程序运行起来生成一个进程，该进程所属的主线程开始自动运行</span></span><br><span class="line">    <span class="comment">//实际上这个是主线程在执行，主线程从 main() 函数返回，整个进程执行完毕</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello World！&quot;</span>&lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">myprint</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;我的线程开始执行了！&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    <span class="comment">//…………</span></span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;我的线程结束执行了！&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//主线程从 main() 函数开始执行，自己创建的线程也需要有一个(初始函数)</span></span><br><span class="line">    <span class="comment">//一旦初始函数运行完毕，代表着线程运行也结束了</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment">//整个进程是否执行完毕的标志是主线程是否执行完毕</span></span><br><span class="line">    	<span class="comment">//若此时有子线程还未执行完毕，将会被操作系统强行终止</span></span><br><span class="line">    	<span class="comment">//想要保持子线程(创教的线程)运行状态，就要让主线程不要运行完毕</span></span><br><span class="line">    <span class="function">thread <span class="title">myobj</span><span class="params">(myprint)</span></span>;      <span class="comment">//函数作为可调用对象作为线程入口</span></span><br><span class="line">    myobj.<span class="built_in">join</span>();</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello World!&quot;</span> &lt;&lt; endl; </span><br><span class="line">    <span class="comment">//本次执行有两个线程</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/11/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8-md/Snipaste_2023-11-25_13-00-27.png" class="" title="Snipaste_2023-11-25_13-00-27">
+
+
+
+<h5 id="用类来创建线程"><a href="#用类来创建线程" class="headerlink" title="用类来创建线程"></a>用类来创建线程</h5><p>示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> m_i;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">A</span>(<span class="type">int</span>&amp; i) :<span class="built_in">m_i</span>(i) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">()</span>      <span class="comment">//重载 ()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;我的线程operator()开始执行了！&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="comment">//…………</span></span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;m_i = &quot;</span> &lt;&lt; m_i &lt;&lt; endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;我的线程operator()结束执行了！&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">A <span class="title">a</span><span class="params">(<span class="number">6</span>)</span></span>;</span><br><span class="line">    <span class="function">thread <span class="title">myobj</span><span class="params">(a)</span></span>;      <span class="comment">//将类对象作为一个可调用对象，这个对象是被复制到线程中去的</span></span><br><span class="line">    myobj.<span class="built_in">join</span>();</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello World!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/11/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8-md/Snipaste_2023-11-25_14-17-31.png" class="" title="Snipaste_2023-11-25_14-17-31">
+
+<p>需要注意的是当我们使用<code>detach()</code>时，要注意资源被回收后，如果此时我们再去使用相关资源会产生不可预料的后果。</p>
+<p>比如：<code>int num = 6; A a(num);</code>并且在上面的构造函数中使用的是引用，当 num 被回收后再去调用重载中的m_i就会出现问题。</p>
+<blockquote>
+<p>但是我们传入A类的对象作为参数，其实是将该类对象复制拷贝到线程中去执行的，所以当主线程执行完毕后，被拷贝出来的对象依然是存在的。（如果是引用传递则会出现上面的问题）</p>
+</blockquote>
+<p>示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> m_i;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">A</span>(<span class="type">int</span> i) :<span class="built_in">m_i</span>(i)</span><br><span class="line">	&#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;A()构造函数被执行&quot;</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="string">&quot; 线程id:&quot;</span> &lt;&lt; std::this_thread::get_id &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">A</span>(<span class="type">const</span> A&amp; a) :<span class="built_in">m_i</span>(a.m_i)</span><br><span class="line">	&#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;A()拷贝构造函数被执行&quot;</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="string">&quot; 线程id:&quot;</span> &lt;&lt; std::this_thread::get_id &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	~<span class="built_in">A</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;A()析构函数被执行&quot;</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="string">&quot; 线程id:&quot;</span> &lt;&lt; std::this_thread::get_id &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">int</span> num)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;我的线程operator()开始执行了！&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;m_i的值为：&quot;</span> &lt;&lt; m_i &lt;&lt; std::endl;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;[子线程operator()执行]&quot;</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="string">&quot; 线程id:&quot;</span> &lt;&lt; std::this_thread::get_id &lt;&lt; std::endl;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;我的线程operator()结束执行了！&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">()</span>      <span class="comment">//重载 ()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;我的线程operator()开始执行了！&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="comment">//…………</span></span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;m_i = &quot;</span> &lt;&lt; m_i &lt;&lt; endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;我的线程operator()结束执行了！&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">A <span class="title">a</span><span class="params">(<span class="number">6</span>)</span></span>;</span><br><span class="line">    <span class="function">thread <span class="title">myobj</span><span class="params">(a)</span></span>;      <span class="comment">//将类对象作为一个可调用对象</span></span><br><span class="line">    myobj.<span class="built_in">join</span>();</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello World!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/11/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8-md/Snipaste_2023-11-25_14-35-31.png" class="" title="Snipaste_2023-11-25_14-35-31">
+
+
+
+<h5 id="用lambda表达式创建线程"><a href="#用lambda表达式创建线程" class="headerlink" title="用lambda表达式创建线程"></a>用lambda表达式创建线程</h5><p>示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">auto</span> mylamthread = []()<span class="comment">//lambda表达式的使用，用lambda表达式创建线程</span></span><br><span class="line">	&#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;我的线程1开始执行&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;我的线程1执行结束&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="function">std::thread <span class="title">myobj</span><span class="params">(mylamthread)</span></span>;</span><br><span class="line">	<span class="comment">//mytobj.detach();</span></span><br><span class="line">	myobj.<span class="built_in">join</span>();</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello World!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/11/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8-md/Snipaste_2023-11-25_14-42-08.png" class="" title="Snipaste_2023-11-25_14-42-08">
+
+<h4 id="线程参数"><a href="#线程参数" class="headerlink" title="线程参数"></a>线程参数</h4><h5 id="传递临时对象作为线程参数"><a href="#传递临时对象作为线程参数" class="headerlink" title="传递临时对象作为线程参数"></a>传递临时对象作为线程参数</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">myprint</span><span class="params">(<span class="type">const</span> <span class="type">int</span> &amp;a,<span class="type">const</span> std::string &amp;buf)</span>      <span class="comment">//加const是为了接受右值</span></span></span><br><span class="line"><span class="function">    <span class="comment">//虽然说这里是 &amp;a 但不是一个真引用，而是一个复制的值，实际为值传递（不推荐使用引用）</span></span></span><br><span class="line"><span class="function">    <span class="comment">//即便使用detach()也是安全的</span></span></span><br><span class="line"><span class="function">    </span></span><br><span class="line"><span class="function">    <span class="comment">//如果参数列表传入是指针（const char* buf）则一定会出现问题，此时为引用传递(不能使用)</span></span></span><br><span class="line"><span class="function">    <span class="comment">//可以使用(const std::string &amp;buf)此时会产生一个临时对象，不会出现问题</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;a=&quot;</span> &lt;&lt; a &lt;&lt; std::endl;</span><br><span class="line">	std::cout &lt;&lt; &amp;a &lt;&lt; std::endl;</span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;buf[]=&quot;</span> &lt;&lt; buf.<span class="built_in">c_str</span>() &lt;&lt; std::endl;<span class="comment">//buf也可以</span></span><br><span class="line">	std::cout &lt;&lt; &amp;buf &lt;&lt; std::endl;</span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;子线程myprint()的参数地址是:&quot;</span> &lt;&lt; &amp;buf &lt;&lt; <span class="string">&quot; 线程id:&quot;</span> &lt;&lt; std::this_thread::<span class="built_in">get_id</span>() &lt;&lt; std::endl;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> mvar = <span class="number">1</span>;</span><br><span class="line">	<span class="type">int</span>&amp; mvary = mvar;</span><br><span class="line">	<span class="type">char</span> mybuf[] = <span class="string">&quot;this is a test!&quot;</span>;   <span class="comment">//传入一个字符数组作为参数将会出现一个隐式类型转换-&gt;string</span></span><br><span class="line">	<span class="function">std::thread <span class="title">myobj</span><span class="params">(myprint, mvar, std::string(mybuf))</span></span>;<span class="comment">//用mybuf构造一个临时string对象，保证线程中对象肯定有效</span></span><br><span class="line">    <span class="comment">//避免出现当mybuf[]资源被回收之后才用去转 string 的情况</span></span><br><span class="line">    <span class="comment">//在创建线程的同时构造临时对象的方法传递参数是可行的</span></span><br><span class="line">	myobj.<span class="built_in">join</span>();</span><br><span class="line">	<span class="comment">//myobj.detach();</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello World!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/11/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8-md/Snipaste_2023-11-25_14-50-52.png" class="" title="Snipaste_2023-11-25_14-50-52">
+
+<p>注意1：</p>
+<p>传递int这种简单类型参数，建议使用值传递，不要使用引用，避免出现问题。</p>
+<p>注意2：</p>
+<p>如果传递类对象，要避免隐式类型转换。在创建函数这一行就构建出临时对象，然后在函数参数里用引用来接，否则系统会多调用一次构造函数。</p>
+<h5 id="传递类对象、智能指针作为线程参数"><a href="#传递类对象、智能指针作为线程参数" class="headerlink" title="传递类对象、智能指针作为线程参数"></a>传递类对象、智能指针作为线程参数</h5><p>类对象：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">A</span>(<span class="type">int</span> i) :<span class="built_in">m_i</span>(i) &#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;A()构造函数被执行&quot;</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="string">&quot; 线程id:&quot;</span> &lt;&lt; std::this_thread::get_id &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">A</span>(<span class="type">const</span> A&amp; a) :<span class="built_in">m_i</span>(a.m_i) &#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;A()拷贝构造函数被执行&quot;</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="string">&quot; 线程id:&quot;</span> &lt;&lt; std::this_thread::get_id &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	~<span class="built_in">A</span>() &#123;</span><br><span class="line">		std::cout &lt;&lt; <span class="string">&quot;A()析构函数被执行&quot;</span> &lt;&lt; <span class="keyword">this</span> &lt;&lt; <span class="string">&quot; 线程id:&quot;</span> &lt;&lt; std::this_thread::get_id &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">mutable</span> <span class="type">int</span> m_i;<span class="comment">//可更改成员变量</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">myprint</span><span class="params">(<span class="type">const</span> A&amp; buf)</span> </span>&#123;</span><br><span class="line">	buf.m_i = <span class="number">199</span>;      <span class="comment">//修改该值不会影响到main函数</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;子线程myprint的参数地址&quot;</span> &lt;&lt; &amp;buf &lt;&lt; <span class="string">&quot;threadid = &quot;</span> &lt;&lt; std::this_thread::get_id &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="function">A <span class="title">a</span><span class="params">(<span class="number">100</span>)</span></span>;</span><br><span class="line">	<span class="function">std::thread <span class="title">myobj</span><span class="params">(myprint, a)</span></span>;<span class="comment">//将类对象作为线程参数</span></span><br><span class="line">	<span class="comment">//std::thread myobj(myprint, std::ref(a));使用ref库函数传入函数时的形参就不用加const</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//将真正的a的引用传递到函数myprint中去，不会在被拷贝出来，算是一个优化</span></span><br><span class="line">    </span><br><span class="line">    myobj.<span class="built_in">join</span>();</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello World!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; a.m_i &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/11/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8-md/Snipaste_2023-11-25_17-12-07.png" class="" title="Snipaste_2023-11-25_17-12-07">
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C++多线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/11/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-插入and希尔排序-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -947,10 +1212,24 @@
 
 <img src="/2023/11/09/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E7%90%86%E8%A7%A3%E5%8F%8Abind1st%E5%92%8Cbind2nd-md/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1result.png" class="" title="函数对象result">
 
+<h4 id="bind-and-ref"><a href="#bind-and-ref" class="headerlink" title="bind() and ref()"></a>bind() and ref()</h4><p>示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;a = &quot;</span> &lt;&lt; a &lt;&lt; <span class="string">&quot;, b=&quot;</span> &lt;&lt; b &lt;&lt; <span class="string">&quot;, c=&quot;</span> &lt;&lt; c &lt;&lt; <span class="string">&quot;\n\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[], <span class="type">char</span>* env[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">auto</span> func = std::<span class="built_in">bind</span>(print, std::placeholders::_2, <span class="number">2</span>, std::placeholders::_1);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">func</span>(<span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/11/09/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E7%90%86%E8%A7%A3%E5%8F%8Abind1st%E5%92%8Cbind2nd-md/Snipaste_2023-11-25_21-29-49.png" class="" title="Snipaste_2023-11-25_21-29-49">
+
+<p>注意:</p>
+<ul>
+<li><strong>std::bind</strong>的函数参数默认使用的是<strong>拷贝</strong>， 如果需要使用引用，则需要配合<strong>std::ref</strong>。</li>
+</ul>
+<p>官方用例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">(<span class="type">int</span> n1, <span class="type">int</span> n2, <span class="type">int</span> n3, <span class="type">const</span> <span class="type">int</span>&amp; n4, <span class="type">int</span> n5)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::cout &lt;&lt; n1 &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; n2 &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; n3 &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; n4 &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; n5 &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">g</span><span class="params">(<span class="type">int</span> n1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n1;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Foo</span> &#123;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print_sum</span><span class="params">(<span class="type">int</span> n1, <span class="type">int</span> n2)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; n1+n2 &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> data = <span class="number">10</span>;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> std::placeholders;  <span class="comment">// for _1, _2, _3...</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// demonstrates argument reordering and pass-by-reference</span></span><br><span class="line">    <span class="type">int</span> n = <span class="number">7</span>;</span><br><span class="line">    <span class="comment">// (_1 and _2 are from std::placeholders, and represent future</span></span><br><span class="line">    <span class="comment">// arguments that will be passed to f1)</span></span><br><span class="line">    <span class="keyword">auto</span> f1 = std::<span class="built_in">bind</span>(f, _2, <span class="number">42</span>, _1, std::<span class="built_in">cref</span>(n), n);</span><br><span class="line">    n = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">f1</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">1001</span>); <span class="comment">// 1 is bound by _1, 2 is bound by _2, 1001 is unused</span></span><br><span class="line">                    <span class="comment">// makes a call to f(2, 42, 1, n, 7)</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// nested bind subexpressions share the placeholders</span></span><br><span class="line">    <span class="keyword">auto</span> f2 = std::<span class="built_in">bind</span>(f, _3, std::<span class="built_in">bind</span>(g, _3), _3, <span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">f2</span>(<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>); <span class="comment">// makes a call to f(12, g(12), 12, 4, 5);</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// common use case: binding a RNG with a distribution</span></span><br><span class="line">    std::default_random_engine e;</span><br><span class="line">    std::uniform_int_distribution&lt;&gt; <span class="built_in">d</span>(<span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">    <span class="keyword">auto</span> rnd = std::<span class="built_in">bind</span>(d, e); <span class="comment">// a copy of e is stored in rnd</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> n=<span class="number">0</span>; n&lt;<span class="number">10</span>; ++n)</span><br><span class="line">        std::cout &lt;&lt; <span class="built_in">rnd</span>() &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// bind to a pointer to member function</span></span><br><span class="line">    Foo foo;</span><br><span class="line">    <span class="keyword">auto</span> f3 = std::<span class="built_in">bind</span>(&amp;Foo::print_sum, &amp;foo, <span class="number">95</span>, _1);</span><br><span class="line">    <span class="built_in">f3</span>(<span class="number">5</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// bind to a pointer to data member</span></span><br><span class="line">    <span class="keyword">auto</span> f4 = std::<span class="built_in">bind</span>(&amp;Foo::data, _1);</span><br><span class="line">    std::cout &lt;&lt; <span class="built_in">f4</span>(foo) &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// smart pointers can be used to call members of the referenced objects, too</span></span><br><span class="line">    std::cout &lt;&lt; <span class="built_in">f4</span>(std::<span class="built_in">make_shared</span>&lt;Foo&gt;(foo)) &lt;&lt; <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">              &lt;&lt; <span class="built_in">f4</span>(std::<span class="built_in">make_unique</span>&lt;Foo&gt;(foo)) &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/11/09/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E7%90%86%E8%A7%A3%E5%8F%8Abind1st%E5%92%8Cbind2nd-md/Snipaste_2023-11-25_21-35-14.png" class="" title="Snipaste_2023-11-25_21-35-14">
+
 <h4 id="binder1st-，binder2nd使用方法"><a href="#binder1st-，binder2nd使用方法" class="headerlink" title="binder1st ，binder2nd使用方法"></a>binder1st ，binder2nd使用方法</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdafx.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> <span class="keyword">warning</span>(disable:4996)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="type">int</span> b = <span class="number">20</span>;</span><br><span class="line"> </span><br><span class="line">	binder1st&lt;plus&lt;<span class="type">int</span>&gt;&gt; b1st_plus = <span class="built_in">bind1st</span>(<span class="built_in">plus</span>&lt;<span class="type">int</span>&gt;(), <span class="number">10</span>);</span><br><span class="line">	binder1st&lt;minus&lt;<span class="type">int</span>&gt;&gt; b1st_minus = <span class="built_in">bind1st</span>(<span class="built_in">minus</span>&lt;<span class="type">int</span>&gt;(), <span class="number">10</span>);</span><br><span class="line"> </span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;10+b=&quot;</span> &lt;&lt; <span class="built_in">b1st_plus</span>(b) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;10-5=&quot;</span> &lt;&lt; <span class="built_in">b1st_minus</span>(<span class="number">5</span>) &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">	binder2nd&lt;plus&lt;<span class="type">int</span>&gt;&gt; b2nd_plus = <span class="built_in">bind2nd</span>(<span class="built_in">plus</span>&lt;<span class="type">int</span>&gt;(), <span class="number">10</span>);</span><br><span class="line">	binder2nd&lt;minus&lt;<span class="type">int</span>&gt;&gt; b2nd_minus = <span class="built_in">bind2nd</span>(<span class="built_in">minus</span>&lt;<span class="type">int</span>&gt;(), <span class="number">10</span>);</span><br><span class="line"> </span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;b+10=&quot;</span> &lt;&lt; <span class="built_in">b2nd_plus</span>(b) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;5-10=&quot;</span> &lt;&lt; <span class="built_in">b2nd_minus</span>(<span class="number">5</span>) &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; v1;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		v1.<span class="built_in">push_back</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//使用count_if获得容器v1中大于或等于4的个数</span></span><br><span class="line">	<span class="type">int</span> count = <span class="built_in">count_if</span>(v1.<span class="built_in">begin</span>(),v1.<span class="built_in">end</span>(),<span class="built_in">bind1st</span>(<span class="built_in">less_equal</span>&lt;<span class="type">int</span>&gt;(),<span class="number">4</span>));</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;bind1st v1 &gt;= 4 count=&quot;</span> &lt;&lt; count &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">	count = <span class="built_in">count_if</span>(v1.<span class="built_in">begin</span>(), v1.<span class="built_in">end</span>(), <span class="built_in">bind2nd</span>(<span class="built_in">greater_equal</span>&lt;<span class="type">int</span>&gt;(), <span class="number">4</span>));</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;bind2nd v1 &gt;= 4 count=&quot;</span> &lt;&lt; count &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>即当使用binder1st创建bind1st()后调用时，传入的是第二个参数，已经给定的默认参数是第一个；</p>
-<p>反之使用binder2nd创建bind2nd()后调用时，传入的是第一个参数，已经给定的默认参数是第二个。</p>
+<p>即当使用binder1st创建bind1st()后调用时，传入的是第二个参数，已经给定的默认参数是第一个(即绑定的是第一个参数)；</p>
+<p>反之使用binder2nd创建bind2nd()后调用时，传入的是第一个参数，已经给定的默认参数是第二个(即绑定的是第二个参数)。</p>
 <h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdafx.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> <span class="keyword">warning</span>(disable:4996)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> oper_fun, <span class="keyword">typename</span> param&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">test_binder1st</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">test_binder1st</span>(oper_fun operation, param first_param)</span><br><span class="line">	&#123;</span><br><span class="line">		oper = operation;</span><br><span class="line">		first = first_param;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">param <span class="title">operator</span> <span class="params">()</span><span class="params">(param second)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">oper</span>(first, second);</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	oper_fun oper;</span><br><span class="line">	param first;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> oper_fun, <span class="keyword">typename</span> param&gt;</span></span><br><span class="line"><span class="function">test_binder1st&lt;oper_fun, param&gt; <span class="title">test_bind1st</span><span class="params">(oper_fun operation, param first)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">test_binder1st</span>&lt;oper_fun, param&gt;(operation, first);<span class="comment">//调用的是上面test_binder1st的构造函数</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="type">int</span> b = <span class="number">20</span>;</span><br><span class="line"> </span><br><span class="line">	test_binder1st&lt;plus&lt;<span class="type">int</span>&gt;, <span class="type">int</span>&gt; b1st_plus = <span class="built_in">test_bind1st</span>(<span class="built_in">plus</span>&lt;<span class="type">int</span>&gt;(), <span class="number">10</span>);</span><br><span class="line">	test_binder1st&lt;minus&lt;<span class="type">int</span>&gt;, <span class="type">int</span>&gt; b1st_minus = <span class="built_in">test_bind1st</span>(<span class="built_in">minus</span>&lt;<span class="type">int</span>&gt;(), <span class="number">10</span>);</span><br><span class="line"> </span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;10+b=&quot;</span> &lt;&lt; <span class="built_in">b1st_plus</span>(b) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;10-5=&quot;</span> &lt;&lt; <span class="built_in">b1st_minus</span>(<span class="number">5</span>) &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; v1;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		v1.<span class="built_in">push_back</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//使用count_if获得容器v1中大于或等于4的个数</span></span><br><span class="line">	<span class="type">int</span> count = <span class="built_in">count_if</span>(v1.<span class="built_in">begin</span>(),v1.<span class="built_in">end</span>(),<span class="built_in">test_bind1st</span>(<span class="built_in">less_equal</span>&lt;<span class="type">int</span>&gt;(),<span class="number">4</span>));</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;bind1st v1 &gt;= 4 count=&quot;</span> &lt;&lt; count &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <img src="/2023/11/09/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E7%90%86%E8%A7%A3%E5%8F%8Abind1st%E5%92%8Cbind2nd-md/image-20231110175711735.png" class="" title="image-20231110175711735">
@@ -1010,314 +1289,10 @@
 
 
   
-    <article id="post-hexo-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
   
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/11/09/hexo-md/" target="_blank">hexo.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/11/09/hexo-md/" class="archive-article-date">
-        <time datetime="2023-11-09T06:30:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-09</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init [folder]</span><br></pre></td></tr></table></figure>
-
-<p>新建一个网站。如果没有设置 <code>folder</code> ，Hexo 默认在目前的文件夹建立网站。</p>
-<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
-
-<p>新建一篇文章。如果没有设置 <code>layout</code> 的话，默认使用 config.yml中的 <code>default_layout</code> 参数代替。如果标题包含空格的话，请使用引号括起来。</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-p, –pass</td>
-<td>自定义新文章路径</td>
-</tr>
-<tr>
-<td>-r, –replace</td>
-<td>如果存在同名文章，将其替换</td>
-</tr>
-<tr>
-<td>-s, –slug</td>
-<td>文章的Slug作为新文章的文件名和发布后的URL</td>
-</tr>
-</tbody></table>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new post 博客名.md</span><br></pre></td></tr></table></figure>
-
-<h3 id="service"><a href="#service" class="headerlink" title="service"></a>service</h3><p>启动服务,生成页面本地预览</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s  或 hexo service</span><br></pre></td></tr></table></figure>
-
-<h3 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
-
-<p>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</p>
-<p>在某些情况（尤其是更换主题后），如果发现对站点的更改无论如何也不生效，可能需要运行该命令。</p>
-<h4 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>部署网站。</p>
-<table>
-<thead>
-<tr>
-<th align="left">参数</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>-g</code>, <code>--generate</code></td>
-<td align="left">部署之前预先生成静态文件</td>
-</tr>
-</tbody></table>
-<p>该命令可以简写为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-
-
-
-<p>一般执行顺序为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo clean       清除静态缓存</span><br><span class="line">hexo g           生成博客文章</span><br><span class="line">hexo s           生成页面进行本地预览</span><br><span class="line">hexo d           部署博客文章</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="migrate"><a href="#migrate" class="headerlink" title="migrate"></a>migrate</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo migrate &lt;type&gt;</span><br></pre></td></tr></table></figure>
-
-<p>从其他博客系统 迁移内容。</p>
-<h4 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h4><h5 id="显示草稿"><a href="#显示草稿" class="headerlink" title="显示草稿"></a>显示草稿</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo --draft</span><br></pre></td></tr></table></figure>
-
-<h5 id="简洁模式"><a href="#简洁模式" class="headerlink" title="简洁模式"></a>简洁模式</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo --silent</span><br></pre></td></tr></table></figure>
-
-<p>隐藏终端信息。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hexo相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/11/09/hexo-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-for-each-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/11/08/for-each-md/" target="_blank">C++for_each.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/11/08/for-each-md/" class="archive-article-date">
-        <time datetime="2023-11-08T15:00:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-08</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>头文件：algorithm</p>
-<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>​		for_each()函数是C++标准库中的一种算法，用于对指定范围内的元素进行操作。它接受三个参数：第一个参数是要操作的容器的起始迭代器，第二个参数是要操作结束的迭代器，第三个是一元函数类型（回调函数）。第三个参数应该是实现了函数调用操作的一元函数对象或函数指针。这个函数将对输入范围内的每个元素进行操作。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">InputIt</span>, <span class="keyword">class</span> <span class="title class_">UnaryFunction</span>&gt;  </span><br><span class="line"><span class="function">UnaryFunction <span class="title">for_each</span><span class="params">(InputIt first, InputIt last, UnaryFunction f)</span></span>;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h4><p>​		当我们不使用for_each()时</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a[] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">v</span><span class="params">(a, a+<span class="keyword">sizeof</span>(a)/<span class="keyword">sizeof</span>(<span class="type">int</span>))</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(vector&lt;<span class="type">int</span>&gt;::iterator itor = v.<span class="built_in">begin</span>();itor!=v.<span class="built_in">end</span>();++itor)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;*itor&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="需了解"><a href="#需了解" class="headerlink" title="需了解"></a>需了解</h4><p>​		bind1st或bind2nd函数：<code>bind1st</code> 和 <code>bind2nd</code> 是 C++ 标准库中的两个函数对象适配器，用于将二元函数对象（也就是接受两个参数的函数）转换成一元函数对象（也就是只接受一个参数的函数）。这两个函数的使用方法相似，只是参数位置有所不同。</p>
-<p>​		<code>bind1st</code> 将二元函数对象的第一个参数绑定为指定的值，生成一元函数对象。而 <code>bind2nd</code> 则将二元函数对象的第二个参数绑定为指定的值。</p>
-<p>​		这两个函数的使用场景包括但不限于 C++ 标准库中的算法，如 <code>std::find_if</code> 或 <code>std::for_each</code>，这样你就可以在算法中使用自定义的二元函数。</p>
-<p>bind1st 的示例：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; vec = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;  </span><br><span class="line">      </span><br><span class="line">    <span class="comment">// 使用 bind1st 将二元函数 (int, int) -&gt; bool 转为一元函数 (int) -&gt; bool  </span></span><br><span class="line">    <span class="keyword">auto</span> is_even = std::<span class="built_in">bind1st</span>(std::<span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;(), <span class="number">0</span>);  </span><br><span class="line">    <span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">even_vec</span><span class="params">(vec.begin(), vec.end())</span></span>;  </span><br><span class="line">    std::<span class="built_in">remove_if</span>(even_vec.<span class="built_in">begin</span>(), even_vec.<span class="built_in">end</span>(), is_even);  </span><br><span class="line">      </span><br><span class="line">    <span class="comment">// 输出剩余的偶数  </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; i : even_vec) &#123;  </span><br><span class="line">        std::cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​		这个例子中，我们创建了一个新的函数对象 <code>is_even</code>，它接受一个参数并判断该参数是否为偶数。注意，虽然 <code>std::greater&lt;int&gt;()</code> 是一个接受两个参数的函数，但通过 <code>bind1st</code>，我们将其转换为一个接受一个参数的函数。在判断一个数是否为偶数时，我们将0作为第二个参数传递给 <code>std::greater&lt;int&gt;()</code>。如果该数大于0（即不是偶数），则 <code>std::greater&lt;int&gt;()</code> 返回 true，否则返回 false。然后我们使用 <code>std::remove_if</code> 算法删除所有满足 <code>is_even</code> 的元素。</p>
-<p>请注意，从 C++11 开始，推荐使用更强大、更灵活的 <code>std::bind</code> 和 lambda 表达式替代 <code>bind1st</code> 和 <code>bind2nd</code>，因为这两个函数功能有限，而且可能在某些情况下产生混淆和错误。</p>
-<p>​		ptr_fun是一个将普通函数适配成仿函数的配接器（adapter）。它可以将一般函数当作仿函数使用，使得能够将一般函数当做仿函数传给STL算法。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> _Arg1,  </span></span><br><span class="line"><span class="function">    <span class="keyword">class</span> _Arg2,  </span></span><br><span class="line"><span class="function">    <span class="keyword">class</span> _Result&gt; <span class="keyword">inline</span>  </span></span><br><span class="line"><span class="function">    pointer_to_binary_function&lt;_Arg1, _Arg2, _Result,  </span></span><br><span class="line"><span class="function">        _<span class="title">Result</span><span class="params">(__clrcall *)</span><span class="params">(_Arg1, _Arg2)</span>&gt;  </span></span><br><span class="line"><span class="function">            <span class="title">ptr_fun</span><span class="params">(_Result (__clrcall *_Left)(_Arg1, _Arg2))</span>  </span></span><br><span class="line"><span class="function">    </span>&#123;    <span class="comment">// return pointer_to_binary_function functor adapter  </span></span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">pointer_to_binary_function</span>&lt;_Arg1, _Arg2, _Result,  </span><br><span class="line">        _Result (__clrcall *)(_Arg1, _Arg2)&gt;(_Left));  </span><br><span class="line">    &#125;  </span><br></pre></td></tr></table></figure>
-
-<p>​		ptr_fun将普通函数(两个参数, 如果有多个参数, 要改用boost::bind)适配成bind1st或bind2nd能够使用的functor，否则对bind1st或bind2nd直接绑定普通函数。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span>    </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span>    </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>    </span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;    </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> arg1, <span class="type">int</span> arg2)</span>    </span></span><br><span class="line"><span class="function"></span>&#123;    </span><br><span class="line">    std::cout&lt;&lt; <span class="string">&quot;arg1 = &quot;</span> &lt;&lt; arg1 &lt;&lt; std::endl;    </span><br><span class="line">    std::cout&lt;&lt; <span class="string">&quot;arg2 = &quot;</span> &lt;&lt; arg2 &lt;&lt; std::endl;    </span><br><span class="line">  </span><br><span class="line">    <span class="type">int</span> sum = arg1 + arg2;    </span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;sum = &quot;</span> &lt;&lt; sum &lt;&lt; std::endl;    </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> sum;    </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[], <span class="type">char</span> *env[])</span>  </span></span><br><span class="line"><span class="function"></span>&#123;    </span><br><span class="line">    <span class="built_in">bind1st</span>(<span class="built_in">ptr_fun</span>(sum), <span class="number">1</span>)(<span class="number">2</span>);        <span class="comment">// the same as sum(1,2)    </span></span><br><span class="line">    <span class="built_in">bind2nd</span>(<span class="built_in">ptr_fun</span>(sum), <span class="number">1</span>)(<span class="number">2</span>);        <span class="comment">// the same as sum(2,1)    </span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="for-each"><a href="#for-each" class="headerlink" title="for_each()"></a>for_each()</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> InputIterator, <span class="keyword">typename</span> Function&gt;</span></span><br><span class="line"><span class="function">Function <span class="title">for_each</span><span class="params">(InputIterator beg, InputIterator end, Function f)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(beg != end) </span><br><span class="line">    <span class="built_in">f</span>(*beg++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​		for_each()只能配合global function和function object。</p>
-<h4 id="Procedure-Based与for-each-搭配"><a href="#Procedure-Based与for-each-搭配" class="headerlink" title="Procedure Based与for_each()搭配"></a><strong>Procedure Based与for_each()搭配</strong></h4><p>1.不传入参数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun</span><span class="params">(<span class="type">int</span> i )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a[] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">v</span><span class="params">(a, a+<span class="keyword">sizeof</span>(a)/<span class="keyword">sizeof</span>(<span class="type">int</span>))</span></span>;</span><br><span class="line">    for_each(v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>(), fun);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.传入参数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun</span><span class="params">(<span class="type">int</span> i, <span class="type">const</span> <span class="type">char</span>* str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;str&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a[] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">v</span><span class="params">(a, a+<span class="keyword">sizeof</span>(a)/<span class="keyword">sizeof</span>(<span class="type">int</span>))</span></span>;</span><br><span class="line">    for_each(v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>(), <span class="built_in">bind2nd</span>(<span class="built_in">ptr_fun</span>(fun), <span class="string">&quot;Element:&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​	function adapter 将global function 转成function object , 然后再用bind2nd() 将参数bind成一个function object。</p>
-<h4 id="Object-Oriented-与for-each-搭配"><a href="#Object-Oriented-与for-each-搭配" class="headerlink" title="Object Oriented 与for_each 搭配"></a><strong>Object Oriented 与for_each 搭配</strong></h4><p>1、不传入参数，使用function object</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;typeinfo&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Play</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">Play</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;new a Play&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Play</span>(<span class="type">const</span> Play&amp;)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;new a copy Play&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="type">int</span> i)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">Play</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;dispose a Play&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a[] = &#123; <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">vc</span><span class="params">(a, a+<span class="keyword">sizeof</span>(a)/<span class="keyword">sizeof</span>(<span class="type">int</span>))</span></span>;</span><br><span class="line">    for_each(vc.<span class="built_in">begin</span>(), vc.<span class="built_in">end</span>(), <span class="built_in">Play</span>());</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;See something&quot;</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">new a Play</span><br><span class="line">1</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">new a copy Play</span><br><span class="line">dispose a Play</span><br><span class="line">dispose a Play</span><br><span class="line">See something</span><br></pre></td></tr></table></figure>
-
-<p>​	Play() 生成一个临时的匿名的Play对象，传入for_each 函数里，然后执行完for_each 函数后，return一个function时，Play用复制构造函数生成一个Play对象，然后两个Play对象的生命周期都结束，于是依次销毁。</p>
-<p>2.传入参数</p>
-<p>​	可以通过构造函数的技巧传入参数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;typeinfo&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Play</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span>* str;</span><br><span class="line">    <span class="built_in">Play</span>(<span class="type">const</span> <span class="type">char</span>* s):<span class="built_in">str</span>(s) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="type">int</span> i)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout&lt;&lt;str&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a[] = &#123; <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">vc</span><span class="params">(a, a+<span class="keyword">sizeof</span>(a)/<span class="keyword">sizeof</span>(<span class="type">int</span>))</span></span>;</span><br><span class="line">    for_each(vc.<span class="built_in">begin</span>(), vc.<span class="built_in">end</span>(), <span class="built_in">Play</span>(<span class="string">&quot;Element:&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="Member-function-与-for-each-搭配"><a href="#Member-function-与-for-each-搭配" class="headerlink" title="Member function 与 for_each 搭配"></a><strong>Member function 与 for_each 搭配</strong></h4><p><strong>1、不传入参数</strong></p>
-<p>通过mem_fun_ref() 这个funtion adapater 将 member funtion 转成 function object。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;typeinfo&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Door</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">open</span><span class="params">()</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;open door horizontally&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DoorController</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    vector&lt;Door&gt; _doorVec;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">addDoor</span><span class="params">(Door door)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        _doorVec.<span class="built_in">push_back</span>(door);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">openDoor</span><span class="params">()</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        for_each(_doorVec.<span class="built_in">begin</span>(), _doorVec.<span class="built_in">end</span>(), <span class="built_in">mem_fun_ref</span>(&amp;Door::open));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    DoorController dc;</span><br><span class="line">    dc.<span class="built_in">addDoor</span>(<span class="built_in">Door</span>());</span><br><span class="line">    dc.<span class="built_in">addDoor</span>(<span class="built_in">Door</span>());</span><br><span class="line">    dc.<span class="built_in">openDoor</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<blockquote>
-<p>open door horizontally<br>open door horizontally</p>
-</blockquote>
-<p><strong>值得注意的是，mem_fun_ref() 用在 object 的 member function。</strong>若要搭配多态，vector必须放pointer，也就是得使用object pointer的member function，此时得使用mem_fun()将member function转成function object。</p>
-<p><strong>2、传入参数</strong></p>
-<p>要使用 bind2nd</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;typeinfo&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AbstractDoor</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">open</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str)</span> <span class="type">const</span> </span>= <span class="number">0</span>; <span class="comment">//定义纯虚函数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">AbstractDoor</span>() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">HorizontalDoor</span>: <span class="keyword">public</span> AbstractDoor</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">open</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str)</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout&lt;&lt;str&lt;&lt;<span class="string">&quot;open door horizontally&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">VerticalDoor</span>: <span class="keyword">public</span> AbstractDoor</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">open</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str)</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout&lt;&lt;str&lt;&lt;<span class="string">&quot;open door vertically&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DoorController</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    vector&lt;AbstractDoor*&gt; _doorVec;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">addDoor</span><span class="params">(AbstractDoor* door)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        _doorVec.<span class="built_in">push_back</span>(door);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">openDoor</span><span class="params">()</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        for_each(_doorVec.<span class="built_in">begin</span>(), _doorVec.<span class="built_in">end</span>(), <span class="built_in">bind2nd</span>(<span class="built_in">mem_fun</span>(&amp;AbstractDoor::open), <span class="string">&quot;Jhon &quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ~<span class="built_in">DoorController</span>() </span><br><span class="line">    &#123;</span><br><span class="line">        for_each(_doorVec.<span class="built_in">begin</span>(), _doorVec.<span class="built_in">end</span>(), [](AbstractDoor* p)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">delete</span> p;</span><br><span class="line">            p = <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    DoorController dc;</span><br><span class="line">    dc.<span class="built_in">addDoor</span>(<span class="keyword">new</span> <span class="built_in">HorizontalDoor</span>());</span><br><span class="line">    dc.<span class="built_in">addDoor</span>(<span class="keyword">new</span> <span class="built_in">VerticalDoor</span>());</span><br><span class="line">    dc.<span class="built_in">openDoor</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面用到mem_fun_ref 和 mem_fun </p>
-<p>引用一句很重要的用法：</p>
-<blockquote>
-<p>mem_fun_ref的作用和用法跟mem_fun一样，唯一的不同就是：当容器中存放的是对象实体的时候用mem_fun_ref，当容器中存放的是对象的指针的时候用mem_fun。</p>
-</blockquote>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">学习使用记录函数C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/11/08/for-each-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -1447,15 +1422,19 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">学习使用记录函数C++</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
               </li>
              
               <li class="article-tag-list-item">
