@@ -142,6 +142,121 @@
             
 
   
+    <article id="post-static-dynamic-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/02/07/static-dynamic-md/" target="_blank">static-dynamic.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/02/07/static-dynamic-md/" class="archive-article-date">
+        <time datetime="2024-02-07T03:57:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-02-07</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p>在C++中，动态转换（<code>dynamic_cast</code>）和静态转换（<code>static_cast</code>）是用于在类型之间进行转换的两种机制，但它们的用途、行为以及安全保证是不同的。</p>
+<h4 id="静态转换-static-cast"><a href="#静态转换-static-cast" class="headerlink" title="静态转换(static_cast)"></a>静态转换(static_cast)</h4><p><code>static_cast</code> 是最通用的转换运算符，它可以在多种类型之间进行转换，包括非多态类型之间的转换、基本数据类型之间的转换、指针之间的转换（包括空指针到任何指针类型的转换），以及类层次结构中的向上转换（从派生类到基类）。</p>
+<ul>
+<li>对于类层次结构中的向上转换，<code>static_cast</code> 总是成功的。</li>
+<li>对于向下或侧向转换，<code>static_cast</code> 假设程序员知道转换是安全的，并且不会进行运行时检查。如果转换实际上是不安全的，结果将是未定义的。</li>
+</ul>
+<p><strong>安全保证</strong>：<code>static_cast</code> 不提供运行时类型信息检查。如果程序员错误地使用了它进行不安全的转换，程序可能会崩溃或产生不可预测的行为。</p>
+<p><strong>使用条件</strong>：<code>static_cast</code> 不需要基类具有虚函数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 基本数据类型之间的转换</span></span><br><span class="line"><span class="type">double</span> d = <span class="number">3.14</span>;  </span><br><span class="line"><span class="type">int</span> i = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(d); <span class="comment">// 将 double 转换为 int，结果为 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2. 指针和引用之间的转换</span></span><br><span class="line"><span class="type">int</span> x = <span class="number">10</span>;  </span><br><span class="line"><span class="type">int</span>* p = &amp;x;  </span><br><span class="line"><span class="type">int</span>&amp; r = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&amp;&gt;(*p); <span class="comment">// 将 int* 转换为 int&amp;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//3. 类层次结构中的向上转换</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> &#123; &#125;;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Derived</span> : <span class="keyword">public</span> Base &#123; &#125;;  </span><br><span class="line">  </span><br><span class="line">Derived d;  </span><br><span class="line">Base&amp; b = <span class="built_in">static_cast</span>&lt;Base&amp;&gt;(d); <span class="comment">// 派生类对象转换为基类引用</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//4. 编译时确定安全的向下转换</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> &#123; &#125;;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Derived</span> : <span class="keyword">public</span> Base &#123; <span class="keyword">public</span>: <span class="type">int</span> value; &#125;;  </span><br><span class="line">  </span><br><span class="line">Base* basePtr = <span class="keyword">new</span> <span class="built_in">Derived</span>();  </span><br><span class="line">Derived* derivedPtr = <span class="built_in">static_cast</span>&lt;Derived*&gt;(basePtr); <span class="comment">// 安全的，因为确实是指向 Derived 对象的  </span></span><br><span class="line">derivedPtr-&gt;value = <span class="number">42</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//5. 去除 const 或 volatile 修饰符</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> a = <span class="number">10</span>;  </span><br><span class="line"><span class="type">int</span>* ptr = <span class="built_in">const_cast</span>&lt;<span class="type">int</span>*&gt;(&amp;a); <span class="comment">// 错误！const_cast 用于去除 const，不是 static_cast  </span></span><br><span class="line"><span class="type">int</span>* constPtr = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>*&gt;(<span class="built_in">const_cast</span>&lt;<span class="type">const</span> <span class="type">int</span>*&gt;(&amp;a)); <span class="comment">// 正确！先去除 const，然后转换为 int*</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//6. 数组到指针的转换</span></span><br><span class="line"><span class="type">int</span> arr[<span class="number">10</span>];  </span><br><span class="line"><span class="type">int</span>* ptr = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>*&gt;(arr); <span class="comment">// 数组名转换为指向数组首元素的指针</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//7. 函数指针的转换</span></span><br><span class="line"><span class="built_in">void</span> (*func1)();  </span><br><span class="line"><span class="built_in">void</span> (*func2)(<span class="type">int</span>);  </span><br><span class="line">func1 = <span class="built_in">static_cast</span>&lt;<span class="built_in">void</span> (*)()&gt;(func2); <span class="comment">// 将接受 int 的函数指针转换为不接受参数的函数指针</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="动态转换-dynamic-cast"><a href="#动态转换-dynamic-cast" class="headerlink" title="动态转换(dynamic_cast)"></a>动态转换(dynamic_cast)</h4><p><code>dynamic_cast</code> 主要用于在类层次结构中进行安全的向下和侧向转换（即从基类到派生类或派生类之间的转换）。</p>
+<ul>
+<li>如果转换是合法的（即目标类型是实际对象的类型或其派生类型），<code>dynamic_cast</code> 会成功转换并返回目标类型的指针或引用。</li>
+<li>如果转换不合法（例如，尝试将基类指针转换为不相关的派生类类型），<code>dynamic_cast</code> 会返回空指针（对于指针类型）或抛出异常（对于引用类型）。</li>
+</ul>
+<p><strong>安全保证</strong>：<code>dynamic_cast</code> 提供运行时类型信息（RTTI）检查，以确保转换的安全性。如果转换失败，程序不会崩溃，而是得到空指针或异常，从而可以安全地处理错误情况。</p>
+<p><strong>使用条件</strong>：为了使用 <code>dynamic_cast</code>，基类必须至少有一个虚函数，这样编译器才能生成运行时类型信息。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">// 基类  </span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Shape</span> &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Shape</span>() &#123;&#125; <span class="comment">// 声明虚析构函数  </span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">draw</span><span class="params">()</span> <span class="type">const</span> </span>= <span class="number">0</span>; <span class="comment">// 纯虚函数  </span></span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 派生类 Circle  </span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Circle</span> : <span class="keyword">public</span> Shape &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">draw</span><span class="params">()</span> <span class="type">const</span> <span class="keyword">override</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Drawing a circle.\n&quot;</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">printRadius</span><span class="params">()</span> <span class="type">const</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Circle radius...\n&quot;</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 派生类 Rectangle  </span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Rectangle</span> : <span class="keyword">public</span> Shape &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">draw</span><span class="params">()</span> <span class="type">const</span> <span class="keyword">override</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Drawing a rectangle.\n&quot;</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">printWidth</span><span class="params">()</span> <span class="type">const</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Rectangle width...\n&quot;</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">drawAndPrint</span><span class="params">(<span class="type">const</span> Shape* shapes[], <span class="type">int</span> size)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;  </span><br><span class="line">        Circle* circle = <span class="built_in">dynamic_cast</span>&lt;Circle*&gt;(shapes[i]);  </span><br><span class="line">        Rectangle* rectangle = <span class="built_in">dynamic_cast</span>&lt;Rectangle*&gt;(shapes[i]);  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">if</span> (circle) &#123;  </span><br><span class="line">            circle-&gt;<span class="built_in">draw</span>();  </span><br><span class="line">            circle-&gt;<span class="built_in">printRadius</span>();  </span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (rectangle) &#123;  </span><br><span class="line">            rectangle-&gt;<span class="built_in">draw</span>();  </span><br><span class="line">            rectangle-&gt;<span class="built_in">printWidth</span>();  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            std::cout &lt;&lt; <span class="string">&quot;Unknown shape type.\n&quot;</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><code>dynamic_cast</code> 是类型安全的，因为它在运行时检查转换的有效性。它主要用于类层次结构中的向下和侧向转换。</li>
+<li><code>static_cast</code> 是类型不安全的，因为它不进行运行时检查。它适用于多种情况，包括向上转换和基本数据类型之间的转换。</li>
+</ul>
+<p>在类层次结构中，当你知道转换是安全的，或者当你需要转换到基类类型时，通常使用 <code>static_cast</code>。当你需要执行可能不安全的向下或侧向转换时，应该使用 <code>dynamic_cast</code> 并检查转换是否成功。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/02/07/static-dynamic-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-左值and右值-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1296,110 +1411,6 @@
 
 
   
-    <article id="post-线段树-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/11/20/%E7%BA%BF%E6%AE%B5%E6%A0%91-md/" target="_blank">线段树.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/11/20/%E7%BA%BF%E6%AE%B5%E6%A0%91-md/" class="archive-article-date">
-        <time datetime="2023-11-20T08:35:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-20</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>线段树的主要作用是处理数组的<strong>区间查询</strong>（range query）和<strong>元素更新</strong>（update）操作，并支持在<strong>O(logn)<strong>的</strong>时间复杂度</strong>内进行查询和更新操作。它是一种平衡二叉树，每个节点用于维护一个区间的权值，因此可以高效地处理涉及区间修改、单点查询；区间修改、区间查询；单点修改、区间查询；连续最长区间等问题。</p>
-<p>线段树可以用于解很多类问题，如区间修改，单点查询；区间修改，区间查询；单点修改，区间查询；连续最长区间等等。</p>
-<p>线段树的简单实现</p>
-<p>插入：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">tree_insert</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; a, <span class="type">int</span> pos, <span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> num)</span> </span>&#123;</span><br><span class="line">	a[pos]++;      <span class="comment">//对路径上经过的点加1</span></span><br><span class="line">	<span class="keyword">if</span> (num == right &amp;&amp; num == left)      <span class="comment">//区间只包含一个元素</span></span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> mid = (left + right) &gt;&gt; <span class="number">1</span>;      <span class="comment">//区间中点</span></span><br><span class="line">	<span class="type">int</span> left_child = pos * <span class="number">2</span> + <span class="number">1</span>;      <span class="comment">//左孩子数组对应下标</span></span><br><span class="line">	<span class="type">int</span> right_child = pos * <span class="number">2</span> + <span class="number">2</span>;      <span class="comment">//右孩子数组对应下标</span></span><br><span class="line">	<span class="keyword">if</span> (num &lt;= mid)</span><br><span class="line">		<span class="built_in">tree_insert</span>(a, left_child, left, mid, num);      <span class="comment">//将num插入到该区间的左孩子区间中</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">tree_insert</span>(a, right_child, mid + <span class="number">1</span>, right, num);      <span class="comment">////将num插入到该区间的右孩子区间中</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>查找：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">tree_search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; a, <span class="type">int</span> pos, <span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> num)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (num == right &amp;&amp; num == left)      <span class="comment">//该区间只有一个元素（找到该元素，返回）</span></span><br><span class="line">		<span class="keyword">return</span> a[pos];</span><br><span class="line">	<span class="type">int</span> mid = (left + right) &gt;&gt; <span class="number">1</span>;      <span class="comment">//计算区间中点</span></span><br><span class="line">	<span class="type">int</span> left_child = pos * <span class="number">2</span> + <span class="number">1</span>;      </span><br><span class="line">	<span class="type">int</span> right_child = pos * <span class="number">2</span> + <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">if</span> (num &lt;= mid)</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">tree_search</span>(a, left_child, left, mid, num);      <span class="comment">//在左孩子区间去寻找num</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">tree_search</span>(a, right_child, mid + <span class="number">1</span>, right, num);      <span class="comment">//在右孩子区间去寻找num</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>打印：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">print_tree</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; a, <span class="type">int</span> pos, <span class="type">int</span> left, <span class="type">int</span> right)</span></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;[&quot;</span> &lt;&lt; left &lt;&lt; <span class="string">&quot;,&quot;</span> &lt;&lt; right &lt;&lt; <span class="string">&quot;] &quot;</span> &lt;&lt; <span class="string">&quot;a[&quot;</span> &lt;&lt; pos &lt;&lt; <span class="string">&quot;]=&quot;</span> &lt;&lt; a[pos] &lt;&lt; endl;</span><br><span class="line">    <span class="comment">//left：左孩子， right：右孩子， pos：在数组中的对应下表， a[pos]：数组中存储的值</span></span><br><span class="line">	<span class="keyword">if</span> (left == right)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> mid = (left + right) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">print_tree</span>(a, pos * <span class="number">2</span> + <span class="number">1</span>, left, mid);</span><br><span class="line">	<span class="built_in">print_tree</span>(a, pos * <span class="number">2</span> + <span class="number">2</span>, mid + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>主函数：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">a</span><span class="params">(<span class="number">100</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">	<span class="type">int</span> left = <span class="number">0</span>, right = <span class="number">5</span>;</span><br><span class="line">	<span class="built_in">tree_insert</span>(a, <span class="number">0</span>, left, right, <span class="number">3</span>);</span><br><span class="line">	<span class="built_in">tree_insert</span>(a, <span class="number">0</span>, left, right, <span class="number">5</span>);</span><br><span class="line">	<span class="built_in">tree_insert</span>(a, <span class="number">0</span>, left, right, <span class="number">4</span>);</span><br><span class="line">	<span class="built_in">print_tree</span>(a, <span class="number">0</span>, left, right);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<img src="/2023/11/20/%E7%BA%BF%E6%AE%B5%E6%A0%91-md/Snipaste_2023-11-20_17-01-29.png" class="" title="Snipaste_2023-11-20_17-01-29">
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/11/20/%E7%BA%BF%E6%AE%B5%E6%A0%91-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1545,6 +1556,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C++特性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
               </li>
              
@@ -1553,7 +1568,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">左右值</a>
+                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1561,7 +1576,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">左右值</a>
               </li>
             
             <div class="clearfix"></div>
