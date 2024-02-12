@@ -142,6 +142,104 @@
             
 
   
+    <article id="post-快速排序-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/" target="_blank">快速排序.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/" class="archive-article-date">
+        <time datetime="2023-11-21T03:50:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-21</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p>快速排序（Quicksort）是一种<strong>分治算法</strong>，通过不断交换数组中的元素使得数组变得有序。它的基本思想是选择一个基准元素，将数组分为两个部分，使得左边的部分的所有元素都小于等于基准元素，右边的部分的所有元素都大于等于基准元素，然后递归地排序两个子数组。</p>
+<p>快速排序的单指针实现通常被称为<strong>单指针遍历法</strong>（Split Method），双指针实现通常被称为<strong>双指针遍历法</strong>（Partition Method）。</p>
+<h4 id="单指针遍历法"><a href="#单指针遍历法" class="headerlink" title="单指针遍历法"></a>单指针遍历法</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">quickSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> left, <span class="type">int</span> right)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (right &lt;= left)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> i = left;</span><br><span class="line">	<span class="type">int</span> key = nums[left];</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt;= right; j++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (nums[j] &lt;= key) &#123;      <span class="comment">//如果当前元素小于基准元素</span></span><br><span class="line">			i++;      </span><br><span class="line">			<span class="keyword">if</span> (i != j)</span><br><span class="line">				<span class="built_in">swap</span>(nums[i], nums[j]);      <span class="comment">//慢指针填充</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">swap</span>(nums[left], nums[i]);</span><br><span class="line">	<span class="built_in">quickSort</span>(nums, left, i - <span class="number">1</span>);      <span class="comment">//第 i 个元素位置已经确定（当前值 j == i）将 nums[i] 作为一个分隔</span></span><br><span class="line">	<span class="built_in">quickSort</span>(nums, i + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<img src="/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/Snipaste_2023-11-21_11-58-58.png" class="" title="Snipaste_2023-11-21_11-58-58">
+
+<h4 id="双指针遍历法"><a href="#双指针遍历法" class="headerlink" title="双指针遍历法"></a>双指针遍历法</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">quickSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> left, <span class="type">int</span> right)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (right &lt;= left)      <span class="comment">//当起点小于等于终点时直接返回，当 right == right 时没有不必进行交换因为此时只有一个元素 </span></span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> i = left, j = right;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">		<span class="keyword">while</span> (i &lt; j &amp;&amp; nums[j] &gt;= nums[left]) &#123;      <span class="comment">//从右边开始找到第一个比 nums[left] 小的元素下标</span></span><br><span class="line">			j--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (i &lt; j &amp;&amp; nums[i] &lt;= nums[left]) &#123;      <span class="comment">//从左边开始找到第一个比 nums[left] 大的元素下标</span></span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (i != j)      <span class="comment">//当满足条件的 i 和 j 在不同位置上时（相同则不必交换）</span></span><br><span class="line">			<span class="built_in">swap</span>(nums[i], nums[j]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">swap</span>(nums[left], nums[i]);      <span class="comment">//将基准元素 nums[left] 与比当前值小的元素 nums[i] 进行交换</span></span><br><span class="line">	<span class="built_in">quickSort</span>(nums, left, i - <span class="number">1</span>);      <span class="comment">//第 i 个元素位置已经确定（当前值 j == i）将 nums[i] 作为一个分隔</span></span><br><span class="line">	<span class="built_in">quickSort</span>(nums, i + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; nums = &#123; <span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span> &#125;;</span><br><span class="line">	<span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">	<span class="built_in">quickSort</span>(nums, <span class="number">0</span>, n - <span class="number">1</span>);</span><br><span class="line">	for_each(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), [](<span class="keyword">auto</span> i) &#123;cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span>; &#125;);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<img src="/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/Snipaste_2023-11-21_11-58-58.png" class="" title="Snipaste_2023-11-21_11-58-58">
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">排序算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-线段树-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1268,11 +1366,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C++特性</a>
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+                <a href="javascript:void(0)" class="js-tag color1">C++特性</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1292,15 +1390,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">左右值</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
               </li>
             
             <div class="clearfix"></div>
