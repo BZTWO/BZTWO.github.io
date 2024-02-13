@@ -18,7 +18,7 @@
 <meta property="og:description" content="类模板与函数模板很相似，因为可以有隐式实例化、显式实例化和显式具体化，它们统称为具体化（specialization）。模板以泛型的方式描述类，而具体化是使用具体的类型生成类声明。 隐式实例化声明一个或多个对象，并指出所需的类型，而编译器使用通用模板提供的定义来生成具体的类定义，这称为隐式实例化（implicit instantiation）。 隐式实例化发生在编译器遇到对模板类的使用，但尚未">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-12T05:48:13.000Z">
-<meta property="article:modified_time" content="2024-02-12T12:28:18.285Z">
+<meta property="article:modified_time" content="2024-02-13T07:30:11.435Z">
 <meta property="article:author" content="an">
 <meta property="article:tag" content="C++特性">
 <meta name="twitter:card" content="summary">
@@ -173,7 +173,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.3k字</span>
+      <span class="post-count">1.6k字</span>
     </span>
   </span>
 
@@ -182,7 +182,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">5分</span>
+      <span class="post-count">7分</span>
     </span>
   </span>
 </div>
@@ -214,6 +214,16 @@
 
 <h4 id="部分具体化"><a href="#部分具体化" class="headerlink" title="部分具体化"></a>部分具体化</h4><p>类模板的部分具体化（Partial Specialization）是C++模板编程中的一个高级特性，它允许你为模板类的某些特定类型组合提供专门的实现。部分具体化不同于普通的模板特化（Template Specialization），后者是为整个模板提供特定的实现。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">// 通用模板类  </span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;General template class.&quot;</span> &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 部分具体化：针对T1为int，T2为double的情况  </span></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>&lt;<span class="type">int</span>, <span class="type">double</span>&gt; &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Partial specialization for int and double.&quot;</span> &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 部分具体化：针对T1为double，T2为int的情况  </span></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>&lt;<span class="type">double</span>, <span class="type">int</span>&gt; &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Partial specialization for double and int.&quot;</span> &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    MyClass&lt;<span class="type">int</span>, <span class="type">double</span>&gt; obj1;  </span><br><span class="line">    obj1.<span class="built_in">print</span>();  <span class="comment">// 输出：Partial specialization for int and double.  </span></span><br><span class="line">  </span><br><span class="line">    MyClass&lt;<span class="type">double</span>, <span class="type">int</span>&gt; obj2;  </span><br><span class="line">    obj2.<span class="built_in">print</span>();  <span class="comment">// 输出：Partial specialization for double and int.  </span></span><br><span class="line">  </span><br><span class="line">    MyClass&lt;<span class="type">int</span>, <span class="type">int</span>&gt; obj3;  </span><br><span class="line">    obj3.<span class="built_in">print</span>();  <span class="comment">// 输出：General template class.  </span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="函数模板显示具体化"><a href="#函数模板显示具体化" class="headerlink" title="函数模板显示具体化"></a>函数模板显示具体化</h4><p>显式具体化是直接为某个特定类型提供模板函数的实现。这种方式需要明确地指定类型。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">(T t)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// 通用版本的实现  </span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;General template: &quot;</span> &lt;&lt; t &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 显式具体化为int类型  </span></span><br><span class="line"><span class="keyword">template</span> &lt;&gt;  </span><br><span class="line"><span class="type">void</span> <span class="built_in">foo</span>&lt;<span class="type">int</span>&gt;(<span class="type">int</span> t) &#123;  </span><br><span class="line">    <span class="comment">// int类型的特定实现  </span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Specialized template for int: &quot;</span> &lt;&lt; t &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="built_in">foo</span>(<span class="number">3.14</span>);  <span class="comment">// 调用通用版本  </span></span><br><span class="line">    <span class="built_in">foo</span>(<span class="number">42</span>);    <span class="comment">// 调用int类型的特定版本  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="函数模板隐式具体化"><a href="#函数模板隐式具体化" class="headerlink" title="函数模板隐式具体化"></a>函数模板隐式具体化</h4><p>隐式具体化是编译器自动为某些特定类型提供模板函数的实现。这通常是通过提供一个非模板函数来实现的，该函数的签名与模板函数签名在除了返回类型之外的所有方面都相同。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">bar</span><span class="params">(T t)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// 通用版本的实现  </span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;General template: &quot;</span> &lt;&lt; t &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 隐式具体化为int类型  </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">bar</span><span class="params">(<span class="type">int</span> t)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// int类型的特定实现  </span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Implicit specialized template for int: &quot;</span> &lt;&lt; t &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="built_in">bar</span>(<span class="number">3.14</span>);  <span class="comment">// 调用通用版本  </span></span><br><span class="line">    <span class="built_in">bar</span>(<span class="number">42</span>);    <span class="comment">// 调用int类型的隐式具体化版本  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     
@@ -353,6 +363,15 @@
 
 
 <nav id="article-nav">
+  
+    <a href="/2024/02/13/%E6%A8%A1%E6%9D%BF%E7%B1%BB%E4%B8%8E%E5%8F%8B%E5%85%83-md/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          模板类与友元.md
+        
+      </div>
+    </a>
   
   
     <a href="/2024/02/07/static-dynamic-md/" id="article-nav-older" class="article-nav-link-wrap">
@@ -518,10 +537,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C++特性</a>
               </li>
              
@@ -531,6 +546,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">学习使用记录函数C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,11 +565,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">左右值</a>
+                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">左右值</a>
               </li>
             
             <div class="clearfix"></div>
