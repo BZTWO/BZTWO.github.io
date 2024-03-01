@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | BZTWO</title>
+  <title>C++标准库迭代器类型.md | BZTWO</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="BZTWO">
-<meta property="og:url" content="http://example.com/archives/page/2/index.html">
+  <meta name="description" content="按照提供的操作和功能从低到高进行排序，C++标准库中的迭代器类型如下： Output Iterator (输出迭代器) 仅支持解引用（*it）和后置递增（it++），用于输出操作。 不支持读取、递减或其他算术运算  Input Iterator (输入迭代器) 支持解引用（*it）以读取元素。 支持前置和后置递增（++it）。 支持相等和不相等比较（it1 &#x3D;&#x3D; it2 和 it1 !&#x3D; it">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++标准库迭代器类型.md">
+<meta property="og:url" content="http://example.com/2024/02/27/C-%E6%A0%87%E5%87%86%E5%BA%93%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%B1%BB%E5%9E%8B-md/index.html">
 <meta property="og:site_name" content="BZTWO">
+<meta property="og:description" content="按照提供的操作和功能从低到高进行排序，C++标准库中的迭代器类型如下： Output Iterator (输出迭代器) 仅支持解引用（*it）和后置递增（it++），用于输出操作。 不支持读取、递减或其他算术运算  Input Iterator (输入迭代器) 支持解引用（*it）以读取元素。 支持前置和后置递增（++it）。 支持相等和不相等比较（it1 &#x3D;&#x3D; it2 和 it1 !&#x3D; it">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-27T05:19:46.000Z">
+<meta property="article:modified_time" content="2024-02-27T05:25:19.324Z">
 <meta property="article:author" content="an">
+<meta property="article:tag" content="C++特性">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="BZTWO" type="application/atom+xml">
@@ -135,299 +140,157 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-C-标准库迭代器类型-md" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/" class="archive-article-date">
-        <time datetime="2023-11-25T05:20:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-25</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/" target="_blank">线程函数.md</a>
   
+    <h1 class="article-title" itemprop="name">
+      C++标准库迭代器类型.md
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C++多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
 
-          
+<a href="/2024/02/27/C-%E6%A0%87%E5%87%86%E5%BA%93%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%B1%BB%E5%9E%8B-md/" class="archive-article-date">
+        <time datetime="2024-02-27T05:19:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-02-27</time>
+</a>
 
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">437字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p>按照提供的操作和功能从低到高进行排序，C++标准库中的迭代器类型如下：</p>
+<h4 id="Output-Iterator-输出迭代器"><a href="#Output-Iterator-输出迭代器" class="headerlink" title="Output Iterator (输出迭代器)"></a><strong>Output Iterator</strong> (输出迭代器)</h4><ul>
+<li>仅支持解引用（<code>*it</code>）和后置递增（<code>it++</code>），用于输出操作。</li>
+<li>不支持读取、递减或其他算术运算</li>
+</ul>
+<h4 id="Input-Iterator-输入迭代器"><a href="#Input-Iterator-输入迭代器" class="headerlink" title="Input Iterator (输入迭代器)"></a><strong>Input Iterator</strong> (输入迭代器)</h4><ul>
+<li>支持解引用（<code>*it</code>）以读取元素。</li>
+<li>支持前置和后置递增（<code>++it</code>）。</li>
+<li>支持相等和不相等比较（<code>it1 == it2</code> 和 <code>it1 != it2</code>）。</li>
+<li>不保证支持递减、多次解引用或算术运算。</li>
+</ul>
+<h4 id="Forward-Iterator-前向迭代器"><a href="#Forward-Iterator-前向迭代器" class="headerlink" title="Forward Iterator (前向迭代器)"></a><strong>Forward Iterator</strong> (前向迭代器)</h4><ul>
+<li>是输入迭代器的超集，支持所有输入迭代器的操作。</li>
+<li>通常还支持后置递减（<code>it--</code>），但不保证支持前置递减。</li>
+<li>不保证支持迭代器间的算术运算。</li>
+<li>不保证能够访问元素的地址（即不支持 <code>&amp;*it</code> 操作）。</li>
+</ul>
+<h4 id="Bidirectional-Iterator-双向迭代器"><a href="#Bidirectional-Iterator-双向迭代器" class="headerlink" title="Bidirectional Iterator (双向迭代器)"></a><strong>Bidirectional Iterator</strong> (双向迭代器)</h4><ul>
+<li>是前向迭代器的超集，支持所有前向迭代器的操作。</li>
+<li>支持前置和后置递减，允许在容器中前后移动。</li>
+<li>不保证支持迭代器间的算术运算。</li>
+</ul>
+<h4 id="Random-Access-Iterator-随机访问迭代器"><a href="#Random-Access-Iterator-随机访问迭代器" class="headerlink" title="Random Access Iterator (随机访问迭代器)"></a><strong>Random Access Iterator</strong> (随机访问迭代器)</h4><ul>
+<li>是双向迭代器的超集，支持所有双向迭代器的操作。</li>
+<li>支持迭代器间的算术运算，包括加法和减法。</li>
+<li>支持使用迭代器进行关系运算和直接访问任意位置的元素。</li>
+</ul>
+<h4 id="STL迭代器类型提供"><a href="#STL迭代器类型提供" class="headerlink" title="STL迭代器类型提供"></a>STL迭代器类型提供</h4><ul>
+<li><code>std::vector</code>、<code>std::deque</code> 和 <code>std::array</code> 提供随机访问迭代器（<code>RandomAccessIterator</code>）。</li>
+<li><code>std::list</code> 和 <code>std::forward_list</code> 只提供双向迭代器（<code>BidirectionalIterator</code>）。</li>
+<li><code>std::set</code>、<code>std::map</code>、<code>std::multiset</code> 和 <code>std::multimap</code> 提供双向迭代器。</li>
+<li>一些容器如 <code>std::istream_iterator</code> 和 <code>std::ostream_iterator</code> 是专门用于输入&#x2F;输出操作的迭代器，属于输出迭代器（<code>OutputIterator</code>）。</li>
+</ul>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          an
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://example.com/2024/02/27/C-标准库迭代器类型-md/" title="C++标准库迭代器类型.md" target="_blank">http://example.com/2024/02/27/C-标准库迭代器类型-md/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
   </div>
-</article>
-  
+  <div class="article-info article-info-index">
     
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/11/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8-md/" class="archive-article-date">
-        <time datetime="2023-11-25T02:52:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-25</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/11/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8-md/" target="_blank">多线程使用.md</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C++多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/11/21/%E6%8F%92%E5%85%A5and%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F-md/" class="archive-article-date">
-        <time datetime="2023-11-21T10:37:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-21</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/11/21/%E6%8F%92%E5%85%A5and%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F-md/" target="_blank">插入and希尔排序.md</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">排序算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/" class="archive-article-date">
-        <time datetime="2023-11-21T03:50:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-21</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/11/21/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-md/" target="_blank">快速排序.md</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">排序算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/11/20/%E7%BA%BF%E6%AE%B5%E6%A0%91-md/" class="archive-article-date">
-        <time datetime="2023-11-20T08:35:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-20</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/11/20/%E7%BA%BF%E6%AE%B5%E6%A0%91-md/" target="_blank">线段树.md</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/11/19/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-md/" class="archive-article-date">
-        <time datetime="2023-11-19T08:57:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/11/19/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-md/" target="_blank">归并排序.md</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">排序算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/11/14/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2023-11-14T09:36:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-14</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/11/14/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F-md/" target="_blank">Lambda表达式.md</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -439,152 +302,116 @@
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2024/02/27/C-%E6%A0%87%E5%87%86%E5%BA%93%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%B1%BB%E5%9E%8B-md/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/11/11/remove-if-md/" class="archive-article-date">
-        <time datetime="2023-11-11T03:17:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-11</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/2024/03/01/precisionANDsetprecision-md/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          precisionANDsetprecision.md
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/02/13/%E6%A8%A1%E6%9D%BF%E7%B1%BB%E4%B8%8E%E5%8F%8B%E5%85%83-md/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">模板类与友元.md</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/11/11/remove-if-md/" target="_blank">C++remove_if.md</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/11/09/men-fun%E5%92%8Cmen-fun-ref-md/" class="archive-article-date">
-        <time datetime="2023-11-09T12:49:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-09</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/11/09/men-fun%E5%92%8Cmen-fun-ref-md/" target="_blank">C++men_fun和men_fun_ref.md</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/11/09/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E7%90%86%E8%A7%A3%E5%8F%8Abind1st%E5%92%8Cbind2nd-md/" class="archive-article-date">
-        <time datetime="2023-11-09T09:12:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-09</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/11/09/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E7%90%86%E8%A7%A3%E5%8F%8Abind1st%E5%92%8Cbind2nd-md/" target="_blank">函数对象理解及bind1st和bind2nd.md</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/">Next &amp;raquo;</a>
-    </nav>
-  
+
+
+
 
 
           </div>
@@ -625,8 +452,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
