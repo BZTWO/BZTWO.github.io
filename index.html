@@ -142,6 +142,80 @@
             
 
   
+    <article id="post-树状数组-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/03/03/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-md/" target="_blank">树状数组.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/03/03/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-md/" class="archive-article-date">
+        <time datetime="2024-03-03T09:55:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-03</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/03/03/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-precisionANDsetprecision-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -728,7 +802,7 @@
     
     <span id="more"></span>
 
-<h4 id="左值"><a href="#左值" class="headerlink" title="左值"></a>左值</h4><p>左值，即“可左值”，是指在赋值等号（&#x3D;）左边，表示存储在计算机内存的对象，可寻址，相当于 <code>地址值</code>。也就是说，它们有明确的存储位置，可以被赋予一个新的值。例如：</p>
+<h4 id="左值"><a href="#左值" class="headerlink" title="左值"></a>左值</h4><p>左值，即“可左值”，是指在赋值等号（&#x3D;）左边，表示存储在计算机内存的对象，可寻址，相当于 <code>地址值</code>。函数名和变量名（实际上是函数指针和具名变量，具名变量如std::cin、std::endl等）、返回左值引用的函数调用、前置自增&#x2F;自减运算符连接的表达式++i&#x2F;–i、由赋值运算符或复合赋值运算符连接的表达式(a&#x3D;b、a+&#x3D;b、a%&#x3D;b）、解引用表达式*p、字符串字面值”abc”（关于这一点，后面会详细说明）等。例如：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">10</span>;  <span class="comment">// a 是一个左值，可以被赋值</span></span><br></pre></td></tr></table></figure>
 <p>一个返回值例子：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_val</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> x; &#125;</span><br></pre></td></tr></table></figure>
@@ -736,7 +810,7 @@
 <p>在这里，<code>x</code> 是一个在函数外部定义的变量，它在函数 <code>get_val</code> 之外有存储位置。当调用 <code>get_val()</code> 时，实际上是请求返回 <code>x</code> 的当前值。这个返回值（即 <code>x</code> 的值）可以被赋给另一个变量，因此它是一个左值。</p>
 <p>重要的是要理解 <code>return x;</code> 并不返回 <code>x</code> 的地址或引用，而是返回它的值。尽管 <code>x</code> 在函数内部是未定义的（因为它不是函数的作用域），但 <code>return x;</code> 实际上是在说“请获取 <code>x</code> 的当前值并返回它”。</p>
 <p>所以，函数 <code>get_val</code> 返回的是 <code>x</code> 的值的副本，这个副本是左值，因为它代表了一个可以被赋值的对象。</p>
-<h4 id="右值"><a href="#右值" class="headerlink" title="右值"></a>右值</h4><p>右值，即“可右值”，是临时创建的对象，通常出现在赋值符号“&#x3D;”的右边，如字面量或临时对象，是<code>数据值</code>。右值不能被赋值给其他变量，但可以通过使用特殊的操作符（如 std::move）来将其内容转移到其他对象中。例如：</p>
+<h4 id="右值"><a href="#右值" class="headerlink" title="右值"></a>右值</h4><p>右值，即“可右值”，是临时创建的对象，通常出现在赋值符号“&#x3D;”的右边，如字面量或临时对象，是<code>数据值</code>。除字符串字面值以外的字面值、返回非引用类型的函数调用、后置自增&#x2F;自减运算符连接的表达式i++&#x2F;i–、算术表达式（a+b、a&amp;b、a&lt;&lt;b）、逻辑表达式（a&amp;&amp;b、a||b、~a）、比较表达式（a&#x3D;&#x3D;b、a&gt;&#x3D;b、a&lt;b）、取地址表达式（&amp;a）等。例如：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> b = <span class="number">20</span>;  <span class="comment">// b 是一个左值，可以被赋值</span></span><br><span class="line"><span class="type">int</span> c = b;   <span class="comment">// c 接收 b 的值</span></span><br></pre></td></tr></table></figure>
 
 <p>在某些情况下，可以通过右值引用和移动语义将右值的内容转移到另一个对象中，这是一种优化性能的技术。例如：</p>
@@ -791,7 +865,7 @@
 <p>使用移动构造函数可以显著提高性能，特别是对于大型对象和资源密集型对象。通过避免不必要的拷贝操作，移动构造函数可以减少内存分配和释放的开销，提高程序的执行效率。</p>
 <h4 id="引用折叠"><a href="#引用折叠" class="headerlink" title="引用折叠"></a>引用折叠</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">(<span class="type">int</span>&amp;&amp; i)</span></span>&#123;&#125;      <span class="comment">//i为右值引用</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">bar</span><span class="params">(T&amp;&amp; t)</span></span>&#123;&#125;      <span class="comment">//t为万能引用</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_val</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="number">5</span>;&#125;</span><br><span class="line"><span class="type">int</span> &amp;&amp;x = <span class="built_in">get_val</span>();      <span class="comment">//x为右值引用</span></span><br><span class="line"><span class="keyword">auto</span> &amp;&amp;y = <span class="built_in">get_val</span>();      <span class="comment">//y为万能引用</span></span><br></pre></td></tr></table></figure>
 
-<p>在上面的代码中，函数foo的形参和变量x是右值引用，而函数模板的形参t和变量y则是万能引用。我们知道右值引用只能绑定一个右值，但是万能引用既可以绑定左值也可以绑定右值，甚至const和volatile的值都可以绑定，例如：</p>
+<p>代码中，函数foo的形参和变量x是右值引用，而函数模板的形参t和变量y则是万能引用。右值引用只能绑定一个右值，但是万能引用既可以绑定左值也可以绑定右值，甚至const和volatile的值都可以绑定，例如：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">42</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> j = <span class="number">11</span>;</span><br><span class="line"><span class="built_in">bar</span>(i);</span><br><span class="line"><span class="built_in">bar</span>(j);</span><br><span class="line"><span class="built_in">bar</span>(<span class="built_in">get_val</span>());</span><br><span class="line"><span class="keyword">auto</span> &amp;&amp;x = i;</span><br><span class="line"><span class="keyword">auto</span> &amp;&amp;y = j;</span><br><span class="line"><span class="keyword">auto</span> &amp;&amp;z = <span class="built_in">get_val</span>();</span><br></pre></td></tr></table></figure>
 
 <p>所谓的万能引1用是因为发生了类型推导，在T&amp;&amp;和auto&amp;&amp;的初始化过程中都会发生类型的推导，如果已经有一个确定的类型，比如int&amp;&amp;，则是右值引用。在这个推导过程中，初始化的源对象如果是一个左值，则目标对象会推导出左值引用；反之如果源对象是一个右值则会推导出右值引用，不过无论如何都会是一个引用类型。</p>
@@ -801,6 +875,7 @@
 
 <h4 id="完美转发"><a href="#完美转发" class="headerlink" title="完美转发"></a>完美转发</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">show_type</span><span class="params">(T t)</span></span>&#123;<span class="comment">//传入左值</span></span><br><span class="line">    std::cout &lt;&lt; <span class="built_in">typeid</span>(t).<span class="built_in">name</span>() &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">normal_forwarding</span><span class="params">(T &amp;&amp;t)</span></span>&#123;<span class="comment">//const T &amp;t//折叠后还是左值</span></span><br><span class="line">    <span class="built_in">show_type</span>(<span class="built_in">static_cast</span>&lt;T&amp;&amp;&gt;(t));<span class="comment">//左值和模板右值引用折叠后还是左值</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function">std::string <span class="title">get_string</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;hi&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::string s = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">    <span class="built_in">normal_forwarding</span>(s);<span class="comment">//左值传入</span></span><br><span class="line">    <span class="built_in">normal_forwarding</span>(<span class="built_in">get_string</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>[跳转参考文件](<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1543336">还分不清左值，右值，将亡值？看这里！-腾讯云开发者社区-腾讯云 (tencent.com)</a>)</p>
 
     
 
@@ -1167,115 +1242,6 @@
 
 
   
-    <article id="post-cmake-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/01/09/cmake-md/" target="_blank">cmake.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/01/09/cmake-md/" class="archive-article-date">
-        <time datetime="2024-01-09T13:54:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-09</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>生成build文件夹：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -B build</span><br></pre></td></tr></table></figure>
-
-<p>生成二进制执行文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake --build build</span><br></pre></td></tr></table></figure>
-
-<p>执行：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">build/Debug/Hello.exe</span><br></pre></td></tr></table></figure>
-
-
-
-<p>在linux中使用cmake</p>
-<p>安装</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install cmake</span><br></pre></td></tr></table></figure>
-
-<p>检测</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake --version</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir ch1_1_hello</span><br><span class="line">code ch1_1_hello</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">cmake使用基本命令</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/01/09/cmake-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1409,11 +1375,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C++特性</a>
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+                <a href="javascript:void(0)" class="js-tag color1">C++特性</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1433,11 +1399,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">左右值</a>
+                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">左右值</a>
               </li>
              
               <li class="article-tag-list-item">
