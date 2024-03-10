@@ -6,21 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>模板具体化.md | BZTWO</title>
+  <title>Tag: C++特性 | BZTWO</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="类模板与函数模板很相似，因为可以有隐式实例化、显式实例化和显式具体化，它们统称为具体化（specialization）。模板以泛型的方式描述类，而具体化是使用具体的类型生成类声明。 隐式实例化声明一个或多个对象，并指出所需的类型，而编译器使用通用模板提供的定义来生成具体的类定义，这称为隐式实例化（implicit instantiation）。 隐式实例化发生在编译器遇到对模板类的使用，但尚未">
-<meta property="og:type" content="article">
-<meta property="og:title" content="模板具体化.md">
-<meta property="og:url" content="http://example.com/2024/02/12/%E6%A8%A1%E6%9D%BF%E5%85%B7%E4%BD%93%E5%8C%96-md/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="BZTWO">
+<meta property="og:url" content="http://example.com/tags/C-%E7%89%B9%E6%80%A7/page/2/index.html">
 <meta property="og:site_name" content="BZTWO">
-<meta property="og:description" content="类模板与函数模板很相似，因为可以有隐式实例化、显式实例化和显式具体化，它们统称为具体化（specialization）。模板以泛型的方式描述类，而具体化是使用具体的类型生成类声明。 隐式实例化声明一个或多个对象，并指出所需的类型，而编译器使用通用模板提供的定义来生成具体的类定义，这称为隐式实例化（implicit instantiation）。 隐式实例化发生在编译器遇到对模板类的使用，但尚未">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-02-12T05:48:13.000Z">
-<meta property="article:modified_time" content="2024-02-14T01:56:52.142Z">
 <meta property="article:author" content="an">
-<meta property="article:tag" content="C++特性">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="BZTWO" type="application/atom+xml">
@@ -140,154 +135,41 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-模板具体化-md" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2023" class="archive-year">2023</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2023/11/08/for-each-md/" class="archive-article-date">
+        <time datetime="2023-11-08T15:00:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-08</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/2023/11/08/for-each-md/" target="_blank">C++for_each.md</a>
   
-    <h1 class="article-title" itemprop="name">
-      模板具体化.md
     </h1>
   
 
 
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/2024/02/12/%E6%A8%A1%E6%9D%BF%E5%85%B7%E4%BD%93%E5%8C%96-md/" class="archive-article-date">
-        <time datetime="2024-02-12T05:48:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-02-12</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.6k字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">7分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>类模板与函数模板很相似，因为可以有隐式实例化、显式实例化和显式具体化，它们统称为具体化（specialization）。模板以泛型的方式描述类，而具体化是使用具体的类型生成类声明。</p>
-<h4 id="隐式实例化"><a href="#隐式实例化" class="headerlink" title="隐式实例化"></a>隐式实例化</h4><p>声明一个或多个对象，并指出所需的类型，而编译器使用通用模板提供的定义来生成具体的类定义，这称为隐式实例化（implicit instantiation）。</p>
-<p>隐式实例化发生在编译器遇到对模板类的使用，但尚未为该特定类型生成实例化代码时。编译器会自动根据模板定义和所提供的类型参数生成相应的类代码。这个过程对用户是透明的，不需要显式地请求编译器为特定类型生成模板类的实例化。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">// 通用模板类定义  </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="built_in">MyClass</span>(T value) : <span class="built_in">m_value</span>(value) &#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> <span class="type">const</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Value: &quot;</span> &lt;&lt; m_value &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    T m_value;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// 隐式实例化 MyClass&lt;int&gt;  </span></span><br><span class="line">    <span class="function">MyClass&lt;<span class="type">int</span>&gt; <span class="title">intObj</span><span class="params">(<span class="number">42</span>)</span></span>;  </span><br><span class="line">    intObj.<span class="built_in">print</span>(); <span class="comment">// 输出: Value: 42  </span></span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 隐式实例化 MyClass&lt;double&gt;  </span></span><br><span class="line">    <span class="function">MyClass&lt;<span class="type">double</span>&gt; <span class="title">doubleObj</span><span class="params">(<span class="number">3.14</span>)</span></span>;  </span><br><span class="line">    doubleObj.<span class="built_in">print</span>(); <span class="comment">// 输出: Value: 3.14  </span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="显示实例化"><a href="#显示实例化" class="headerlink" title="显示实例化"></a>显示实例化</h4><p>显示实例化（explicit instantiation）是当你显式地请求编译器为特定类型生成模板类的实例化代码。这可以通过在模板类定义之外使用特定的语法来实现。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">// 通用模板类定义  </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="built_in">MyClass</span>(T value) : <span class="built_in">m_value</span>(value) &#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> <span class="type">const</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Value of type &quot;</span> &lt;&lt; <span class="built_in">typeid</span>(T).<span class="built_in">name</span>() &lt;&lt; <span class="string">&quot;: &quot;</span> &lt;&lt; m_value &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    T m_value;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">template</span> <span class="keyword">class</span> <span class="title class_">MyClass</span>&lt;<span class="type">int</span>&gt;;  <span class="comment">// 显示实例化 MyClass&lt;int&gt;  </span></span><br><span class="line"><span class="keyword">template</span> <span class="keyword">class</span> <span class="title class_">MyClass</span>&lt;<span class="type">double</span>&gt;;  <span class="comment">// 显示实例化 MyClass&lt;double&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// 由于已经进行了显示实例化，所以这里可以直接使用 MyClass&lt;int&gt;  </span></span><br><span class="line">    <span class="function">MyClass&lt;<span class="type">int</span>&gt; <span class="title">intObj</span><span class="params">(<span class="number">42</span>)</span></span>;  </span><br><span class="line">    intObj.<span class="built_in">print</span>(); <span class="comment">// 输出: Value of type i, probably &#x27;i&#x27; for &#x27;int&#x27;: 42  </span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="显示具体化"><a href="#显示具体化" class="headerlink" title="显示具体化"></a>显示具体化</h4><p>显式具体化（explicit specialization）是特定类型（用于替换模板中 的泛型）的定义。有时候，可能需要在为特殊类型实例化时，对模板进 行修改，使其行为不同。在这种情况下，可以创建显式具体化。例如， 假设已经为用于表示排序后数组的类（元素在加入时被排序）定义了一 个模板。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">// 通用模板类定义  </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SortedArray</span> &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(T value)</span> </span>&#123;  </span><br><span class="line">        <span class="comment">// 在通用模板中，我们简单地将新值插入到数组中，并保持数组排序  </span></span><br><span class="line">        <span class="keyword">auto</span> it = std::<span class="built_in">lower_bound</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), value);  </span><br><span class="line">        data.<span class="built_in">insert</span>(it, value);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> <span class="type">const</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; value : data) &#123;  </span><br><span class="line">            std::cout &lt;&lt; value &lt;&lt; <span class="string">&quot; &quot;</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line">        std::cout &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    std::vector&lt;T&gt; data;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 显式具体化针对 int 类型  </span></span><br><span class="line"><span class="keyword">template</span> &lt;&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SortedArray</span>&lt;<span class="type">int</span>&gt; &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> value)</span> </span>&#123;  </span><br><span class="line">        <span class="comment">// 在 int 类型的特化版本中，我们在添加元素之前做一些额外的操作  </span></span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Adding an integer: &quot;</span> &lt;&lt; value &lt;&lt; std::endl;  </span><br><span class="line">  </span><br><span class="line">        <span class="comment">// 调用通用模板的 add 方法（如果需要的话）  </span></span><br><span class="line">        <span class="comment">// SortedArray&lt;int&gt;::add(value); // 如果需要的话，可以显式调用  </span></span><br><span class="line">  </span><br><span class="line">        <span class="comment">// 或者，提供 int 类型特定的实现  </span></span><br><span class="line">        data.<span class="built_in">push_back</span>(value);  </span><br><span class="line">        std::<span class="built_in">sort</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>()); <span class="comment">// 保持数组排序，但这不是最高效的做法  </span></span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> <span class="type">const</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; value : data) &#123;  </span><br><span class="line">            std::cout &lt;&lt; value &lt;&lt; <span class="string">&quot; &quot;</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line">        std::cout &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; data;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    SortedArray&lt;<span class="type">float</span>&gt; floatArray;  </span><br><span class="line">    floatArray.<span class="built_in">add</span>(<span class="number">3.14f</span>);  </span><br><span class="line">    floatArray.<span class="built_in">add</span>(<span class="number">2.71f</span>);  </span><br><span class="line">    floatArray.<span class="built_in">print</span>(); <span class="comment">// 输出排序后的浮点数数组  </span></span><br><span class="line">  </span><br><span class="line">    SortedArray&lt;<span class="type">int</span>&gt; intArray;  </span><br><span class="line">    intArray.<span class="built_in">add</span>(<span class="number">3</span>);  </span><br><span class="line">    intArray.<span class="built_in">add</span>(<span class="number">1</span>);  </span><br><span class="line">    intArray.<span class="built_in">add</span>(<span class="number">2</span>);  </span><br><span class="line">    intArray.<span class="built_in">print</span>(); <span class="comment">// 输出排序后的整数数组，同时在添加时输出额外信息  </span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="部分具体化"><a href="#部分具体化" class="headerlink" title="部分具体化"></a>部分具体化</h4><p>类模板的部分具体化（Partial Specialization）是C++模板编程中的一个高级特性，它允许你为模板类的某些特定类型组合提供专门的实现。部分具体化不同于普通的模板特化（Template Specialization），后者是为整个模板提供特定的实现。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;General template for MyClass&lt;T1, T2&gt;.&quot;</span> &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 部分具体化：为第一个参数T1提供具体类型int  </span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T2&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>&lt;<span class="type">int</span>, T2&gt; &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Partial specialization for int and T2.&quot;</span> &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    MyClass&lt;<span class="type">int</span>, <span class="type">double</span>&gt; obj1;  </span><br><span class="line">    obj1.<span class="built_in">print</span>();  <span class="comment">// 输出：Partial specialization for int and T2.  </span></span><br><span class="line">  </span><br><span class="line">    MyClass&lt;<span class="type">double</span>, <span class="type">int</span>&gt; obj2;  </span><br><span class="line">    obj2.<span class="built_in">print</span>();  <span class="comment">// 输出：General template for MyClass&lt;T1, T2&gt;.  </span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="函数模板显示具体化"><a href="#函数模板显示具体化" class="headerlink" title="函数模板显示具体化"></a>函数模板显示具体化</h4><p>显式具体化是直接为某个特定类型提供模板函数的实现。这种方式需要明确地指定类型。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">(T t)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// 通用版本的实现  </span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;General template: &quot;</span> &lt;&lt; t &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 显式具体化为int类型  </span></span><br><span class="line"><span class="keyword">template</span> &lt;&gt;  </span><br><span class="line"><span class="type">void</span> <span class="built_in">foo</span>&lt;<span class="type">int</span>&gt;(<span class="type">int</span> t) &#123;  </span><br><span class="line">    <span class="comment">// int类型的特定实现  </span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Specialized template for int: &quot;</span> &lt;&lt; t &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="built_in">foo</span>(<span class="number">3.14</span>);  <span class="comment">// 调用通用版本  </span></span><br><span class="line">    <span class="built_in">foo</span>(<span class="number">42</span>);    <span class="comment">// 调用int类型的特定版本  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="函数模板隐式具体化"><a href="#函数模板隐式具体化" class="headerlink" title="函数模板隐式具体化"></a>函数模板隐式具体化</h4><p>隐式具体化是编译器自动为某些特定类型提供模板函数的实现。这通常是通过提供一个非模板函数来实现的，该函数的签名与模板函数签名在除了返回类型之外的所有方面都相同。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">bar</span><span class="params">(T t)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// 通用版本的实现  </span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;General template: &quot;</span> &lt;&lt; t &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 隐式具体化为int类型  </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">bar</span><span class="params">(<span class="type">int</span> t)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// int类型的特定实现  </span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Implicit specialized template for int: &quot;</span> &lt;&lt; t &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="built_in">bar</span>(<span class="number">3.14</span>);  <span class="comment">// 调用通用版本  </span></span><br><span class="line">    <span class="built_in">bar</span>(<span class="number">42</span>);    <span class="comment">// 调用int类型的隐式具体化版本  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/alipay.jpg">
-                    <span class="reward-type">支付宝</span>
-                  </div>
-                  
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/weixin.png">
-                    <span class="reward-type">微信</span>
-                  </div>
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          an
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="http://example.com/2024/02/12/模板具体化-md/" title="模板具体化.md" target="_blank">http://example.com/2024/02/12/模板具体化-md/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
+        <div class="article-info info-on-right">
           
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -299,116 +181,23 @@
 		</ul>
 	</div>
 
-    
+          
 
-    
-
-    
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2024/02/12/%E6%A8%A1%E6%9D%BF%E5%85%B7%E4%BD%93%E5%8C%96-md/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-    
-    <div class="clearfix"></div>
-  </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
-  
-    <a href="/2024/02/13/%E6%A8%A1%E6%9D%BF%E7%B1%BB%E4%B8%8E%E5%8F%8B%E5%85%83-md/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          模板类与友元.md
-        
-      </div>
-    </a>
   
   
-    <a href="/2024/02/07/static-dynamic-md/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">static-dynamic.md</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/tags/C-%E7%89%B9%E6%80%A7/">&amp;laquo; Prev</a><a class="page-number" href="/tags/C-%E7%89%B9%E6%80%A7/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 
 
           </div>
@@ -449,9 +238,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

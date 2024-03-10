@@ -142,6 +142,126 @@
             
 
   
+    <article id="post-随机数生成-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/03/09/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90-md/" target="_blank">随机数生成.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/03/09/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90-md/" class="archive-article-date">
+        <time datetime="2024-03-09T07:39:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-09</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p>在 C++ 中，<code>&lt;random&gt;</code> 头文件提供了许多用于生成随机数的函数。常用的随机数生成函数：</p>
+<h4 id="std-random-device"><a href="#std-random-device" class="headerlink" title="std::random_device"></a>std::random_device</h4><p>生成随机数设备，用于生成随机数种子。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">std::random_device rd;</span><br><span class="line"><span class="type">int</span> seed = <span class="built_in">rd</span>();</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="std-default-random-engine"><a href="#std-default-random-engine" class="headerlink" title="std::default_random_engine"></a>std::default_random_engine</h4><p>默认的随机数生成引擎，用于生成均匀分布的随机数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std::default_random_engine gen;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="std-uniform-int-distribution"><a href="#std-uniform-int-distribution" class="headerlink" title="std::uniform_int_distribution"></a>std::uniform_int_distribution</h4><p>用于生成均匀分布的整数随机数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::uniform_int_distribution&lt;<span class="type">int</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">1</span>, <span class="number">100</span>)</span></span>;</span><br><span class="line"><span class="type">int</span> num = <span class="built_in">dist</span>(gen);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="std-uniform-real-distribution"><a href="#std-uniform-real-distribution" class="headerlink" title="std::uniform_real_distribution"></a>std::uniform_real_distribution</h4><p>用于生成均匀分布的实数随机数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::uniform_real_distribution&lt;<span class="type">double</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">0.0</span>, <span class="number">1.0</span>)</span></span>;</span><br><span class="line"><span class="type">double</span> num = <span class="built_in">dist</span>(gen);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="std-normal-distribution"><a href="#std-normal-distribution" class="headerlink" title="std::normal_distribution"></a>std::normal_distribution</h4><p>用于生成正态分布的随机数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::normal_distribution&lt;<span class="type">double</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">0.0</span>, <span class="number">1.0</span>)</span></span>;</span><br><span class="line"><span class="type">double</span> num = <span class="built_in">dist</span>(gen);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="std-bernoulli-distribution"><a href="#std-bernoulli-distribution" class="headerlink" title="std::bernoulli_distribution"></a>std::bernoulli_distribution</h4><p>用于生成伯努利分布的随机数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::bernoulli_distribution&lt;<span class="type">bool</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">0.5</span>)</span></span>;</span><br><span class="line"><span class="type">bool</span> num = <span class="built_in">dist</span>(gen);</span><br></pre></td></tr></table></figure>
+
+<p>这些函数都可以用于生成各种分布的随机数。以下是一个生成随机数的简单示例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;random&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::random_device rd;</span><br><span class="line">    <span class="function">std::default_random_engine <span class="title">gen</span><span class="params">(rd())</span></span>;</span><br><span class="line">    <span class="function">std::uniform_int_distribution&lt;<span class="type">int</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">1</span>, <span class="number">100</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">        <span class="type">int</span> num = <span class="built_in">dist</span>(gen);</span><br><span class="line">        std::cout &lt;&lt; num &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个示例将生成 10 个在 1 到 100 之间的随机整数并输出。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">函数</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/03/09/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-树状数组-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -171,7 +291,21 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <span id="more"></span>
+
+<p>树状数组，也称作“二叉索引树”（Binary Indexed Tree）或 Fenwick 树。它可以高效地实现如下两个操作：</p>
+<ol>
+<li>单点更新 update(x, delta)：把序列 x 位置的数加上一个值 delta；</li>
+<li>前缀和查询 sum(x)：查询序列 [1,…x] 区间的区间和，即位置 x 的前缀和。</li>
+</ol>
+<p>这两个操作的时间复杂度均为 O(log n)。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> add = [&amp;](vector&lt;<span class="type">int</span>&gt;&amp; bit, <span class="type">int</span> i, <span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span> (; i &lt;= m; i += i &amp; -i) &#123;</span><br><span class="line">        bit[i] += x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//while(i &lt;= m)&#123;</span></span><br><span class="line">    <span class="comment">//    bit[i] += x;</span></span><br><span class="line">    <span class="comment">//    i += i &amp; -i;//lowbit(p);</span></span><br><span class="line">    <span class="comment">//&#125;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">auto</span> sum = [&amp;](vector&lt;<span class="type">int</span>&gt;&amp; bit, <span class="type">int</span> i) &#123;</span><br><span class="line">    ll s = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (; i; i -= i &amp; -i) &#123;</span><br><span class="line">        s += bit[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//while(i)&#123;</span></span><br><span class="line">    <span class="comment">//    s += bit[i];</span></span><br><span class="line">    <span class="comment">//    p -= lower_bit(p);</span></span><br><span class="line">    <span class="comment">//&#125;</span></span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在上述代码中，<code>add</code> 函数实现了单点更新操作，<code>sum</code> 函数实现了前缀和查询操作。</p>
+<p>树状数组的单点更新操作，可以通过 lowbit 函数找到 x 的二进制表示中最低位的 1 所对应的十进制值，然后将 delta 加到 x 的位置，接着将 x 右移一位（即 x -&#x3D; x &amp; -x），继续进行下一轮更新。</p>
+<p>树状数组的前缀和查询操作，可以通过将 x 不断减去 x 的二进制表示中最低位的 1 所对应的十进制值，然后将 x 的前缀和累加到 s 中，继续进行下一轮查询。</p>
+<p>[树状数组教学视频](<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ce411u7qP/?spm_id_from=333.337.search-card.all.click&vd_source=54f770fab31251d4ff47d20981b523ca">五分钟丝滑动画讲解 | 树状数组_哔哩哔哩_bilibili</a>)</p>
+
     
 
     
@@ -182,6 +316,17 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
@@ -1148,100 +1293,6 @@
 
 
   
-    <article id="post-kmp-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/01/14/kmp-md/" target="_blank">kmp.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/01/14/kmp-md/" class="archive-article-date">
-        <time datetime="2024-01-14T09:05:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>kmp算法：</p>
-<p>KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特-莫里斯-普拉特操作（简称KMP算法）。 KMP算法的关键是利用匹配失败后的信息，尽量减少模式串与主串的匹配次数以达到快速匹配的目的。具体实现就是通过一个next()函数实现，函数本身包含了模式串的局部匹配信息。</p>
-<p>KMP算法的主要思想是：在文本串（文章）中查找模式串（关键字）时，利用模式串和文本串中已经匹配的部分，跳过一些无用的比较，使文本串的标记指针不会回溯，模式串的标记指针移动。例如：文本串：abcaabce 模式串：abce，上面的文本串和模式串第一次比较时，由于索引为3的位置a和e不相同，假设文本串的索引i&#x3D;3，模式串的索引j&#x3D;3，kmp的思想是由于前面的abc已经匹配完成，我们从中可以知道里面没有a，所以此时我们的文本串中标记指针不变依然是i&#x3D;3，但是模式串的指针变化j&#x3D;0，这样可以省略一些无用的比较，所以我们需要研究模式串发现其中的规律。</p>
-<p>此外，KMP算法利用模式串的最长的相同的前后缀进行移动，而主串不需要回溯，从而达到快速匹配的目的。例如：在箭头处发生不匹配时，找到箭头之前模式串子串的最长的相同的前后缀，为AB；然后把前缀AB移动到后缀AB的位置；再继续进行匹配，同理，发生不匹配时，找到箭头之前模式串子串的最长的相同的前后缀，为A；然后把前缀A移动到后缀A的位置，因为超出主串长度所以匹配失败。</p>
-<p>c++函数实现</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">compute_prefix_function</span><span class="params">(std::string pattern)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = pattern.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">prefix</span><span class="params">(m, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; pattern[j] != pattern[i]) &#123;</span><br><span class="line">                j = prefix[j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (pattern[j] == pattern[i]) &#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            prefix[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prefix;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">kmp_search</span><span class="params">(std::string text, std::string pattern)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = text.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> m = pattern.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; pos;</span><br><span class="line">        <span class="keyword">if</span> (m == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; prefix = <span class="built_in">compute_prefix_function</span>(pattern);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; text[i] != pattern[j])</span><br><span class="line">                j = prefix[j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (text[i] == pattern[j])</span><br><span class="line">                j++;</span><br><span class="line">            <span class="keyword">if</span> (j == m) &#123;</span><br><span class="line">                pos.<span class="built_in">emplace_back</span>(i - j + <span class="number">1</span>);</span><br><span class="line">                j = prefix[j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">学习使用记录函数C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/01/14/kmp-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1375,19 +1426,19 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C++特性</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">学习使用记录函数C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1399,15 +1450,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">左右值</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
               </li>
             
             <div class="clearfix"></div>
