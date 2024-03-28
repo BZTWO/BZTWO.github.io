@@ -142,6 +142,152 @@
             
 
   
+    <article id="post-scrapy-l-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/03/28/scrapy-l-md/" target="_blank">scrapy_l.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/03/28/scrapy-l-md/" class="archive-article-date">
+        <time datetime="2024-03-28T01:06:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-28</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<h4 id="安装框架"><a href="#安装框架" class="headerlink" title="安装框架"></a>安装框架</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//使用pip进行安装</span><br><span class="line">pip install pywin32</span><br><span class="line">pip install Scrapy</span><br><span class="line">pip install lxml //一般不用自己安装</span><br><span class="line">pip install pyOpenSSL //一般不用自己安装</span><br><span class="line">pip install Scrapy</span><br></pre></td></tr></table></figure>
+
+<h4 id="Scrapy框架介绍"><a href="#Scrapy框架介绍" class="headerlink" title="Scrapy框架介绍"></a>Scrapy框架介绍</h4><p>Scrapy是一个用于网络抓取的快速高级框架，它基于Python语言编写，可以用于数据挖掘、监测和自动化测试等任务。Scrapy的用途广泛，可以快速地抓取网页并从中提取结构化数据。</p>
+<p>Scrapy框架的主要特点包括：</p>
+<ol>
+<li><p><strong>异步网络请求</strong>：Scrapy采用Twisted异步网络库来处理网络通讯，这意味着它可以在等待网页响应的同时，继续发送其他请求，从而大大提高抓取效率。</p>
+</li>
+<li><p><strong>基于组件的架构</strong>：Scrapy的设计非常模块化，主要由五大组件组成，包括引擎(Scrapy Engine)、调度器(Scheduler)、下载器(Downloader)、爬虫(Spiders)和实体管道(Item Pipeline)。这些组件各自负责不同的功能，并通过数据流进行通信，使得用户可以轻松地对框架进行扩展和定制。</p>
+</li>
+<li><p><strong>中间件支持</strong>：Scrapy提供了中间件机制，允许用户在不修改核心组件的情况下，增加或修改请求和响应的处理逻辑。</p>
+</li>
+<li><p><strong>可扩展性</strong>：Scrapy是一个高度可扩展的框架，用户可以通过编写自定义的爬虫、中间件和管道等组件，来满足特定的抓取需求。</p>
+</li>
+<li><p><strong>支持多种输出格式</strong>：Scrapy可以将抓取的数据以多种格式输出，如JSON、CSV、XML等，方便用户进行后续的数据处理和分析。</p>
+</li>
+<li><p><strong>强大的选择器</strong>：Scrapy内置了强大的选择器库，使得用户可以方便地提取HTML或XML中的结构化数据。</p>
+</li>
+<li><p><strong>自动处理cookies和会话</strong>：Scrapy能够自动处理cookies和会话，使得用户可以方便地模拟登录和会话操作。</p>
+</li>
+<li><p><strong>内置去重机制</strong>：Scrapy内置了URL去重机制，可以避免重复抓取相同的页面，节省资源和时间。</p>
+</li>
+</ol>
+<p>总的来说，Scrapy是一个功能强大、易于扩展的网络抓取框架，适用于各种规模的网络抓取任务。无论是个人开发者还是大型企业，都可以利用Scrapy来高效地抓取和分析网络数据。</p>
+<img src="/2024/03/28/scrapy-l-md/PixPin_2024-03-28_09-16-48.png" class="">
+
+<h4 id="项目实践"><a href="#项目实践" class="headerlink" title="项目实践"></a>项目实践</h4><h5 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\86157\Desktop&gt;scrapy startproject scr2 </span><br></pre></td></tr></table></figure>
+
+<h5 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h5><h6 id="定义Item容器"><a href="#定义Item容器" class="headerlink" title="定义Item容器"></a>定义Item容器</h6><p>​	在<code>items.py</code>中建立相应的字段</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define here the models for your scraped items</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># See documentation in:</span></span><br><span class="line"><span class="comment"># https://docs.scrapy.org/en/latest/topics/items.html</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Scr2Item</span>(scrapy.Item):</span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    <span class="comment"># name = scrapy.Field()</span></span><br><span class="line">    title = scrapy.Field()</span><br><span class="line">    link = scrapy.Field()</span><br><span class="line">    desc = scrapy.Field()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="编写爬虫"><a href="#编写爬虫" class="headerlink" title="编写爬虫"></a>编写爬虫</h6><p>spider是用于从网站上爬取数据的类，包含一个用于西在的初始化URL，然后是如何跟进网页的链接以及如何分析页面中的内容，还有提取生成item的方法。</p>
+<p>在spider下创建一个自己的文件用于分析和提取页面内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestSpider</span>(scrapy.Spider):</span><br><span class="line">    name = <span class="string">&#x27;test1&#x27;</span>      <span class="comment">#name必须是唯一的，蜘蛛的名字</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;https://www.runoob.com/&#x27;</span>]      <span class="comment">#蜘蛛爬取的范围</span></span><br><span class="line">    start_urls = [</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/html/html5-intro.html&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/html/html-headings.html&#x27;</span></span><br><span class="line">        ]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">page_parse</span>(<span class="params">self, response</span>):     <span class="comment">#分析方法</span></span><br><span class="line">         filename = response.url.split(<span class="string">&quot;/&quot;</span>)[-<span class="number">2</span>]</span><br><span class="line">         <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                f.write(response.body)</span><br></pre></td></tr></table></figure>
+
+<h6 id="提取数据"><a href="#提取数据" class="headerlink" title="提取数据"></a>提取数据</h6><p>在Scrapy框架中，Selectors（选择器）是用于从网页中提取数据的工具。关于Selectors的选择器的四个基本方法，以下是详细的介绍：</p>
+<ol>
+<li>**xpath()**：此方法用于返回一系列的selectors，每一个select表示一个xpath参数表达式选择的节点。XPath是一种在XML文档中定位信息的方式，它同样可以用于HTML。通过编写XPath表达式，可以精确地选择网页中的特定元素或内容。</li>
+<li>**css()**：此方法同样返回一系列的selectors，但它是基于CSS选择器来定位网页元素的。CSS选择器是应用于HTML文档样式中的语言，可以选择具有某些样式的节点。这使得开发者可以使用与样式定义相似的语法来提取网页数据。</li>
+<li>**extract()**：此方法用于从选中的数据中提取信息，并返回一个unicode字符串。这通常用于在定位到特定元素后，提取该元素内的文本或属性值。</li>
+<li>**re()**：此方法使用正则表达式从网页中提取内容，并返回一个unicode字符串。正则表达式是一种强大的文本处理工具，可以匹配和提取符合特定模式的文本。</li>
+</ol>
+<p>这四个方法共同构成了Scrapy中Selectors选择器的核心功能，使得开发者能够灵活地提取和分析网页数据。在使用这些方法时，通常需要结合具体的网页结构和内容来编写相应的表达式或模式，以实现精确的数据提取。</p>
+<p>使用方法：</p>
+<img src="/2024/03/28/scrapy-l-md/PixPin_2024-03-28_15-10-37.png" class="">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scrapy shell &quot;https://www.runoob.com/html/html5-intro.html&quot;   //进入shell</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; response.body    //查看网页代码</span><br><span class="line">&gt;&gt;&gt; response.headers   //查看网页头部</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//title&#x27;)    //查看title，返回list</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//title&#x27;).extract()    //得到头部的list字符串化</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//title/text&#x27;).extract()    //去掉标签的文字</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//div[@class=&quot;hl-main&quot;]/span/text()&#x27;).extract()</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="存储内容"><a href="#存储内容" class="headerlink" title="存储内容"></a>存储内容</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> scr2.items <span class="keyword">import</span> Scr2Item</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestSpider</span>(scrapy.Spider):</span><br><span class="line">    name = <span class="string">&#x27;test1&#x27;</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;https://www.runoob.com/&#x27;</span>]</span><br><span class="line">    start_urls = [</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/html/html-formatting.html&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/css/css-tutorial.html&#x27;</span></span><br><span class="line">        ]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parse</span>(<span class="params">self, response</span>):</span><br><span class="line">        <span class="comment">#filename = response.url.split(&quot;/&quot;)[-2]</span></span><br><span class="line">        <span class="comment">#with open(filename, &#x27;wb&#x27;) as f:</span></span><br><span class="line">            <span class="comment">#f.write(response.body)</span></span><br><span class="line">        sel = scrapy.selector.Selector(response)</span><br><span class="line">        sites = sel.xpath(<span class="string">&#x27;//div[@class=&quot;article-intro&quot;]/p&#x27;</span>)</span><br><span class="line">        items = []</span><br><span class="line">        <span class="keyword">for</span> site <span class="keyword">in</span> sites:</span><br><span class="line">            item = Scr2Item()</span><br><span class="line">            item[<span class="string">&#x27;title&#x27;</span>] = site.xpath(<span class="string">&#x27;a/text()&#x27;</span>).extract()</span><br><span class="line">            item[<span class="string">&#x27;link&#x27;</span>] = site.xpath(<span class="string">&#x27;a/@href&#x27;</span>).extract()</span><br><span class="line">            item[<span class="string">&#x27;desc&#x27;</span>] = site.xpath(<span class="string">&#x27;text()&#x27;</span>).extract()</span><br><span class="line">            items.append(item)</span><br><span class="line">            <span class="comment">#title = site.xpath(&#x27;a/text()&#x27;).extract()</span></span><br><span class="line">            <span class="comment">#link = site.xpath(&#x27;a/@href&#x27;).extract()</span></span><br><span class="line">            <span class="comment">#desc = site.xpath(&#x27;text()&#x27;).extract()</span></span><br><span class="line">            <span class="comment">#print(title, link, desc)</span></span><br><span class="line">        <span class="keyword">return</span> items</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/03/28/scrapy-l-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-python基础语法-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1247,128 +1393,6 @@
 
 
   
-    <article id="post-函数记录-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/01/21/%E5%87%BD%E6%95%B0%E8%AE%B0%E5%BD%95-md/" target="_blank">函数记录.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/01/21/%E5%87%BD%E6%95%B0%E8%AE%B0%E5%BD%95-md/" class="archive-article-date">
-        <time datetime="2024-01-21T08:26:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h4 id="cctype"><a href="#cctype" class="headerlink" title="cctype"></a>cctype</h4><p>transfrom + lambda</p>
-<ol>
-<li><code>result.begin()</code>: 这是输出范围的起始迭代器。是将转换后的元素写入的起始位置。</li>
-<li><code>result.end()</code>: 这是输出范围的结束迭代器。是不应再写入数据的位置。</li>
-<li><code>result.begin()</code>: 这是输入范围的起始迭代器。是从哪里开始获取数据来进行转换的。</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">std::<span class="built_in">transform</span>(result.<span class="built_in">begin</span>(), result.<span class="built_in">end</span>(), result.<span class="built_in">begin</span>(),   </span><br><span class="line">    [](<span class="type">unsigned</span> <span class="type">char</span> c)&#123; <span class="keyword">return</span> std::<span class="built_in">tolower</span>(c); &#125; <span class="comment">// 使用tolower函数将所有字符转换为小写    </span></span><br><span class="line">);												   <span class="comment">// 使用toupper函数将所有字符转换为大写</span></span><br></pre></td></tr></table></figure>
-
-<p>isalpha()</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalpha</span>(<span class="string">&#x27;a&#x27;</span>);<span class="comment">//----&gt;true</span></span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalpha</span>(<span class="string">&#x27;A&#x27;</span>);<span class="comment">//----&gt;true</span></span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalpha</span>(<span class="string">&#x27;1&#x27;</span>);<span class="comment">//----&gt;false</span></span><br></pre></td></tr></table></figure>
-
-<p>isalnum()</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalnum</span>(<span class="string">&#x27;a&#x27;</span>);<span class="comment">//----&gt;true</span></span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalnum</span>(<span class="string">&#x27;A&#x27;</span>);<span class="comment">//----&gt;true</span></span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalnum</span>(<span class="string">&#x27;1&#x27;</span>);<span class="comment">//----&gt;true</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="utility"><a href="#utility" class="headerlink" title="utility"></a>utility</h4><p>std::forward: 该函数用于实现完美转发，它接受两个参数，第一个参数是要转发的参数，第二个参数是一个布尔值，指示是否应该以左值或右值转发参数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">T&amp;&amp; <span class="title">forward</span><span class="params">(<span class="keyword">typename</span> std::remove_reference&lt;T&gt;::type&amp; t)</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">T&amp;&amp; <span class="title">forward</span><span class="params">(<span class="keyword">typename</span> std::remove_reference&lt;T&gt;::type&amp;&amp; t)</span> <span class="keyword">noexcept</span></span>;</span><br></pre></td></tr></table></figure>
-<p>std::move: 该函数用于将一个对象转换为右值引用，从而可以将其移动到另一个对象。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">T&amp;&amp; <span class="title">move</span><span class="params">(T&amp; t)</span> <span class="keyword">noexcept</span></span>;</span><br></pre></td></tr></table></figure>
-<p>std::exchange: 该函数用于交换两个变量的值。它接受两个参数，第一个参数是要交换的变量，第二个参数是用于交换的值。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">T <span class="title">exchange</span><span class="params">(T&amp; obj, T&amp;&amp; val)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>std::make_pair: 该函数用于创建一个std::pair对象，它接受两个参数，分别表示<code>pair</code>的两个元素。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T1, <span class="keyword">class</span> T2&gt;</span></span><br><span class="line"><span class="function">std::pair&lt;V1,V2&gt; <span class="title">make_pair</span><span class="params">(T1&amp;&amp; x, T2&amp;&amp; y)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>std::tie: 该函数用于将多个对象的值存储到一个tuple中。它接受一个可变参数列表，每个参数都是要存储的对象。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span>... Args&gt;</span></span><br><span class="line"><span class="function">tuple&lt;Args...&gt; <span class="title">tie</span><span class="params">(Args&amp;... args)</span></span>;</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h4><p>is_sorted()</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt; nums = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">is_sorted</span>();<span class="comment">//----&gt;true</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="numeric"><a href="#numeric" class="headerlink" title="numeric"></a>numeric</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt; nums1 = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"><span class="type">int</span> sum = <span class="built_in">accumulate</span>(nums1.<span class="built_in">begin</span>(), nums1.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">vector&lt;string&gt; nums2 = &#123;<span class="string">&quot;abcde&quot;</span>, <span class="string">&quot;fghijk&quot;</span>, <span class="string">&quot;lmnopq&quot;</span>&#125;;</span><br><span class="line">string str = <span class="built_in">accumulate</span>(nums2.<span class="built_in">begin</span>(), nums2.<span class="built_in">end</span>(), <span class="built_in">string</span>());</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">函数</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/01/21/%E5%87%BD%E6%95%B0%E8%AE%B0%E5%BD%95-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1510,15 +1534,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">学习使用记录函数C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">学习使用记录函数C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
