@@ -6,17 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 搜索算法 | BZTWO</title>
+  <title>差分+前缀和.md | BZTWO</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="BZTWO">
-<meta property="og:url" content="http://example.com/tags/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/index.html">
+  <meta name="description" content="前缀和在C++中，前缀和（也称为累积和）是一种用于快速计算数组中一系列元素和的技术。下面是一个简单的C++代码示例，演示如何计算并存储一个数组的前缀和： 12345678910111213141516171819202122232425#include &lt;iostream&gt;#include &lt;vector&gt;using namespace std;&#x2F;&#x2F; 函数用于计算并返回">
+<meta property="og:type" content="article">
+<meta property="og:title" content="差分+前缀和.md">
+<meta property="og:url" content="http://example.com/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/index.html">
 <meta property="og:site_name" content="BZTWO">
+<meta property="og:description" content="前缀和在C++中，前缀和（也称为累积和）是一种用于快速计算数组中一系列元素和的技术。下面是一个简单的C++代码示例，演示如何计算并存储一个数组的前缀和： 12345678910111213141516171819202122232425#include &lt;iostream&gt;#include &lt;vector&gt;using namespace std;&#x2F;&#x2F; 函数用于计算并返回">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/PixPin_2024-04-07_21-20-04.png">
+<meta property="og:image" content="http://example.com/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/PixPin_2024-04-07_21-17-59.png">
+<meta property="article:published_time" content="2024-04-07T09:08:36.000Z">
+<meta property="article:modified_time" content="2024-04-07T13:24:32.188Z">
 <meta property="article:author" content="an">
+<meta property="article:tag" content="搜索算法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/PixPin_2024-04-07_21-20-04.png">
   
     <link rel="alternative" href="/atom.xml" title="BZTWO" type="application/atom+xml">
   
@@ -135,41 +143,107 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-差分-前缀和-md" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+    <h1 class="article-title" itemprop="name">
+      差分+前缀和.md
+    </h1>
+  
+
+
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/" class="archive-article-date">
         <time datetime="2024-04-07T09:08:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-07</time>
 </a>
 
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/" target="_blank">差分+前缀和.md</a>
   
-    </h1>
-  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">952字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">4分</span>
+    </span>
+  </span>
+</div>
 
 
-        <div class="article-info info-on-right">
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<h4 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h4><p>在C++中，前缀和（也称为累积和）是一种用于快速计算数组中一系列元素和的技术。下面是一个简单的C++代码示例，演示如何计算并存储一个数组的前缀和：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数用于计算并返回前缀和数组</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">prefixSum</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">prefixSums</span><span class="params">(nums.size() + <span class="number">1</span>, <span class="number">0</span>)</span></span>; <span class="comment">// 创建一个比原数组多一个元素的数组，用于存储前缀和</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        prefixSums[i + <span class="number">1</span>] = prefixSums[i] + nums[i]; <span class="comment">// 计算前缀和并存储在对应位置</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> prefixSums;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; nums = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;; <span class="comment">// 示例数组</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; prefixSums = <span class="built_in">prefixSum</span>(nums); <span class="comment">// 计算前缀和</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出前缀和数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; prefixSums.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Prefix sum at index &quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot;: &quot;</span> &lt;&lt; prefixSums[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="差分"><a href="#差分" class="headerlink" title="差分"></a>差分</h4><p>在C++中，差分（或称为差分数组）是一种用于处理数组区间更新的高效技术。差分数组 <code>diff</code> 的每个元素 <code>diff[i]</code> 表示原数组 <code>arr</code> 中 <code>arr[i]</code> 和 <code>arr[i-1]</code> 的差值。通过对差分数组进行特定的操作，可以方便地实现原数组的区间更新，并最终通过累加差分数组来得到更新后的原数组。</p>
+<p>下面是一个简单的C++代码示例，展示了如何创建和使用差分数组：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个差分数组</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">createDiffArray</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = arr.<span class="built_in">size</span>();</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">diff</span><span class="params">(n, <span class="number">0</span>)</span></span>; <span class="comment">// 初始化差分数组，大小与原数组相同</span></span><br><span class="line">    diff[<span class="number">0</span>] = arr[<span class="number">0</span>]; <span class="comment">// 第一个元素与差分数组相同</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        diff[i] = arr[i] - arr[i - <span class="number">1</span>]; <span class="comment">// 计算差值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> diff;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新差分数组的指定区间 [start, end]，增加值 val</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">updateDiffArray</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; diff, <span class="type">int</span> start, <span class="type">int</span> end, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">    diff[start] += val; <span class="comment">// 开始位置增加 val</span></span><br><span class="line">    <span class="keyword">if</span> (end + <span class="number">1</span> &lt; diff.<span class="built_in">size</span>()) &#123;</span><br><span class="line">        diff[end + <span class="number">1</span>] -= val; <span class="comment">// 结束位置的下一个位置减去 val，以撤销对后续元素的影响</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据差分数组还原原数组</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">reconstructArray</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; diff)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = diff.<span class="built_in">size</span>();</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">arr</span><span class="params">(n, <span class="number">0</span>)</span></span>; <span class="comment">// 初始化原数组</span></span><br><span class="line">    arr[<span class="number">0</span>] = diff[<span class="number">0</span>]; <span class="comment">// 第一个元素与差分数组相同</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        arr[i] = arr[i - <span class="number">1</span>] + diff[i]; <span class="comment">// 累加差值得到原数组元素</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; arr = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>&#125;; <span class="comment">// 示例原数组</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; diff = <span class="built_in">createDiffArray</span>(arr); <span class="comment">// 创建差分数组</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出差分数组</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Difference Array: &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> d : diff) &#123;</span><br><span class="line">        cout &lt;&lt; d &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 更新差分数组中的区间 [1, 3]（对应原数组的索引），增加 2</span></span><br><span class="line">    <span class="built_in">updateDiffArray</span>(diff, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 根据更新后的差分数组重构原数组</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; updatedArr = <span class="built_in">reconstructArray</span>(diff);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出更新后的原数组</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Updated Array: &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> u : updatedArr) &#123;</span><br><span class="line">        cout &lt;&lt; u &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/PixPin_2024-04-07_21-20-04.png" class="">
+
+<h4 id="差分-前缀和"><a href="#差分-前缀和" class="headerlink" title="差分+前缀和"></a>差分+前缀和</h4><img src="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/PixPin_2024-04-07_21-17-59.png" class="">
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">using</span> ll = <span class="type">long</span> <span class="type">long</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n, q;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; q &gt;&gt; s;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">diff</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">while</span>(q--)&#123;</span><br><span class="line">      ll l, r, k;</span><br><span class="line">      cin &gt;&gt; l &gt;&gt; r &gt;&gt; k;</span><br><span class="line">      k %= <span class="number">26</span>;</span><br><span class="line">      diff[l - <span class="number">1</span>] += k;</span><br><span class="line">      diff[r] -= k;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">      diff[i] += diff[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">      <span class="type">int</span> tmp = (s[i] - <span class="string">&#x27;a&#x27;</span> + diff[i]) % <span class="number">26</span>;</span><br><span class="line">      cout &lt;&lt; <span class="built_in">char</span>(tmp + <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>[差分+前缀和视频讲解](<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NX4y147G5/?spm_id_from=333.788&vd_source=54f770fab31251d4ff47d20981b523ca">【C++算法基础】#9前缀和与差分 | 轻松学算法 | 图解ACM竞赛算法_哔哩哔哩_bilibili</a>)</p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          an
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://example.com/2024/04/07/差分-前缀和-md/" title="差分+前缀和.md" target="_blank">http://example.com/2024/04/07/差分-前缀和-md/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -181,158 +255,107 @@
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2024/03/03/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-md/" class="archive-article-date">
-        <time datetime="2024-03-03T09:55:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-03</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/28/scrapy-l-md/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">scrapy_l.md</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2024/03/03/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-md/" target="_blank">树状数组.md</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2024/01/18/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-md/" class="archive-article-date">
-        <time datetime="2024-01-18T08:05:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2024/01/18/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-md/" target="_blank">二分查找.md</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/11/20/%E7%BA%BF%E6%AE%B5%E6%A0%91-md/" class="archive-article-date">
-        <time datetime="2023-11-20T08:35:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-20</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/11/20/%E7%BA%BF%E6%AE%B5%E6%A0%91-md/" target="_blank">线段树.md</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
+
 
 
           </div>
@@ -373,9 +396,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
