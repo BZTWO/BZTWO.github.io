@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>埃氏筛选法.md</title>
+      <link href="/2024/04/12/%E5%9F%83%E6%B0%8F%E7%AD%9B%E9%80%89%E6%B3%95-md/"/>
+      <url>/2024/04/12/%E5%9F%83%E6%B0%8F%E7%AD%9B%E9%80%89%E6%B3%95-md/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><p>埃拉托斯特尼筛法（Sieve of Eratosthenes）是一种用来找出一定范围内所有素数的简单且古老的算法。其基本思想是从2开始，将每个素数的各个倍数，标记为合数，直到标记到上限。剩余的就是素数。</p><p>以下是埃氏筛选法的一个简单的C++示例代码：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">sieveOfEratosthenes</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="function">std::vector&lt;<span class="type">bool</span>&gt; <span class="title">isPrime</span><span class="params">(n + <span class="number">1</span>, <span class="literal">true</span>)</span></span>;</span><br><span class="line">    isPrime[<span class="number">0</span>] = isPrime[<span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i * i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="comment">// 如果 isPrime[i] 没有改变，那么它就是一个素数  </span></span><br><span class="line">        <span class="keyword">if</span> (isPrime[i] == <span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="comment">// 更新所有 i 的倍数  </span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i * i; j &lt;= n; j += i)</span><br><span class="line">                isPrime[j] = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 收集所有素数  </span></span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; primes;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">if</span> (isPrime[i])</span><br><span class="line">            primes.<span class="built_in">push_back</span>(i);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> primes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> n = <span class="number">30</span>;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; primes = <span class="built_in">sieveOfEratosthenes</span>(n);</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Prime numbers less than or equal to &quot;</span> &lt;&lt; n &lt;&lt; <span class="string">&quot; are: \n&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> p : primes)</span><br><span class="line">        std::cout &lt;&lt; p &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在这个代码中，我们首先创建了一个布尔类型的向量<code>isPrime</code>，用于标记每个数是否为素数。然后，我们从2开始，遍历到<code>sqrt(n)</code>（因为任何大于<code>sqrt(n)</code>的因子都会与一个小于或等于<code>sqrt(n)</code>的因子配对）。对于每个素数<code>p</code>，我们将其所有倍数标记为非素数。最后，我们遍历<code>isPrime</code>向量，收集所有标记为素数的数，并将它们放入<code>primes</code>向量中返回。</p><p>在<code>main</code>函数中，我们调用<code>sieveOfEratosthenes</code>函数，并打印出所有小于或等于<code>n</code>的素数。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>差分+前缀和.md</title>
       <link href="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/"/>
       <url>/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/</url>
@@ -14,7 +33,7 @@
       
         <tags>
             
-            <tag> 搜索算法 </tag>
+            <tag> 算法 </tag>
             
         </tags>
       
@@ -90,7 +109,7 @@
       
         <tags>
             
-            <tag> 搜索算法 </tag>
+            <tag> 算法 </tag>
             
         </tags>
       
@@ -261,7 +280,7 @@
       
         <tags>
             
-            <tag> 学习使用记录函数C++ </tag>
+            <tag> 算法 </tag>
             
         </tags>
       
@@ -375,7 +394,7 @@
       
         <tags>
             
-            <tag> 搜索算法 </tag>
+            <tag> 算法 </tag>
             
         </tags>
       
