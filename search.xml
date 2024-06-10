@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Qt可执行文件生成.md</title>
+      <link href="/2024/06/10/Qt%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90-md/"/>
+      <url>/2024/06/10/Qt%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90-md/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>查看路径</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\86157\Desktop\QT\frameLessWidget\build\frameLessWidget&gt;<span class="built_in">echo</span> %<span class="built_in">cd</span>%</span><br></pre></td></tr></table></figure><p>切换路径</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\&gt;C:</span><br><span class="line">D:\qt\6.6.1&gt;<span class="built_in">cd</span> <span class="string">&quot;C:\Users\86157\Desktop\QT\frameLessWidget\build\frameLessWidget\&quot;</span></span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\86157\Desktop\QT\frameLessWidget\build\frameLessWidget&gt;windeployqt frameLessWidget.exe</span><br></pre></td></tr></table></figure><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>[qt中如何生成可执行文件 Linux ](<a href="https://wenku.csdn.net/answer/cb27fb6042ee45faa08cd65b9ede0e76#:~:text=1.%E5%9C%A8Qt">https://wenku.csdn.net/answer/cb27fb6042ee45faa08cd65b9ede0e76#:~:text=1.在Qt</a> Creator中打开你的项目。,2.选择你想要生成可执行文件的构建套件（如Debug或Release）。 3.点击“构建”菜单中的“构建项目”或使用快捷键Ctrl%2BB。 4.等待编译完成。)</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Qt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>io多路复用.md</title>
       <link href="/2024/04/27/io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8-md/"/>
       <url>/2024/04/27/io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8-md/</url>
