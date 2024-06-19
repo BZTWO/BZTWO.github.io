@@ -142,6 +142,110 @@
             
 
   
+    <article id="post-men-fun和men-fun-ref-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/11/09/men-fun%E5%92%8Cmen-fun-ref-md/" target="_blank">C++men_fun和men_fun_ref.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/11/09/men-fun%E5%92%8Cmen-fun-ref-md/" class="archive-article-date">
+        <time datetime="2023-11-09T12:49:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-09</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p><code>std::mem_fun</code> 和 <code>std::mem_fun_ref</code> 是 C++ 标准库中的函数适配器，用于调用成员函数。</p>
+<p>以下是它们的官方定义：</p>
+<ul>
+<li><p><code>std::mem_fun</code>：这是一个函数对象适配器，可以将一个成员函数转换为具有固定参数的函数对象。它接受一个成员函数指针，并返回一个可以调用具有固定参数的函数对象。</p>
+</li>
+<li><p><code>std::mem_fun_ref</code>：这是一个函数对象适配器，可以将一个成员函数引用转换为具有固定参数的函数对象。它接受一个成员函数引用，并返回一个可以调用具有固定参数的函数对象。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ClxECS</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">DoSomething</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Output from method DoSomething!&quot;</span> &lt;&lt; endl; <span class="comment">// 这里以输出一句话来代替具体的操作</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">vector&lt;ClxECS*&gt; vECS;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">13</span>; i++)&#123;</span><br><span class="line">    ClxECS *pECS = <span class="keyword">new</span> ClxECS;</span><br><span class="line">    vECS.<span class="built_in">push_back</span>(pECS);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">DoSomething</span><span class="params">(ClxECS *pECS)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> pECS-&gt;<span class="built_in">DoSomething</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用for_each来实现我们想要的功能：for_each(vECS.begin(), vECS.end(), &amp;DoSomething);</p>
+</li>
+</ul>
+<p>这两个适配器的目的是允许您使用成员函数作为常规函数对象进行操作，例如使用它们作为算法的参数。它们的主要区别在于 <code>std::mem_fun</code> 接受成员函数指针，而 <code>std::mem_fun_ref</code> 接受成员函数引用。这意味着 <code>std::mem_fun</code> 需要一个静态类型的对象来调用成员函数，而 <code>std::mem_fun_ref</code> 可以直接使用一个对象的引用。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">list&lt;Widget *&gt; lpw;</span><br><span class="line">for_each(lpw.<span class="built_in">begin</span>(), lpw.<span class="built_in">end</span>(),<span class="built_in">mem_fun</span>(&amp;Widget::test)); <span class="comment">// pw-&gt;test();</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">vector&lt;Widget&gt; vw;</span><br><span class="line">for_each(vw.<span class="built_in">begin</span>(), vw.<span class="built_in">end</span>(),<span class="built_in">mem_fun_ref</span>(&amp;Widget::test)); <span class="comment">// w.test();</span></span><br><span class="line"><span class="comment">//成员函数有参数的情况：将值传入，再bind1st为this</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//3</span></span><br><span class="line">std::for_each(m_erased.<span class="built_in">begin</span>(), m_erased.<span class="built_in">end</span>(),std::<span class="built_in">bind1st</span>(std::<span class="built_in">mem_fun</span>(&amp;SocketSet::_replace_with_last), <span class="keyword">this</span>));</span><br><span class="line"><span class="comment">//相当于this-&gt;_replace_with_last(iter)  //iter</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>两者区别:</strong><br>mem_fun_ref的作用和用法跟mem_fun一样，唯一的不同就是：</p>
+<p><strong>当容器中存放的是对象实体的时候用mem_fun_ref，</strong></p>
+<p><strong>当容器中存放的是对象的指针的时候用mem_fun。</strong></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/11/09/men-fun%E5%92%8Cmen-fun-ref-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-函数对象理解及bind1st和bind2nd-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -719,6 +823,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
               </li>
              
@@ -731,15 +839,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
               </li>
              
               <li class="article-tag-list-item">
