@@ -142,6 +142,100 @@
             
 
   
+    <article id="post-二分查找-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/01/18/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-md/" target="_blank">二分查找.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/01/18/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-md/" class="archive-article-date">
+        <time datetime="2024-01-18T08:05:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-18</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p>二分查找算法（Binary Search）是一种在有序数组中查找某一特定元素的搜索算法。搜索过程从数组的中间元素开始，如果中间元素正好是目标值，则搜索过程结束；如果目标值大于或小于中间元素，则在数组大于或小于中间元素的那一半中查找，而且同样从中间元素开始比较。如果在某一步骤数组为空，则代表找不到。这种搜索算法每一次比较都使搜索范围缩小一半。</p>
+<p>数组有序：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>  </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">binarySearch</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> x)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123;  </span><br><span class="line">        <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;  </span><br><span class="line">        <span class="keyword">if</span> (arr[mid] == x) &#123;  </span><br><span class="line">            <span class="keyword">return</span> mid;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">if</span> (arr[mid] &lt; x) &#123;  </span><br><span class="line">            l = mid + <span class="number">1</span>;  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            r = mid - <span class="number">1</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">// 如果找不到目标值，则返回-1  </span></span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="type">int</span> arr[] = &#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">10</span>, <span class="number">40</span>&#125;;  </span><br><span class="line">    <span class="type">int</span> n = <span class="built_in">sizeof</span>(arr) / <span class="built_in">sizeof</span>(arr[<span class="number">0</span>]);  </span><br><span class="line">    <span class="type">int</span> x = <span class="number">10</span>;  </span><br><span class="line">    <span class="type">int</span> result = <span class="built_in">binarySearch</span>(arr, <span class="number">0</span>, n - <span class="number">1</span>, x);  </span><br><span class="line">    (result == <span class="number">-1</span>) ? cout &lt;&lt; <span class="string">&quot;Element is not present in array&quot;</span> : cout &lt;&lt; <span class="string">&quot;Element is present at index &quot;</span> &lt;&lt; result;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有序 + 旋转：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">    <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (nums[mid] == target) <span class="keyword">return</span> mid;</span><br><span class="line">    <span class="keyword">if</span> (nums[<span class="number">0</span>] &lt;= nums[mid]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[<span class="number">0</span>] &lt;= target &amp;&amp; target &lt; nums[mid]) &#123;</span><br><span class="line">            r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &lt; target &amp;&amp; target &lt;= nums[n - <span class="number">1</span>]) &#123;</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/01/18/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-kmp-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1323,113 +1417,6 @@
 
 
   
-    <article id="post-remove-if-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/11/11/remove-if-md/" target="_blank">C++remove_if.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/11/11/remove-if-md/" class="archive-article-date">
-        <time datetime="2023-11-11T03:17:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-11</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p><code>std::remove_if</code> 是 C++ 标准库中的一个算法，它根据指定的条件，将满足条件的元素从输入序列中移除，并返回新的逻辑结束位置。其函数原型如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">remove_if</span><span class="params">(iterator first, iterator last, <span class="type">const</span> Predicate&amp; pred)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>其中：</p>
-<ul>
-<li><code>first</code> 和 <code>last</code> 是输入序列的开始和结束迭代器。</li>
-<li><code>pred</code> 是一个函数或函数对象，用于判断哪些元素应该被移除。</li>
-</ul>
-<p>返回值是一个迭代器，指向输入序列中第一个被移除元素之后的位置。</p>
-<p>下面是一个<strong>简单</strong>的实现示例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> Predicate&gt;</span></span><br><span class="line"><span class="function">Iterator <span class="title">my_remove_if</span><span class="params">(Iterator first, Iterator last, <span class="type">const</span> Predicate&amp; pred)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Iterator next = first;</span><br><span class="line">    <span class="keyword">while</span> (first != last) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">pred</span>(*first)) &#123;</span><br><span class="line">            *next = *first;</span><br><span class="line">            ++next;</span><br><span class="line">        &#125;</span><br><span class="line">        ++first;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这个实现中，我们使用了一个 <code>next</code> 迭代器，用于保存当前处理过的最后一个不满足条件的元素的位置。然后我们遍历输入序列，对于每个元素，如果它满足条件，我们就将其保留在原位，否则我们将它移动到 <code>next</code> 所指向的位置，并将 <code>next</code> 向后移动一位。最后返回 <code>next</code>，即为新的逻辑结束位置。</p>
-<p>示例：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isSpace</span><span class="params">(<span class="type">char</span> x)</span> </span>&#123; <span class="keyword">return</span> x == <span class="string">&#x27; &#x27;</span>; &#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">string <span class="title">s2</span><span class="params">(<span class="string">&quot;Text with    spaces&quot;</span>)</span></span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;删除之前&quot;</span>&lt;&lt;s2 &lt;&lt; endl;</span><br><span class="line">	s2.<span class="built_in">erase</span>(<span class="built_in">remove_if</span>(s2.<span class="built_in">begin</span>(), s2.<span class="built_in">end</span>(), isSpace), s2.<span class="built_in">end</span>());</span><br><span class="line">	cout &lt;&lt;<span class="string">&quot;删除之后&quot;</span>&lt;&lt; s2 &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>本例中remove_if()函数传入的第三个参数是一个判断空格的函数，那么<code>remove_if</code>将会移除字符串中所有空格，并返回一个迭代器，指向移除空格后的字符串的末尾。</p>
-<p>对于提供的示例字符串 <code>&quot;Text with    spaces&quot;</code>，移除所有空格后，剩下的字符串是 <code>&quot;Textwithspaces&quot;</code>。因此，<code>remove_if</code>函数的返回迭代器的值应该是 <code>&quot;Textwithspaces&quot;</code> 字符串的末尾位置。</p>
-<p>真实情况：</p>
-<p>当 <code>std::remove_if()</code> 算法被调用时，它会<strong>重新排列序列</strong>，将所有不满足条件的元素移动到序列的前面，并将满足条件的元素（要删除元素）移动到序列的末尾。然而，它并不会减少序列的总长度，也就是说，序列的元素个数不会因为 <code>std::remove_if()</code> 的调用而减少。</p>
-<p><code>remove_if()</code> 算法不会直接修改原始序列，而是返回一个指向新的逻辑结束位置的迭代器。如果希望将结果存储在另一个序列中，可以使用 <code>std::remove_copy_if()</code> 算法。</p>
-<p>如果想要<strong>真正删除</strong>（对原序列进行修改），通常需要配合<strong>erase函数</strong>使用。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/11/11/remove-if-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
@@ -1571,11 +1558,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1591,19 +1578,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">函数</a>
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1611,11 +1590,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">左右值</a>
+                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">左右值</a>
               </li>
             
             <div class="clearfix"></div>

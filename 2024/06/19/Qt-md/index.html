@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>函数记录.md | BZTWO</title>
+  <title>Qt.md | BZTWO</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="cctypetransfrom + lambda  result.begin(): 这是输出范围的起始迭代器。是将转换后的元素写入的起始位置。 result.end(): 这是输出范围的结束迭代器。是不应再写入数据的位置。 result.begin(): 这是输入范围的起始迭代器。是从哪里开始获取数据来进行转换的。  123std::transform(result.begin(), resu">
+  <meta name="description" content="Android连接 1D:\AndroidSDK\platform-tools&gt;adb connect 127.0.0.1:5555">
 <meta property="og:type" content="article">
-<meta property="og:title" content="函数记录.md">
-<meta property="og:url" content="http://example.com/2024/01/21/%E5%87%BD%E6%95%B0%E8%AE%B0%E5%BD%95-md/index.html">
+<meta property="og:title" content="Qt.md">
+<meta property="og:url" content="http://example.com/2024/06/19/Qt-md/index.html">
 <meta property="og:site_name" content="BZTWO">
-<meta property="og:description" content="cctypetransfrom + lambda  result.begin(): 这是输出范围的起始迭代器。是将转换后的元素写入的起始位置。 result.end(): 这是输出范围的结束迭代器。是不应再写入数据的位置。 result.begin(): 这是输入范围的起始迭代器。是从哪里开始获取数据来进行转换的。  123std::transform(result.begin(), resu">
+<meta property="og:description" content="Android连接 1D:\AndroidSDK\platform-tools&gt;adb connect 127.0.0.1:5555">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-01-21T08:26:41.000Z">
-<meta property="article:modified_time" content="2024-01-21T09:28:41.003Z">
+<meta property="article:published_time" content="2024-06-19T06:57:38.000Z">
+<meta property="article:modified_time" content="2024-06-19T06:59:13.145Z">
 <meta property="article:author" content="an">
-<meta property="article:tag" content="函数">
+<meta property="article:tag" content="Qt">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="BZTWO" type="application/atom+xml">
@@ -140,14 +140,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-函数记录-md" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Qt-md" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      函数记录.md
+      Qt.md
     </h1>
   
 
@@ -159,8 +159,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2024/01/21/%E5%87%BD%E6%95%B0%E8%AE%B0%E5%BD%95-md/" class="archive-article-date">
-        <time datetime="2024-01-21T08:26:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-21</time>
+<a href="/2024/06/19/Qt-md/" class="archive-article-date">
+        <time datetime="2024-06-19T06:57:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-19</time>
 </a>
 
   
@@ -173,7 +173,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">560字</span>
+      <span class="post-count">15字</span>
     </span>
   </span>
 
@@ -182,7 +182,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
+      <span class="post-count">1分</span>
     </span>
   </span>
 </div>
@@ -195,40 +195,8 @@
     
     <span id="more"></span>
 
-<h4 id="cctype"><a href="#cctype" class="headerlink" title="cctype"></a>cctype</h4><p>transfrom + lambda</p>
-<ol>
-<li><code>result.begin()</code>: 这是输出范围的起始迭代器。是将转换后的元素写入的起始位置。</li>
-<li><code>result.end()</code>: 这是输出范围的结束迭代器。是不应再写入数据的位置。</li>
-<li><code>result.begin()</code>: 这是输入范围的起始迭代器。是从哪里开始获取数据来进行转换的。</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">std::<span class="built_in">transform</span>(result.<span class="built_in">begin</span>(), result.<span class="built_in">end</span>(), result.<span class="built_in">begin</span>(),   </span><br><span class="line">    [](<span class="type">unsigned</span> <span class="type">char</span> c)&#123; <span class="keyword">return</span> std::<span class="built_in">tolower</span>(c); &#125; <span class="comment">// 使用tolower函数将所有字符转换为小写    </span></span><br><span class="line">);												   <span class="comment">// 使用toupper函数将所有字符转换为大写</span></span><br></pre></td></tr></table></figure>
-
-<p>isalpha()</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalpha</span>(<span class="string">&#x27;a&#x27;</span>);<span class="comment">//----&gt;true</span></span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalpha</span>(<span class="string">&#x27;A&#x27;</span>);<span class="comment">//----&gt;true</span></span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalpha</span>(<span class="string">&#x27;1&#x27;</span>);<span class="comment">//----&gt;false</span></span><br></pre></td></tr></table></figure>
-
-<p>isalnum()</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalnum</span>(<span class="string">&#x27;a&#x27;</span>);<span class="comment">//----&gt;true</span></span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalnum</span>(<span class="string">&#x27;A&#x27;</span>);<span class="comment">//----&gt;true</span></span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalnum</span>(<span class="string">&#x27;1&#x27;</span>);<span class="comment">//----&gt;true</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="utility"><a href="#utility" class="headerlink" title="utility"></a>utility</h4><p>std::forward: 该函数用于实现完美转发，它接受两个参数，第一个参数是要转发的参数，第二个参数是一个布尔值，指示是否应该以左值或右值转发参数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">T&amp;&amp; <span class="title">forward</span><span class="params">(<span class="keyword">typename</span> std::remove_reference&lt;T&gt;::type&amp; t)</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">T&amp;&amp; <span class="title">forward</span><span class="params">(<span class="keyword">typename</span> std::remove_reference&lt;T&gt;::type&amp;&amp; t)</span> <span class="keyword">noexcept</span></span>;</span><br></pre></td></tr></table></figure>
-<p>std::move: 该函数用于将一个对象转换为右值引用，从而可以将其移动到另一个对象。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">T&amp;&amp; <span class="title">move</span><span class="params">(T&amp; t)</span> <span class="keyword">noexcept</span></span>;</span><br></pre></td></tr></table></figure>
-<p>std::exchange: 该函数用于交换两个变量的值。它接受两个参数，第一个参数是要交换的变量，第二个参数是用于交换的值。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">T <span class="title">exchange</span><span class="params">(T&amp; obj, T&amp;&amp; val)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>std::make_pair: 该函数用于创建一个std::pair对象，它接受两个参数，分别表示<code>pair</code>的两个元素。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T1, <span class="keyword">class</span> T2&gt;</span></span><br><span class="line"><span class="function">std::pair&lt;V1,V2&gt; <span class="title">make_pair</span><span class="params">(T1&amp;&amp; x, T2&amp;&amp; y)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>std::tie: 该函数用于将多个对象的值存储到一个tuple中。它接受一个可变参数列表，每个参数都是要存储的对象。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span>... Args&gt;</span></span><br><span class="line"><span class="function">tuple&lt;Args...&gt; <span class="title">tie</span><span class="params">(Args&amp;... args)</span></span>;</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h4><p>is_sorted()</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt; nums = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">is_sorted</span>();<span class="comment">//----&gt;true</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="numeric"><a href="#numeric" class="headerlink" title="numeric"></a>numeric</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt; nums1 = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"><span class="type">int</span> sum = <span class="built_in">accumulate</span>(nums1.<span class="built_in">begin</span>(), nums1.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">vector&lt;string&gt; nums2 = &#123;<span class="string">&quot;abcde&quot;</span>, <span class="string">&quot;fghijk&quot;</span>, <span class="string">&quot;lmnopq&quot;</span>&#125;;</span><br><span class="line">string str = <span class="built_in">accumulate</span>(nums2.<span class="built_in">begin</span>(), nums2.<span class="built_in">end</span>(), <span class="built_in">string</span>());</span><br></pre></td></tr></table></figure>
+<p>Android连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\AndroidSDK\platform-tools&gt;adb connect 127.0.0.1:5555</span><br></pre></td></tr></table></figure>
 
 
     
@@ -244,7 +212,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/2024/01/21/函数记录-md/" title="函数记录.md" target="_blank">http://example.com/2024/01/21/函数记录-md/</a>
+          <a href="http://example.com/2024/06/19/Qt-md/" title="Qt.md" target="_blank">http://example.com/2024/06/19/Qt-md/</a>
         </li>
         
         <li>
@@ -266,7 +234,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">函数</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Qt</a>
         		</li>
       		
 		</ul>
@@ -322,7 +290,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2024/01/21/%E5%87%BD%E6%95%B0%E8%AE%B0%E5%BD%95-md/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2024/06/19/Qt-md/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -337,18 +305,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2024/02/04/%E5%B7%A6%E5%80%BCand%E5%8F%B3%E5%80%BC-md/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          左值and右值.md
-        
-      </div>
-    </a>
   
-  
-    <a href="/2024/01/18/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-md/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">二分查找.md</div>
+    <a href="/2024/06/19/Redis%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4-md/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Redis基本命令.md</div>
       <i class="icon-circle-right"></i>
     </a>
   

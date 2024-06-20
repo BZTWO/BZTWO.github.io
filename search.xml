@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Qt.md</title>
+      <link href="/2024/06/19/Qt-md/"/>
+      <url>/2024/06/19/Qt-md/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><p>Android连接</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\AndroidSDK\platform-tools&gt;adb connect 127.0.0.1:5555</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Qt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Redis基本命令.md</title>
       <link href="/2024/06/19/Redis%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4-md/"/>
       <url>/2024/06/19/Redis%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4-md/</url>
