@@ -142,6 +142,169 @@
             
 
   
+    <article id="post-工厂模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/06/24/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-md/" target="_blank">工厂模式.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/06/24/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
+        <time datetime="2024-06-24T05:21:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-24</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/06/24/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-单例模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/06/23/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-md/" target="_blank">单例模式.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/06/23/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
+        <time datetime="2024-06-23T02:10:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-23</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;atomic&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个单例模式的任务队列</span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="comment">//懒汉模式</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TaskQueue</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">TaskQueue</span>(<span class="type">const</span> TaskQueue&amp; t) = <span class="keyword">delete</span>;</span><br><span class="line">	TaskQueue&amp; <span class="keyword">operator</span> = (<span class="type">const</span> TaskQueue&amp; t) = <span class="keyword">delete</span>;</span><br><span class="line">	<span class="function"><span class="type">static</span> TaskQueue* <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> m_taskQ;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;我是一个单例对象的成员函数&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">TaskQueue</span>() = <span class="keyword">default</span>;</span><br><span class="line">	<span class="type">static</span> TaskQueue* m_taskQ;</span><br><span class="line">&#125;;</span><br><span class="line">TaskQueue* TaskQueue::m_taskQ = <span class="keyword">new</span> TaskQueue;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="comment">//饿汉模式-&gt;什么时候需要使用这个单例对象我们才去创建这个实例</span></span><br><span class="line"><span class="comment">//多线程情况下会出现线程安全问题</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TaskQueue</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">TaskQueue</span>(<span class="type">const</span> TaskQueue&amp; t) = <span class="keyword">delete</span>;</span><br><span class="line">	TaskQueue&amp; <span class="keyword">operator</span> = (<span class="type">const</span> TaskQueue&amp; t) = <span class="keyword">delete</span>;</span><br><span class="line">	<span class="function"><span class="type">static</span> TaskQueue* <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (m_taskQ == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">			m_mutex.<span class="built_in">lock</span>();</span><br><span class="line">			<span class="keyword">if</span> (m_taskQ == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">				m_taskQ = <span class="keyword">new</span> TaskQueue;</span><br><span class="line">			&#125;</span><br><span class="line">			m_mutex.<span class="built_in">unlock</span>();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> m_taskQ;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;我是一个单例对象的成员函数&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">TaskQueue</span>() = <span class="keyword">default</span>;</span><br><span class="line">	<span class="type">static</span> TaskQueue* m_taskQ;</span><br><span class="line">	<span class="type">static</span> mutex m_mutex;</span><br><span class="line">&#125;;</span><br><span class="line">TaskQueue* TaskQueue::m_taskQ = <span class="literal">nullptr</span>;</span><br><span class="line">mutex TaskQueue::m_mutex;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TaskQueue</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">TaskQueue</span>(<span class="type">const</span> TaskQueue&amp; t) = <span class="keyword">delete</span>;</span><br><span class="line">	TaskQueue&amp; <span class="keyword">operator</span> = (<span class="type">const</span> TaskQueue&amp; t) = <span class="keyword">delete</span>;</span><br><span class="line">	<span class="function"><span class="type">static</span> TaskQueue* <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		TaskQueue* task = m_taskQ.<span class="built_in">load</span>();</span><br><span class="line">		<span class="keyword">if</span> (task == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">			m_mutex.<span class="built_in">lock</span>();</span><br><span class="line">			TaskQueue* task = m_taskQ.<span class="built_in">load</span>();</span><br><span class="line">			<span class="keyword">if</span> (task == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">				task = <span class="keyword">new</span> TaskQueue;</span><br><span class="line">				m_taskQ.<span class="built_in">store</span>(task);</span><br><span class="line">			&#125;</span><br><span class="line">			m_mutex.<span class="built_in">unlock</span>();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> task;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;我是一个单例对象的成员函数&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">TaskQueue</span>() = <span class="keyword">default</span>;</span><br><span class="line">	<span class="type">static</span> atomic&lt;TaskQueue*&gt;  m_taskQ;</span><br><span class="line">	<span class="type">static</span> mutex m_mutex;</span><br><span class="line">&#125;;</span><br><span class="line">atomic&lt;TaskQueue*&gt; TaskQueue::m_taskQ ;</span><br><span class="line">mutex TaskQueue::m_mutex;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="comment">//利用c++11新特性静态变量初始化</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TaskQueue</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">TaskQueue</span>(<span class="type">const</span> TaskQueue&amp; t) = <span class="keyword">delete</span>;</span><br><span class="line">	TaskQueue&amp; <span class="keyword">operator</span> = (<span class="type">const</span> TaskQueue&amp; t) = <span class="keyword">delete</span>;</span><br><span class="line">	<span class="function"><span class="type">static</span> TaskQueue* <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="type">static</span> TaskQueue task;</span><br><span class="line">		<span class="keyword">return</span> &amp;task;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;我是一个单例对象的成员函数&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">TaskQueue</span>() = <span class="keyword">default</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 1</span></span><br><span class="line"><span class="comment">//基于饿汉模式的任务队列</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TaskQueue</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">TaskQueue</span>(<span class="type">const</span> TaskQueue&amp; t) = <span class="keyword">delete</span>;</span><br><span class="line">	TaskQueue&amp; <span class="keyword">operator</span> = (<span class="type">const</span> TaskQueue&amp; t) = <span class="keyword">delete</span>;</span><br><span class="line">	<span class="function"><span class="type">static</span> TaskQueue* <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="type">static</span> TaskQueue task;</span><br><span class="line">		<span class="keyword">return</span> &amp;task;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;我是一个单例对象的成员函数&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//判断任务队列是否为空</span></span><br><span class="line">	<span class="function"><span class="type">bool</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="function">lock_guard&lt;mutex&gt; <span class="title">locker</span><span class="params">(m_mutex)</span></span>;</span><br><span class="line">		<span class="keyword">return</span> m_data.<span class="built_in">empty</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//添加任务</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">addTask</span><span class="params">(<span class="type">int</span> node)</span> </span>&#123;</span><br><span class="line">		<span class="function">lock_guard&lt;mutex&gt; <span class="title">locker</span><span class="params">(m_mutex)</span></span>;</span><br><span class="line">		m_data.<span class="built_in">emplace</span>(node);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//删除任务</span></span><br><span class="line">	<span class="function"><span class="type">bool</span> <span class="title">deleteTask</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!<span class="built_in">isEmpty</span>()) &#123;</span><br><span class="line">			<span class="function">lock_guard&lt;mutex&gt; <span class="title">locker</span><span class="params">(m_mutex)</span></span>;</span><br><span class="line">			m_data.<span class="built_in">pop</span>();</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//取出一个任务（不删除任务）</span></span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">takeTask</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!<span class="built_in">isEmpty</span>()) &#123;</span><br><span class="line">			<span class="function">lock_guard&lt;mutex&gt; <span class="title">locker</span><span class="params">(m_mutex)</span></span>;</span><br><span class="line">			<span class="keyword">return</span> m_data.<span class="built_in">front</span>();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> INT_MAX;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">TaskQueue</span>() = <span class="keyword">default</span>;</span><br><span class="line">	<span class="comment">//任务队列</span></span><br><span class="line">	queue&lt;<span class="type">int</span>&gt; m_data;</span><br><span class="line">	mutex m_mutex;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">	TaskQueue* taskQ = TaskQueue::<span class="built_in">getInstance</span>();</span><br><span class="line">	taskQ-&gt;<span class="built_in">print</span>();</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 1</span></span><br><span class="line">	TaskQueue* taskQ = TaskQueue::<span class="built_in">getInstance</span>();</span><br><span class="line">	<span class="comment">//生产者</span></span><br><span class="line">	<span class="function">thread <span class="title">t1</span><span class="params">([&amp;]() &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">			taskQ-&gt;addTask(i + <span class="number">100</span>);</span></span></span><br><span class="line"><span class="params"><span class="function">			cout &lt;&lt; <span class="string">&quot;+++ push data: &quot;</span> &lt;&lt; i + <span class="number">100</span> &lt;&lt; <span class="string">&quot;, this threadId: &quot;</span> &lt;&lt; this_thread::get_id() &lt;&lt; endl;</span></span></span><br><span class="line"><span class="params"><span class="function">			this_thread::sleep_for(chrono::milliseconds(<span class="number">500</span>));</span></span></span><br><span class="line"><span class="params"><span class="function">		&#125;</span></span></span><br><span class="line"><span class="params"><span class="function">		&#125;)</span></span>;</span><br><span class="line">	<span class="comment">//消费者</span></span><br><span class="line">	<span class="function">thread <span class="title">t2</span><span class="params">([&amp;]() &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">		this_thread::sleep_for(chrono::milliseconds(<span class="number">100</span>));</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="keyword">while</span>(!taskQ-&gt;isEmpty()) &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">			<span class="type">int</span> num = taskQ-&gt;takeTask();</span></span></span><br><span class="line"><span class="params"><span class="function">			taskQ-&gt;deleteTask();</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function">			cout &lt;&lt; <span class="string">&quot;+++ out data: &quot;</span> &lt;&lt; num &lt;&lt; <span class="string">&quot;, this threadId: &quot;</span> &lt;&lt; this_thread::get_id() &lt;&lt; endl;</span></span></span><br><span class="line"><span class="params"><span class="function">			this_thread::sleep_for(chrono::milliseconds(<span class="number">1000</span>));</span></span></span><br><span class="line"><span class="params"><span class="function">		&#125;</span></span></span><br><span class="line"><span class="params"><span class="function">		&#125;)</span></span>;</span><br><span class="line">	t1.<span class="built_in">join</span>();</span><br><span class="line">	t2.<span class="built_in">join</span>();</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/06/23/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Qt-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -907,254 +1070,6 @@
 
 
   
-    <article id="post-差分-前缀和-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/" target="_blank">差分+前缀和.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/" class="archive-article-date">
-        <time datetime="2024-04-07T09:08:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-07</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h4 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h4><p>在C++中，前缀和（也称为累积和）是一种用于快速计算数组中一系列元素和的技术。下面是一个简单的C++代码示例，演示如何计算并存储一个数组的前缀和：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数用于计算并返回前缀和数组</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">prefixSum</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">prefixSums</span><span class="params">(nums.size() + <span class="number">1</span>, <span class="number">0</span>)</span></span>; <span class="comment">// 创建一个比原数组多一个元素的数组，用于存储前缀和</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        prefixSums[i + <span class="number">1</span>] = prefixSums[i] + nums[i]; <span class="comment">// 计算前缀和并存储在对应位置</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> prefixSums;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; nums = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;; <span class="comment">// 示例数组</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; prefixSums = <span class="built_in">prefixSum</span>(nums); <span class="comment">// 计算前缀和</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出前缀和数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; prefixSums.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Prefix sum at index &quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot;: &quot;</span> &lt;&lt; prefixSums[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="差分"><a href="#差分" class="headerlink" title="差分"></a>差分</h4><p>在C++中，差分（或称为差分数组）是一种用于处理数组区间更新的高效技术。差分数组 <code>diff</code> 的每个元素 <code>diff[i]</code> 表示原数组 <code>arr</code> 中 <code>arr[i]</code> 和 <code>arr[i-1]</code> 的差值。通过对差分数组进行特定的操作，可以方便地实现原数组的区间更新，并最终通过累加差分数组来得到更新后的原数组。</p>
-<p>下面是一个简单的C++代码示例，展示了如何创建和使用差分数组：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个差分数组</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">createDiffArray</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = arr.<span class="built_in">size</span>();</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">diff</span><span class="params">(n, <span class="number">0</span>)</span></span>; <span class="comment">// 初始化差分数组，大小与原数组相同</span></span><br><span class="line">    diff[<span class="number">0</span>] = arr[<span class="number">0</span>]; <span class="comment">// 第一个元素与差分数组相同</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        diff[i] = arr[i] - arr[i - <span class="number">1</span>]; <span class="comment">// 计算差值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> diff;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新差分数组的指定区间 [start, end]，增加值 val</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">updateDiffArray</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; diff, <span class="type">int</span> start, <span class="type">int</span> end, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">    diff[start] += val; <span class="comment">// 开始位置增加 val</span></span><br><span class="line">    <span class="keyword">if</span> (end + <span class="number">1</span> &lt; diff.<span class="built_in">size</span>()) &#123;</span><br><span class="line">        diff[end + <span class="number">1</span>] -= val; <span class="comment">// 结束位置的下一个位置减去 val，以撤销对后续元素的影响</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据差分数组还原原数组</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">reconstructArray</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; diff)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = diff.<span class="built_in">size</span>();</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">arr</span><span class="params">(n, <span class="number">0</span>)</span></span>; <span class="comment">// 初始化原数组</span></span><br><span class="line">    arr[<span class="number">0</span>] = diff[<span class="number">0</span>]; <span class="comment">// 第一个元素与差分数组相同</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        arr[i] = arr[i - <span class="number">1</span>] + diff[i]; <span class="comment">// 累加差值得到原数组元素</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; arr = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>&#125;; <span class="comment">// 示例原数组</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; diff = <span class="built_in">createDiffArray</span>(arr); <span class="comment">// 创建差分数组</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出差分数组</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Difference Array: &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> d : diff) &#123;</span><br><span class="line">        cout &lt;&lt; d &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 更新差分数组中的区间 [1, 3]（对应原数组的索引），增加 2</span></span><br><span class="line">    <span class="built_in">updateDiffArray</span>(diff, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 根据更新后的差分数组重构原数组</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; updatedArr = <span class="built_in">reconstructArray</span>(diff);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出更新后的原数组</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Updated Array: &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> u : updatedArr) &#123;</span><br><span class="line">        cout &lt;&lt; u &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/PixPin_2024-04-07_21-20-04.png" class="">
-
-<h4 id="差分-前缀和"><a href="#差分-前缀和" class="headerlink" title="差分+前缀和"></a>差分+前缀和</h4><img src="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/PixPin_2024-04-07_21-17-59.png" class="">
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">using</span> ll = <span class="type">long</span> <span class="type">long</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n, q;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; q &gt;&gt; s;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">diff</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">while</span>(q--)&#123;</span><br><span class="line">      ll l, r, k;</span><br><span class="line">      cin &gt;&gt; l &gt;&gt; r &gt;&gt; k;</span><br><span class="line">      k %= <span class="number">26</span>;</span><br><span class="line">      diff[l - <span class="number">1</span>] += k;</span><br><span class="line">      diff[r] -= k;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">      diff[i] += diff[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">      <span class="type">int</span> tmp = (s[i] - <span class="string">&#x27;a&#x27;</span> + diff[i]) % <span class="number">26</span>;</span><br><span class="line">      cout &lt;&lt; <span class="built_in">char</span>(tmp + <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>[差分+前缀和视频讲解](<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NX4y147G5/?spm_id_from=333.788&vd_source=54f770fab31251d4ff47d20981b523ca">【C++算法基础】#9前缀和与差分 | 轻松学算法 | 图解ACM竞赛算法_哔哩哔哩_bilibili</a>)</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-scrapy-l-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/03/28/scrapy-l-md/" target="_blank">scrapy_l.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/03/28/scrapy-l-md/" class="archive-article-date">
-        <time datetime="2024-03-28T01:06:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-28</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h4 id="安装框架"><a href="#安装框架" class="headerlink" title="安装框架"></a>安装框架</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//使用pip进行安装</span><br><span class="line">pip install pywin32</span><br><span class="line">pip install Scrapy</span><br><span class="line">pip install lxml //一般不用自己安装</span><br><span class="line">pip install pyOpenSSL //一般不用自己安装</span><br><span class="line">pip install Scrapy</span><br></pre></td></tr></table></figure>
-
-<h4 id="Scrapy框架介绍"><a href="#Scrapy框架介绍" class="headerlink" title="Scrapy框架介绍"></a>Scrapy框架介绍</h4><p>Scrapy是一个用于网络抓取的快速高级框架，它基于Python语言编写，可以用于数据挖掘、监测和自动化测试等任务。Scrapy的用途广泛，可以快速地抓取网页并从中提取结构化数据。</p>
-<p>Scrapy框架的主要特点包括：</p>
-<ol>
-<li><p><strong>异步网络请求</strong>：Scrapy采用Twisted异步网络库来处理网络通讯，这意味着它可以在等待网页响应的同时，继续发送其他请求，从而大大提高抓取效率。</p>
-</li>
-<li><p><strong>基于组件的架构</strong>：Scrapy的设计非常模块化，主要由五大组件组成，包括引擎(Scrapy Engine)、调度器(Scheduler)、下载器(Downloader)、爬虫(Spiders)和实体管道(Item Pipeline)。这些组件各自负责不同的功能，并通过数据流进行通信，使得用户可以轻松地对框架进行扩展和定制。</p>
-</li>
-<li><p><strong>中间件支持</strong>：Scrapy提供了中间件机制，允许用户在不修改核心组件的情况下，增加或修改请求和响应的处理逻辑。</p>
-</li>
-<li><p><strong>可扩展性</strong>：Scrapy是一个高度可扩展的框架，用户可以通过编写自定义的爬虫、中间件和管道等组件，来满足特定的抓取需求。</p>
-</li>
-<li><p><strong>支持多种输出格式</strong>：Scrapy可以将抓取的数据以多种格式输出，如JSON、CSV、XML等，方便用户进行后续的数据处理和分析。</p>
-</li>
-<li><p><strong>强大的选择器</strong>：Scrapy内置了强大的选择器库，使得用户可以方便地提取HTML或XML中的结构化数据。</p>
-</li>
-<li><p><strong>自动处理cookies和会话</strong>：Scrapy能够自动处理cookies和会话，使得用户可以方便地模拟登录和会话操作。</p>
-</li>
-<li><p><strong>内置去重机制</strong>：Scrapy内置了URL去重机制，可以避免重复抓取相同的页面，节省资源和时间。</p>
-</li>
-</ol>
-<p>总的来说，Scrapy是一个功能强大、易于扩展的网络抓取框架，适用于各种规模的网络抓取任务。无论是个人开发者还是大型企业，都可以利用Scrapy来高效地抓取和分析网络数据。</p>
-<img src="/2024/03/28/scrapy-l-md/PixPin_2024-03-28_09-16-48.png" class="">
-
-<h4 id="项目实践"><a href="#项目实践" class="headerlink" title="项目实践"></a>项目实践</h4><h5 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\86157\Desktop&gt;scrapy startproject scr2 </span><br></pre></td></tr></table></figure>
-
-<h5 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h5><h6 id="定义Item容器"><a href="#定义Item容器" class="headerlink" title="定义Item容器"></a>定义Item容器</h6><p>​	在<code>items.py</code>中建立相应的字段</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define here the models for your scraped items</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># See documentation in:</span></span><br><span class="line"><span class="comment"># https://docs.scrapy.org/en/latest/topics/items.html</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Scr2Item</span>(scrapy.Item):</span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    <span class="comment"># name = scrapy.Field()</span></span><br><span class="line">    title = scrapy.Field()</span><br><span class="line">    link = scrapy.Field()</span><br><span class="line">    desc = scrapy.Field()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h6 id="编写爬虫"><a href="#编写爬虫" class="headerlink" title="编写爬虫"></a>编写爬虫</h6><p>spider是用于从网站上爬取数据的类，包含一个用于西在的初始化URL，然后是如何跟进网页的链接以及如何分析页面中的内容，还有提取生成item的方法。</p>
-<p>在spider下创建一个自己的文件用于分析和提取页面内容</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestSpider</span>(scrapy.Spider):</span><br><span class="line">    name = <span class="string">&#x27;test1&#x27;</span>      <span class="comment">#name必须是唯一的，蜘蛛的名字</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;https://www.runoob.com/&#x27;</span>]      <span class="comment">#蜘蛛爬取的范围</span></span><br><span class="line">    start_urls = [</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/html/html5-intro.html&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/html/html-headings.html&#x27;</span></span><br><span class="line">        ]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">page_parse</span>(<span class="params">self, response</span>):     <span class="comment">#分析方法</span></span><br><span class="line">         filename = response.url.split(<span class="string">&quot;/&quot;</span>)[-<span class="number">2</span>]</span><br><span class="line">         <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                f.write(response.body)</span><br></pre></td></tr></table></figure>
-
-<h6 id="提取数据"><a href="#提取数据" class="headerlink" title="提取数据"></a>提取数据</h6><p>在Scrapy框架中，Selectors（选择器）是用于从网页中提取数据的工具。关于Selectors的选择器的四个基本方法，以下是详细的介绍：</p>
-<ol>
-<li>**xpath()**：此方法用于返回一系列的selectors，每一个select表示一个xpath参数表达式选择的节点。XPath是一种在XML文档中定位信息的方式，它同样可以用于HTML。通过编写XPath表达式，可以精确地选择网页中的特定元素或内容。</li>
-<li>**css()**：此方法同样返回一系列的selectors，但它是基于CSS选择器来定位网页元素的。CSS选择器是应用于HTML文档样式中的语言，可以选择具有某些样式的节点。这使得开发者可以使用与样式定义相似的语法来提取网页数据。</li>
-<li>**extract()**：此方法用于从选中的数据中提取信息，并返回一个unicode字符串。这通常用于在定位到特定元素后，提取该元素内的文本或属性值。</li>
-<li>**re()**：此方法使用正则表达式从网页中提取内容，并返回一个unicode字符串。正则表达式是一种强大的文本处理工具，可以匹配和提取符合特定模式的文本。</li>
-</ol>
-<p>这四个方法共同构成了Scrapy中Selectors选择器的核心功能，使得开发者能够灵活地提取和分析网页数据。在使用这些方法时，通常需要结合具体的网页结构和内容来编写相应的表达式或模式，以实现精确的数据提取。</p>
-<p>使用方法：</p>
-<img src="/2024/03/28/scrapy-l-md/PixPin_2024-03-28_15-10-37.png" class="">
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scrapy shell &quot;https://www.runoob.com/html/html5-intro.html&quot;   //进入shell</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; response.body    //查看网页代码</span><br><span class="line">&gt;&gt;&gt; response.headers   //查看网页头部</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//title&#x27;)    //查看title，返回list</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//title&#x27;).extract()    //得到头部的list字符串化</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//title/text&#x27;).extract()    //去掉标签的文字</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//div[@class=&quot;hl-main&quot;]/span/text()&#x27;).extract()</span><br></pre></td></tr></table></figure>
-
-
-
-<h6 id="存储内容"><a href="#存储内容" class="headerlink" title="存储内容"></a>存储内容</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> scr2.items <span class="keyword">import</span> Scr2Item</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestSpider</span>(scrapy.Spider):</span><br><span class="line">    name = <span class="string">&#x27;test1&#x27;</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;https://www.runoob.com/&#x27;</span>]</span><br><span class="line">    start_urls = [</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/html/html-formatting.html&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/css/css-tutorial.html&#x27;</span></span><br><span class="line">        ]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parse</span>(<span class="params">self, response</span>):</span><br><span class="line">        <span class="comment">#filename = response.url.split(&quot;/&quot;)[-2]</span></span><br><span class="line">        <span class="comment">#with open(filename, &#x27;wb&#x27;) as f:</span></span><br><span class="line">            <span class="comment">#f.write(response.body)</span></span><br><span class="line">        sel = scrapy.selector.Selector(response)</span><br><span class="line">        sites = sel.xpath(<span class="string">&#x27;//div[@class=&quot;article-intro&quot;]/p&#x27;</span>)</span><br><span class="line">        items = []</span><br><span class="line">        <span class="keyword">for</span> site <span class="keyword">in</span> sites:</span><br><span class="line">            item = Scr2Item()</span><br><span class="line">            item[<span class="string">&#x27;title&#x27;</span>] = site.xpath(<span class="string">&#x27;a/text()&#x27;</span>).extract()</span><br><span class="line">            item[<span class="string">&#x27;link&#x27;</span>] = site.xpath(<span class="string">&#x27;a/@href&#x27;</span>).extract()</span><br><span class="line">            item[<span class="string">&#x27;desc&#x27;</span>] = site.xpath(<span class="string">&#x27;text()&#x27;</span>).extract()</span><br><span class="line">            items.append(item)</span><br><span class="line">            <span class="comment">#title = site.xpath(&#x27;a/text()&#x27;).extract()</span></span><br><span class="line">            <span class="comment">#link = site.xpath(&#x27;a/@href&#x27;).extract()</span></span><br><span class="line">            <span class="comment">#desc = site.xpath(&#x27;text()&#x27;).extract()</span></span><br><span class="line">            <span class="comment">#print(title, link, desc)</span></span><br><span class="line">        <span class="keyword">return</span> items</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/03/28/scrapy-l-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1324,10 +1239,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
               </li>
              
@@ -1336,11 +1247,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">左右值</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
               </li>
             
             <div class="clearfix"></div>
