@@ -142,6 +142,95 @@
             
 
   
+    <article id="post-建造者模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/06/26/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F-md/" target="_blank">建造者模式.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/06/26/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
+        <time datetime="2024-06-26T03:28:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//存储已经建造好的零部件</span></span><br><span class="line"><span class="comment">//Sunny号</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SunnyShip</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">addParts</span><span class="params">(string name)</span> </span>&#123;</span><br><span class="line">		m_parts.<span class="built_in">emplace_back</span>(name);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">showParts</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; item : m_parts) &#123;</span><br><span class="line">			cout &lt;&lt; item &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	vector&lt;string&gt; m_parts;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//Merry号</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MerryShip</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">addParts</span><span class="params">(string name, string parts)</span> </span>&#123;</span><br><span class="line">		m_parts[parts] = name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">showParts</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; item : m_parts) &#123;</span><br><span class="line">			cout &lt;&lt; item.first &lt;&lt; <span class="string">&quot; : &quot;</span> &lt;&lt; item.second;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	map&lt;string, string&gt; m_parts;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//定义生成器类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ShipBuilder</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">reset</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">buildBody</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">buildWeapon</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">buildEngine</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">buildInterior</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">virtual</span> ~<span class="built_in">ShipBuilder</span>() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SunnyBuilder</span> : <span class="keyword">public</span> ShipBuilder &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">SunnyBuilder</span>() &#123;</span><br><span class="line">		<span class="built_in">reset</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">reset</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_sunny = <span class="keyword">new</span> SunnyShip;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">SunnyShip* <span class="title">getSunnyShip</span><span class="params">()</span></span>&#123;</span><br><span class="line">		SunnyShip* ship = m_sunny;</span><br><span class="line">		m_sunny = <span class="literal">nullptr</span>;</span><br><span class="line">		<span class="keyword">return</span> ship;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildBody</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_sunny-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;船体是神树亚当&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildWeapon</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_sunny-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;武器是狮吼炮&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildEngine</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_sunny-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;可乐驱动的内燃机&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildInterior</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_sunny-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;非常豪华的内饰装修&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	~<span class="built_in">SunnyBuilder</span>() &#123;</span><br><span class="line">		<span class="keyword">if</span> (m_sunny)</span><br><span class="line">			<span class="keyword">delete</span> m_sunny;	</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	SunnyShip* m_sunny;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MerryBuilder</span> : <span class="keyword">public</span> ShipBuilder &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">MerryBuilder</span>() &#123;</span><br><span class="line">		<span class="built_in">reset</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">reset</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_merry = <span class="keyword">new</span> MerryShip;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">MerryShip* <span class="title">getMerryShip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		MerryShip* ship = m_merry;</span><br><span class="line">		m_merry = <span class="literal">nullptr</span>;</span><br><span class="line">		<span class="keyword">return</span> ship;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildBody</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_merry-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;优质木材&quot;</span>, <span class="string">&quot; 船体&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildWeapon</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_merry-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;四门大炮&quot;</span>, <span class="string">&quot; 武器&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildEngine</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_merry-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;烧煤的蒸汽机&quot;</span>, <span class="string">&quot; 动力&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildInterior</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_merry-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;非常豪华的内饰装修&quot;</span>, <span class="string">&quot; 内饰&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	~<span class="built_in">MerryBuilder</span>() &#123;</span><br><span class="line">		<span class="keyword">if</span> (m_merry)</span><br><span class="line">			<span class="keyword">delete</span> m_merry;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	MerryShip* m_merry;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义管理类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Director</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">setBuilder</span><span class="params">(ShipBuilder* builder)</span> </span>&#123;</span><br><span class="line">		m_builder = builder;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//简约</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildeSimpledShip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		m_builder-&gt;<span class="built_in">buildBody</span>();</span><br><span class="line">		m_builder-&gt;<span class="built_in">buildEngine</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//标准</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildeStandardShip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="built_in">buildeSimpledShip</span>();</span><br><span class="line">		m_builder-&gt;<span class="built_in">buildWeapon</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//豪华</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildeRegalShip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="built_in">buildeStandardShip</span>();</span><br><span class="line">		m_builder-&gt;<span class="built_in">buildInterior</span>();</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	ShipBuilder* m_builder = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建造桑尼号</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">buildSunnyShip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Director* director = <span class="keyword">new</span> Director;</span><br><span class="line">	SunnyBuilder* builder = <span class="keyword">new</span> SunnyBuilder;</span><br><span class="line">	<span class="comment">//简约型</span></span><br><span class="line">	director-&gt;<span class="built_in">setBuilder</span>(builder);</span><br><span class="line">	director-&gt;<span class="built_in">buildeSimpledShip</span>();</span><br><span class="line">	SunnyShip* ship = builder-&gt;<span class="built_in">getSunnyShip</span>();</span><br><span class="line">	ship-&gt;<span class="built_in">showParts</span>();</span><br><span class="line">	<span class="keyword">delete</span> ship;</span><br><span class="line">	<span class="comment">//标准型</span></span><br><span class="line">	builder-&gt;<span class="built_in">reset</span>();</span><br><span class="line">	director-&gt;<span class="built_in">setBuilder</span>(builder);</span><br><span class="line">	director-&gt;<span class="built_in">buildeStandardShip</span>();</span><br><span class="line">	ship = builder-&gt;<span class="built_in">getSunnyShip</span>();</span><br><span class="line">	ship-&gt;<span class="built_in">showParts</span>();</span><br><span class="line">	<span class="keyword">delete</span> ship;</span><br><span class="line">	<span class="comment">//豪华型</span></span><br><span class="line">	builder-&gt;<span class="built_in">reset</span>();</span><br><span class="line">	director-&gt;<span class="built_in">setBuilder</span>(builder);</span><br><span class="line">	director-&gt;<span class="built_in">buildeRegalShip</span>();</span><br><span class="line">	ship = builder-&gt;<span class="built_in">getSunnyShip</span>();</span><br><span class="line">	ship-&gt;<span class="built_in">showParts</span>();</span><br><span class="line">	<span class="keyword">delete</span> ship;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">delete</span> director;</span><br><span class="line">	<span class="keyword">delete</span> builder;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//建造梅利号</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">buildMerryShip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Director* director = <span class="keyword">new</span> Director;</span><br><span class="line">	MerryBuilder* builder = <span class="keyword">new</span> MerryBuilder;</span><br><span class="line">	<span class="comment">//简约型</span></span><br><span class="line">	director-&gt;<span class="built_in">setBuilder</span>(builder);</span><br><span class="line">	director-&gt;<span class="built_in">buildeSimpledShip</span>();</span><br><span class="line">	MerryShip* ship = builder-&gt;<span class="built_in">getMerryShip</span>();</span><br><span class="line">	ship-&gt;<span class="built_in">showParts</span>();</span><br><span class="line">	<span class="keyword">delete</span> ship;</span><br><span class="line">	<span class="comment">//标准型</span></span><br><span class="line">	builder-&gt;<span class="built_in">reset</span>();</span><br><span class="line">	director-&gt;<span class="built_in">setBuilder</span>(builder);</span><br><span class="line">	director-&gt;<span class="built_in">buildeStandardShip</span>();</span><br><span class="line">	ship = builder-&gt;<span class="built_in">getMerryShip</span>();</span><br><span class="line">	ship-&gt;<span class="built_in">showParts</span>();</span><br><span class="line">	<span class="keyword">delete</span> ship;</span><br><span class="line">	<span class="comment">//豪华型</span></span><br><span class="line">	builder-&gt;<span class="built_in">reset</span>();</span><br><span class="line">	director-&gt;<span class="built_in">setBuilder</span>(builder);</span><br><span class="line">	director-&gt;<span class="built_in">buildeRegalShip</span>();</span><br><span class="line">	ship = builder-&gt;<span class="built_in">getMerryShip</span>();</span><br><span class="line">	ship-&gt;<span class="built_in">showParts</span>();</span><br><span class="line">	<span class="keyword">delete</span> ship;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">delete</span> director;</span><br><span class="line">	<span class="keyword">delete</span> builder;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">buildMerryShip</span>();</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;===========================================&quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">buildSunnyShip</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/06/26/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-工厂模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1000,98 +1089,6 @@
 
 
   
-    <article id="post-埃氏筛选法-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/04/12/%E5%9F%83%E6%B0%8F%E7%AD%9B%E9%80%89%E6%B3%95-md/" target="_blank">埃氏筛选法.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/04/12/%E5%9F%83%E6%B0%8F%E7%AD%9B%E9%80%89%E6%B3%95-md/" class="archive-article-date">
-        <time datetime="2024-04-12T11:53:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-12</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>埃拉托斯特尼筛法（Sieve of Eratosthenes）是一种用来找出一定范围内所有素数的简单且古老的算法。其基本思想是从2开始，将每个素数的各个倍数，标记为合数，直到标记到上限。剩余的就是素数。</p>
-<p>以下是埃氏筛选法的一个简单的C++示例代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">sieveOfEratosthenes</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="function">std::vector&lt;<span class="type">bool</span>&gt; <span class="title">isPrime</span><span class="params">(n + <span class="number">1</span>, <span class="literal">true</span>)</span></span>;</span><br><span class="line">    isPrime[<span class="number">0</span>] = isPrime[<span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i * i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="comment">// 如果 isPrime[i] 没有改变，那么它就是一个素数  </span></span><br><span class="line">        <span class="keyword">if</span> (isPrime[i] == <span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="comment">// 更新所有 i 的倍数  </span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i * i; j &lt;= n; j += i)</span><br><span class="line">                isPrime[j] = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 收集所有素数  </span></span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; primes;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">if</span> (isPrime[i])</span><br><span class="line">            primes.<span class="built_in">push_back</span>(i);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> primes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> n = <span class="number">30</span>;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; primes = <span class="built_in">sieveOfEratosthenes</span>(n);</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Prime numbers less than or equal to &quot;</span> &lt;&lt; n &lt;&lt; <span class="string">&quot; are: \n&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> p : primes)</span><br><span class="line">        std::cout &lt;&lt; p &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这个代码中，我们首先创建了一个布尔类型的向量<code>isPrime</code>，用于标记每个数是否为素数。然后，我们从2开始，遍历到<code>sqrt(n)</code>（因为任何大于<code>sqrt(n)</code>的因子都会与一个小于或等于<code>sqrt(n)</code>的因子配对）。对于每个素数<code>p</code>，我们将其所有倍数标记为非素数。最后，我们遍历<code>isPrime</code>向量，收集所有标记为素数的数，并将它们放入<code>primes</code>向量中返回。</p>
-<p>在<code>main</code>函数中，我们调用<code>sieveOfEratosthenes</code>函数，并打印出所有小于或等于<code>n</code>的素数。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/04/12/%E5%9F%83%E6%B0%8F%E7%AD%9B%E9%80%89%E6%B3%95-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1233,11 +1230,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1253,11 +1250,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+                <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
               </li>
              
               <li class="article-tag-list-item">
