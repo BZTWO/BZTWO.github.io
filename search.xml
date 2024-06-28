@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>github.md</title>
+      <link href="/2024/06/28/github-md/"/>
+      <url>/2024/06/28/github-md/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">86157@BYSQ MINGW64 ~/Desktop/project1/MyTinySTL (master)</span><br><span class="line">$ git pull origin master</span><br><span class="line">From https://github.com/BZTWO/TinySTL</span><br><span class="line"> * branch            master     -&gt; FETCH_HEAD</span><br><span class="line">fatal: refusing to merge unrelated histories</span><br><span class="line">//本地仓库和远程仓库的初始提交没有共同的祖先（也就是说，它们的历史是不相关的）。这可能是因为你是从一个全新的本地仓库开始工作，而远程仓库已经存在了一些提交。</span><br><span class="line"></span><br><span class="line">Git 默认不会合并两个没有共同祖先的历史，因为这可能会导致非预期的冲突或问题。但是，你可以通过添加 --allow-unrelated-histories 选项来强制 Git 合并这些不相关的历史。</span><br><span class="line"></span><br><span class="line">1.使用带有 --allow-unrelated-histories 选项的 git pull 命令来合并远程仓库的 master 分支到你的本地仓库。</span><br><span class="line">git pull origin master --allow-unrelated-histories</span><br><span class="line">这个命令将会把远程仓库的 master 分支的提交合并到你的本地仓库，即使这两个仓库的历史是不相关的。</span><br><span class="line"></span><br><span class="line">2.在合并之后，如果你想要推送你的更改到远程仓库，你可以使用 git push 命令。</span><br><span class="line">git push -u origin master</span><br><span class="line">-u 或 --set-upstream 选项会设置本地分支跟踪远程分支，这样在将来的推送和拉取操作中你就不需要每次都指定远程分支了。</span><br><span class="line"></span><br><span class="line">请注意，虽然 --allow-unrelated-histories 可以解决这个特定的问题，但它也可能引入一些潜在的问题，特别是当两个仓库的历史存在冲突的文件或提交时。在合并之前，最好先检查两个仓库的提交历史，以确保合并是安全的。</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin 远程仓库URL   //关联远程仓库URL</span><br><span class="line">git remote -v                      //查看关联仓库的URL</span><br><span class="line">git add .                          //添加和提交项目</span><br><span class="line">git push -u origin master          //推送至远端仓库</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> github </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>桥接模式.md</title>
       <link href="/2024/06/26/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F-md/"/>
       <url>/2024/06/26/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F-md/</url>

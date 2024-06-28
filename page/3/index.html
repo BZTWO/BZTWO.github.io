@@ -142,6 +142,107 @@
             
 
   
+    <article id="post-precisionANDsetprecision-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/03/01/precisionANDsetprecision-md/" target="_blank">precisionANDsetprecision.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/03/01/precisionANDsetprecision-md/" class="archive-article-date">
+        <time datetime="2024-03-01T04:14:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p><code>std::setprecision()</code>和<code>std::cout.precision()</code>都是与浮点数的输出精度相关的函数，但它们的功能和用途有所区别：</p>
+<h3 id="std-setprecision"><a href="#std-setprecision" class="headerlink" title="std::setprecision()"></a>std::setprecision()</h3><p><code>std::setprecision()</code>是一个流操作符，它用于设置浮点数的输出精度。它接受一个整数参数，该参数指定了小数点后应该显示的位数或有效数字位数，具体取决于是否使用了<code>std::fixed</code>或<code>std::scientific</code>格式。</p>
+<ul>
+<li>如果使用了<code>std::fixed</code>，则<code>std::setprecision(n)</code>将设置小数点后应显示的位数为<code>n</code>。</li>
+<li>如果没有使用<code>std::fixed</code>或<code>std::scientific</code>，则<code>std::setprecision(n)</code>将设置有效数字的位数为<code>n</code>。这意味着小数点前和后的位数都会受到影响，以确保总共有<code>n</code>个有效数字。</li>
+</ul>
+<p><code>std::setprecision()</code>是一个流操作符，因此它返回流对象本身，以便进行链式操作。</p>
+<h3 id="std-cout-precision"><a href="#std-cout-precision" class="headerlink" title="std::cout.precision()"></a>std::cout.precision()</h3><p><code>std::cout.precision()</code>是一个成员函数，它返回当前设置的浮点精度。这个值表示小数点后应该显示的位数或有效数字的位数，具体取决于当前的浮点数格式。</p>
+<p>如果想要查看当前的浮点精度设置，可以使用<code>std::cout.precision()</code>。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> pi = <span class="number">3.141592653589793</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查看当前的浮点精度</span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Current precision is: &quot;</span> &lt;&lt; std::cout.<span class="built_in">precision</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置浮点精度为3位有效数字</span></span><br><span class="line">    std::cout &lt;&lt; std::<span class="built_in">setprecision</span>(<span class="number">3</span>) &lt;&lt; pi &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 再次查看当前的浮点精度</span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;New precision is: &quot;</span> &lt;&lt; std::cout.<span class="built_in">precision</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置固定小数点表示，并保留小数点后3位</span></span><br><span class="line">    std::cout &lt;&lt; std::fixed &lt;&lt; std::<span class="built_in">setprecision</span>(<span class="number">3</span>) &lt;&lt; pi &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第一次调用<code>std::cout.precision()</code>将显示默认的浮点精度（通常是6）。</p>
+<p>使用<code>std::setprecision(3)</code>设置有效数字位数为3，并再次调用<code>std::cout.precision()</code>将显示新的精度设置。</p>
+<p>通过结合使用<code>std::fixed</code>和<code>std::setprecision(3)</code>，将输出格式设置为固定小数点表示，并保留小数点后3位数字。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/03/01/precisionANDsetprecision-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-C-标准库迭代器类型-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1229,119 +1330,6 @@
 
 
   
-    <article id="post-线程函数-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/" target="_blank">线程函数.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/" class="archive-article-date">
-        <time datetime="2023-11-25T05:20:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-25</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h4 id="joinable"><a href="#joinable" class="headerlink" title="joinable()"></a>joinable()</h4><p><code>joinable()</code> 是 C++ 中的一个函数，用于检查一个线程是否可以被加入（joined）。如果一个线程是可加入的，那么就可以通过 <code>join()</code> 或 <code>detach()</code> 函数来等待它结束。如果一个线程已经被 <code>join()</code> 或 <code>detach()</code>，那么再次调用 <code>joinable()</code> 会返回 false。</p>
-<p>在 <code>std::thread</code> 对象上调用 <code>joinable()</code> 可以返回一个布尔值，表示该线程是否可以被加入。如果返回 true，则该线程可以被加入；如果返回 false，则该线程已经结束或者尚未被启动。</p>
-<p>以下是 <code>joinable()</code> 的一个简单示例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(foo)</span></span>;</span><br><span class="line">    <span class="keyword">if</span> (t.<span class="built_in">joinable</span>()) &#123;</span><br><span class="line">        t.<span class="built_in">join</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这个示例中，我们创建了一个名为 <code>t</code> 的新线程，然后检查它是否可以被加入。如果可以，我们就调用 <code>join()</code> 等待它结束。</p>
-<h4 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h4><p>在C++中，<code>std::join</code>函数是用于等待一个线程结束的函数，可以使用C++的多线程库（例如<code>std::thread</code>）来创建和管理多个线程，并使用<code>std::join</code>函数来等待这些线程的结束。</p>
-<p>使用<code>std::thread</code>和<code>std::join</code>函数的多线程示例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">threadFunction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Hello from thread!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(threadFunction)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (t.<span class="built_in">joinable</span>()) &#123;</span><br><span class="line">        t.<span class="built_in">join</span>();</span><br><span class="line">    &#125;   </span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Hello from main thread!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/Snipaste_2023-11-25_13-37-41.png" class="" title="Snipaste_2023-11-25_13-37-41">
-
-<p>我们创建了一个新的线程<code>t</code>，并将它绑定到一个名为<code>threadFunction</code>的函数上。然后，使用<code>std::join</code>函数等待该线程的结束。注意，在调用<code>std::join</code>之前，我们必须先检查线程是否可加入（使用<code>joinable</code>函数）。如果线程已经终止，那么调用<code>std::join</code>将导致程序立即终止。最后，在主线程中打印一条消息。</p>
-<p>由于线程的执行顺序是不确定的，因此输出顺序可能会有所不同。</p>
-<h4 id="detach"><a href="#detach" class="headerlink" title="detach()"></a>detach()</h4><p><code>detach()</code>函数用于将线程从主线程中分离出去，使其成为一个独立的线程。当一个线程被<code>detach()</code>后，它将不再与主线程关联，不会受到主线程的影响。具体来说，被<code>detach()</code>的线程会继续执行，直到其完成或发生异常退出。但是，被<code>detach()</code>的线程无法再被主线程控制或访问。</p>
-<p>使用场景：</p>
-<ol>
-<li>在主线程结束时，将其他线程<code>detach()</code>可以确保这些线程能够继续执行，而不会受到主线程结束的影响。</li>
-<li>在某些情况下，我们可能希望将一些任务交给另一个线程去执行，但是这些任务完成后并不需要主线程进行任何操作。这时，可以使用<code>detach()</code>将该线程与主线程分离，让其在后台独立执行。</li>
-</ol>
-<p>需要注意的是，被<code>detach()</code>的线程在完成执行后会自动退出，但是其资源并不会被自动回收。如果需要手动回收资源，可以通过使用<code>join()</code>函数等待线程结束。</p>
-<p><code>detach</code>函数在多线程中的示例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">workerThread</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">1</span>));</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Worker thread finished&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(workerThread)</span></span>;</span><br><span class="line">    </span><br><span class="line">    t.<span class="built_in">detach</span>(); <span class="comment">// 将线程与当前对象分离</span></span><br><span class="line">    </span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Main thread is running&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 在主线程中执行其他任务</span></span><br><span class="line">    std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">2</span>));</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Main thread finished&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/Snipaste_2023-11-25_13-36-06.png" class="" title="Snipaste_2023-11-25_13-36-06">
-
-<p>在这个示例中，创建了一个名为<code>t</code>的线程对象，并将其绑定到名为<code>workerThread</code>的函数上。然后，使用<code>detach</code>函数将线程与当前对象分离，使其在后台运行。接着，在主线程中执行其他任务。当主线程执行完毕后，即使后台线程仍在运行，程序也会正常结束。</p>
-<p><code>注意共享空间的使用配合 detach() 函数可能会导致崩溃。</code></p>
-<p><code>并且不能和 join() 函数一起使用，只能使用其中一个</code></p>
-<h4 id="ref（）"><a href="#ref（）" class="headerlink" title="ref（）"></a>ref（）</h4>
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C++多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
@@ -1475,15 +1463,19 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Qt</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C++特性</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+                <a href="javascript:void(0)" class="js-tag color3">Qt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1499,6 +1491,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
               </li>
              
@@ -1507,11 +1503,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1520,10 +1516,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
