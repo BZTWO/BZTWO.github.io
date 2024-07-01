@@ -6,20 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>BZTWO</title>
+  <title>责任链模式.md | BZTWO</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content=""> -->
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="BZTWO">
-<meta property="og:url" content="http://example.com/page/3/index.html">
+  <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102">
+<meta property="og:type" content="article">
+<meta property="og:title" content="责任链模式.md">
+<meta property="og:url" content="http://example.com/2024/07/01/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F-md/index.html">
 <meta property="og:site_name" content="BZTWO">
+<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-01T08:50:41.000Z">
+<meta property="article:modified_time" content="2024-07-01T08:53:09.333Z">
 <meta property="article:author" content="an">
+<meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="BZTWO" type="application/atom+xml">
@@ -139,32 +140,53 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-埃氏筛选法-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-责任链模式-md" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/04/12/%E5%9F%83%E6%B0%8F%E7%AD%9B%E9%80%89%E6%B3%95-md/" target="_blank">埃氏筛选法.md</a>
-  
+    <h1 class="article-title" itemprop="name">
+      责任链模式.md
     </h1>
   
 
 
   
   
-<a href="/2024/04/12/%E5%9F%83%E6%B0%8F%E7%AD%9B%E9%80%89%E6%B3%95-md/" class="archive-article-date">
-        <time datetime="2024-04-12T11:53:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-12</time>
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2024/07/01/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
+        <time datetime="2024-07-01T08:50:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-01</time>
 </a>
 
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">564字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">2分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
@@ -173,16 +195,33 @@
     
     <span id="more"></span>
 
-<p>埃拉托斯特尼筛法（Sieve of Eratosthenes）是一种用来找出一定范围内所有素数的简单且古老的算法。其基本思想是从2开始，将每个素数的各个倍数，标记为合数，直到标记到上限。剩余的就是素数。</p>
-<p>以下是埃氏筛选法的一个简单的C++示例代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">sieveOfEratosthenes</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="function">std::vector&lt;<span class="type">bool</span>&gt; <span class="title">isPrime</span><span class="params">(n + <span class="number">1</span>, <span class="literal">true</span>)</span></span>;</span><br><span class="line">    isPrime[<span class="number">0</span>] = isPrime[<span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i * i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="comment">// 如果 isPrime[i] 没有改变，那么它就是一个素数  </span></span><br><span class="line">        <span class="keyword">if</span> (isPrime[i] == <span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="comment">// 更新所有 i 的倍数  </span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i * i; j &lt;= n; j += i)</span><br><span class="line">                isPrime[j] = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 收集所有素数  </span></span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; primes;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">if</span> (isPrime[i])</span><br><span class="line">            primes.<span class="built_in">push_back</span>(i);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> primes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> n = <span class="number">30</span>;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; primes = <span class="built_in">sieveOfEratosthenes</span>(n);</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Prime numbers less than or equal to &quot;</span> &lt;&lt; n &lt;&lt; <span class="string">&quot; are: \n&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> p : primes)</span><br><span class="line">        std::cout &lt;&lt; p &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这个代码中，我们首先创建了一个布尔类型的向量<code>isPrime</code>，用于标记每个数是否为素数。然后，我们从2开始，遍历到<code>sqrt(n)</code>（因为任何大于<code>sqrt(n)</code>的因子都会与一个小于或等于<code>sqrt(n)</code>的因子配对）。对于每个素数<code>p</code>，我们将其所有倍数标记为非素数。最后，我们遍历<code>isPrime</code>向量，收集所有标记为素数的数，并将它们放入<code>primes</code>向量中返回。</p>
-<p>在<code>main</code>函数中，我们调用<code>sieveOfEratosthenes</code>函数，并打印出所有小于或等于<code>n</code>的素数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">enum class</span> <span class="title class_">RequestType</span> :<span class="type">char</span> &#123;QingJia, ZhangXin, CiZhi&#125;;</span><br><span class="line"><span class="comment">// 抽象的管理者节点</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AbstractManager</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setNext</span><span class="params">(AbstractManager* next)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        m_next = next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">handleRequest</span><span class="params">(RequestType type)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">AbstractManager</span>() &#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    AbstractManager* m_next = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 底层管理者</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Manager</span> : <span class="keyword">public</span> AbstractManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">handleRequest</span><span class="params">(RequestType type)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (type)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> RequestType::QingJia:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;请假: 同意请假，好好休息~~~&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::ZhangXin:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;涨薪: 这个我得请示一下咱们CEO...&quot;</span> &lt;&lt; <span class="string">&quot; ====&gt; &quot;</span>;</span><br><span class="line">            m_next-&gt;<span class="built_in">handleRequest</span>(type);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::CiZhi:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;辞职: 我给你向上级反应一下...&quot;</span> &lt;&lt; <span class="string">&quot; ====&gt; &quot;</span>;</span><br><span class="line">            m_next-&gt;<span class="built_in">handleRequest</span>(type);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CEO</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CEO</span> : <span class="keyword">public</span> AbstractManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">handleRequest</span><span class="params">(RequestType type)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (type)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> RequestType::QingJia:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;请假: 同意请假, 下不为例...&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::ZhangXin:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;涨薪: 你工资不少了, 给你个购物券吧...&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::CiZhi:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;辞职: 这个我得问问咱们老板...&quot;</span> &lt;&lt; <span class="string">&quot; ====&gt; &quot;</span>;</span><br><span class="line">            m_next-&gt;<span class="built_in">handleRequest</span>(type);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// BOSS</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Boss</span> : <span class="keyword">public</span> AbstractManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">handleRequest</span><span class="params">(RequestType type)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (type)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> RequestType::QingJia:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;请假: 只有工作才能实现人生价值，回去好好坚守岗位！！！&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::ZhangXin:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;涨薪: 钱财乃身外之物, 要视其如粪土!!!&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::CiZhi:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;辞职: 巴洛克工作社就是你的家, 这次把你留下, 下次别再提了!!!&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交请求的类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DaCongMing</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">request</span><span class="params">(RequestType type, AbstractManager* manager)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        manager-&gt;<span class="built_in">handleRequest</span>(type);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Manager* manager = <span class="keyword">new</span> Manager;</span><br><span class="line">    CEO* ceo = <span class="keyword">new</span> CEO;</span><br><span class="line">    Boss* boss = <span class="keyword">new</span> Boss;</span><br><span class="line">    manager-&gt;<span class="built_in">setNext</span>(ceo);</span><br><span class="line">    ceo-&gt;<span class="built_in">setNext</span>(boss);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建员工的实例</span></span><br><span class="line">    DaCongMing* boy = <span class="keyword">new</span> DaCongMing;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;大聪明直接将请求提交给顶头上司&quot;</span> &lt;&lt; endl;</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::CiZhi, manager);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::ZhangXin, manager);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::QingJia, manager);</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;大聪明直接将请求提交给CEO&quot;</span> &lt;&lt; endl;</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::CiZhi, ceo);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::ZhangXin, ceo);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::QingJia, ceo);</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;大聪明直接将请求提交给boss&quot;</span> &lt;&lt; endl;</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::CiZhi, boss);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::ZhangXin, boss);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::QingJia, boss);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> boy;</span><br><span class="line">    <span class="keyword">delete</span> manager;</span><br><span class="line">    <span class="keyword">delete</span> ceo;</span><br><span class="line">    <span class="keyword">delete</span> boss;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
 
     
 
     
 
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          an
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://example.com/2024/07/01/责任链模式-md/" title="责任链模式.md" target="_blank">http://example.com/2024/07/01/责任链模式-md/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -194,7 +233,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
@@ -203,16 +242,76 @@
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/04/12/%E5%9F%83%E6%B0%8F%E7%AD%9B%E9%80%89%E6%B3%95-md/">展开全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2024/07/01/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F-md/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2024/07/01/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F-md/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">代理模式.md</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -233,1089 +332,14 @@
 
 
 
-  
-    <article id="post-差分-前缀和-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/" target="_blank">差分+前缀和.md</a>
-  
-    </h1>
-  
 
 
-  
-  
-<a href="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/" class="archive-article-date">
-        <time datetime="2024-04-07T09:08:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-07</time>
-</a>
 
-  
-  
-    
 
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
 
-<h4 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h4><p>在C++中，前缀和（也称为累积和）是一种用于快速计算数组中一系列元素和的技术。下面是一个简单的C++代码示例，演示如何计算并存储一个数组的前缀和：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数用于计算并返回前缀和数组</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">prefixSum</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">prefixSums</span><span class="params">(nums.size() + <span class="number">1</span>, <span class="number">0</span>)</span></span>; <span class="comment">// 创建一个比原数组多一个元素的数组，用于存储前缀和</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        prefixSums[i + <span class="number">1</span>] = prefixSums[i] + nums[i]; <span class="comment">// 计算前缀和并存储在对应位置</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> prefixSums;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; nums = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;; <span class="comment">// 示例数组</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; prefixSums = <span class="built_in">prefixSum</span>(nums); <span class="comment">// 计算前缀和</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出前缀和数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; prefixSums.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Prefix sum at index &quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot;: &quot;</span> &lt;&lt; prefixSums[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<h4 id="差分"><a href="#差分" class="headerlink" title="差分"></a>差分</h4><p>在C++中，差分（或称为差分数组）是一种用于处理数组区间更新的高效技术。差分数组 <code>diff</code> 的每个元素 <code>diff[i]</code> 表示原数组 <code>arr</code> 中 <code>arr[i]</code> 和 <code>arr[i-1]</code> 的差值。通过对差分数组进行特定的操作，可以方便地实现原数组的区间更新，并最终通过累加差分数组来得到更新后的原数组。</p>
-<p>下面是一个简单的C++代码示例，展示了如何创建和使用差分数组：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个差分数组</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">createDiffArray</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = arr.<span class="built_in">size</span>();</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">diff</span><span class="params">(n, <span class="number">0</span>)</span></span>; <span class="comment">// 初始化差分数组，大小与原数组相同</span></span><br><span class="line">    diff[<span class="number">0</span>] = arr[<span class="number">0</span>]; <span class="comment">// 第一个元素与差分数组相同</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        diff[i] = arr[i] - arr[i - <span class="number">1</span>]; <span class="comment">// 计算差值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> diff;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新差分数组的指定区间 [start, end]，增加值 val</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">updateDiffArray</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; diff, <span class="type">int</span> start, <span class="type">int</span> end, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">    diff[start] += val; <span class="comment">// 开始位置增加 val</span></span><br><span class="line">    <span class="keyword">if</span> (end + <span class="number">1</span> &lt; diff.<span class="built_in">size</span>()) &#123;</span><br><span class="line">        diff[end + <span class="number">1</span>] -= val; <span class="comment">// 结束位置的下一个位置减去 val，以撤销对后续元素的影响</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据差分数组还原原数组</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">reconstructArray</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; diff)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = diff.<span class="built_in">size</span>();</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">arr</span><span class="params">(n, <span class="number">0</span>)</span></span>; <span class="comment">// 初始化原数组</span></span><br><span class="line">    arr[<span class="number">0</span>] = diff[<span class="number">0</span>]; <span class="comment">// 第一个元素与差分数组相同</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        arr[i] = arr[i - <span class="number">1</span>] + diff[i]; <span class="comment">// 累加差值得到原数组元素</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; arr = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>&#125;; <span class="comment">// 示例原数组</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; diff = <span class="built_in">createDiffArray</span>(arr); <span class="comment">// 创建差分数组</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出差分数组</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Difference Array: &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> d : diff) &#123;</span><br><span class="line">        cout &lt;&lt; d &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 更新差分数组中的区间 [1, 3]（对应原数组的索引），增加 2</span></span><br><span class="line">    <span class="built_in">updateDiffArray</span>(diff, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 根据更新后的差分数组重构原数组</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; updatedArr = <span class="built_in">reconstructArray</span>(diff);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出更新后的原数组</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Updated Array: &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> u : updatedArr) &#123;</span><br><span class="line">        cout &lt;&lt; u &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/PixPin_2024-04-07_21-20-04.png" class="">
-
-<h4 id="差分-前缀和"><a href="#差分-前缀和" class="headerlink" title="差分+前缀和"></a>差分+前缀和</h4><img src="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/PixPin_2024-04-07_21-17-59.png" class="">
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">using</span> ll = <span class="type">long</span> <span class="type">long</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n, q;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; q &gt;&gt; s;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">diff</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">while</span>(q--)&#123;</span><br><span class="line">      ll l, r, k;</span><br><span class="line">      cin &gt;&gt; l &gt;&gt; r &gt;&gt; k;</span><br><span class="line">      k %= <span class="number">26</span>;</span><br><span class="line">      diff[l - <span class="number">1</span>] += k;</span><br><span class="line">      diff[r] -= k;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">      diff[i] += diff[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">      <span class="type">int</span> tmp = (s[i] - <span class="string">&#x27;a&#x27;</span> + diff[i]) % <span class="number">26</span>;</span><br><span class="line">      cout &lt;&lt; <span class="built_in">char</span>(tmp + <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>[差分+前缀和视频讲解](<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NX4y147G5/?spm_id_from=333.788&vd_source=54f770fab31251d4ff47d20981b523ca">【C++算法基础】#9前缀和与差分 | 轻松学算法 | 图解ACM竞赛算法_哔哩哔哩_bilibili</a>)</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/04/07/%E5%B7%AE%E5%88%86-%E5%89%8D%E7%BC%80%E5%92%8C-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-scrapy-l-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/03/28/scrapy-l-md/" target="_blank">scrapy_l.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/03/28/scrapy-l-md/" class="archive-article-date">
-        <time datetime="2024-03-28T01:06:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-28</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h4 id="安装框架"><a href="#安装框架" class="headerlink" title="安装框架"></a>安装框架</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//使用pip进行安装</span><br><span class="line">pip install pywin32</span><br><span class="line">pip install Scrapy</span><br><span class="line">pip install lxml //一般不用自己安装</span><br><span class="line">pip install pyOpenSSL //一般不用自己安装</span><br><span class="line">pip install Scrapy</span><br></pre></td></tr></table></figure>
-
-<h4 id="Scrapy框架介绍"><a href="#Scrapy框架介绍" class="headerlink" title="Scrapy框架介绍"></a>Scrapy框架介绍</h4><p>Scrapy是一个用于网络抓取的快速高级框架，它基于Python语言编写，可以用于数据挖掘、监测和自动化测试等任务。Scrapy的用途广泛，可以快速地抓取网页并从中提取结构化数据。</p>
-<p>Scrapy框架的主要特点包括：</p>
-<ol>
-<li><p><strong>异步网络请求</strong>：Scrapy采用Twisted异步网络库来处理网络通讯，这意味着它可以在等待网页响应的同时，继续发送其他请求，从而大大提高抓取效率。</p>
-</li>
-<li><p><strong>基于组件的架构</strong>：Scrapy的设计非常模块化，主要由五大组件组成，包括引擎(Scrapy Engine)、调度器(Scheduler)、下载器(Downloader)、爬虫(Spiders)和实体管道(Item Pipeline)。这些组件各自负责不同的功能，并通过数据流进行通信，使得用户可以轻松地对框架进行扩展和定制。</p>
-</li>
-<li><p><strong>中间件支持</strong>：Scrapy提供了中间件机制，允许用户在不修改核心组件的情况下，增加或修改请求和响应的处理逻辑。</p>
-</li>
-<li><p><strong>可扩展性</strong>：Scrapy是一个高度可扩展的框架，用户可以通过编写自定义的爬虫、中间件和管道等组件，来满足特定的抓取需求。</p>
-</li>
-<li><p><strong>支持多种输出格式</strong>：Scrapy可以将抓取的数据以多种格式输出，如JSON、CSV、XML等，方便用户进行后续的数据处理和分析。</p>
-</li>
-<li><p><strong>强大的选择器</strong>：Scrapy内置了强大的选择器库，使得用户可以方便地提取HTML或XML中的结构化数据。</p>
-</li>
-<li><p><strong>自动处理cookies和会话</strong>：Scrapy能够自动处理cookies和会话，使得用户可以方便地模拟登录和会话操作。</p>
-</li>
-<li><p><strong>内置去重机制</strong>：Scrapy内置了URL去重机制，可以避免重复抓取相同的页面，节省资源和时间。</p>
-</li>
-</ol>
-<p>总的来说，Scrapy是一个功能强大、易于扩展的网络抓取框架，适用于各种规模的网络抓取任务。无论是个人开发者还是大型企业，都可以利用Scrapy来高效地抓取和分析网络数据。</p>
-<img src="/2024/03/28/scrapy-l-md/PixPin_2024-03-28_09-16-48.png" class="">
-
-<h4 id="项目实践"><a href="#项目实践" class="headerlink" title="项目实践"></a>项目实践</h4><h5 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\86157\Desktop&gt;scrapy startproject scr2 </span><br></pre></td></tr></table></figure>
-
-<h5 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h5><h6 id="定义Item容器"><a href="#定义Item容器" class="headerlink" title="定义Item容器"></a>定义Item容器</h6><p>​	在<code>items.py</code>中建立相应的字段</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define here the models for your scraped items</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># See documentation in:</span></span><br><span class="line"><span class="comment"># https://docs.scrapy.org/en/latest/topics/items.html</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Scr2Item</span>(scrapy.Item):</span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    <span class="comment"># name = scrapy.Field()</span></span><br><span class="line">    title = scrapy.Field()</span><br><span class="line">    link = scrapy.Field()</span><br><span class="line">    desc = scrapy.Field()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h6 id="编写爬虫"><a href="#编写爬虫" class="headerlink" title="编写爬虫"></a>编写爬虫</h6><p>spider是用于从网站上爬取数据的类，包含一个用于西在的初始化URL，然后是如何跟进网页的链接以及如何分析页面中的内容，还有提取生成item的方法。</p>
-<p>在spider下创建一个自己的文件用于分析和提取页面内容</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestSpider</span>(scrapy.Spider):</span><br><span class="line">    name = <span class="string">&#x27;test1&#x27;</span>      <span class="comment">#name必须是唯一的，蜘蛛的名字</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;https://www.runoob.com/&#x27;</span>]      <span class="comment">#蜘蛛爬取的范围</span></span><br><span class="line">    start_urls = [</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/html/html5-intro.html&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/html/html-headings.html&#x27;</span></span><br><span class="line">        ]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">page_parse</span>(<span class="params">self, response</span>):     <span class="comment">#分析方法</span></span><br><span class="line">         filename = response.url.split(<span class="string">&quot;/&quot;</span>)[-<span class="number">2</span>]</span><br><span class="line">         <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                f.write(response.body)</span><br></pre></td></tr></table></figure>
-
-<h6 id="提取数据"><a href="#提取数据" class="headerlink" title="提取数据"></a>提取数据</h6><p>在Scrapy框架中，Selectors（选择器）是用于从网页中提取数据的工具。关于Selectors的选择器的四个基本方法，以下是详细的介绍：</p>
-<ol>
-<li>**xpath()**：此方法用于返回一系列的selectors，每一个select表示一个xpath参数表达式选择的节点。XPath是一种在XML文档中定位信息的方式，它同样可以用于HTML。通过编写XPath表达式，可以精确地选择网页中的特定元素或内容。</li>
-<li>**css()**：此方法同样返回一系列的selectors，但它是基于CSS选择器来定位网页元素的。CSS选择器是应用于HTML文档样式中的语言，可以选择具有某些样式的节点。这使得开发者可以使用与样式定义相似的语法来提取网页数据。</li>
-<li>**extract()**：此方法用于从选中的数据中提取信息，并返回一个unicode字符串。这通常用于在定位到特定元素后，提取该元素内的文本或属性值。</li>
-<li>**re()**：此方法使用正则表达式从网页中提取内容，并返回一个unicode字符串。正则表达式是一种强大的文本处理工具，可以匹配和提取符合特定模式的文本。</li>
-</ol>
-<p>这四个方法共同构成了Scrapy中Selectors选择器的核心功能，使得开发者能够灵活地提取和分析网页数据。在使用这些方法时，通常需要结合具体的网页结构和内容来编写相应的表达式或模式，以实现精确的数据提取。</p>
-<p>使用方法：</p>
-<img src="/2024/03/28/scrapy-l-md/PixPin_2024-03-28_15-10-37.png" class="">
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scrapy shell &quot;https://www.runoob.com/html/html5-intro.html&quot;   //进入shell</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; response.body    //查看网页代码</span><br><span class="line">&gt;&gt;&gt; response.headers   //查看网页头部</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//title&#x27;)    //查看title，返回list</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//title&#x27;).extract()    //得到头部的list字符串化</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//title/text&#x27;).extract()    //去掉标签的文字</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//div[@class=&quot;hl-main&quot;]/span/text()&#x27;).extract()</span><br></pre></td></tr></table></figure>
-
-
-
-<h6 id="存储内容"><a href="#存储内容" class="headerlink" title="存储内容"></a>存储内容</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> scr2.items <span class="keyword">import</span> Scr2Item</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestSpider</span>(scrapy.Spider):</span><br><span class="line">    name = <span class="string">&#x27;test1&#x27;</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;https://www.runoob.com/&#x27;</span>]</span><br><span class="line">    start_urls = [</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/html/html-formatting.html&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/css/css-tutorial.html&#x27;</span></span><br><span class="line">        ]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parse</span>(<span class="params">self, response</span>):</span><br><span class="line">        <span class="comment">#filename = response.url.split(&quot;/&quot;)[-2]</span></span><br><span class="line">        <span class="comment">#with open(filename, &#x27;wb&#x27;) as f:</span></span><br><span class="line">            <span class="comment">#f.write(response.body)</span></span><br><span class="line">        sel = scrapy.selector.Selector(response)</span><br><span class="line">        sites = sel.xpath(<span class="string">&#x27;//div[@class=&quot;article-intro&quot;]/p&#x27;</span>)</span><br><span class="line">        items = []</span><br><span class="line">        <span class="keyword">for</span> site <span class="keyword">in</span> sites:</span><br><span class="line">            item = Scr2Item()</span><br><span class="line">            item[<span class="string">&#x27;title&#x27;</span>] = site.xpath(<span class="string">&#x27;a/text()&#x27;</span>).extract()</span><br><span class="line">            item[<span class="string">&#x27;link&#x27;</span>] = site.xpath(<span class="string">&#x27;a/@href&#x27;</span>).extract()</span><br><span class="line">            item[<span class="string">&#x27;desc&#x27;</span>] = site.xpath(<span class="string">&#x27;text()&#x27;</span>).extract()</span><br><span class="line">            items.append(item)</span><br><span class="line">            <span class="comment">#title = site.xpath(&#x27;a/text()&#x27;).extract()</span></span><br><span class="line">            <span class="comment">#link = site.xpath(&#x27;a/@href&#x27;).extract()</span></span><br><span class="line">            <span class="comment">#desc = site.xpath(&#x27;text()&#x27;).extract()</span></span><br><span class="line">            <span class="comment">#print(title, link, desc)</span></span><br><span class="line">        <span class="keyword">return</span> items</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/03/28/scrapy-l-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python基础语法-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/03/20/python%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-md/" target="_blank">python基础语法.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/03/20/python%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-md/" class="archive-article-date">
-        <time datetime="2024-03-20T06:35:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-20</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>在Python中，<code>list</code>、<code>tuple</code>、<code>set</code>、<code>dict</code>是常用的数据结构，而<code>map</code>则是一个内置函数，用于应用一个函数到所有列表的元素上。下面我会详细解释这些数据结构以及它们的常用方法，并给出一些示例。</p>
-<h3 id="List（列表）"><a href="#List（列表）" class="headerlink" title="List（列表）"></a>List（列表）</h3><p>列表是一个有序的元素集合，元素之间用逗号分隔，整个列表由方括号包围。</p>
-<p><strong>常用方法：</strong></p>
-<ul>
-<li><code>append(x)</code>: 添加一个元素到列表的末尾。</li>
-<li><code>extend(L)</code>: 将另一个列表的所有元素添加到列表的末尾。</li>
-<li><code>insert(i, x)</code>: 在指定位置插入一个元素。</li>
-<li><code>remove(x)</code>: 移除列表中第一个值为x的元素。</li>
-<li><code>pop([i])</code>: 移除并返回列表中的元素。如果指定了索引，则移除该索引处的元素。</li>
-<li><code>index(x)</code>: 返回列表中第一个值为x的元素的索引。</li>
-<li><code>count(x)</code>: 返回列表中值为x的元素的个数。</li>
-<li><code>sort()</code>: 对列表进行排序。</li>
-<li><code>reverse()</code>: 反转列表中的元素。</li>
-</ul>
-<p><strong>示例：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">my_list.append(<span class="number">4</span>)  <span class="comment"># [1, 2, 3, 4]</span></span><br><span class="line">my_list.extend([<span class="number">5</span>, <span class="number">6</span>])  <span class="comment"># [1, 2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Tuple（元组）"><a href="#Tuple（元组）" class="headerlink" title="Tuple（元组）"></a>Tuple（元组）</h3><p>元组与列表类似，但是元组是不可变的。元素之间用逗号分隔，整个元组可以由圆括号或不加括号表示。</p>
-<p><strong>常用方法：</strong></p>
-<ul>
-<li><code>index(x)</code>: 返回元组中第一个值为x的元素的索引。</li>
-<li><code>count(x)</code>: 返回元组中值为x的元素的个数。</li>
-</ul>
-<p>由于元组是不可变的，它没有像列表那样的修改方法（如<code>append</code>、<code>extend</code>等）。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_tuple = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">index = my_tuple.index(<span class="number">2</span>)  <span class="comment"># 1</span></span><br><span class="line">count = my_tuple.count(<span class="number">2</span>)  <span class="comment"># 1</span></span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Set（集合）"><a href="#Set（集合）" class="headerlink" title="Set（集合）"></a>Set（集合）</h3><p>集合是一个无序且不包含重复元素的元素集合。</p>
-<p><strong>常用方法：</strong></p>
-<ul>
-<li><code>add(x)</code>: 添加一个元素到集合中。</li>
-<li><code>remove(x)</code>: 移除集合中的一个元素。</li>
-<li><code>discard(x)</code>: 移除集合中的一个元素，如果该元素不存在则不引发异常。</li>
-<li><code>pop()</code>: 移除并返回集合中的任意元素。</li>
-<li><code>union(other)</code>: 返回两个集合的并集。</li>
-<li><code>intersection(other)</code>: 返回两个集合的交集。</li>
-<li><code>difference(other)</code>: 返回集合的差集，即属于当前集合但不属于另一个集合的元素。</li>
-<li><code>symmetric_difference(other)</code>: 返回两个集合的对称差集。</li>
-<li><code>isdisjoint(other)</code>: 如果两个集合没有交集，则返回True。</li>
-<li><code>issubset(other)</code>: 如果当前集合是另一个集合的子集，则返回True。</li>
-<li><code>issuperset(other)</code>: 如果当前集合是另一个集合的超集，则返回True。</li>
-</ul>
-<p><strong>示例：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_set = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">my_set.add(<span class="number">4</span>)  <span class="comment"># &#123;1, 2, 3, 4&#125;</span></span><br><span class="line">my_set.remove(<span class="number">2</span>)  <span class="comment"># &#123;1, 3, 4&#125;</span></span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Dict（字典）"><a href="#Dict（字典）" class="headerlink" title="Dict（字典）"></a>Dict（字典）</h3><p>字典是一个无序的键值对集合。</p>
-<p><strong>常用方法：</strong></p>
-<ul>
-<li><code>get(key, default=None)</code>: 返回指定键的值，如果键不存在则返回默认值。</li>
-<li><code>keys()</code>: 返回一个包含字典所有键的视图对象。</li>
-<li><code>values()</code>: 返回一个包含字典所有值的视图对象。</li>
-<li><code>items()</code>: 返回一个包含字典所有键值对的视图对象。</li>
-<li><code>pop(key[, default])</code>: 如果键存在于字典中则移除它并返回它的值，否则返回默认值。如果未指定默认值且键不存在，则引发KeyError异常。</li>
-<li><code>popitem()</code>: 移除并返回字典中的任意键值对。</li>
-<li><code>update([other])</code>: 使用另一个字典的键值对更新当前字典。</li>
-<li><code>clear()</code>: 移除字典中的所有项。</li>
-</ul>
-<p><strong>示例：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">my_dict = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">3</span>&#125;</span><br><span class="line">value = my_dict.get(<span class="string">&#x27;b&#x27;</span>)  <span class="comment"># 2</span></span><br><span class="line">keys = my_dict.keys</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="map（内置函数）"><a href="#map（内置函数）" class="headerlink" title="map（内置函数）"></a>map（内置函数）</h3><p>在Python中，<code>map()</code>是一个内置函数，它接受一个函数和一个或多个序列（例如列表、元组等）作为输入，并返回一个新的迭代器，该迭代器生成将函数应用于每个序列项的结果。<code>map()</code>函数本身并没有“方法”，因为它是一个函数而不是一个对象。但是，你可以使用它来执行各种操作，通过传递不同的函数和序列。</p>
-<p>下面是<code>map()</code>的基本用法和一些示例：</p>
-<h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义一个函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">square</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x ** <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个数字列表</span></span><br><span class="line">numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用map函数将square函数应用于numbers列表的每个元素</span></span><br><span class="line">squared = <span class="built_in">map</span>(square, numbers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将map对象转换为列表以查看结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(squared))  <span class="comment"># 输出: [1, 4, 9, 16, 25]</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="多个序列作为输入"><a href="#多个序列作为输入" class="headerlink" title="多个序列作为输入"></a>多个序列作为输入</h4><p><code>map()</code>也可以接受多个序列作为输入，并将函数应用于这些序列中对应位置的元素。这些序列的长度应该相同。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义一个函数，用于将两个数相加</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">x, y</span>):</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建两个数字列表</span></span><br><span class="line">nums1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">nums2 = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用map函数将add函数应用于nums1和nums2列表的对应元素</span></span><br><span class="line">sums = <span class="built_in">map</span>(add, nums1, nums2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将map对象转换为列表以查看结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(sums))  <span class="comment"># 输出: [5, 7, 9]</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="与lambda表达式结合使用"><a href="#与lambda表达式结合使用" class="headerlink" title="与lambda表达式结合使用"></a>与lambda表达式结合使用</h4><p><code>map()</code>经常与<code>lambda</code>表达式一起使用，以便在需要简单函数时不必定义完整的函数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个数字列表</span></span><br><span class="line">numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用map和lambda表达式将每个元素乘以2</span></span><br><span class="line">doubled = <span class="built_in">map</span>(<span class="keyword">lambda</span> x: x * <span class="number">2</span>, numbers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将map对象转换为列表以查看结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(doubled))  <span class="comment"># 输出: [2, 4, 6, 8, 10]</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
-<li><code>map()</code>返回的是一个迭代器，如果你需要查看或使用它的结果，你需要将其转换为列表或其他可迭代对象。</li>
-<li>传递给<code>map()</code>的序列长度应该相同，否则在最短的序列耗尽后，<code>map()</code>会停止迭代。</li>
-<li><code>map()</code>函数在Python 3中返回的是一个迭代器，而在Python 2中它返回的是一个列表。这是Python 3中的一个重要变化。</li>
-</ul>
-<p>虽然<code>map()</code>函数在某些情况下很有用，但需要注意的是，对于简单的列表推导式来说，它可能不是最高效或最清晰的选择。列表推导式通常更简洁、易读，并且在性能上可能更优。</p>
-<p>例如，上述<code>map()</code>和<code>lambda</code>表达式的例子可以用列表推导式重写为：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用列表推导式将每个元素乘以2</span></span><br><span class="line">doubled = [x * <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> numbers]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看结果</span></span><br><span class="line"><span class="built_in">print</span>(doubled)  <span class="comment"># 输出: [2, 4, 6, 8, 10]</span></span><br></pre></td></tr></table></figure>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">python基础语法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/03/20/python%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-随机数生成-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/03/09/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90-md/" target="_blank">随机数生成.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/03/09/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90-md/" class="archive-article-date">
-        <time datetime="2024-03-09T07:39:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-09</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>在 C++ 中，<code>&lt;random&gt;</code> 头文件提供了许多用于生成随机数的函数。常用的随机数生成函数：</p>
-<h4 id="std-random-device"><a href="#std-random-device" class="headerlink" title="std::random_device"></a>std::random_device</h4><p>生成随机数设备，用于生成随机数种子。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">std::random_device rd;</span><br><span class="line"><span class="type">int</span> seed = <span class="built_in">rd</span>();</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="std-default-random-engine"><a href="#std-default-random-engine" class="headerlink" title="std::default_random_engine"></a>std::default_random_engine</h4><p>默认的随机数生成引擎，用于生成均匀分布的随机数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std::default_random_engine gen;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="std-uniform-int-distribution"><a href="#std-uniform-int-distribution" class="headerlink" title="std::uniform_int_distribution"></a>std::uniform_int_distribution</h4><p>用于生成均匀分布的整数随机数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::uniform_int_distribution&lt;<span class="type">int</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">1</span>, <span class="number">100</span>)</span></span>;</span><br><span class="line"><span class="type">int</span> num = <span class="built_in">dist</span>(gen);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="std-uniform-real-distribution"><a href="#std-uniform-real-distribution" class="headerlink" title="std::uniform_real_distribution"></a>std::uniform_real_distribution</h4><p>用于生成均匀分布的实数随机数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::uniform_real_distribution&lt;<span class="type">double</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">0.0</span>, <span class="number">1.0</span>)</span></span>;</span><br><span class="line"><span class="type">double</span> num = <span class="built_in">dist</span>(gen);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="std-normal-distribution"><a href="#std-normal-distribution" class="headerlink" title="std::normal_distribution"></a>std::normal_distribution</h4><p>用于生成正态分布的随机数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::normal_distribution&lt;<span class="type">double</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">0.0</span>, <span class="number">1.0</span>)</span></span>;</span><br><span class="line"><span class="type">double</span> num = <span class="built_in">dist</span>(gen);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="std-bernoulli-distribution"><a href="#std-bernoulli-distribution" class="headerlink" title="std::bernoulli_distribution"></a>std::bernoulli_distribution</h4><p>用于生成伯努利分布的随机数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::bernoulli_distribution&lt;<span class="type">bool</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">0.5</span>)</span></span>;</span><br><span class="line"><span class="type">bool</span> num = <span class="built_in">dist</span>(gen);</span><br></pre></td></tr></table></figure>
-
-<p>这些函数都可以用于生成各种分布的随机数。以下是一个生成随机数的简单示例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;random&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::random_device rd;</span><br><span class="line">    <span class="function">std::default_random_engine <span class="title">gen</span><span class="params">(rd())</span></span>;</span><br><span class="line">    <span class="function">std::uniform_int_distribution&lt;<span class="type">int</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">1</span>, <span class="number">100</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">        <span class="type">int</span> num = <span class="built_in">dist</span>(gen);</span><br><span class="line">        std::cout &lt;&lt; num &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个示例将生成 10 个在 1 到 100 之间的随机整数并输出。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">函数</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/03/09/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-树状数组-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/03/03/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-md/" target="_blank">树状数组.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/03/03/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-md/" class="archive-article-date">
-        <time datetime="2024-03-03T09:55:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-03</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>树状数组，也称作“二叉索引树”（Binary Indexed Tree）或 Fenwick 树。它可以高效地实现如下两个操作：</p>
-<ol>
-<li>单点更新 update(x, delta)：把序列 x 位置的数加上一个值 delta；</li>
-<li>前缀和查询 sum(x)：查询序列 [1,…x] 区间的区间和，即位置 x 的前缀和。</li>
-</ol>
-<p>这两个操作的时间复杂度均为 O(log n)。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> add = [&amp;](vector&lt;<span class="type">int</span>&gt;&amp; bit, <span class="type">int</span> i, <span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span> (; i &lt;= m; i += i &amp; -i) &#123;</span><br><span class="line">        bit[i] += x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//while(i &lt;= m)&#123;</span></span><br><span class="line">    <span class="comment">//    bit[i] += x;</span></span><br><span class="line">    <span class="comment">//    i += i &amp; -i;//lowbit(p);</span></span><br><span class="line">    <span class="comment">//&#125;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">auto</span> sum = [&amp;](vector&lt;<span class="type">int</span>&gt;&amp; bit, <span class="type">int</span> i) &#123;</span><br><span class="line">    ll s = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (; i; i -= i &amp; -i) &#123;</span><br><span class="line">        s += bit[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//while(i)&#123;</span></span><br><span class="line">    <span class="comment">//    s += bit[i];</span></span><br><span class="line">    <span class="comment">//    p -= lower_bit(p);</span></span><br><span class="line">    <span class="comment">//&#125;</span></span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>在上述代码中，<code>add</code> 函数实现了单点更新操作，<code>sum</code> 函数实现了前缀和查询操作。</p>
-<p>树状数组的单点更新操作，可以通过 lowbit 函数找到 x 的二进制表示中最低位的 1 所对应的十进制值，然后将 delta 加到 x 的位置，接着将 x 右移一位（即 x -&#x3D; x &amp; -x），继续进行下一轮更新。</p>
-<p>树状数组的前缀和查询操作，可以通过将 x 不断减去 x 的二进制表示中最低位的 1 所对应的十进制值，然后将 x 的前缀和累加到 s 中，继续进行下一轮查询。</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ce411u7qP/?spm_id_from=333.337.search-card.all.click&vd_source=54f770fab31251d4ff47d20981b523ca">树状数组教学视频</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/03/03/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-precisionANDsetprecision-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/03/01/precisionANDsetprecision-md/" target="_blank">precisionANDsetprecision.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/03/01/precisionANDsetprecision-md/" class="archive-article-date">
-        <time datetime="2024-03-01T04:14:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-01</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p><code>std::setprecision()</code>和<code>std::cout.precision()</code>都是与浮点数的输出精度相关的函数，但它们的功能和用途有所区别：</p>
-<h3 id="std-setprecision"><a href="#std-setprecision" class="headerlink" title="std::setprecision()"></a>std::setprecision()</h3><p><code>std::setprecision()</code>是一个流操作符，它用于设置浮点数的输出精度。它接受一个整数参数，该参数指定了小数点后应该显示的位数或有效数字位数，具体取决于是否使用了<code>std::fixed</code>或<code>std::scientific</code>格式。</p>
-<ul>
-<li>如果使用了<code>std::fixed</code>，则<code>std::setprecision(n)</code>将设置小数点后应显示的位数为<code>n</code>。</li>
-<li>如果没有使用<code>std::fixed</code>或<code>std::scientific</code>，则<code>std::setprecision(n)</code>将设置有效数字的位数为<code>n</code>。这意味着小数点前和后的位数都会受到影响，以确保总共有<code>n</code>个有效数字。</li>
-</ul>
-<p><code>std::setprecision()</code>是一个流操作符，因此它返回流对象本身，以便进行链式操作。</p>
-<h3 id="std-cout-precision"><a href="#std-cout-precision" class="headerlink" title="std::cout.precision()"></a>std::cout.precision()</h3><p><code>std::cout.precision()</code>是一个成员函数，它返回当前设置的浮点精度。这个值表示小数点后应该显示的位数或有效数字的位数，具体取决于当前的浮点数格式。</p>
-<p>如果想要查看当前的浮点精度设置，可以使用<code>std::cout.precision()</code>。</p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> pi = <span class="number">3.141592653589793</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查看当前的浮点精度</span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Current precision is: &quot;</span> &lt;&lt; std::cout.<span class="built_in">precision</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置浮点精度为3位有效数字</span></span><br><span class="line">    std::cout &lt;&lt; std::<span class="built_in">setprecision</span>(<span class="number">3</span>) &lt;&lt; pi &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 再次查看当前的浮点精度</span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;New precision is: &quot;</span> &lt;&lt; std::cout.<span class="built_in">precision</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置固定小数点表示，并保留小数点后3位</span></span><br><span class="line">    std::cout &lt;&lt; std::fixed &lt;&lt; std::<span class="built_in">setprecision</span>(<span class="number">3</span>) &lt;&lt; pi &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>第一次调用<code>std::cout.precision()</code>将显示默认的浮点精度（通常是6）。</p>
-<p>使用<code>std::setprecision(3)</code>设置有效数字位数为3，并再次调用<code>std::cout.precision()</code>将显示新的精度设置。</p>
-<p>通过结合使用<code>std::fixed</code>和<code>std::setprecision(3)</code>，将输出格式设置为固定小数点表示，并保留小数点后3位数字。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/03/01/precisionANDsetprecision-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-C-标准库迭代器类型-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/02/27/C-%E6%A0%87%E5%87%86%E5%BA%93%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%B1%BB%E5%9E%8B-md/" target="_blank">C++标准库迭代器类型.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/02/27/C-%E6%A0%87%E5%87%86%E5%BA%93%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%B1%BB%E5%9E%8B-md/" class="archive-article-date">
-        <time datetime="2024-02-27T05:19:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-02-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>按照提供的操作和功能从低到高进行排序，C++标准库中的迭代器类型如下：</p>
-<h4 id="Output-Iterator-输出迭代器"><a href="#Output-Iterator-输出迭代器" class="headerlink" title="Output Iterator (输出迭代器)"></a><strong>Output Iterator</strong> (输出迭代器)</h4><ul>
-<li>仅支持解引用（<code>*it</code>）和后置递增（<code>it++</code>），用于输出操作。</li>
-<li>不支持读取、递减或其他算术运算</li>
-</ul>
-<h4 id="Input-Iterator-输入迭代器"><a href="#Input-Iterator-输入迭代器" class="headerlink" title="Input Iterator (输入迭代器)"></a><strong>Input Iterator</strong> (输入迭代器)</h4><ul>
-<li>支持解引用（<code>*it</code>）以读取元素。</li>
-<li>支持前置和后置递增（<code>++it</code>）。</li>
-<li>支持相等和不相等比较（<code>it1 == it2</code> 和 <code>it1 != it2</code>）。</li>
-<li>不保证支持递减、多次解引用或算术运算。</li>
-</ul>
-<h4 id="Forward-Iterator-前向迭代器"><a href="#Forward-Iterator-前向迭代器" class="headerlink" title="Forward Iterator (前向迭代器)"></a><strong>Forward Iterator</strong> (前向迭代器)</h4><ul>
-<li>是输入迭代器的超集，支持所有输入迭代器的操作。</li>
-<li>通常还支持后置递减（<code>it--</code>），但不保证支持前置递减。</li>
-<li>不保证支持迭代器间的算术运算。</li>
-<li>不保证能够访问元素的地址（即不支持 <code>&amp;*it</code> 操作）。</li>
-</ul>
-<h4 id="Bidirectional-Iterator-双向迭代器"><a href="#Bidirectional-Iterator-双向迭代器" class="headerlink" title="Bidirectional Iterator (双向迭代器)"></a><strong>Bidirectional Iterator</strong> (双向迭代器)</h4><ul>
-<li>是前向迭代器的超集，支持所有前向迭代器的操作。</li>
-<li>支持前置和后置递减，允许在容器中前后移动。</li>
-<li>不保证支持迭代器间的算术运算。</li>
-</ul>
-<h4 id="Random-Access-Iterator-随机访问迭代器"><a href="#Random-Access-Iterator-随机访问迭代器" class="headerlink" title="Random Access Iterator (随机访问迭代器)"></a><strong>Random Access Iterator</strong> (随机访问迭代器)</h4><ul>
-<li>是双向迭代器的超集，支持所有双向迭代器的操作。</li>
-<li>支持迭代器间的算术运算，包括加法和减法。</li>
-<li>支持使用迭代器进行关系运算和直接访问任意位置的元素。</li>
-</ul>
-<h4 id="STL迭代器类型提供"><a href="#STL迭代器类型提供" class="headerlink" title="STL迭代器类型提供"></a>STL迭代器类型提供</h4><ul>
-<li><code>std::vector</code>、<code>std::deque</code> 和 <code>std::array</code> 提供随机访问迭代器（<code>RandomAccessIterator</code>）。</li>
-<li><code>std::list</code> 和 <code>std::forward_list</code> 只提供双向迭代器（<code>BidirectionalIterator</code>）。</li>
-<li><code>std::set</code>、<code>std::map</code>、<code>std::multiset</code> 和 <code>std::multimap</code> 提供双向迭代器。</li>
-<li>一些容器如 <code>std::istream_iterator</code> 和 <code>std::ostream_iterator</code> 是专门用于输入&#x2F;输出操作的迭代器，属于输出迭代器（<code>OutputIterator</code>）。</li>
-</ul>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/02/27/C-%E6%A0%87%E5%87%86%E5%BA%93%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%B1%BB%E5%9E%8B-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-模板类与友元-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/02/13/%E6%A8%A1%E6%9D%BF%E7%B1%BB%E4%B8%8E%E5%8F%8B%E5%85%83-md/" target="_blank">模板类与友元.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/02/13/%E6%A8%A1%E6%9D%BF%E7%B1%BB%E4%B8%8E%E5%8F%8B%E5%85%83-md/" class="archive-article-date">
-        <time datetime="2024-02-13T06:52:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-02-13</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ul>
-<li>非模板友元；</li>
-<li>约束（bound）模板友元，即友元的类型取决于类被实例化时的类型；</li>
-<li>非约束（unbound）模板友元，即友元的所有具体化都是类的每一个具体化的友元。</li>
-</ul>
-<h4 id="非模板友元"><a href="#非模板友元" class="headerlink" title="非模板友元"></a>非模板友元</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    <span class="type">int</span> secret;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="built_in">MyClass</span>(<span class="type">int</span> s) : <span class="built_in">secret</span>(s) &#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">friend</span> <span class="type">void</span> <span class="title">revealSecret</span><span class="params">(MyClass&amp; obj)</span></span>;  <span class="comment">// 声明非模板友元函数  </span></span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">revealSecret</span><span class="params">(MyClass&amp; obj)</span> </span>&#123;  </span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;The secret is: &quot;</span> &lt;&lt; obj.secret &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="function">MyClass <span class="title">obj</span><span class="params">(<span class="number">42</span>)</span></span>;  </span><br><span class="line">    <span class="built_in">revealSecret</span>(obj);  <span class="comment">// 可以访问obj的私有成员secret  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>所有类型共用一个友元函数。</p>
-<h4 id="约束（bound）模板友元"><a href="#约束（bound）模板友元" class="headerlink" title="约束（bound）模板友元"></a>约束（bound）模板友元</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    T secret;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="built_in">MyClass</span>(T s) : <span class="built_in">secret</span>(s) &#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U = T, std::<span class="type">enable_if_t</span>&lt;std::is_integral_v&lt;U&gt;, <span class="type">int</span>&gt; = <span class="number">0</span>&gt;  </span><br><span class="line">    <span class="keyword">friend</span> <span class="type">void</span> <span class="built_in">revealSecret</span>(MyClass&lt;U&gt;&amp; obj);  <span class="comment">// 约束模板友元函数  </span></span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">revealSecret</span><span class="params">(MyClass&lt;T&gt;&amp; obj)</span> <span class="keyword">requires</span> std::integral_constant&lt;T&gt; </span>&#123;  </span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;The secret is: &quot;</span> &lt;&lt; obj.secret &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="function">MyClass&lt;<span class="type">int</span>&gt; <span class="title">obj</span><span class="params">(<span class="number">42</span>)</span></span>;  </span><br><span class="line">    <span class="built_in">revealSecret</span>(obj);  <span class="comment">// 可以访问obj的私有成员secret，因为int是整数类型  </span></span><br><span class="line">    <span class="comment">// MyClass&lt;std::string&gt; strObj(&quot;hello&quot;);  </span></span><br><span class="line">    <span class="comment">// revealSecret(strObj);  // 这行代码会编译失败，因为std::string不是整数类型  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>每个类有其特有类型的友元函数，不同类之间不共用，同类之间共用。</p>
-<h4 id="非约束（unbound）模板友元"><a href="#非约束（unbound）模板友元" class="headerlink" title="非约束（unbound）模板友元"></a>非约束（unbound）模板友元</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    T secret;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="built_in">MyClass</span>(T s) : <span class="built_in">secret</span>(s) &#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt;  </span><br><span class="line">    <span class="function"><span class="keyword">friend</span> <span class="type">void</span> <span class="title">revealSecret</span><span class="params">(MyClass&lt;U&gt;&amp; obj)</span></span>;  <span class="comment">// 非约束模板友元函数  </span></span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">revealSecret</span><span class="params">(MyClass&lt;T&gt;&amp; obj)</span> </span>&#123;  </span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;The secret is: &quot;</span> &lt;&lt; obj.secret &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="function">MyClass&lt;<span class="type">int</span>&gt; <span class="title">obj</span><span class="params">(<span class="number">42</span>)</span></span>;  </span><br><span class="line">    <span class="built_in">revealSecret</span>(obj);  <span class="comment">// 可以访问obj的私有成员secret  </span></span><br><span class="line">    <span class="function">MyClass&lt;std::string&gt; <span class="title">strObj</span><span class="params">(<span class="string">&quot;hello&quot;</span>)</span></span>;  </span><br><span class="line">    <span class="built_in">revealSecret</span>(strObj);  <span class="comment">// 也可以访问strObj的私有成员secret，因为没有约束  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/02/13/%E6%A8%A1%E6%9D%BF%E7%B1%BB%E4%B8%8E%E5%8F%8B%E5%85%83-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-模板具体化-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/02/12/%E6%A8%A1%E6%9D%BF%E5%85%B7%E4%BD%93%E5%8C%96-md/" target="_blank">模板具体化.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/02/12/%E6%A8%A1%E6%9D%BF%E5%85%B7%E4%BD%93%E5%8C%96-md/" class="archive-article-date">
-        <time datetime="2024-02-12T05:48:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-02-12</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>类模板与函数模板很相似，因为可以有隐式实例化、显式实例化和显式具体化，它们统称为具体化（specialization）。模板以泛型的方式描述类，而具体化是使用具体的类型生成类声明。</p>
-<h4 id="隐式实例化"><a href="#隐式实例化" class="headerlink" title="隐式实例化"></a>隐式实例化</h4><p>声明一个或多个对象，并指出所需的类型，而编译器使用通用模板提供的定义来生成具体的类定义，这称为隐式实例化（implicit instantiation）。</p>
-<p>隐式实例化发生在编译器遇到对模板类的使用，但尚未为该特定类型生成实例化代码时。编译器会自动根据模板定义和所提供的类型参数生成相应的类代码。这个过程对用户是透明的，不需要显式地请求编译器为特定类型生成模板类的实例化。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">// 通用模板类定义  </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="built_in">MyClass</span>(T value) : <span class="built_in">m_value</span>(value) &#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> <span class="type">const</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Value: &quot;</span> &lt;&lt; m_value &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    T m_value;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// 隐式实例化 MyClass&lt;int&gt;  </span></span><br><span class="line">    <span class="function">MyClass&lt;<span class="type">int</span>&gt; <span class="title">intObj</span><span class="params">(<span class="number">42</span>)</span></span>;  </span><br><span class="line">    intObj.<span class="built_in">print</span>(); <span class="comment">// 输出: Value: 42  </span></span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 隐式实例化 MyClass&lt;double&gt;  </span></span><br><span class="line">    <span class="function">MyClass&lt;<span class="type">double</span>&gt; <span class="title">doubleObj</span><span class="params">(<span class="number">3.14</span>)</span></span>;  </span><br><span class="line">    doubleObj.<span class="built_in">print</span>(); <span class="comment">// 输出: Value: 3.14  </span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="显示实例化"><a href="#显示实例化" class="headerlink" title="显示实例化"></a>显示实例化</h4><p>显示实例化（explicit instantiation）是当你显式地请求编译器为特定类型生成模板类的实例化代码。这可以通过在模板类定义之外使用特定的语法来实现。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">// 通用模板类定义  </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="built_in">MyClass</span>(T value) : <span class="built_in">m_value</span>(value) &#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> <span class="type">const</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Value of type &quot;</span> &lt;&lt; <span class="built_in">typeid</span>(T).<span class="built_in">name</span>() &lt;&lt; <span class="string">&quot;: &quot;</span> &lt;&lt; m_value &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    T m_value;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">template</span> <span class="keyword">class</span> <span class="title class_">MyClass</span>&lt;<span class="type">int</span>&gt;;  <span class="comment">// 显示实例化 MyClass&lt;int&gt;  </span></span><br><span class="line"><span class="keyword">template</span> <span class="keyword">class</span> <span class="title class_">MyClass</span>&lt;<span class="type">double</span>&gt;;  <span class="comment">// 显示实例化 MyClass&lt;double&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// 由于已经进行了显示实例化，所以这里可以直接使用 MyClass&lt;int&gt;  </span></span><br><span class="line">    <span class="function">MyClass&lt;<span class="type">int</span>&gt; <span class="title">intObj</span><span class="params">(<span class="number">42</span>)</span></span>;  </span><br><span class="line">    intObj.<span class="built_in">print</span>(); <span class="comment">// 输出: Value of type i, probably &#x27;i&#x27; for &#x27;int&#x27;: 42  </span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="显示具体化"><a href="#显示具体化" class="headerlink" title="显示具体化"></a>显示具体化</h4><p>显式具体化（explicit specialization）是特定类型（用于替换模板中 的泛型）的定义。有时候，可能需要在为特殊类型实例化时，对模板进 行修改，使其行为不同。在这种情况下，可以创建显式具体化。例如， 假设已经为用于表示排序后数组的类（元素在加入时被排序）定义了一 个模板。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">// 通用模板类定义  </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SortedArray</span> &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(T value)</span> </span>&#123;  </span><br><span class="line">        <span class="comment">// 在通用模板中，我们简单地将新值插入到数组中，并保持数组排序  </span></span><br><span class="line">        <span class="keyword">auto</span> it = std::<span class="built_in">lower_bound</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>(), value);  </span><br><span class="line">        data.<span class="built_in">insert</span>(it, value);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> <span class="type">const</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; value : data) &#123;  </span><br><span class="line">            std::cout &lt;&lt; value &lt;&lt; <span class="string">&quot; &quot;</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line">        std::cout &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    std::vector&lt;T&gt; data;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 显式具体化针对 int 类型  </span></span><br><span class="line"><span class="keyword">template</span> &lt;&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SortedArray</span>&lt;<span class="type">int</span>&gt; &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> value)</span> </span>&#123;  </span><br><span class="line">        <span class="comment">// 在 int 类型的特化版本中，我们在添加元素之前做一些额外的操作  </span></span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Adding an integer: &quot;</span> &lt;&lt; value &lt;&lt; std::endl;  </span><br><span class="line">  </span><br><span class="line">        <span class="comment">// 调用通用模板的 add 方法（如果需要的话）  </span></span><br><span class="line">        <span class="comment">// SortedArray&lt;int&gt;::add(value); // 如果需要的话，可以显式调用  </span></span><br><span class="line">  </span><br><span class="line">        <span class="comment">// 或者，提供 int 类型特定的实现  </span></span><br><span class="line">        data.<span class="built_in">push_back</span>(value);  </span><br><span class="line">        std::<span class="built_in">sort</span>(data.<span class="built_in">begin</span>(), data.<span class="built_in">end</span>()); <span class="comment">// 保持数组排序，但这不是最高效的做法  </span></span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> <span class="type">const</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; value : data) &#123;  </span><br><span class="line">            std::cout &lt;&lt; value &lt;&lt; <span class="string">&quot; &quot;</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line">        std::cout &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; data;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    SortedArray&lt;<span class="type">float</span>&gt; floatArray;  </span><br><span class="line">    floatArray.<span class="built_in">add</span>(<span class="number">3.14f</span>);  </span><br><span class="line">    floatArray.<span class="built_in">add</span>(<span class="number">2.71f</span>);  </span><br><span class="line">    floatArray.<span class="built_in">print</span>(); <span class="comment">// 输出排序后的浮点数数组  </span></span><br><span class="line">  </span><br><span class="line">    SortedArray&lt;<span class="type">int</span>&gt; intArray;  </span><br><span class="line">    intArray.<span class="built_in">add</span>(<span class="number">3</span>);  </span><br><span class="line">    intArray.<span class="built_in">add</span>(<span class="number">1</span>);  </span><br><span class="line">    intArray.<span class="built_in">add</span>(<span class="number">2</span>);  </span><br><span class="line">    intArray.<span class="built_in">print</span>(); <span class="comment">// 输出排序后的整数数组，同时在添加时输出额外信息  </span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="部分具体化"><a href="#部分具体化" class="headerlink" title="部分具体化"></a>部分具体化</h4><p>类模板的部分具体化（Partial Specialization）是C++模板编程中的一个高级特性，它允许你为模板类的某些特定类型组合提供专门的实现。部分具体化不同于普通的模板特化（Template Specialization），后者是为整个模板提供特定的实现。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;General template for MyClass&lt;T1, T2&gt;.&quot;</span> &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 部分具体化：为第一个参数T1提供具体类型int  </span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T2&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>&lt;<span class="type">int</span>, T2&gt; &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Partial specialization for int and T2.&quot;</span> &lt;&lt; std::endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    MyClass&lt;<span class="type">int</span>, <span class="type">double</span>&gt; obj1;  </span><br><span class="line">    obj1.<span class="built_in">print</span>();  <span class="comment">// 输出：Partial specialization for int and T2.  </span></span><br><span class="line">  </span><br><span class="line">    MyClass&lt;<span class="type">double</span>, <span class="type">int</span>&gt; obj2;  </span><br><span class="line">    obj2.<span class="built_in">print</span>();  <span class="comment">// 输出：General template for MyClass&lt;T1, T2&gt;.  </span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="函数模板显示具体化"><a href="#函数模板显示具体化" class="headerlink" title="函数模板显示具体化"></a>函数模板显示具体化</h4><p>显式具体化是直接为某个特定类型提供模板函数的实现。这种方式需要明确地指定类型。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">(T t)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// 通用版本的实现  </span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;General template: &quot;</span> &lt;&lt; t &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 显式具体化为int类型  </span></span><br><span class="line"><span class="keyword">template</span> &lt;&gt;  </span><br><span class="line"><span class="type">void</span> <span class="built_in">foo</span>&lt;<span class="type">int</span>&gt;(<span class="type">int</span> t) &#123;  </span><br><span class="line">    <span class="comment">// int类型的特定实现  </span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Specialized template for int: &quot;</span> &lt;&lt; t &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="built_in">foo</span>(<span class="number">3.14</span>);  <span class="comment">// 调用通用版本  </span></span><br><span class="line">    <span class="built_in">foo</span>(<span class="number">42</span>);    <span class="comment">// 调用int类型的特定版本  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="函数模板隐式具体化"><a href="#函数模板隐式具体化" class="headerlink" title="函数模板隐式具体化"></a>函数模板隐式具体化</h4><p>隐式具体化是编译器自动为某些特定类型提供模板函数的实现。这通常是通过提供一个非模板函数来实现的，该函数的签名与模板函数签名在除了返回类型之外的所有方面都相同。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">bar</span><span class="params">(T t)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// 通用版本的实现  </span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;General template: &quot;</span> &lt;&lt; t &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 隐式具体化为int类型  </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">bar</span><span class="params">(<span class="type">int</span> t)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// int类型的特定实现  </span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Implicit specialized template for int: &quot;</span> &lt;&lt; t &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="built_in">bar</span>(<span class="number">3.14</span>);  <span class="comment">// 调用通用版本  </span></span><br><span class="line">    <span class="built_in">bar</span>(<span class="number">42</span>);    <span class="comment">// 调用int类型的隐式具体化版本  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/02/12/%E6%A8%A1%E6%9D%BF%E5%85%B7%E4%BD%93%E5%8C%96-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -1355,8 +379,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

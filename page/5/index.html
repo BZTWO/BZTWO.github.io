@@ -142,6 +142,203 @@
             
 
   
+    <article id="post-线段树-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/11/20/%E7%BA%BF%E6%AE%B5%E6%A0%91-md/" target="_blank">线段树.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/11/20/%E7%BA%BF%E6%AE%B5%E6%A0%91-md/" class="archive-article-date">
+        <time datetime="2023-11-20T08:35:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-20</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p>线段树的主要作用是处理数组的<strong>区间查询</strong>（range query）和<strong>元素更新</strong>（update）操作，并支持在<strong>O(logn)<strong>的</strong>时间复杂度</strong>内进行查询和更新操作。它是一种平衡二叉树，每个节点用于维护一个区间的权值，因此可以高效地处理涉及区间修改、单点查询；区间修改、区间查询；单点修改、区间查询；连续最长区间等问题。</p>
+<p>线段树可以用于解很多类问题，如区间修改，单点查询；区间修改，区间查询；单点修改，区间查询；连续最长区间等等。</p>
+<p>线段树的简单实现</p>
+<p>插入：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">tree_insert</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; a, <span class="type">int</span> pos, <span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> num)</span> </span>&#123;</span><br><span class="line">	a[pos]++;      <span class="comment">//对路径上经过的点加1</span></span><br><span class="line">	<span class="keyword">if</span> (num == right &amp;&amp; num == left)      <span class="comment">//区间只包含一个元素</span></span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> mid = (left + right) &gt;&gt; <span class="number">1</span>;      <span class="comment">//区间中点</span></span><br><span class="line">	<span class="type">int</span> left_child = pos * <span class="number">2</span> + <span class="number">1</span>;      <span class="comment">//左孩子数组对应下标</span></span><br><span class="line">	<span class="type">int</span> right_child = pos * <span class="number">2</span> + <span class="number">2</span>;      <span class="comment">//右孩子数组对应下标</span></span><br><span class="line">	<span class="keyword">if</span> (num &lt;= mid)</span><br><span class="line">		<span class="built_in">tree_insert</span>(a, left_child, left, mid, num);      <span class="comment">//将num插入到该区间的左孩子区间中</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">tree_insert</span>(a, right_child, mid + <span class="number">1</span>, right, num);      <span class="comment">////将num插入到该区间的右孩子区间中</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查找：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">tree_search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; a, <span class="type">int</span> pos, <span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> num)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (num == right &amp;&amp; num == left)      <span class="comment">//该区间只有一个元素（找到该元素，返回）</span></span><br><span class="line">		<span class="keyword">return</span> a[pos];</span><br><span class="line">	<span class="type">int</span> mid = (left + right) &gt;&gt; <span class="number">1</span>;      <span class="comment">//计算区间中点</span></span><br><span class="line">	<span class="type">int</span> left_child = pos * <span class="number">2</span> + <span class="number">1</span>;      </span><br><span class="line">	<span class="type">int</span> right_child = pos * <span class="number">2</span> + <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">if</span> (num &lt;= mid)</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">tree_search</span>(a, left_child, left, mid, num);      <span class="comment">//在左孩子区间去寻找num</span></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">tree_search</span>(a, right_child, mid + <span class="number">1</span>, right, num);      <span class="comment">//在右孩子区间去寻找num</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打印：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">print_tree</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; a, <span class="type">int</span> pos, <span class="type">int</span> left, <span class="type">int</span> right)</span></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;[&quot;</span> &lt;&lt; left &lt;&lt; <span class="string">&quot;,&quot;</span> &lt;&lt; right &lt;&lt; <span class="string">&quot;] &quot;</span> &lt;&lt; <span class="string">&quot;a[&quot;</span> &lt;&lt; pos &lt;&lt; <span class="string">&quot;]=&quot;</span> &lt;&lt; a[pos] &lt;&lt; endl;</span><br><span class="line">    <span class="comment">//left：左孩子， right：右孩子， pos：在数组中的对应下表， a[pos]：数组中存储的值</span></span><br><span class="line">	<span class="keyword">if</span> (left == right)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> mid = (left + right) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">print_tree</span>(a, pos * <span class="number">2</span> + <span class="number">1</span>, left, mid);</span><br><span class="line">	<span class="built_in">print_tree</span>(a, pos * <span class="number">2</span> + <span class="number">2</span>, mid + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>主函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">a</span><span class="params">(<span class="number">100</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">	<span class="type">int</span> left = <span class="number">0</span>, right = <span class="number">5</span>;</span><br><span class="line">	<span class="built_in">tree_insert</span>(a, <span class="number">0</span>, left, right, <span class="number">3</span>);</span><br><span class="line">	<span class="built_in">tree_insert</span>(a, <span class="number">0</span>, left, right, <span class="number">5</span>);</span><br><span class="line">	<span class="built_in">tree_insert</span>(a, <span class="number">0</span>, left, right, <span class="number">4</span>);</span><br><span class="line">	<span class="built_in">print_tree</span>(a, <span class="number">0</span>, left, right);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<img src="/2023/11/20/%E7%BA%BF%E6%AE%B5%E6%A0%91-md/Snipaste_2023-11-20_17-01-29.png" class="" title="Snipaste_2023-11-20_17-01-29">
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/11/20/%E7%BA%BF%E6%AE%B5%E6%A0%91-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-归并排序-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/11/19/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-md/" target="_blank">归并排序.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/11/19/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-md/" class="archive-article-date">
+        <time datetime="2023-11-19T08:57:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-19</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>归并排序（Merge Sort）是一种分治算法，将待排序的序列划分为若干个子序列，对每个子序列进行排序，最后将已经排序的子序列合并成一个有序的序列。其基本思想是将待排序的序列分为若干个子序列，对每个子序列进行排序，最终得到一个有序的序列。</p>
+<p>归并排序的主要<strong>步骤</strong>：</p>
+<p>1.将待排序的序列平均分成两个子序列，递归地对每个子序列进行排序；<br>2.将已经排序的子序列合并成一个有序的序列，具体实现方式为将相邻的两个有序子序列进行合并；<br>3.重复步骤1和2，直到序列长度为1或0，即序列已经完全有序。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">arr</span><span class="params">(<span class="number">100</span>,<span class="number">0</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> left, <span class="type">int</span> right)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (left &gt;= right)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> mid = (left + right) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">merge</span>(nums, left, mid);</span><br><span class="line">	<span class="built_in">merge</span>(nums, mid + <span class="number">1</span>, right);</span><br><span class="line">	<span class="type">int</span> leftPos = left, midPos = mid + <span class="number">1</span>, curPos = left;</span><br><span class="line">	<span class="keyword">while</span> (leftPos &lt;= mid &amp;&amp; midPos &lt;= right) &#123;      <span class="comment">//公共部分</span></span><br><span class="line">		arr[curPos++] = nums[leftPos] &lt;= nums[midPos] ? nums[leftPos++] : nums[midPos++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (leftPos &lt;= mid) &#123;      <span class="comment">//左边剩余部分</span></span><br><span class="line">		arr[curPos++] = nums[leftPos++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (midPos &lt;= right) &#123;       <span class="comment">//右边剩余部分</span></span><br><span class="line">		arr[curPos++] = nums[midPos++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = left; i &lt;= right; i++) nums[i] = arr[i];      <span class="comment">//将原数组中的值替换成为排序后的</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; nums = &#123; <span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span> &#125;;</span><br><span class="line">	<span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">	<span class="built_in">merge</span>(nums, <span class="number">0</span>, n - <span class="number">1</span>);</span><br><span class="line">	for_each(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), [](<span class="keyword">auto</span> num) &#123; cout &lt;&lt; num &lt;&lt; <span class="string">&quot; &quot;</span>; &#125;);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/11/19/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-md/Snipaste_2023-11-19_17-01-27.png" class="" title="Snipaste_2023-11-19_17-01-27">
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">排序算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/11/19/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Lambda表达式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
