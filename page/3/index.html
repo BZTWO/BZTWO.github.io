@@ -142,6 +142,541 @@
             
 
   
+    <article id="post-scrapy-l-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/03/28/scrapy-l-md/" target="_blank">scrapy_l.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/03/28/scrapy-l-md/" class="archive-article-date">
+        <time datetime="2024-03-28T01:06:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-28</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<h4 id="安装框架"><a href="#安装框架" class="headerlink" title="安装框架"></a>安装框架</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//使用pip进行安装</span><br><span class="line">pip install pywin32</span><br><span class="line">pip install Scrapy</span><br><span class="line">pip install lxml //一般不用自己安装</span><br><span class="line">pip install pyOpenSSL //一般不用自己安装</span><br><span class="line">pip install Scrapy</span><br></pre></td></tr></table></figure>
+
+<h4 id="Scrapy框架介绍"><a href="#Scrapy框架介绍" class="headerlink" title="Scrapy框架介绍"></a>Scrapy框架介绍</h4><p>Scrapy是一个用于网络抓取的快速高级框架，它基于Python语言编写，可以用于数据挖掘、监测和自动化测试等任务。Scrapy的用途广泛，可以快速地抓取网页并从中提取结构化数据。</p>
+<p>Scrapy框架的主要特点包括：</p>
+<ol>
+<li><p><strong>异步网络请求</strong>：Scrapy采用Twisted异步网络库来处理网络通讯，这意味着它可以在等待网页响应的同时，继续发送其他请求，从而大大提高抓取效率。</p>
+</li>
+<li><p><strong>基于组件的架构</strong>：Scrapy的设计非常模块化，主要由五大组件组成，包括引擎(Scrapy Engine)、调度器(Scheduler)、下载器(Downloader)、爬虫(Spiders)和实体管道(Item Pipeline)。这些组件各自负责不同的功能，并通过数据流进行通信，使得用户可以轻松地对框架进行扩展和定制。</p>
+</li>
+<li><p><strong>中间件支持</strong>：Scrapy提供了中间件机制，允许用户在不修改核心组件的情况下，增加或修改请求和响应的处理逻辑。</p>
+</li>
+<li><p><strong>可扩展性</strong>：Scrapy是一个高度可扩展的框架，用户可以通过编写自定义的爬虫、中间件和管道等组件，来满足特定的抓取需求。</p>
+</li>
+<li><p><strong>支持多种输出格式</strong>：Scrapy可以将抓取的数据以多种格式输出，如JSON、CSV、XML等，方便用户进行后续的数据处理和分析。</p>
+</li>
+<li><p><strong>强大的选择器</strong>：Scrapy内置了强大的选择器库，使得用户可以方便地提取HTML或XML中的结构化数据。</p>
+</li>
+<li><p><strong>自动处理cookies和会话</strong>：Scrapy能够自动处理cookies和会话，使得用户可以方便地模拟登录和会话操作。</p>
+</li>
+<li><p><strong>内置去重机制</strong>：Scrapy内置了URL去重机制，可以避免重复抓取相同的页面，节省资源和时间。</p>
+</li>
+</ol>
+<p>总的来说，Scrapy是一个功能强大、易于扩展的网络抓取框架，适用于各种规模的网络抓取任务。无论是个人开发者还是大型企业，都可以利用Scrapy来高效地抓取和分析网络数据。</p>
+<img src="/2024/03/28/scrapy-l-md/PixPin_2024-03-28_09-16-48.png" class="">
+
+<h4 id="项目实践"><a href="#项目实践" class="headerlink" title="项目实践"></a>项目实践</h4><h5 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\86157\Desktop&gt;scrapy startproject scr2 </span><br></pre></td></tr></table></figure>
+
+<h5 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h5><h6 id="定义Item容器"><a href="#定义Item容器" class="headerlink" title="定义Item容器"></a>定义Item容器</h6><p>​	在<code>items.py</code>中建立相应的字段</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define here the models for your scraped items</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># See documentation in:</span></span><br><span class="line"><span class="comment"># https://docs.scrapy.org/en/latest/topics/items.html</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Scr2Item</span>(scrapy.Item):</span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    <span class="comment"># name = scrapy.Field()</span></span><br><span class="line">    title = scrapy.Field()</span><br><span class="line">    link = scrapy.Field()</span><br><span class="line">    desc = scrapy.Field()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="编写爬虫"><a href="#编写爬虫" class="headerlink" title="编写爬虫"></a>编写爬虫</h6><p>spider是用于从网站上爬取数据的类，包含一个用于西在的初始化URL，然后是如何跟进网页的链接以及如何分析页面中的内容，还有提取生成item的方法。</p>
+<p>在spider下创建一个自己的文件用于分析和提取页面内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestSpider</span>(scrapy.Spider):</span><br><span class="line">    name = <span class="string">&#x27;test1&#x27;</span>      <span class="comment">#name必须是唯一的，蜘蛛的名字</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;https://www.runoob.com/&#x27;</span>]      <span class="comment">#蜘蛛爬取的范围</span></span><br><span class="line">    start_urls = [</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/html/html5-intro.html&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/html/html-headings.html&#x27;</span></span><br><span class="line">        ]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">page_parse</span>(<span class="params">self, response</span>):     <span class="comment">#分析方法</span></span><br><span class="line">         filename = response.url.split(<span class="string">&quot;/&quot;</span>)[-<span class="number">2</span>]</span><br><span class="line">         <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                f.write(response.body)</span><br></pre></td></tr></table></figure>
+
+<h6 id="提取数据"><a href="#提取数据" class="headerlink" title="提取数据"></a>提取数据</h6><p>在Scrapy框架中，Selectors（选择器）是用于从网页中提取数据的工具。关于Selectors的选择器的四个基本方法，以下是详细的介绍：</p>
+<ol>
+<li>**xpath()**：此方法用于返回一系列的selectors，每一个select表示一个xpath参数表达式选择的节点。XPath是一种在XML文档中定位信息的方式，它同样可以用于HTML。通过编写XPath表达式，可以精确地选择网页中的特定元素或内容。</li>
+<li>**css()**：此方法同样返回一系列的selectors，但它是基于CSS选择器来定位网页元素的。CSS选择器是应用于HTML文档样式中的语言，可以选择具有某些样式的节点。这使得开发者可以使用与样式定义相似的语法来提取网页数据。</li>
+<li>**extract()**：此方法用于从选中的数据中提取信息，并返回一个unicode字符串。这通常用于在定位到特定元素后，提取该元素内的文本或属性值。</li>
+<li>**re()**：此方法使用正则表达式从网页中提取内容，并返回一个unicode字符串。正则表达式是一种强大的文本处理工具，可以匹配和提取符合特定模式的文本。</li>
+</ol>
+<p>这四个方法共同构成了Scrapy中Selectors选择器的核心功能，使得开发者能够灵活地提取和分析网页数据。在使用这些方法时，通常需要结合具体的网页结构和内容来编写相应的表达式或模式，以实现精确的数据提取。</p>
+<p>使用方法：</p>
+<img src="/2024/03/28/scrapy-l-md/PixPin_2024-03-28_15-10-37.png" class="">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">scrapy shell &quot;https://www.runoob.com/html/html5-intro.html&quot;   //进入shell</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; response.body    //查看网页代码</span><br><span class="line">&gt;&gt;&gt; response.headers   //查看网页头部</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//title&#x27;)    //查看title，返回list</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//title&#x27;).extract()    //得到头部的list字符串化</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//title/text&#x27;).extract()    //去掉标签的文字</span><br><span class="line">&gt;&gt;&gt; response.xpath(&#x27;//div[@class=&quot;hl-main&quot;]/span/text()&#x27;).extract()</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="存储内容"><a href="#存储内容" class="headerlink" title="存储内容"></a>存储内容</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> scr2.items <span class="keyword">import</span> Scr2Item</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestSpider</span>(scrapy.Spider):</span><br><span class="line">    name = <span class="string">&#x27;test1&#x27;</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;https://www.runoob.com/&#x27;</span>]</span><br><span class="line">    start_urls = [</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/html/html-formatting.html&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;https://www.runoob.com/css/css-tutorial.html&#x27;</span></span><br><span class="line">        ]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parse</span>(<span class="params">self, response</span>):</span><br><span class="line">        <span class="comment">#filename = response.url.split(&quot;/&quot;)[-2]</span></span><br><span class="line">        <span class="comment">#with open(filename, &#x27;wb&#x27;) as f:</span></span><br><span class="line">            <span class="comment">#f.write(response.body)</span></span><br><span class="line">        sel = scrapy.selector.Selector(response)</span><br><span class="line">        sites = sel.xpath(<span class="string">&#x27;//div[@class=&quot;article-intro&quot;]/p&#x27;</span>)</span><br><span class="line">        items = []</span><br><span class="line">        <span class="keyword">for</span> site <span class="keyword">in</span> sites:</span><br><span class="line">            item = Scr2Item()</span><br><span class="line">            item[<span class="string">&#x27;title&#x27;</span>] = site.xpath(<span class="string">&#x27;a/text()&#x27;</span>).extract()</span><br><span class="line">            item[<span class="string">&#x27;link&#x27;</span>] = site.xpath(<span class="string">&#x27;a/@href&#x27;</span>).extract()</span><br><span class="line">            item[<span class="string">&#x27;desc&#x27;</span>] = site.xpath(<span class="string">&#x27;text()&#x27;</span>).extract()</span><br><span class="line">            items.append(item)</span><br><span class="line">            <span class="comment">#title = site.xpath(&#x27;a/text()&#x27;).extract()</span></span><br><span class="line">            <span class="comment">#link = site.xpath(&#x27;a/@href&#x27;).extract()</span></span><br><span class="line">            <span class="comment">#desc = site.xpath(&#x27;text()&#x27;).extract()</span></span><br><span class="line">            <span class="comment">#print(title, link, desc)</span></span><br><span class="line">        <span class="keyword">return</span> items</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/03/28/scrapy-l-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python基础语法-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/03/20/python%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-md/" target="_blank">python基础语法.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/03/20/python%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-md/" class="archive-article-date">
+        <time datetime="2024-03-20T06:35:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-20</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p>在Python中，<code>list</code>、<code>tuple</code>、<code>set</code>、<code>dict</code>是常用的数据结构，而<code>map</code>则是一个内置函数，用于应用一个函数到所有列表的元素上。下面我会详细解释这些数据结构以及它们的常用方法，并给出一些示例。</p>
+<h3 id="List（列表）"><a href="#List（列表）" class="headerlink" title="List（列表）"></a>List（列表）</h3><p>列表是一个有序的元素集合，元素之间用逗号分隔，整个列表由方括号包围。</p>
+<p><strong>常用方法：</strong></p>
+<ul>
+<li><code>append(x)</code>: 添加一个元素到列表的末尾。</li>
+<li><code>extend(L)</code>: 将另一个列表的所有元素添加到列表的末尾。</li>
+<li><code>insert(i, x)</code>: 在指定位置插入一个元素。</li>
+<li><code>remove(x)</code>: 移除列表中第一个值为x的元素。</li>
+<li><code>pop([i])</code>: 移除并返回列表中的元素。如果指定了索引，则移除该索引处的元素。</li>
+<li><code>index(x)</code>: 返回列表中第一个值为x的元素的索引。</li>
+<li><code>count(x)</code>: 返回列表中值为x的元素的个数。</li>
+<li><code>sort()</code>: 对列表进行排序。</li>
+<li><code>reverse()</code>: 反转列表中的元素。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">my_list.append(<span class="number">4</span>)  <span class="comment"># [1, 2, 3, 4]</span></span><br><span class="line">my_list.extend([<span class="number">5</span>, <span class="number">6</span>])  <span class="comment"># [1, 2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Tuple（元组）"><a href="#Tuple（元组）" class="headerlink" title="Tuple（元组）"></a>Tuple（元组）</h3><p>元组与列表类似，但是元组是不可变的。元素之间用逗号分隔，整个元组可以由圆括号或不加括号表示。</p>
+<p><strong>常用方法：</strong></p>
+<ul>
+<li><code>index(x)</code>: 返回元组中第一个值为x的元素的索引。</li>
+<li><code>count(x)</code>: 返回元组中值为x的元素的个数。</li>
+</ul>
+<p>由于元组是不可变的，它没有像列表那样的修改方法（如<code>append</code>、<code>extend</code>等）。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_tuple = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">index = my_tuple.index(<span class="number">2</span>)  <span class="comment"># 1</span></span><br><span class="line">count = my_tuple.count(<span class="number">2</span>)  <span class="comment"># 1</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Set（集合）"><a href="#Set（集合）" class="headerlink" title="Set（集合）"></a>Set（集合）</h3><p>集合是一个无序且不包含重复元素的元素集合。</p>
+<p><strong>常用方法：</strong></p>
+<ul>
+<li><code>add(x)</code>: 添加一个元素到集合中。</li>
+<li><code>remove(x)</code>: 移除集合中的一个元素。</li>
+<li><code>discard(x)</code>: 移除集合中的一个元素，如果该元素不存在则不引发异常。</li>
+<li><code>pop()</code>: 移除并返回集合中的任意元素。</li>
+<li><code>union(other)</code>: 返回两个集合的并集。</li>
+<li><code>intersection(other)</code>: 返回两个集合的交集。</li>
+<li><code>difference(other)</code>: 返回集合的差集，即属于当前集合但不属于另一个集合的元素。</li>
+<li><code>symmetric_difference(other)</code>: 返回两个集合的对称差集。</li>
+<li><code>isdisjoint(other)</code>: 如果两个集合没有交集，则返回True。</li>
+<li><code>issubset(other)</code>: 如果当前集合是另一个集合的子集，则返回True。</li>
+<li><code>issuperset(other)</code>: 如果当前集合是另一个集合的超集，则返回True。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_set = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">my_set.add(<span class="number">4</span>)  <span class="comment"># &#123;1, 2, 3, 4&#125;</span></span><br><span class="line">my_set.remove(<span class="number">2</span>)  <span class="comment"># &#123;1, 3, 4&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Dict（字典）"><a href="#Dict（字典）" class="headerlink" title="Dict（字典）"></a>Dict（字典）</h3><p>字典是一个无序的键值对集合。</p>
+<p><strong>常用方法：</strong></p>
+<ul>
+<li><code>get(key, default=None)</code>: 返回指定键的值，如果键不存在则返回默认值。</li>
+<li><code>keys()</code>: 返回一个包含字典所有键的视图对象。</li>
+<li><code>values()</code>: 返回一个包含字典所有值的视图对象。</li>
+<li><code>items()</code>: 返回一个包含字典所有键值对的视图对象。</li>
+<li><code>pop(key[, default])</code>: 如果键存在于字典中则移除它并返回它的值，否则返回默认值。如果未指定默认值且键不存在，则引发KeyError异常。</li>
+<li><code>popitem()</code>: 移除并返回字典中的任意键值对。</li>
+<li><code>update([other])</code>: 使用另一个字典的键值对更新当前字典。</li>
+<li><code>clear()</code>: 移除字典中的所有项。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">my_dict = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">3</span>&#125;</span><br><span class="line">value = my_dict.get(<span class="string">&#x27;b&#x27;</span>)  <span class="comment"># 2</span></span><br><span class="line">keys = my_dict.keys</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="map（内置函数）"><a href="#map（内置函数）" class="headerlink" title="map（内置函数）"></a>map（内置函数）</h3><p>在Python中，<code>map()</code>是一个内置函数，它接受一个函数和一个或多个序列（例如列表、元组等）作为输入，并返回一个新的迭代器，该迭代器生成将函数应用于每个序列项的结果。<code>map()</code>函数本身并没有“方法”，因为它是一个函数而不是一个对象。但是，你可以使用它来执行各种操作，通过传递不同的函数和序列。</p>
+<p>下面是<code>map()</code>的基本用法和一些示例：</p>
+<h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义一个函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">square</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x ** <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个数字列表</span></span><br><span class="line">numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用map函数将square函数应用于numbers列表的每个元素</span></span><br><span class="line">squared = <span class="built_in">map</span>(square, numbers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将map对象转换为列表以查看结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(squared))  <span class="comment"># 输出: [1, 4, 9, 16, 25]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="多个序列作为输入"><a href="#多个序列作为输入" class="headerlink" title="多个序列作为输入"></a>多个序列作为输入</h4><p><code>map()</code>也可以接受多个序列作为输入，并将函数应用于这些序列中对应位置的元素。这些序列的长度应该相同。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义一个函数，用于将两个数相加</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">x, y</span>):</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建两个数字列表</span></span><br><span class="line">nums1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">nums2 = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用map函数将add函数应用于nums1和nums2列表的对应元素</span></span><br><span class="line">sums = <span class="built_in">map</span>(add, nums1, nums2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将map对象转换为列表以查看结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(sums))  <span class="comment"># 输出: [5, 7, 9]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="与lambda表达式结合使用"><a href="#与lambda表达式结合使用" class="headerlink" title="与lambda表达式结合使用"></a>与lambda表达式结合使用</h4><p><code>map()</code>经常与<code>lambda</code>表达式一起使用，以便在需要简单函数时不必定义完整的函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个数字列表</span></span><br><span class="line">numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用map和lambda表达式将每个元素乘以2</span></span><br><span class="line">doubled = <span class="built_in">map</span>(<span class="keyword">lambda</span> x: x * <span class="number">2</span>, numbers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将map对象转换为列表以查看结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(doubled))  <span class="comment"># 输出: [2, 4, 6, 8, 10]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li><code>map()</code>返回的是一个迭代器，如果你需要查看或使用它的结果，你需要将其转换为列表或其他可迭代对象。</li>
+<li>传递给<code>map()</code>的序列长度应该相同，否则在最短的序列耗尽后，<code>map()</code>会停止迭代。</li>
+<li><code>map()</code>函数在Python 3中返回的是一个迭代器，而在Python 2中它返回的是一个列表。这是Python 3中的一个重要变化。</li>
+</ul>
+<p>虽然<code>map()</code>函数在某些情况下很有用，但需要注意的是，对于简单的列表推导式来说，它可能不是最高效或最清晰的选择。列表推导式通常更简洁、易读，并且在性能上可能更优。</p>
+<p>例如，上述<code>map()</code>和<code>lambda</code>表达式的例子可以用列表推导式重写为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用列表推导式将每个元素乘以2</span></span><br><span class="line">doubled = [x * <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> numbers]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看结果</span></span><br><span class="line"><span class="built_in">print</span>(doubled)  <span class="comment"># 输出: [2, 4, 6, 8, 10]</span></span><br></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">python基础语法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/03/20/python%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-随机数生成-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/03/09/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90-md/" target="_blank">随机数生成.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/03/09/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90-md/" class="archive-article-date">
+        <time datetime="2024-03-09T07:39:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-09</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p>在 C++ 中，<code>&lt;random&gt;</code> 头文件提供了许多用于生成随机数的函数。常用的随机数生成函数：</p>
+<h4 id="std-random-device"><a href="#std-random-device" class="headerlink" title="std::random_device"></a>std::random_device</h4><p>生成随机数设备，用于生成随机数种子。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">std::random_device rd;</span><br><span class="line"><span class="type">int</span> seed = <span class="built_in">rd</span>();</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="std-default-random-engine"><a href="#std-default-random-engine" class="headerlink" title="std::default_random_engine"></a>std::default_random_engine</h4><p>默认的随机数生成引擎，用于生成均匀分布的随机数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std::default_random_engine gen;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="std-uniform-int-distribution"><a href="#std-uniform-int-distribution" class="headerlink" title="std::uniform_int_distribution"></a>std::uniform_int_distribution</h4><p>用于生成均匀分布的整数随机数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::uniform_int_distribution&lt;<span class="type">int</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">1</span>, <span class="number">100</span>)</span></span>;</span><br><span class="line"><span class="type">int</span> num = <span class="built_in">dist</span>(gen);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="std-uniform-real-distribution"><a href="#std-uniform-real-distribution" class="headerlink" title="std::uniform_real_distribution"></a>std::uniform_real_distribution</h4><p>用于生成均匀分布的实数随机数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::uniform_real_distribution&lt;<span class="type">double</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">0.0</span>, <span class="number">1.0</span>)</span></span>;</span><br><span class="line"><span class="type">double</span> num = <span class="built_in">dist</span>(gen);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="std-normal-distribution"><a href="#std-normal-distribution" class="headerlink" title="std::normal_distribution"></a>std::normal_distribution</h4><p>用于生成正态分布的随机数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::normal_distribution&lt;<span class="type">double</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">0.0</span>, <span class="number">1.0</span>)</span></span>;</span><br><span class="line"><span class="type">double</span> num = <span class="built_in">dist</span>(gen);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="std-bernoulli-distribution"><a href="#std-bernoulli-distribution" class="headerlink" title="std::bernoulli_distribution"></a>std::bernoulli_distribution</h4><p>用于生成伯努利分布的随机数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::bernoulli_distribution&lt;<span class="type">bool</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">0.5</span>)</span></span>;</span><br><span class="line"><span class="type">bool</span> num = <span class="built_in">dist</span>(gen);</span><br></pre></td></tr></table></figure>
+
+<p>这些函数都可以用于生成各种分布的随机数。以下是一个生成随机数的简单示例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;random&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::random_device rd;</span><br><span class="line">    <span class="function">std::default_random_engine <span class="title">gen</span><span class="params">(rd())</span></span>;</span><br><span class="line">    <span class="function">std::uniform_int_distribution&lt;<span class="type">int</span>&gt; <span class="title">dist</span><span class="params">(<span class="number">1</span>, <span class="number">100</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">        <span class="type">int</span> num = <span class="built_in">dist</span>(gen);</span><br><span class="line">        std::cout &lt;&lt; num &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个示例将生成 10 个在 1 到 100 之间的随机整数并输出。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">函数</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/03/09/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-树状数组-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/03/03/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-md/" target="_blank">树状数组.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/03/03/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-md/" class="archive-article-date">
+        <time datetime="2024-03-03T09:55:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-03</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p>树状数组，也称作“二叉索引树”（Binary Indexed Tree）或 Fenwick 树。它可以高效地实现如下两个操作：</p>
+<ol>
+<li>单点更新 update(x, delta)：把序列 x 位置的数加上一个值 delta；</li>
+<li>前缀和查询 sum(x)：查询序列 [1,…x] 区间的区间和，即位置 x 的前缀和。</li>
+</ol>
+<p>这两个操作的时间复杂度均为 O(log n)。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> add = [&amp;](vector&lt;<span class="type">int</span>&gt;&amp; bit, <span class="type">int</span> i, <span class="type">int</span> x) &#123;</span><br><span class="line">    <span class="keyword">for</span> (; i &lt;= m; i += i &amp; -i) &#123;</span><br><span class="line">        bit[i] += x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//while(i &lt;= m)&#123;</span></span><br><span class="line">    <span class="comment">//    bit[i] += x;</span></span><br><span class="line">    <span class="comment">//    i += i &amp; -i;//lowbit(p);</span></span><br><span class="line">    <span class="comment">//&#125;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">auto</span> sum = [&amp;](vector&lt;<span class="type">int</span>&gt;&amp; bit, <span class="type">int</span> i) &#123;</span><br><span class="line">    ll s = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (; i; i -= i &amp; -i) &#123;</span><br><span class="line">        s += bit[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//while(i)&#123;</span></span><br><span class="line">    <span class="comment">//    s += bit[i];</span></span><br><span class="line">    <span class="comment">//    p -= lower_bit(p);</span></span><br><span class="line">    <span class="comment">//&#125;</span></span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在上述代码中，<code>add</code> 函数实现了单点更新操作，<code>sum</code> 函数实现了前缀和查询操作。</p>
+<p>树状数组的单点更新操作，可以通过 lowbit 函数找到 x 的二进制表示中最低位的 1 所对应的十进制值，然后将 delta 加到 x 的位置，接着将 x 右移一位（即 x -&#x3D; x &amp; -x），继续进行下一轮更新。</p>
+<p>树状数组的前缀和查询操作，可以通过将 x 不断减去 x 的二进制表示中最低位的 1 所对应的十进制值，然后将 x 的前缀和累加到 s 中，继续进行下一轮查询。</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ce411u7qP/?spm_id_from=333.337.search-card.all.click&vd_source=54f770fab31251d4ff47d20981b523ca">树状数组教学视频</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/03/03/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-precisionANDsetprecision-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -858,478 +1393,6 @@
 
 
   
-    <article id="post-函数记录-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/01/21/%E5%87%BD%E6%95%B0%E8%AE%B0%E5%BD%95-md/" target="_blank">函数记录.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/01/21/%E5%87%BD%E6%95%B0%E8%AE%B0%E5%BD%95-md/" class="archive-article-date">
-        <time datetime="2024-01-21T08:26:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h4 id="cctype"><a href="#cctype" class="headerlink" title="cctype"></a>cctype</h4><p>transfrom + lambda</p>
-<ol>
-<li><code>result.begin()</code>: 这是输出范围的起始迭代器。是将转换后的元素写入的起始位置。</li>
-<li><code>result.end()</code>: 这是输出范围的结束迭代器。是不应再写入数据的位置。</li>
-<li><code>result.begin()</code>: 这是输入范围的起始迭代器。是从哪里开始获取数据来进行转换的。</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">std::<span class="built_in">transform</span>(result.<span class="built_in">begin</span>(), result.<span class="built_in">end</span>(), result.<span class="built_in">begin</span>(),   </span><br><span class="line">    [](<span class="type">unsigned</span> <span class="type">char</span> c)&#123; <span class="keyword">return</span> std::<span class="built_in">tolower</span>(c); &#125; <span class="comment">// 使用tolower函数将所有字符转换为小写    </span></span><br><span class="line">);												   <span class="comment">// 使用toupper函数将所有字符转换为大写</span></span><br></pre></td></tr></table></figure>
-
-<p>isalpha()</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalpha</span>(<span class="string">&#x27;a&#x27;</span>);<span class="comment">//----&gt;true</span></span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalpha</span>(<span class="string">&#x27;A&#x27;</span>);<span class="comment">//----&gt;true</span></span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalpha</span>(<span class="string">&#x27;1&#x27;</span>);<span class="comment">//----&gt;false</span></span><br></pre></td></tr></table></figure>
-
-<p>isalnum()</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalnum</span>(<span class="string">&#x27;a&#x27;</span>);<span class="comment">//----&gt;true</span></span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalnum</span>(<span class="string">&#x27;A&#x27;</span>);<span class="comment">//----&gt;true</span></span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">isalnum</span>(<span class="string">&#x27;1&#x27;</span>);<span class="comment">//----&gt;true</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="utility"><a href="#utility" class="headerlink" title="utility"></a>utility</h4><p>std::forward: 该函数用于实现完美转发，它接受两个参数，第一个参数是要转发的参数，第二个参数是一个布尔值，指示是否应该以左值或右值转发参数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">T&amp;&amp; <span class="title">forward</span><span class="params">(<span class="keyword">typename</span> std::remove_reference&lt;T&gt;::type&amp; t)</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">T&amp;&amp; <span class="title">forward</span><span class="params">(<span class="keyword">typename</span> std::remove_reference&lt;T&gt;::type&amp;&amp; t)</span> <span class="keyword">noexcept</span></span>;</span><br></pre></td></tr></table></figure>
-<p>std::move: 该函数用于将一个对象转换为右值引用，从而可以将其移动到另一个对象。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">T&amp;&amp; <span class="title">move</span><span class="params">(T&amp; t)</span> <span class="keyword">noexcept</span></span>;</span><br></pre></td></tr></table></figure>
-<p>std::exchange: 该函数用于交换两个变量的值。它接受两个参数，第一个参数是要交换的变量，第二个参数是用于交换的值。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">T <span class="title">exchange</span><span class="params">(T&amp; obj, T&amp;&amp; val)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>std::make_pair: 该函数用于创建一个std::pair对象，它接受两个参数，分别表示<code>pair</code>的两个元素。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T1, <span class="keyword">class</span> T2&gt;</span></span><br><span class="line"><span class="function">std::pair&lt;V1,V2&gt; <span class="title">make_pair</span><span class="params">(T1&amp;&amp; x, T2&amp;&amp; y)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>std::tie: 该函数用于将多个对象的值存储到一个tuple中。它接受一个可变参数列表，每个参数都是要存储的对象。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span>... Args&gt;</span></span><br><span class="line"><span class="function">tuple&lt;Args...&gt; <span class="title">tie</span><span class="params">(Args&amp;... args)</span></span>;</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h4><p>is_sorted()</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt; nums = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"><span class="type">bool</span> judge = <span class="built_in">is_sorted</span>();<span class="comment">//----&gt;true</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="numeric"><a href="#numeric" class="headerlink" title="numeric"></a>numeric</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt; nums1 = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line"><span class="type">int</span> sum = <span class="built_in">accumulate</span>(nums1.<span class="built_in">begin</span>(), nums1.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">vector&lt;string&gt; nums2 = &#123;<span class="string">&quot;abcde&quot;</span>, <span class="string">&quot;fghijk&quot;</span>, <span class="string">&quot;lmnopq&quot;</span>&#125;;</span><br><span class="line">string str = <span class="built_in">accumulate</span>(nums2.<span class="built_in">begin</span>(), nums2.<span class="built_in">end</span>(), <span class="built_in">string</span>());</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">函数</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/01/21/%E5%87%BD%E6%95%B0%E8%AE%B0%E5%BD%95-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-二分查找-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/01/18/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-md/" target="_blank">二分查找.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/01/18/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-md/" class="archive-article-date">
-        <time datetime="2024-01-18T08:05:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-18</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>二分查找算法（Binary Search）是一种在有序数组中查找某一特定元素的搜索算法。搜索过程从数组的中间元素开始，如果中间元素正好是目标值，则搜索过程结束；如果目标值大于或小于中间元素，则在数组大于或小于中间元素的那一半中查找，而且同样从中间元素开始比较。如果在某一步骤数组为空，则代表找不到。这种搜索算法每一次比较都使搜索范围缩小一半。</p>
-<p>数组有序：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>  </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">binarySearch</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> x)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123;  </span><br><span class="line">        <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;  </span><br><span class="line">        <span class="keyword">if</span> (arr[mid] == x) &#123;  </span><br><span class="line">            <span class="keyword">return</span> mid;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">if</span> (arr[mid] &lt; x) &#123;  </span><br><span class="line">            l = mid + <span class="number">1</span>;  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            r = mid - <span class="number">1</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">// 如果找不到目标值，则返回-1  </span></span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="type">int</span> arr[] = &#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">10</span>, <span class="number">40</span>&#125;;  </span><br><span class="line">    <span class="type">int</span> n = <span class="built_in">sizeof</span>(arr) / <span class="built_in">sizeof</span>(arr[<span class="number">0</span>]);  </span><br><span class="line">    <span class="type">int</span> x = <span class="number">10</span>;  </span><br><span class="line">    <span class="type">int</span> result = <span class="built_in">binarySearch</span>(arr, <span class="number">0</span>, n - <span class="number">1</span>, x);  </span><br><span class="line">    (result == <span class="number">-1</span>) ? cout &lt;&lt; <span class="string">&quot;Element is not present in array&quot;</span> : cout &lt;&lt; <span class="string">&quot;Element is present at index &quot;</span> &lt;&lt; result;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>有序 + 旋转：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">    <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (nums[mid] == target) <span class="keyword">return</span> mid;</span><br><span class="line">    <span class="keyword">if</span> (nums[<span class="number">0</span>] &lt;= nums[mid]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[<span class="number">0</span>] &lt;= target &amp;&amp; target &lt; nums[mid]) &#123;</span><br><span class="line">            r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &lt; target &amp;&amp; target &lt;= nums[n - <span class="number">1</span>]) &#123;</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/01/18/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-kmp-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/01/14/kmp-md/" target="_blank">kmp.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/01/14/kmp-md/" class="archive-article-date">
-        <time datetime="2024-01-14T09:05:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>kmp算法：</p>
-<p>KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特-莫里斯-普拉特操作（简称KMP算法）。 KMP算法的关键是利用匹配失败后的信息，尽量减少模式串与主串的匹配次数以达到快速匹配的目的。具体实现就是通过一个next()函数实现，函数本身包含了模式串的局部匹配信息。</p>
-<p>KMP算法的主要思想是：在文本串（文章）中查找模式串（关键字）时，利用模式串和文本串中已经匹配的部分，跳过一些无用的比较，使文本串的标记指针不会回溯，模式串的标记指针移动。例如：文本串：abcaabce 模式串：abce，上面的文本串和模式串第一次比较时，由于索引为3的位置a和e不相同，假设文本串的索引i&#x3D;3，模式串的索引j&#x3D;3，kmp的思想是由于前面的abc已经匹配完成，我们从中可以知道里面没有a，所以此时我们的文本串中标记指针不变依然是i&#x3D;3，但是模式串的指针变化j&#x3D;0，这样可以省略一些无用的比较，所以我们需要研究模式串发现其中的规律。</p>
-<p>此外，KMP算法利用模式串的最长的相同的前后缀进行移动，而主串不需要回溯，从而达到快速匹配的目的。例如：在箭头处发生不匹配时，找到箭头之前模式串子串的最长的相同的前后缀，为AB；然后把前缀AB移动到后缀AB的位置；再继续进行匹配，同理，发生不匹配时，找到箭头之前模式串子串的最长的相同的前后缀，为A；然后把前缀A移动到后缀A的位置，因为超出主串长度所以匹配失败。</p>
-<p>c++函数实现</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">compute_prefix_function</span><span class="params">(std::string pattern)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = pattern.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">prefix</span><span class="params">(m, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; pattern[j] != pattern[i]) &#123;</span><br><span class="line">                j = prefix[j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (pattern[j] == pattern[i]) &#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            prefix[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prefix;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">kmp_search</span><span class="params">(std::string text, std::string pattern)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = text.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> m = pattern.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; pos;</span><br><span class="line">        <span class="keyword">if</span> (m == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; prefix = <span class="built_in">compute_prefix_function</span>(pattern);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; text[i] != pattern[j])</span><br><span class="line">                j = prefix[j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (text[i] == pattern[j])</span><br><span class="line">                j++;</span><br><span class="line">            <span class="keyword">if</span> (j == m) &#123;</span><br><span class="line">                pos.<span class="built_in">emplace_back</span>(i - j + <span class="number">1</span>);</span><br><span class="line">                j = prefix[j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/01/14/kmp-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-cmake-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/01/09/cmake-md/" target="_blank">cmake.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/01/09/cmake-md/" class="archive-article-date">
-        <time datetime="2024-01-09T13:54:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-09</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h4 id="项目构建"><a href="#项目构建" class="headerlink" title="项目构建"></a>项目构建</h4><p>使用<code>MSVC</code>构建</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//生成build文件夹</span><br><span class="line">$ cmake -B build</span><br><span class="line"></span><br><span class="line">//生成二进制执行文件</span><br><span class="line">$ cmake --build build</span><br><span class="line"></span><br><span class="line">//执行exe</span><br><span class="line">$ build/Debug/Hello.exe</span><br></pre></td></tr></table></figure>
-
-
-
-<p>配置一个项目以使用 <code>MinGW</code>（Minimalist GNU for Windows）编译器生成 Makefile</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cmake -B build -G  &quot;MinGW Makefiles&quot;</span><br><span class="line"></span><br><span class="line">$ cmake --build build</span><br><span class="line"></span><br><span class="line">$ build/Hello.exe</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">86157@BYSQ MINGW64 /c/Users/86157/Desktop/cmake/scope/build </span><br><span class="line">$ cmake ..</span><br><span class="line">$ cmake --build.</span><br></pre></td></tr></table></figure>
-
-<p>在linux中使用cmake</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//安装</span><br><span class="line">$ sudo apt-get install cmake</span><br><span class="line"></span><br><span class="line">$ mkdir ch1_1_hello</span><br><span class="line">$ code ch1_1_hello</span><br><span class="line"></span><br><span class="line">//检测</span><br><span class="line">$ cmake --version</span><br><span class="line"></span><br><span class="line">$ cmake -B build </span><br><span class="line"></span><br><span class="line">$ cmake --build build</span><br><span class="line"></span><br><span class="line">$ build/Hello</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="CMake基本语法"><a href="#CMake基本语法" class="headerlink" title="CMake基本语法"></a>CMake基本语法</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># message使用</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;hello this is message&quot;</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;1</span></span><br><span class="line"><span class="string">1</span></span><br><span class="line"><span class="string">1&quot;</span>)</span><br><span class="line"><span class="keyword">message</span>(hello)</span><br><span class="line"><span class="keyword">message</span>([[he</span><br><span class="line">llo]])</span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;CMAKE_VERSION&#125;</span>)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># set</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>.<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(Var1 aaa)</span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;Var1&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(<span class="string">&quot;My Var&quot;</span> bbb)</span><br><span class="line"><span class="comment">#set([[My Var]] bbb)</span></span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;My\ Var&#125;</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;~~~~~~~~~~~~~~~~~~~~~~~~&quot;</span>)</span><br><span class="line"><span class="comment">#设置多个值</span></span><br><span class="line"><span class="comment">#set(LISTVALUE a1 a2)</span></span><br><span class="line"><span class="keyword">set</span>(LISTVALUE a1;a2)</span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;LISTVALUE&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Path</span></span><br><span class="line"><span class="keyword">message</span>($ENV&#123;PATH&#125;)</span><br><span class="line"><span class="comment">#设置环境变量</span></span><br><span class="line"><span class="keyword">set</span>(ENV&#123;MY_VAR&#125; <span class="string">&quot;my_var_value&quot;</span>)</span><br><span class="line"><span class="keyword">message</span>($ENV&#123;MY_VAR&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">#unset</span></span><br><span class="line"><span class="keyword">unset</span>(ENV&#123;MY_VAR&#125;)</span><br><span class="line"><span class="keyword">message</span>($ENV&#123;MY_VAR&#125;)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#list</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>.<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(LISTVALUE a1 a2 a3 a4)</span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;LISTVALUE&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">list</span>(APPEND port p1 p2 p3)</span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;port&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">list</span>(LENGTH LISTVALUE len)</span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;len&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">list</span>(FIND LISTVALUE a1 index)</span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;index&#125;</span>)</span><br><span class="line"><span class="keyword">list</span>(REMOVE_ITEM port p1)</span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;port&#125;</span>)</span><br><span class="line"><span class="keyword">list</span>(REVERSE LISTVALUE)</span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;LISTVALUE&#125;</span>)</span><br><span class="line"><span class="keyword">list</span>(SORT LISTVALUE)</span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;LISTVALUE&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">list</span>(REMOVE_DUPLICATES LISTVALUE)</span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;LISTVALUE&#125;</span>)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#if</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>.<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(VARBOOL <span class="keyword">TRUE</span>)</span><br><span class="line"><span class="keyword">if</span>(VARBOOL)</span><br><span class="line">    <span class="keyword">message</span>(STATUS <span class="string">&quot;VARBOOL is true&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">NOT</span> VARBOOL <span class="keyword">OR</span> VARBOOL)</span><br><span class="line">    <span class="keyword">message</span>(STATUS <span class="string">&quot;VARBOOL is true&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>()</span><br><span class="line">    <span class="keyword">message</span>(STATUS <span class="string">&quot;VARBOOL is false&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">NOT</span> VARBOOL <span class="keyword">AND</span> VARBOOL)</span><br><span class="line">    <span class="keyword">message</span>(STATUS <span class="string">&quot;VARBOOL is true&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>()</span><br><span class="line">    <span class="keyword">message</span>(STATUS <span class="string">&quot;VARBOOL is false&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="number">1</span> <span class="keyword">LESS</span> <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">message</span>(STATUS <span class="string">&quot;1 is less than 2&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="number">2</span> <span class="keyword">EQUAL</span> <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">message</span>(STATUS <span class="string">&quot;2 is EQUAL 2&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#foreach</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>.<span class="number">0</span>)</span><br><span class="line"><span class="keyword">foreach</span>(VAR RANGE <span class="number">5</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;$&#123;VAR&#125;&quot;</span>)    </span><br><span class="line"><span class="keyword">endforeach</span>(VAR RANGE <span class="number">5</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;--------------------&quot;</span>)</span><br><span class="line"><span class="keyword">set</span>(MY_LIST <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span>)</span><br><span class="line"><span class="keyword">foreach</span>(VAR IN LISTS MY_LIST ITEMS <span class="number">9</span> <span class="number">9</span> <span class="number">9</span>)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;$&#123;VAR&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endforeach</span>()</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;--------------------&quot;</span>)</span><br><span class="line"><span class="keyword">set</span>(L1 one two three four)</span><br><span class="line"><span class="keyword">set</span>(L2 <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span>)</span><br><span class="line"><span class="keyword">foreach</span>(num IN ZIP_LISTS L1 L2)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;$&#123;num_0&#125;, $&#123;num_1&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endforeach</span>()</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#function</span></span><br><span class="line"> <span class="keyword">function</span>(MyFunc FirstArg)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;MyFunc Name: $&#123;CMAKE_CURRENT_FUNCTION&#125;&quot;</span>)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;FirstArg $&#123;FirstArg&#125;&quot;</span>)</span><br><span class="line">    <span class="keyword">set</span>(FirstArg <span class="string">&quot;new value&quot;</span>)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;FirstArg again: $&#123;FirstArg&#125;&quot;</span>)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;ARGV0 $&#123;ARGV0&#125;&quot;</span>)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;ARGV1 $&#123;ARGV1&#125;&quot;</span>)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;ARGV2 $&#123;ARGV2&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endfunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(FirstArg <span class="string">&quot;first arg&quot;</span>)</span><br><span class="line">MyFunc(FirstArg <span class="string">&quot;value&quot;</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;FirstArg again: $&#123;FirstArg&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#scope    CMakeLists.txt</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">project</span>(scope)</span><br><span class="line"><span class="keyword">set</span>(Var <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span>(OutFunc)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;-&gt;Out: $&#123;Var&#125;&quot;</span>)</span><br><span class="line">    <span class="keyword">set</span>(Var <span class="number">2</span>)</span><br><span class="line">    InFunc()</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;&lt;-Out: $&#123;Var&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endfunction</span>(OutFunc)</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span>(InFunc)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;-&gt;In: $&#123;Var&#125;&quot;</span>)</span><br><span class="line">    <span class="keyword">set</span>(Var <span class="number">3</span>)</span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;&lt;-In: $&#123;Var&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">endfunction</span>(InFunc)</span><br><span class="line"><span class="keyword">message</span>(STATUS <span class="string">&quot;-&gt;Global Var = $&#123;Var&#125;&quot;</span>)</span><br><span class="line">OutFunc()</span><br><span class="line"><span class="keyword">message</span>(STATUS <span class="string">&quot;&lt;-Global Var = $&#123;Var&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#输出</span></span><br><span class="line">-- -&gt;Global Var = <span class="number">1</span></span><br><span class="line">-&gt;Out: <span class="number">1</span></span><br><span class="line">-&gt;In: <span class="number">2</span></span><br><span class="line">&lt;-In: <span class="number">3</span></span><br><span class="line">&lt;-Out: <span class="number">2</span></span><br><span class="line">-- &lt;-Global Var = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#macro</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.0</span>)</span><br><span class="line"><span class="keyword">macro</span>(<span class="keyword">Test</span> myVar)</span><br><span class="line">    <span class="keyword">set</span>(myVar <span class="string">&quot;new value&quot;</span>)<span class="comment">#生成一个新变量myVar，传入变量为$&#123;myVar&#125;</span></span><br><span class="line">    <span class="keyword">message</span>(<span class="string">&quot;argument: $&#123;myVar&#125;&quot;</span>) </span><br><span class="line">    <span class="comment"># set($&#123;MY_VAR&#125; &quot;new value&quot;)  </span></span><br><span class="line">    <span class="comment"># message(&quot;argument: $&#123;$&#123;MY_VAR&#125;&#125;&quot;) </span></span><br><span class="line"><span class="keyword">endmacro</span>(<span class="keyword">Test</span> myVar)</span><br><span class="line"><span class="keyword">set</span>(myVar <span class="string">&quot;First value&quot;</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;maVar: $&#123;myVar&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">Test</span>(<span class="string">&quot;value&quot;</span>)</span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;maVar: $&#123;myVar&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#输出</span></span><br><span class="line"></span><br><span class="line">maVar: First value</span><br><span class="line">argument: value</span><br><span class="line">maVar: new value</span><br></pre></td></tr></table></figure>
-
-<h4 id="项目构建方式"><a href="#项目构建方式" class="headerlink" title="项目构建方式"></a>项目构建方式</h4><p><code>cmake构建项目四种方式</code></p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1.直接写入源码路径的方式</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">project</span>(Animal CXX)</span><br><span class="line"><span class="keyword">add_executable</span>(Animal main.cpp animal/dog.cpp)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#2.调用子目录中cmake脚本</span></span><br><span class="line"><span class="comment">#animal.cmake</span></span><br><span class="line"><span class="keyword">set</span>(animal_sources animal/dog.cpp animal/cat.cpp)</span><br><span class="line"></span><br><span class="line"><span class="comment">#CMakeLists.txt</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">include</span>(animal/animal.cmake)</span><br><span class="line"><span class="keyword">project</span>(Animal CXX)</span><br><span class="line"><span class="keyword">add_executable</span>(Animal main.cpp <span class="variable">$&#123;animal_sources&#125;</span>)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#3.CMakeList嵌套</span></span><br><span class="line"><span class="comment">#projuct1/animal CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_library</span>(AnimalLib cat.cpp dog.cpp)</span><br><span class="line"></span><br><span class="line"><span class="comment">#project1 CMakeLists.txt</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">project</span>(Animal CXX)</span><br><span class="line"><span class="keyword">add_subdirectory</span>(animal)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(Animal main.cpp)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(Animal PUBLIC AnimalLib)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_include_directories</span>(Animal PUBLIC <span class="string">&quot;$&#123;PROJECT_BINARY_DIR&#125;&quot;</span> <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/animal&quot;</span>)<span class="comment">#build   源码目录</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#main</span></span><br><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include &quot;dog.h&quot;</span></span><br><span class="line"><span class="comment">#include &quot;cat.h&quot;</span></span><br><span class="line">int main(int argc, char const *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    /* code */</span><br><span class="line">    Dog dog;</span><br><span class="line">    Cat cat;</span><br><span class="line">    std::cout &lt;&lt; dog.barking()&lt;&lt;std::endl;</span><br><span class="line">    std::cout &lt;&lt; cat.barking()&lt;&lt;std::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#4.Object Libraries</span></span><br><span class="line"><span class="comment">#projuct1/animal CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_library</span>(AnimalLib OBJECT cat.cpp dog.cpp)</span><br><span class="line"><span class="keyword">target_include_directories</span>(AnimalLib PUBLIC .)</span><br><span class="line"></span><br><span class="line"><span class="comment">#project1 CMakeLists.txt</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">project</span>(Animal CXX)</span><br><span class="line"><span class="keyword">add_subdirectory</span>(animal)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(Animal main.cpp)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(Animal PUBLIC AnimalLib)</span><br><span class="line"></span><br><span class="line"><span class="comment">#main</span></span><br><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include &quot;dog.h&quot;</span></span><br><span class="line"><span class="comment">#include &quot;cat.h&quot;</span></span><br><span class="line">int main(int argc, char const *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    /* code */</span><br><span class="line">    Dog dog;</span><br><span class="line">    Cat cat;</span><br><span class="line">    std::cout &lt;&lt; dog.barking()&lt;&lt;std::endl;</span><br><span class="line">    std::cout &lt;&lt; cat.barking()&lt;&lt;std::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="CMake与库"><a href="#CMake与库" class="headerlink" title="CMake与库"></a>CMake与库</h4><p><code>静态库（Static Library）</code>是指在应用中，有一些公共代码是需要反复使用，因此将这些代码编译为“库”文件。在链接步骤中，连接器将从库文件取得所需的代码，并直接复制到生成的可执行文件中。静态库的特点在于，其对函数库的链接是在编译期完成的，这意味着在编译链接之后，lib库中需要的资源已经在可执行程序中了，因此没有依赖性。在Windows下，动态库的文件后缀为<code>.lib</code>，而在Linux下为<code>.a</code>。</p>
-<p><code>动态库（Dynamic Library）</code>，又称动态链接库，英文为DLL（Dynamic Link Library）。它是一个包含可由多个程序同时使用的代码和数据的库，而不是可执行文件。动态链接提供了一种方法，使得进程可以调用不属于其可执行代码的函数。动态库在目标文件运行时加载，需要手动加载，并且对库有依赖性。在运行的时候，程序会根据函数映射表找到需要的函数然后调入堆栈执行。动态库有助于共享数据和资源，多个应用程序可同时访问内存中单个DLL副本的内容。在Windows下，动态库的文件后缀为<code>.dll</code>，而在Linux下为<code>.so</code>。</p>
-<p>静态库在编译时就已经将代码和资源整合到可执行文件中，因此没有运行时依赖；而动态库则在运行时加载，需要手动加载，并且存在对库的依赖性。</p>
-<h5 id="库的生成"><a href="#库的生成" class="headerlink" title="库的生成"></a>库的生成</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">命令</span><br><span class="line">file()常用于搜索源文件</span><br><span class="line">add_library(animal STATIC$&#123;SRC&#125;)生成静态库add_library(animal SHARED$&#123;SRC&#125;)生成动态库$&#123;LIBRARY_OUTPUT_PATH&#125;导出目录</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#生成动态库和静态库</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">project</span>(Animal CXX)</span><br><span class="line"></span><br><span class="line"><span class="keyword">file</span>(GLOB SRC <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/src/*.cpp) </span><br><span class="line"><span class="keyword">include_directories</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/<span class="keyword">include</span>) </span><br><span class="line"><span class="comment"># 静态</span></span><br><span class="line"><span class="comment"># set(LIBRARY_OUTPUT_PATH $&#123;PROJECT_SOURCE_DIR&#125;/lib)</span></span><br><span class="line"><span class="comment"># add_library(Animal STATIC $&#123;SRC&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#动态</span></span><br><span class="line"><span class="keyword">set</span>(LIBRARY_OUTPUT_PATH <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/dll)</span><br><span class="line"><span class="keyword">add_library</span>(Animal SHARED <span class="variable">$&#123;SRC&#125;</span>)</span><br></pre></td></tr></table></figure>
-
-<h5 id="库的调用"><a href="#库的调用" class="headerlink" title="库的调用"></a>库的调用</h5><h6 id="静态库调用流程"><a href="#静态库调用流程" class="headerlink" title="静态库调用流程"></a>静态库调用流程</h6><p>1.引入头文件</p>
-<p>2.连接静态库</p>
-<p>3.生成可执行二进制文件</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">project</span>(Animal CXX)</span><br><span class="line"></span><br><span class="line"><span class="keyword">include_directories</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/<span class="keyword">include</span>)</span><br><span class="line"><span class="keyword">link_directories</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/lib)</span><br><span class="line"><span class="keyword">link_libraries</span>(Animal)</span><br><span class="line"><span class="keyword">add_executable</span>(app main.cpp)</span><br></pre></td></tr></table></figure>
-
-<h6 id="动态库调用流程"><a href="#动态库调用流程" class="headerlink" title="动态库调用流程"></a>动态库调用流程</h6><p>1.引入头文件</p>
-<p>2.声明库目录</p>
-<p>3.生成可执行二进制文件</p>
-<p>4.连接动态库</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">project</span>(Animal CXX)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_RUNTIME_OUTPUT_DIRECTORY <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/dll)</span><br><span class="line"><span class="keyword">include_directories</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/<span class="keyword">include</span>)</span><br><span class="line"><span class="keyword">link_directories</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/dll)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(app main.cpp)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(app PUBLIC Animal)</span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">project</span>(Animal CXX)</span><br><span class="line"><span class="keyword">include_directories</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/<span class="keyword">include</span>)</span><br><span class="line"><span class="keyword">link_directories</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/dll)</span><br><span class="line"><span class="keyword">add_executable</span>(app main.cpp)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(app PUBLIC Animal)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="CMake与源文件交互"><a href="#CMake与源文件交互" class="headerlink" title="CMake与源文件交互"></a>CMake与源文件交互</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#animal/CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_library</span>(AnimalLib cat.cpp dog.cpp)</span><br><span class="line"></span><br><span class="line"><span class="comment">#CMakeLists.txt</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">project</span>(Animal CXX)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">11</span>)</span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD_REQUIRED <span class="keyword">True</span>)</span><br><span class="line"><span class="keyword">configure_file</span>(config.h.in config.h)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_subdirectory</span>(animal)</span><br><span class="line"><span class="keyword">add_executable</span>(Animal main.cpp)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(Animal PUBLIC AnimalLib)</span><br><span class="line"><span class="keyword">target_include_directories</span>(Animal PUBLIC <span class="string">&quot;$&#123;CMAKE_CURRENT_BINARY_DIR&#125;&quot;</span> <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/animal&quot;</span>)</span><br><span class="line"><span class="comment">#为Animal目标添加公共的包含目录。这确保了在编译Animal目标时，编译器会在这些目录中查找头文件。这里包含了当前二进制目录（可能包含由CMake生成的配置文件）和子目录animal的源码目录。</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="条件编译"><a href="#条件编译" class="headerlink" title="条件编译"></a>条件编译</h4><p>通过不同传入参数编译不同的文件</p>
-<p>1.用 option 定义变量</p>
-<p>2.在子 CMakeLists.txt 中根据变量ON还是OFF来修改 SRC （源文件）以及target_compile_definitions</p>
-<p>3.修改源文件根据变量选择代码</p>
-<p>4.执行命令时 -D&lt;变量&gt;&#x3D;ON&#x2F;OFF 来进行条件编译</p>
-<p>PUBLIC本目标需要用，依赖这个目标的其他目标也需要</p>
-<p>INTERFACE本目标不需要，依赖本目标的其他目标需要</p>
-<p>RIVATE本目标需要，依赖这个目标的其他目标不需要</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#animal/cat.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#include &quot;cat.h&quot;</span></span><br><span class="line"><span class="comment">#ifdef USE_CATTWO</span></span><br><span class="line"><span class="comment">#include &quot;cattwo.h&quot;</span></span><br><span class="line"><span class="comment">#endif</span></span><br><span class="line">std::<span class="keyword">string</span> Cat::barking()</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">#ifdef USE_CATTWO</span></span><br><span class="line">    <span class="keyword">return</span> cattwo::two();</span><br><span class="line"><span class="comment">#else</span></span><br><span class="line">    std::<span class="keyword">string</span> bark = <span class="string">&quot;miao miao&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> bark;</span><br><span class="line"><span class="comment">#endif</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#animal/CMakeLists.txt</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">option</span>(USE_CATTWO <span class="string">&quot;Use cat two&quot;</span> <span class="keyword">ON</span>)</span><br><span class="line"><span class="keyword">if</span>(USE_CATTWO)</span><br><span class="line">    <span class="keyword">set</span>(SRC cat.cpp dog.cpp cattwo.cpp)</span><br><span class="line"><span class="keyword">else</span>()</span><br><span class="line">    <span class="keyword">set</span>(SRC cat.cpp dog.cpp)</span><br><span class="line"><span class="keyword">endif</span>(USE_CATTWO)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(AnimalLib <span class="variable">$&#123;SRC&#125;</span>)</span><br><span class="line"><span class="keyword">if</span>(USE_CATTWO)</span><br><span class="line">    <span class="keyword">target_compile_definitions</span>(AnimalLib PRIVATE USE_CATTWO)</span><br><span class="line"><span class="keyword">endif</span>(USE_CATTWO)</span><br><span class="line"></span><br><span class="line"><span class="comment">#CMakeLists.txt</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"><span class="keyword">project</span>(Animal CXX)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">11</span>)</span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD_REQUIRED <span class="keyword">True</span>)</span><br><span class="line"><span class="keyword">configure_file</span>(config.h.in config.h)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_subdirectory</span>(animal)</span><br><span class="line"><span class="keyword">add_executable</span>(Animal main.cpp)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(Animal PUBLIC AnimalLib)</span><br><span class="line"><span class="keyword">target_include_directories</span>(Animal PUBLIC <span class="string">&quot;$&#123;CMAKE_CURRENT_BINARY_DIR&#125;&quot;</span> <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/animal&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>指定<code>USE_CATTWO</code>为<code>OFF</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cmake -B build -D USE_CATTWO=OFF</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">cmake使用基本命令</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/01/09/cmake-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
@@ -1475,6 +1538,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
@@ -1491,10 +1558,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
               </li>
              
@@ -1507,11 +1570,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">函数</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
