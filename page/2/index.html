@@ -142,6 +142,95 @@
             
 
   
+    <article id="post-桥接模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/06/26/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F-md/" target="_blank">桥接模式.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/06/26/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
+        <time datetime="2024-06-26T11:23:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 需求: 对海贼世界中的 海贼团 和 海军 通过桥接模式进行管理</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 成员对应的类</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">Person</span>(string name, string job, string ability, string reward, string beizhu)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;name = name;</span><br><span class="line">        <span class="keyword">this</span>-&gt;job = job;</span><br><span class="line">        <span class="keyword">this</span>-&gt;ability = ability;</span><br><span class="line">        <span class="keyword">this</span>-&gt;reward = reward;</span><br><span class="line">        <span class="keyword">this</span>-&gt;beizhu = beizhu;</span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">Person</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; name &lt;&lt; <span class="string">&quot;被析构了...&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    string name;</span><br><span class="line">    string job;</span><br><span class="line">    string ability;</span><br><span class="line">    string reward;</span><br><span class="line">    string beizhu;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 定义实现部分 - 团队</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AbstractTeam</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">AbstractTeam</span>(string name) : <span class="built_in">m_name</span>(name) &#123;&#125;</span><br><span class="line">    <span class="function">string <span class="title">getTeamName</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> m_name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">addMember</span><span class="params">(Person* p)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        m_teamMap.<span class="built_in">insert</span>(<span class="built_in">make_pair</span>(p-&gt;name, p));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">show</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; m_name &lt;&lt; <span class="string">&quot;: &quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; item : m_teamMap)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;【name: &quot;</span> &lt;&lt; item.second-&gt;name</span><br><span class="line">                &lt;&lt; <span class="string">&quot;，job: &quot;</span> &lt;&lt; item.second-&gt;job</span><br><span class="line">                &lt;&lt; <span class="string">&quot;，ability: &quot;</span> &lt;&lt; item.second-&gt;ability</span><br><span class="line">                &lt;&lt; <span class="string">&quot;，reward: &quot;</span> &lt;&lt; item.second-&gt;reward</span><br><span class="line">                &lt;&lt; <span class="string">&quot;，beizhu: &quot;</span> &lt;&lt; item.second-&gt;beizhu</span><br><span class="line">                &lt;&lt; <span class="string">&quot;】&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">AbstractTeam</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; item : m_teamMap)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">delete</span> item.second;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">executeTask</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    string m_name;</span><br><span class="line">    map&lt;string, Person*&gt; m_teamMap;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 草帽</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CaoMaoTeam</span> : <span class="keyword">public</span> AbstractTeam</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> AbstractTeam::AbstractTeam;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">executeTask</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;在海上冒险，找到 ONE PIECE 成为海贼王！&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">CaoMaoTeam</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;草帽海贼团被析构...&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 海军</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SmokerTeam</span> : <span class="keyword">public</span> AbstractTeam</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> AbstractTeam::AbstractTeam;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">executeTask</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;为了正义, 先将草帽一网打尽!!!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">SmokerTeam</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;斯摩格的海军被析构...&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 定义抽象部分 - 船</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AbstractShip</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">AbstractShip</span>(AbstractTeam* team) : <span class="built_in">m_team</span>(team) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">show</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        m_team-&gt;<span class="built_in">show</span>();</span><br><span class="line">        m_team-&gt;<span class="built_in">executeTask</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> string <span class="title">getName</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">feature</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    AbstractTeam* m_team;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Merry</span> : <span class="keyword">public</span> AbstractShip</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> AbstractShip::AbstractShip;</span><br><span class="line">    <span class="function">string <span class="title">getName</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;前进 - 梅利号&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">feature</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="built_in">getName</span>()</span><br><span class="line">            &lt;&lt; <span class="string">&quot; -- 船首为羊头, 化身船精灵在司法岛舍己救下了草帽一伙！&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">HaiJunShip</span> : <span class="keyword">public</span> AbstractShip</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> AbstractShip::AbstractShip;</span><br><span class="line">    <span class="function">string <span class="title">getName</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;无敌海军号&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">feature</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="built_in">getName</span>() &lt;&lt; <span class="string">&quot; -- 船底由海楼石建造, 可以传过无风带的巨大炮舰!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    AbstractTeam* team = <span class="keyword">new</span> <span class="built_in">CaoMaoTeam</span>(<span class="string">&quot;草帽海贼团&quot;</span>);</span><br><span class="line">    Person* luffy = <span class="keyword">new</span> <span class="built_in">Person</span>(<span class="string">&quot;路飞&quot;</span>, <span class="string">&quot;船长&quot;</span>, <span class="string">&quot;橡胶果实能力者&quot;</span>, <span class="string">&quot;30亿贝里&quot;</span>, <span class="string">&quot;爱吃肉&quot;</span>);</span><br><span class="line">    Person* zoro = <span class="keyword">new</span> <span class="built_in">Person</span>(<span class="string">&quot;索隆&quot;</span>, <span class="string">&quot;剑士&quot;</span>, <span class="string">&quot;三刀流&quot;</span>, <span class="string">&quot;11亿1100万贝里&quot;</span>, <span class="string">&quot;路痴&quot;</span>);</span><br><span class="line">    Person* sanji = <span class="keyword">new</span> <span class="built_in">Person</span>(<span class="string">&quot;山治&quot;</span>, <span class="string">&quot;厨师&quot;</span>, <span class="string">&quot;隐形黑&quot;</span>, <span class="string">&quot;10亿3200万贝里&quot;</span>, <span class="string">&quot;好色&quot;</span>);</span><br><span class="line">    Person* nami = <span class="keyword">new</span> <span class="built_in">Person</span>(<span class="string">&quot;娜美&quot;</span>, <span class="string">&quot;航海士&quot;</span>, <span class="string">&quot;天候棒+宙斯&quot;</span>, <span class="string">&quot;3亿6600万贝里&quot;</span>, <span class="string">&quot;喜欢钱&quot;</span>);</span><br><span class="line">    team-&gt;<span class="built_in">addMember</span>(luffy);</span><br><span class="line">    team-&gt;<span class="built_in">addMember</span>(zoro);</span><br><span class="line">    team-&gt;<span class="built_in">addMember</span>(sanji);</span><br><span class="line">    team-&gt;<span class="built_in">addMember</span>(nami);</span><br><span class="line"></span><br><span class="line">    AbstractShip* ship = <span class="keyword">new</span> <span class="built_in">Merry</span>(team);</span><br><span class="line">    ship-&gt;<span class="built_in">show</span>();</span><br><span class="line">    ship-&gt;<span class="built_in">feature</span>();</span><br><span class="line">    <span class="keyword">delete</span> team;</span><br><span class="line">    <span class="keyword">delete</span> ship;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;=======================&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="comment">// 斯摩格的船队</span></span><br><span class="line">    team = <span class="keyword">new</span> <span class="built_in">SmokerTeam</span>(<span class="string">&quot;斯摩格的海军部队&quot;</span>);</span><br><span class="line">    Person* smoker = <span class="keyword">new</span> <span class="built_in">Person</span>(<span class="string">&quot;斯摩格&quot;</span>, <span class="string">&quot;中将&quot;</span>, <span class="string">&quot;冒烟果实能力者&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;爱吃烟熏鸡肉&quot;</span>);</span><br><span class="line">    Person* dasiqi = <span class="keyword">new</span> <span class="built_in">Person</span>(<span class="string">&quot;达斯琪&quot;</span>, <span class="string">&quot;大佐&quot;</span>, <span class="string">&quot;一刀流&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;近视&quot;</span>);</span><br><span class="line">    team-&gt;<span class="built_in">addMember</span>(smoker);</span><br><span class="line">    team-&gt;<span class="built_in">addMember</span>(dasiqi);</span><br><span class="line">    ship = <span class="keyword">new</span> <span class="built_in">HaiJunShip</span>(team);</span><br><span class="line">    ship-&gt;<span class="built_in">feature</span>();</span><br><span class="line">    ship-&gt;<span class="built_in">show</span>();</span><br><span class="line">    <span class="keyword">delete</span> team;</span><br><span class="line">    <span class="keyword">delete</span> ship;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/06/26/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-适配器模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -968,98 +1057,9 @@
 
 
   
-    <article id="post-io多路复用-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/04/27/io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8-md/" target="_blank">io多路复用.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/04/27/io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8-md/" class="archive-article-date">
-        <time datetime="2024-04-27T13:19:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1r54y1f7bU/?spm_id_from=333.880.my_history.page.click">io多路复用</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1F64y1U7A2/?spm_id_from=333.788.recommend_more_video.0&vd_source=54f770fab31251d4ff47d20981b523ca">并发网络通信-套接字通信(C&#x2F;C++ 多线程)_哔哩哔哩_bilibili</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/04/27/io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1194,19 +1194,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Qt</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1218,6 +1214,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
               </li>
              
@@ -1226,11 +1230,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1247,10 +1251,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
             
             <div class="clearfix"></div>
