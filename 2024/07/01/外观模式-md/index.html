@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102">
+  <meta name="description" content="基本概念​		外观模式Facade Pattern , 也被称为“⻔⾯模式”，是⼀种结构型设计模式，外观模式定义了⼀个⾼层接⼝，这个接⼝使得⼦系统更容易使⽤，同时也隐藏了⼦系统的复杂性。  ⻔⾯模式可以将⼦系统关在“⻔⾥”隐藏起来，客户端只需要通过外观接⼝与外观对象进⾏交互，⽽不需要直接和多个⼦系统交互，⽆论⼦系统多么复杂，对于外部来说是隐藏的，这样可以降低系统的耦合度。  ​		举个例⼦，假">
 <meta property="og:type" content="article">
 <meta property="og:title" content="外观模式.md">
 <meta property="og:url" content="http://example.com/2024/07/01/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F-md/index.html">
 <meta property="og:site_name" content="BZTWO">
-<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102">
+<meta property="og:description" content="基本概念​		外观模式Facade Pattern , 也被称为“⻔⾯模式”，是⼀种结构型设计模式，外观模式定义了⼀个⾼层接⼝，这个接⼝使得⼦系统更容易使⽤，同时也隐藏了⼦系统的复杂性。  ⻔⾯模式可以将⼦系统关在“⻔⾥”隐藏起来，客户端只需要通过外观接⼝与外观对象进⾏交互，⽽不需要直接和多个⼦系统交互，⽆论⼦系统多么复杂，对于外部来说是隐藏的，这样可以降低系统的耦合度。  ​		举个例⼦，假">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-01T03:06:01.000Z">
-<meta property="article:modified_time" content="2024-07-01T03:09:21.474Z">
+<meta property="article:modified_time" content="2024-07-06T08:37:00.840Z">
 <meta property="article:author" content="an">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
@@ -173,7 +173,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">293字</span>
+      <span class="post-count">965字</span>
     </span>
   </span>
 
@@ -182,7 +182,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -195,8 +195,25 @@
     
     <span id="more"></span>
 
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>​		外观模式Facade Pattern , 也被称为“⻔⾯模式”，是⼀种结构型设计模式，外观模式定义了⼀个⾼层接⼝，这个接⼝使得⼦系统更容易使⽤，同时也隐藏了⼦系统的复杂性。</p>
+<ul>
+<li>⻔⾯模式可以将⼦系统关在“⻔⾥”隐藏起来，客户端只需要通过外观接⼝与外观对象进⾏交互，⽽不需要直接和多个⼦系统交互，⽆论⼦系统多么复杂，对于外部来说是隐藏的，这样可以降低系统的耦合度。</li>
+</ul>
+<p>​		举个例⼦，假设你正在编写的⼀个模块⽤来处理⽂件读取、解析、存储，我们可以将这个过程拆成三部分，然后创建⼀个外观类，将⽂件系统操作、数据解析和存储操作封装在外观类中，为客户端提供⼀个简化的接⼝，如果后续需要修改⽂件处理的流程或替换底层⼦系统，也只需在外观类中进⾏调整，不会影响客户端代码。</p>
+<h4 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h4><p>外观模式的基本结构⽐较简单，只包括“外观”和“⼦系统类”</p>
+<ul>
+<li>外观类：对外提供⼀个统⼀的⾼层次接⼝，使复杂的⼦系统变得更易使⽤。</li>
+<li>⼦系统类：实现⼦系统的功能，处理外观类指派的任务。</li>
+</ul>
+<h4 id="优缺点和使⽤场景"><a href="#优缺点和使⽤场景" class="headerlink" title="优缺点和使⽤场景"></a>优缺点和使⽤场景</h4><p>​		外观模式通过提供⼀个简化的接⼝，隐藏了系统的复杂性，降低了客户端和⼦系统之间的耦合度，客户端不需要了解系统的内部实现细节，也不需要直接和多个⼦系统交互，只需要通过外观接⼝与外观对象进⾏交互。但是如果需要添加新的⼦系统或修改⼦系统的⾏为，就可能需要修改外观类，这违背了“开闭原则”。<br>​		外观模式的应⽤也⼗分普遍，下⾯⼏种情况都使⽤了外观模式来进⾏简化。</p>
+<ul>
+<li>Spring框架是⼀个⼴泛使⽤外观模式的例⼦。Spring框架提供了⼀个⼤量的功能，包括依赖注⼊、⾯向切⾯编程（AOP）、事务管理等。Spring的ApplicationContext 可以看作是外观，隐藏了底层组件的复杂性，使得开发者可以更轻松地使⽤Spring的功能。</li>
+<li>JDBC提供了⼀个⽤于与数据库交互的接⼝。DriverManager 类可以看作是外观，它简化了数据库驱动的加载和连接的过程，隐藏了底层数据库连接的复杂性。</li>
+<li>Android系统的API中也使⽤了外观模式。例如， Activity 类提供了⼀个外观，使得开发者可以更容易地管理应⽤的⽣命周期，⽽⽆需关⼼底层的事件和状态管理。</li>
+</ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 乐可系统</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CokeSystem</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">imitCoke</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;狮吼炮原料&lt;可乐&gt;已经注入完毕...&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 能量转换系统</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">EnergySystem</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">energyCovert</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;已经将所有的可乐转换为了能量...&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 目标锁定系统</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AimLockSystem</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">aimLock</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;已经瞄准并且锁定了目标...&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加农炮发射系统</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Cannon</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">cannonFire</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;狮吼炮正在向目标开火...&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 风来炮稳定系统</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">WindCannon</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">windCannonFire</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;发射风来炮抵消后坐力稳定船身...&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 狮吼炮类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LionCannon</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">LionCannon</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        m_coke = <span class="keyword">new</span> CokeSystem;</span><br><span class="line">        m_energy = <span class="keyword">new</span> EnergySystem;</span><br><span class="line">        m_aimlock = <span class="keyword">new</span> AimLockSystem;</span><br><span class="line">        m_cannon = <span class="keyword">new</span> Cannon;</span><br><span class="line">        m_windCannon = <span class="keyword">new</span> WindCannon;</span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">LionCannon</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">delete</span> m_coke;</span><br><span class="line">        <span class="keyword">delete</span> m_energy;</span><br><span class="line">        <span class="keyword">delete</span> m_aimlock;</span><br><span class="line">        <span class="keyword">delete</span> m_cannon;</span><br><span class="line">        <span class="keyword">delete</span> m_windCannon;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 瞄准和锁定</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">aimAndLock</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        m_coke-&gt;<span class="built_in">imitCoke</span>();</span><br><span class="line">        m_energy-&gt;<span class="built_in">energyCovert</span>();</span><br><span class="line">        m_aimlock-&gt;<span class="built_in">aimLock</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 开火</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">fire</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        m_cannon-&gt;<span class="built_in">cannonFire</span>();</span><br><span class="line">        m_windCannon-&gt;<span class="built_in">windCannonFire</span>();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    CokeSystem* m_coke = <span class="literal">nullptr</span>;</span><br><span class="line">    EnergySystem* m_energy = <span class="literal">nullptr</span>;</span><br><span class="line">    AimLockSystem* m_aimlock = <span class="literal">nullptr</span>;</span><br><span class="line">    Cannon* m_cannon = <span class="literal">nullptr</span>;</span><br><span class="line">    WindCannon* m_windCannon = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    LionCannon* lion = <span class="keyword">new</span> LionCannon;</span><br><span class="line">    lion-&gt;<span class="built_in">aimAndLock</span>();</span><br><span class="line">    lion-&gt;<span class="built_in">fire</span>();</span><br><span class="line">    <span class="keyword">delete</span> lion;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 
+<p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1089">【设计模式专题之外观模式】9-电源开关 (kamacoder.com)</a></p>
 
     
 
@@ -485,15 +502,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,15 +510,23 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
