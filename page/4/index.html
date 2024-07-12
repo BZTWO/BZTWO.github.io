@@ -142,6 +142,102 @@
             
 
   
+    <article id="post-埃氏筛选法-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/04/12/%E5%9F%83%E6%B0%8F%E7%AD%9B%E9%80%89%E6%B3%95-md/" target="_blank">埃氏筛选法.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/04/12/%E5%9F%83%E6%B0%8F%E7%AD%9B%E9%80%89%E6%B3%95-md/" class="archive-article-date">
+        <time datetime="2024-04-12T11:53:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-12</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p>埃拉托斯特尼筛法（Sieve of Eratosthenes）是一种用来找出一定范围内所有素数的简单且古老的算法。其基本思想是从2开始，将每个素数的各个倍数，标记为合数，直到标记到上限。剩余的就是素数。</p>
+<p>以下是埃氏筛选法的一个简单的C++示例代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">sieveOfEratosthenes</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="function">std::vector&lt;<span class="type">bool</span>&gt; <span class="title">isPrime</span><span class="params">(n + <span class="number">1</span>, <span class="literal">true</span>)</span></span>;</span><br><span class="line">    isPrime[<span class="number">0</span>] = isPrime[<span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i * i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="comment">// 如果 isPrime[i] 没有改变，那么它就是一个素数  </span></span><br><span class="line">        <span class="keyword">if</span> (isPrime[i] == <span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="comment">// 更新所有 i 的倍数  </span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i * i; j &lt;= n; j += i)</span><br><span class="line">                isPrime[j] = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 收集所有素数  </span></span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; primes;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">if</span> (isPrime[i])</span><br><span class="line">            primes.<span class="built_in">push_back</span>(i);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> primes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> n = <span class="number">30</span>;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; primes = <span class="built_in">sieveOfEratosthenes</span>(n);</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Prime numbers less than or equal to &quot;</span> &lt;&lt; n &lt;&lt; <span class="string">&quot; are: \n&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> p : primes)</span><br><span class="line">        std::cout &lt;&lt; p &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个代码中，我们首先创建了一个布尔类型的向量<code>isPrime</code>，用于标记每个数是否为素数。然后，我们从2开始，遍历到<code>sqrt(n)</code>（因为任何大于<code>sqrt(n)</code>的因子都会与一个小于或等于<code>sqrt(n)</code>的因子配对）。对于每个素数<code>p</code>，我们将其所有倍数标记为非素数。最后，我们遍历<code>isPrime</code>向量，收集所有标记为素数的数，并将它们放入<code>primes</code>向量中返回。</p>
+<p>在<code>main</code>函数中，我们调用<code>sieveOfEratosthenes</code>函数，并打印出所有小于或等于<code>n</code>的素数。</p>
+<p>优化</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countPrimes</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">const</span> <span class="type">int</span> m = <span class="built_in">sqrt</span>(n), m0 = m - (m == n / m);</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(<span class="number">2</span> * m)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= m;++i) &#123;</span><br><span class="line">            dp[i - <span class="number">1</span>] = i - <span class="number">1</span>;</span><br><span class="line">            dp[<span class="number">2</span> * m - i] = n / i - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">const</span> <span class="keyword">auto</span> idx = [&amp;] (<span class="type">int</span> x) &#123;</span><br><span class="line">            <span class="keyword">return</span> x &gt; m ? <span class="number">2</span> * m - n / x : x - <span class="number">1</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">nonprime</span><span class="params">(m + <span class="number">1</span>)</span></span>;</span><br><span class="line">        nonprime[<span class="number">0</span>] = nonprime[<span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> c = <span class="number">1</span>, i = <span class="number">2</span>;i &lt;= m;++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nonprime[i]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="type">const</span> <span class="type">int</span> t = i * i;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = t;j &lt;= m;j += i)</span><br><span class="line">                nonprime[j] = <span class="literal">true</span>;</span><br><span class="line">            <span class="type">const</span> <span class="type">int</span> l = <span class="built_in">min</span>(n / t, m0);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>;j &lt;= l;++j)</span><br><span class="line">                dp[<span class="number">2</span> * m - j] -= dp[<span class="built_in">idx</span>(n / (i * j))] - c + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = m;j &gt;= t;--j)</span><br><span class="line">                dp[j - <span class="number">1</span>] -= dp[j / i - <span class="number">1</span>] - c + <span class="number">1</span>;</span><br><span class="line">            ++c;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">2</span> * m - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-primes/?envType=study-plan-v2&envId=2024-spring-sprint-100">204. 计数质数 - 力扣（LeetCode）</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/04/12/%E5%9F%83%E6%B0%8F%E7%AD%9B%E9%80%89%E6%B3%95-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-差分-前缀和-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1219,121 +1315,6 @@
 
 
   
-    <article id="post-static-dynamic-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/02/07/static-dynamic-md/" target="_blank">static-dynamic.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/02/07/static-dynamic-md/" class="archive-article-date">
-        <time datetime="2024-02-07T03:57:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-02-07</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>在C++中，动态转换（<code>dynamic_cast</code>）和静态转换（<code>static_cast</code>）是用于在类型之间进行转换的两种机制，但它们的用途、行为以及安全保证是不同的。</p>
-<h4 id="静态转换-static-cast"><a href="#静态转换-static-cast" class="headerlink" title="静态转换(static_cast)"></a>静态转换(static_cast)</h4><p><code>static_cast</code> 是最通用的转换运算符，它可以在多种类型之间进行转换，包括非多态类型之间的转换、基本数据类型之间的转换、指针之间的转换（包括空指针到任何指针类型的转换），以及类层次结构中的向上转换（从派生类到基类）。</p>
-<ul>
-<li>对于类层次结构中的向上转换，<code>static_cast</code> 总是成功的。</li>
-<li>对于向下或侧向转换，<code>static_cast</code> 假设程序员知道转换是安全的，并且不会进行运行时检查。如果转换实际上是不安全的，结果将是未定义的。</li>
-</ul>
-<p><strong>安全保证</strong>：<code>static_cast</code> 不提供运行时类型信息检查。如果程序员错误地使用了它进行不安全的转换，程序可能会崩溃或产生不可预测的行为。</p>
-<p><strong>使用条件</strong>：<code>static_cast</code> 不需要基类具有虚函数。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 基本数据类型之间的转换</span></span><br><span class="line"><span class="type">double</span> d = <span class="number">3.14</span>;  </span><br><span class="line"><span class="type">int</span> i = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(d); <span class="comment">// 将 double 转换为 int，结果为 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2. 指针和引用之间的转换</span></span><br><span class="line"><span class="type">int</span> x = <span class="number">10</span>;  </span><br><span class="line"><span class="type">int</span>* p = &amp;x;  </span><br><span class="line"><span class="type">int</span>&amp; r = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&amp;&gt;(*p); <span class="comment">// 将 int* 转换为 int&amp;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//3. 类层次结构中的向上转换</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> &#123; &#125;;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Derived</span> : <span class="keyword">public</span> Base &#123; &#125;;  </span><br><span class="line">  </span><br><span class="line">Derived d;  </span><br><span class="line">Base&amp; b = <span class="built_in">static_cast</span>&lt;Base&amp;&gt;(d); <span class="comment">// 派生类对象转换为基类引用</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//4. 编译时确定安全的向下转换</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> &#123; &#125;;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Derived</span> : <span class="keyword">public</span> Base &#123; <span class="keyword">public</span>: <span class="type">int</span> value; &#125;;  </span><br><span class="line">  </span><br><span class="line">Base* basePtr = <span class="keyword">new</span> <span class="built_in">Derived</span>();  </span><br><span class="line">Derived* derivedPtr = <span class="built_in">static_cast</span>&lt;Derived*&gt;(basePtr); <span class="comment">// 安全的，因为确实是指向 Derived 对象的  </span></span><br><span class="line">derivedPtr-&gt;value = <span class="number">42</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//5. 去除 const 或 volatile 修饰符</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> a = <span class="number">10</span>;  </span><br><span class="line"><span class="type">int</span>* ptr = <span class="built_in">const_cast</span>&lt;<span class="type">int</span>*&gt;(&amp;a); <span class="comment">// 错误！const_cast 用于去除 const，不是 static_cast  </span></span><br><span class="line"><span class="type">int</span>* constPtr = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>*&gt;(<span class="built_in">const_cast</span>&lt;<span class="type">const</span> <span class="type">int</span>*&gt;(&amp;a)); <span class="comment">// 正确！先去除 const，然后转换为 int*</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//6. 数组到指针的转换</span></span><br><span class="line"><span class="type">int</span> arr[<span class="number">10</span>];  </span><br><span class="line"><span class="type">int</span>* ptr = <span class="built_in">static_cast</span>&lt;<span class="type">int</span>*&gt;(arr); <span class="comment">// 数组名转换为指向数组首元素的指针</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//7. 函数指针的转换</span></span><br><span class="line"><span class="built_in">void</span> (*func1)();  </span><br><span class="line"><span class="built_in">void</span> (*func2)(<span class="type">int</span>);  </span><br><span class="line">func1 = <span class="built_in">static_cast</span>&lt;<span class="built_in">void</span> (*)()&gt;(func2); <span class="comment">// 将接受 int 的函数指针转换为不接受参数的函数指针</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="动态转换-dynamic-cast"><a href="#动态转换-dynamic-cast" class="headerlink" title="动态转换(dynamic_cast)"></a>动态转换(dynamic_cast)</h4><p><code>dynamic_cast</code> 主要用于在类层次结构中进行安全的向下和侧向转换（即从基类到派生类或派生类之间的转换）。</p>
-<ul>
-<li>如果转换是合法的（即目标类型是实际对象的类型或其派生类型），<code>dynamic_cast</code> 会成功转换并返回目标类型的指针或引用。</li>
-<li>如果转换不合法（例如，尝试将基类指针转换为不相关的派生类类型），<code>dynamic_cast</code> 会返回空指针（对于指针类型）或抛出异常（对于引用类型）。</li>
-</ul>
-<p><strong>安全保证</strong>：<code>dynamic_cast</code> 提供运行时类型信息（RTTI）检查，以确保转换的安全性。如果转换失败，程序不会崩溃，而是得到空指针或异常，从而可以安全地处理错误情况。</p>
-<p><strong>使用条件</strong>：为了使用 <code>dynamic_cast</code>，基类必须至少有一个虚函数，这样编译器才能生成运行时类型信息。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">// 基类  </span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Shape</span> &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Shape</span>() &#123;&#125; <span class="comment">// 声明虚析构函数  </span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">draw</span><span class="params">()</span> <span class="type">const</span> </span>= <span class="number">0</span>; <span class="comment">// 纯虚函数  </span></span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 派生类 Circle  </span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Circle</span> : <span class="keyword">public</span> Shape &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">draw</span><span class="params">()</span> <span class="type">const</span> <span class="keyword">override</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Drawing a circle.\n&quot;</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">printRadius</span><span class="params">()</span> <span class="type">const</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Circle radius...\n&quot;</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 派生类 Rectangle  </span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Rectangle</span> : <span class="keyword">public</span> Shape &#123;  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">draw</span><span class="params">()</span> <span class="type">const</span> <span class="keyword">override</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Drawing a rectangle.\n&quot;</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">printWidth</span><span class="params">()</span> <span class="type">const</span> </span>&#123;  </span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Rectangle width...\n&quot;</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">drawAndPrint</span><span class="params">(<span class="type">const</span> Shape* shapes[], <span class="type">int</span> size)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;  </span><br><span class="line">        Circle* circle = <span class="built_in">dynamic_cast</span>&lt;Circle*&gt;(shapes[i]);  </span><br><span class="line">        Rectangle* rectangle = <span class="built_in">dynamic_cast</span>&lt;Rectangle*&gt;(shapes[i]);  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">if</span> (circle) &#123;  </span><br><span class="line">            circle-&gt;<span class="built_in">draw</span>();  </span><br><span class="line">            circle-&gt;<span class="built_in">printRadius</span>();  </span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (rectangle) &#123;  </span><br><span class="line">            rectangle-&gt;<span class="built_in">draw</span>();  </span><br><span class="line">            rectangle-&gt;<span class="built_in">printWidth</span>();  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            std::cout &lt;&lt; <span class="string">&quot;Unknown shape type.\n&quot;</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
-<li><code>dynamic_cast</code> 是类型安全的，因为它在运行时检查转换的有效性。它主要用于类层次结构中的向下和侧向转换。</li>
-<li><code>static_cast</code> 是类型不安全的，因为它不进行运行时检查。它适用于多种情况，包括向上转换和基本数据类型之间的转换。</li>
-</ul>
-<p>在类层次结构中，当你知道转换是安全的，或者当你需要转换到基类类型时，通常使用 <code>static_cast</code>。当你需要执行可能不安全的向下或侧向转换时，应该使用 <code>dynamic_cast</code> 并检查转换是否成功。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/02/07/static-dynamic-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
@@ -1475,11 +1456,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1487,7 +1468,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1499,19 +1488,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
               </li>
              
               <li class="article-tag-list-item">
