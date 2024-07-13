@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102">
+  <meta name="description" content="基本概念模板⽅法模式（Template Method Pattern）是⼀种⾏为型设计模式, 它定义了⼀个算法的⻣架，将⼀些步骤的实现延迟到⼦类。模板⽅法模式使得⼦类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。【引⽤⾃⼤话设计第10章】 举个简单的例⼦，做⼀道菜通常都需要包含⾄少三步：  准备⻝材 亨饪过程 上菜  不同菜品的亨饪过程是不⼀样的，但是我们可以先定义⼀个”⻣架”，包含">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模板方法模式.md">
 <meta property="og:url" content="http://example.com/2024/07/03/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F-md/index.html">
 <meta property="og:site_name" content="BZTWO">
-<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102">
+<meta property="og:description" content="基本概念模板⽅法模式（Template Method Pattern）是⼀种⾏为型设计模式, 它定义了⼀个算法的⻣架，将⼀些步骤的实现延迟到⼦类。模板⽅法模式使得⼦类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。【引⽤⾃⼤话设计第10章】 举个简单的例⼦，做⼀道菜通常都需要包含⾄少三步：  准备⻝材 亨饪过程 上菜  不同菜品的亨饪过程是不⼀样的，但是我们可以先定义⼀个”⻣架”，包含">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-03T03:54:31.000Z">
-<meta property="article:modified_time" content="2024-07-03T03:59:09.005Z">
+<meta property="article:modified_time" content="2024-07-13T11:16:29.662Z">
 <meta property="article:author" content="an">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
@@ -173,7 +173,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">584字</span>
+      <span class="post-count">1.2k字</span>
     </span>
   </span>
 
@@ -182,7 +182,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
+      <span class="post-count">4分</span>
     </span>
   </span>
 </div>
@@ -195,8 +195,23 @@
     
     <span id="more"></span>
 
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>模板⽅法模式（Template Method Pattern）是⼀种⾏为型设计模式, 它定义了⼀个算法的⻣架，将⼀些步骤的实现延迟到⼦类。模板⽅法模式使得⼦类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。【引⽤⾃⼤话设计第10章】</p>
+<p>举个简单的例⼦，做⼀道菜通常都需要包含⾄少三步：</p>
+<ul>
+<li>准备⻝材</li>
+<li>亨饪过程</li>
+<li>上菜</li>
+</ul>
+<p>不同菜品的亨饪过程是不⼀样的，但是我们可以先定义⼀个”⻣架”，包含这三个步骤，亨饪过程的过程放到具体的炒菜类中去实现，这样，⽆论炒什么菜，都可以沿⽤相同的炒菜算法，只需在⼦类中实现具体的炒菜步骤，从⽽提⾼了代码的复⽤性。</p>
+<h4 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h4><p>模板⽅法模式的基本结构包含以下两个⻆⾊：</p>
+<ul>
+<li>模板类AbstractClass ：由⼀个模板⽅法和若⼲个基本⽅法构成，模板⽅法定义了逻辑的⻣架，按照顺序调⽤包含的基本⽅法，基本⽅法通常是⼀些抽象⽅法，这些⽅法由⼦类去实现。基本⽅法还包含⼀些具体⽅法，它们是算法的⼀部分但已经有默认实现，在具体⼦类中可以继承或者重写。</li>
+<li>具体类ConcreteClass ：继承⾃模板类，实现了在模板类中定义的抽象⽅法，以完成算法中特定步骤的具体实现。</li>
+</ul>
+<h4 id="应⽤场景"><a href="#应⽤场景" class="headerlink" title="应⽤场景"></a>应⽤场景</h4><p>​		模板⽅法模式将算法的不变部分被封装在模板⽅法中，⽽可变部分算法由⼦类继承实现，这样做可以很好的提⾼代码的复⽤性，但是当算法的框架发⽣变化时，可能需要修改模板类，这也会影响到所有的⼦类。<br>​		总体来说，当算法的整体步骤很固定，但是个别步骤在更详细的层次上的实现可能不同时，通常考虑模板⽅法模式来处理。在已有的⼯具和库中， Spring框架中的JdbcTemplate 类使⽤了模板⽅法模式，其中定义了⼀些执⾏数据库操作的模板⽅法，具体的数据库操作由回调函数提供。⽽在Java的JDK源码中， AbstractList 类也使⽤了模板⽅法模式，它提供了⼀些通⽤的⽅法，其中包括⼀些模板⽅法。具体的列表操作由⼦类实现。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象机器人类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AbstractRobot</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 武器</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">weapon</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 外观</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">appearance</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 战斗能力</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">fightAbility</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 名字</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> string <span class="title">getName</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 自愈能力</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">selfHealing</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="comment">// 是否能飞</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">bool</span> <span class="title">canFlying</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 是否可以自动控制</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">bool</span> <span class="title">isAuto</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 得到当前机器人的属性</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">getProperty</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;贝加庞克制造的&quot;</span> &lt;&lt; <span class="built_in">getName</span>() &lt;&lt; <span class="string">&quot;有以下属性: &quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">canFlying</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;有飞行能力...&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;没有飞行能力...&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">isAuto</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;可以自动控制, 完全体机器人!&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;不能自动控制, 半自动机器人!&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">weapon</span>();</span><br><span class="line">        <span class="built_in">appearance</span>();</span><br><span class="line">        <span class="built_in">fightAbility</span>();</span><br><span class="line">        <span class="built_in">selfHealing</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 机器人子类1 - 和平主义者</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Pacifist</span> : <span class="keyword">public</span> AbstractRobot</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 武器</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">weapon</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;可以发射镭射光...&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 外观</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">appearance</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;外部和巴索罗米·熊一样, 体型庞大，拥有呈半圆形的耳朵，内部似乎金属。&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 战斗能力</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">fightAbility</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;结实抗揍, 可以通过手部或者嘴部发射镭射激光, 可以融化钢铁!!!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 名字</span></span><br><span class="line">    <span class="function">string <span class="title">getName</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;和平主义者&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 机器人子类2 - 炽天使</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Angel</span> : <span class="keyword">public</span> AbstractRobot</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 武器</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">weapon</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;可以发射镭射激光, 鹰眼外形的炽天使携带者一把巨剑, 可以斩断一切!!!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 外观</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">appearance</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;外观和七武海小时候的外形一样, 并且拥有一对和烬一样的翅膀!!!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 战斗能力</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">fightAbility</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;不仅可以发射镭射激光, 还拥有七武海的能力, 牛逼plus, 无敌了!!!!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 名字</span></span><br><span class="line">    <span class="function">string <span class="title">getName</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;炽天使&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 自愈能力</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">selfHealing</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;非常厚实抗揍, 并且拥有非常强的自愈能力, 开挂了!!!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">canFlying</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    AbstractRobot* robot = <span class="keyword">new</span> Pacifist;</span><br><span class="line">    robot-&gt;<span class="built_in">getProperty</span>();</span><br><span class="line">    <span class="keyword">delete</span> robot;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;================&quot;</span> &lt;&lt; endl;</span><br><span class="line">    robot = <span class="keyword">new</span> Angel;</span><br><span class="line">    robot-&gt;<span class="built_in">getProperty</span>();</span><br><span class="line">    <span class="keyword">delete</span> robot;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> </span></span><br></pre></td></tr></table></figure>
 
+<p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1087">【设计模式专题之模板方法模式】18-咖啡馆 (kamacoder.com)</a></p>
 
     
 
@@ -485,6 +500,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
@@ -493,15 +512,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,19 +528,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,11 +552,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">左右值</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">左右值</a>
+                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
               </li>
              
               <li class="article-tag-list-item">
