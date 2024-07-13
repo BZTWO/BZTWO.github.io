@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102">
+  <meta name="description" content="什么是策略模式​		策略模式是⼀种⾏为型设计模式，它定义了⼀系列算法（这些算法完成的是相同的⼯作，只是实现不同），并将每个算法封装起来，使它们可以相互替换，⽽且算法的变化不会影响使⽤算法的客户。​		举个例⼦，电商⽹站对于商品的折扣策略有不同的算法，⽐如新⽤户满减优惠，不同等级会员的打折情况不同，这种情况下会产⽣⼤量的if-else语句, 并且如果优惠政策修改时，还需要修改原来的代码，不符合开">
 <meta property="og:type" content="article">
 <meta property="og:title" content="策略模式.md">
 <meta property="og:url" content="http://example.com/2024/07/02/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F-md/index.html">
 <meta property="og:site_name" content="BZTWO">
-<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102">
+<meta property="og:description" content="什么是策略模式​		策略模式是⼀种⾏为型设计模式，它定义了⼀系列算法（这些算法完成的是相同的⼯作，只是实现不同），并将每个算法封装起来，使它们可以相互替换，⽽且算法的变化不会影响使⽤算法的客户。​		举个例⼦，电商⽹站对于商品的折扣策略有不同的算法，⽐如新⽤户满减优惠，不同等级会员的打折情况不同，这种情况下会产⽣⼤量的if-else语句, 并且如果优惠政策修改时，还需要修改原来的代码，不符合开">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-02T11:28:30.000Z">
-<meta property="article:modified_time" content="2024-07-02T11:29:56.958Z">
+<meta property="article:modified_time" content="2024-07-12T15:13:02.495Z">
 <meta property="article:author" content="an">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
@@ -173,7 +173,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">578字</span>
+      <span class="post-count">1k字</span>
     </span>
   </span>
 
@@ -182,7 +182,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">3分</span>
+      <span class="post-count">4分</span>
     </span>
   </span>
 </div>
@@ -195,8 +195,21 @@
     
     <span id="more"></span>
 
+<h4 id="什么是策略模式"><a href="#什么是策略模式" class="headerlink" title="什么是策略模式"></a>什么是策略模式</h4><p>​		策略模式是⼀种⾏为型设计模式，它定义了⼀系列算法（这些算法完成的是相同的⼯作，只是实现不同），并将每个算法封装起来，使它们可以相互替换，⽽且算法的变化不会影响使⽤算法的客户。<br>​		举个例⼦，电商⽹站对于商品的折扣策略有不同的算法，⽐如新⽤户满减优惠，不同等级会员的打折情况不同，这种情况下会产⽣⼤量的if-else语句, 并且如果优惠政策修改时，还需要修改原来的代码，不符合开闭原则。<br>​		这就可以将不同的优惠算法封装成独⽴的类来避免⼤量的条件语句，如果新增优惠算法，可以添加新的策略类来实现，客户端在运⾏时选择不同的具体策略，⽽不必修改客户端代码改变优惠策略。</p>
+<h4 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h4><p>策略模式包含下⾯⼏个结构：</p>
+<ul>
+<li>策略类Strategy : 定义所有⽀持的算法的公共接⼝。</li>
+<li>具体策略类ConcreteStrategy : 实现了策略接⼝，提供具体的算法实现。</li>
+<li>上下⽂类Context : 包含⼀个策略实例，并在需要时调⽤策略对象的⽅法。</li>
+</ul>
+<h4 id="使⽤场景"><a href="#使⽤场景" class="headerlink" title="使⽤场景"></a>使⽤场景</h4><p>那什么时候可以考虑使⽤策略模式呢？</p>
+<ul>
+<li>当⼀个系统根据业务场景需要动态地在⼏种算法中选择⼀种时，可以使⽤策略模式。例如，根据⽤户的⾏为选择不同的计费策略。</li>
+<li>当代码中存在⼤量条件判断，条件判断的区别仅仅在于⾏为，也可以通过策略模式来消除这些条件语句。</li>
+</ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象的策略类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AbstractStrategy</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">fight</span><span class="params">(<span class="type">bool</span> isfar = <span class="literal">false</span>)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">AbstractStrategy</span>() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一档</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">YiDang</span> : <span class="keyword">public</span> AbstractStrategy</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">fight</span><span class="params">(<span class="type">bool</span> isfar = <span class="literal">false</span>)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;*** 现在使用的是一档: &quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (isfar)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;橡胶机关枪&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;橡胶·攻城炮&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2档</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ErDang</span> : <span class="keyword">public</span> AbstractStrategy</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">fight</span><span class="params">(<span class="type">bool</span> isfar = <span class="literal">false</span>)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;*** 现在使用的是2档: &quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (isfar)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;橡胶Jet火箭&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;橡胶Jet·铳乱打&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3档</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SanDang</span> : <span class="keyword">public</span> AbstractStrategy</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">fight</span><span class="params">(<span class="type">bool</span> isfar = <span class="literal">false</span>)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;*** 现在使用的是3档: &quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (isfar)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;橡胶巨人回旋弹&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;橡胶巨人战斧&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4档</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SiDang</span> : <span class="keyword">public</span> AbstractStrategy</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">fight</span><span class="params">(<span class="type">bool</span> isfar = <span class="literal">false</span>)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;*** 现在使用的是4档: &quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (isfar)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;橡胶狮子火箭炮&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;橡胶犀牛榴弹炮&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5档</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">WuDang</span> : <span class="keyword">public</span> AbstractStrategy</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">fight</span><span class="params">(<span class="type">bool</span> isfar = <span class="literal">false</span>)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;*** 切换成五挡: 变成尼卡形态可以把物体变成橡胶, 并任意改变物体的形态对其进行攻击!!!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 路飞类</span></span><br><span class="line"><span class="keyword">enum class</span> <span class="title class_">Level</span>:<span class="type">char</span>&#123;Easy, Normal, Hard, Experts, Professional&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Luffy</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">fight</span><span class="params">(Level level, <span class="type">bool</span> isfar = <span class="literal">false</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (m_strategy != <span class="literal">nullptr</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">delete</span> m_strategy;</span><br><span class="line">            m_strategy = <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">switch</span> (level)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> Level::Easy:</span><br><span class="line">            m_strategy = <span class="keyword">new</span> YiDang;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Level::Normal:</span><br><span class="line">            m_strategy = <span class="keyword">new</span> ErDang;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Level::Hard:</span><br><span class="line">            m_strategy = <span class="keyword">new</span> SanDang;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Level::Experts:</span><br><span class="line">            m_strategy = <span class="keyword">new</span> SiDang;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> Level::Professional:</span><br><span class="line">            m_strategy = <span class="keyword">new</span> WuDang;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        m_strategy-&gt;<span class="built_in">fight</span>(isfar);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ~<span class="built_in">Luffy</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (m_strategy != <span class="literal">nullptr</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">delete</span> m_strategy;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    AbstractStrategy* m_strategy = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Luffy* luffy = <span class="keyword">new</span> Luffy;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;--- 在香波地群岛遇到了海军士兵: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    luffy-&gt;<span class="built_in">fight</span>(Level::Easy);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;--- 在魔谷镇遇到了贝拉米: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    luffy-&gt;<span class="built_in">fight</span>(Level::Normal);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;--- 在司法岛遇到了罗布·路奇: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    luffy-&gt;<span class="built_in">fight</span>(Level::Hard);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;--- 在德雷斯罗萨遇到了多弗朗明哥: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    luffy-&gt;<span class="built_in">fight</span>(Level::Experts);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;--- 在鬼岛遇到了凯多: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    luffy-&gt;<span class="built_in">fight</span>(Level::Professional);</span><br><span class="line">    <span class="keyword">delete</span> luffy;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 
+<p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1082">【设计模式专题之策略模式】14. 超市打折 (kamacoder.com)</a></p>
 
     
 
@@ -485,10 +498,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
@@ -497,7 +506,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,11 +514,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
+                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -521,11 +534,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,11 +550,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">左右值</a>
+                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">左右值</a>
               </li>
              
               <li class="article-tag-list-item">

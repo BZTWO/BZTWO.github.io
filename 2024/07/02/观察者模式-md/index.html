@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="NewsAgency-19.h 123456789101112131415161718192021222324252627282930313233343536#pragma once#include &lt;string&gt;#include &lt;list&gt;using namespace std;class Observer;&#x2F;&#x2F; 发布者基类class NewsAgency&amp;#12">
+  <meta name="description" content="什么是观察者模式观察者模式（发布-订阅模式）属于⾏为型模式，定义了⼀种⼀对多的依赖关系，让多个观察者对象同时监听⼀个主题对象，当主题对象的状态发⽣变化时，所有依赖于它的观察者都得到通知并被⾃动更新。 观察者模式依赖两个模块：  Subject (主题)：也就是被观察的对象，它可以维护⼀组观察者，当主题本身发⽣改变时就会通知观察者。 Observer (观察者)：观察主题的对象，当“被观察”的主">
 <meta property="og:type" content="article">
 <meta property="og:title" content="观察者模式.md">
 <meta property="og:url" content="http://example.com/2024/07/02/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F-md/index.html">
 <meta property="og:site_name" content="BZTWO">
-<meta property="og:description" content="NewsAgency-19.h 123456789101112131415161718192021222324252627282930313233343536#pragma once#include &lt;string&gt;#include &lt;list&gt;using namespace std;class Observer;&#x2F;&#x2F; 发布者基类class NewsAgency&amp;#12">
+<meta property="og:description" content="什么是观察者模式观察者模式（发布-订阅模式）属于⾏为型模式，定义了⼀种⼀对多的依赖关系，让多个观察者对象同时监听⼀个主题对象，当主题对象的状态发⽣变化时，所有依赖于它的观察者都得到通知并被⾃动更新。 观察者模式依赖两个模块：  Subject (主题)：也就是被观察的对象，它可以维护⼀组观察者，当主题本身发⽣改变时就会通知观察者。 Observer (观察者)：观察主题的对象，当“被观察”的主">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-02T10:45:17.000Z">
-<meta property="article:modified_time" content="2024-07-02T10:49:07.598Z">
+<meta property="article:modified_time" content="2024-07-12T14:27:19.854Z">
 <meta property="article:author" content="an">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
@@ -173,7 +173,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">719字</span>
+      <span class="post-count">1.4k字</span>
     </span>
   </span>
 
@@ -182,7 +182,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">3分</span>
+      <span class="post-count">6分</span>
     </span>
   </span>
 </div>
@@ -195,6 +195,21 @@
     
     <span id="more"></span>
 
+<h4 id="什么是观察者模式"><a href="#什么是观察者模式" class="headerlink" title="什么是观察者模式"></a>什么是观察者模式</h4><p>观察者模式（发布-订阅模式）属于⾏为型模式，定义了⼀种⼀对多的依赖关系，让多个观察者对象同时监听⼀个主题对象，当主题对象的状态发⽣变化时，所有依赖于它的观察者都得到通知并被⾃动更新。</p>
+<p>观察者模式依赖两个模块：</p>
+<ul>
+<li>Subject (主题)：也就是被观察的对象，它可以维护⼀组观察者，当主题本身发⽣改变时就会通知观察者。</li>
+<li>Observer (观察者)：观察主题的对象，当“被观察”的主题发⽣变化时，观察者就会得到通知并执⾏相应的处理。</li>
+</ul>
+<p>使⽤观察者模式有很多好处，⽐如说观察者模式将主题和观察者之间的关系解耦，主题只需要关注⾃⼰的状态变化，⽽观察者只需要关注在主题状态变化时需要执⾏的操作，两者互不⼲扰，并且由于观察者和主题是相互独⽴的，可以轻松的增加和删除观察者，这样实现的系统更容易扩展和维护。</p>
+<h4 id="观察者模式的结构"><a href="#观察者模式的结构" class="headerlink" title="观察者模式的结构"></a>观察者模式的结构</h4><p>观察者模式依赖主题和观察者，但是⼀般有4个组成部分：</p>
+<ul>
+<li>主题Subject ， ⼀般会定义成⼀个接⼝，提供⽅法⽤于注册、删除和通知观察者，通常也包含⼀个状态，当状态发⽣改变时，通知所有的观察者。</li>
+<li>观察者Observer : 观察者也需要实现⼀个接⼝，包含⼀个更新⽅法，在接收主题通知时执⾏对应的操作。</li>
+<li>具体主题ConcreteSubject : 主题的具体实现, 维护⼀个观察者列表，包含了观察者的注册、删除和通知⽅法。</li>
+<li>具体观察者ConcreteObserver : 观察者接⼝的具体实现，每个具体观察者都注册到具体主题中，当主题状态变化并通知到具体观察者，具体观察者进⾏处理。</li>
+</ul>
+<h4 id="什么时候使⽤观察者模式"><a href="#什么时候使⽤观察者模式" class="headerlink" title="什么时候使⽤观察者模式"></a>什么时候使⽤观察者模式</h4><p>​		观察者模式特别适⽤于⼀个对象的状态变化会影响到其他对象，并且希望这些对象在状态变化时能够⾃动更新的情况。 ⽐如说在图形⽤户界⾯中，按钮、滑动条等组件的状态变化可能需要通知其他组件更新，这使得观察者模式被⼴泛应⽤于GUI框架，⽐如Java的Swing框架。<br>​		此外，观察者模式在前端开发和分布式系统中也有应⽤，⽐较典型的例⼦是前端框架Vue , 当数据发⽣变化时，视图会⾃动更新。⽽在分布式系统中，观察者模式可以⽤于实现节点之间的消息通知机制，节点的状态变化将通知其他相关节点。</p>
 <p>NewsAgency-19.h</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;list&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Observer</span>;</span><br><span class="line"><span class="comment">// 发布者基类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NewsAgency</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 添加订阅者</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">attach</span><span class="params">(Observer* ob)</span></span>;</span><br><span class="line">    <span class="comment">// 删除订阅者</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">detach</span><span class="params">(Observer* ob)</span></span>;</span><br><span class="line">    <span class="comment">// 通知订阅者</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">notify</span><span class="params">(string msg)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">NewsAgency</span>() &#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    list&lt;Observer*&gt; m_list;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发布者子类 - 摩根斯</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Morgans</span> : <span class="keyword">public</span> NewsAgency</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 通知订阅者</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">notify</span><span class="params">(string msg)</span> <span class="keyword">override</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发布者子类 - 八卦新闻社</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Gossip</span> : <span class="keyword">public</span> NewsAgency</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 通知订阅者</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">notify</span><span class="params">(string msg)</span> <span class="keyword">override</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -207,6 +222,7 @@
 <p>main.cpp</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;NewsAgency-19.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Observer-19.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 发布者</span></span><br><span class="line">    NewsAgency* news1 = <span class="keyword">new</span> Morgans;</span><br><span class="line">    NewsAgency* news2 = <span class="keyword">new</span> Gossip;</span><br><span class="line">    <span class="comment">// 观察者(订阅者)</span></span><br><span class="line">    Dragon* dragon = <span class="keyword">new</span> <span class="built_in">Dragon</span>(news1, <span class="string">&quot;蒙奇·D·龙&quot;</span>);</span><br><span class="line">    Shanks* shanks = <span class="keyword">new</span> <span class="built_in">Shanks</span>(news1, <span class="string">&quot;香克斯&quot;</span>);</span><br><span class="line">    Bartolomeo* barto = <span class="keyword">new</span> <span class="built_in">Bartolomeo</span>(news2, <span class="string">&quot;巴托洛米奥&quot;</span>);</span><br><span class="line">    <span class="comment">// 由发布者推送消息</span></span><br><span class="line">    news1-&gt;<span class="built_in">notify</span>(<span class="string">&quot;蒙奇·D·路飞成为新世界的新的四皇之一, 赏金30亿贝里!!!&quot;</span>);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;=====================&quot;</span> &lt;&lt; endl;</span><br><span class="line">    news2-&gt;<span class="built_in">notify</span>(<span class="string">&quot;女帝汉库克想要嫁给路飞, 给路飞生猴子, 哈哈哈...&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> news1;</span><br><span class="line">    <span class="keyword">delete</span> news2;</span><br><span class="line">    <span class="keyword">delete</span> dragon;</span><br><span class="line">    <span class="keyword">delete</span> shanks;</span><br><span class="line">    <span class="keyword">delete</span> barto;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 
+<p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1075">【设计模式专题之观察者模式】13. 时间观察者 (kamacoder.com)</a></p>
 
     
 
@@ -495,10 +511,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
@@ -507,7 +519,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,11 +527,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
+                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,11 +547,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,11 +563,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">左右值</a>
+                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">左右值</a>
               </li>
              
               <li class="article-tag-list-item">
