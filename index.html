@@ -142,103 +142,6 @@
             
 
   
-    <article id="post-protobuf安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/07/11/protobuf%E5%AE%89%E8%A3%85/" target="_blank">protobuf安装</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/07/11/protobuf%E5%AE%89%E8%A3%85/" class="archive-article-date">
-        <time datetime="2024-07-11T09:57:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-11</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p><a target="_blank" rel="noopener" href="https://mengbaoliang.cn/archives/92200/">Protobuf 编译安装教程</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1zi421v77c/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=54f770fab31251d4ff47d20981b523ca">Protobuf 编译安装视频</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">absl_bad_any_cast_impl.lib</span><br><span class="line">absl_bad_optional_access.lib</span><br><span class="line">absl_bad_variant_access.lib</span><br><span class="line">absl_base.lib</span><br><span class="line">absl_city.lib</span><br><span class="line">absl_civil_time.lib</span><br><span class="line">absl_cord.lib</span><br><span class="line">absl_cordz_functions.lib</span><br><span class="line">absl_cordz_handle.lib</span><br><span class="line">absl_cordz_info.lib</span><br><span class="line">absl_cordz_sample_token.lib</span><br><span class="line">absl_cord_internal.lib</span><br><span class="line">absl_crc32c.lib</span><br><span class="line">absl_crc_cord_state.lib</span><br><span class="line">absl_crc_cpu_detect.lib</span><br><span class="line">absl_crc_internal.lib</span><br><span class="line">absl_debugging_internal.lib</span><br><span class="line">absl_demangle_internal.lib</span><br><span class="line">absl_die_if_null.lib</span><br><span class="line">absl_examine_stack.lib</span><br><span class="line">absl_exponential_biased.lib</span><br><span class="line">absl_failure_signal_handler.lib</span><br><span class="line">absl_flags_commandlineflag.lib</span><br><span class="line">absl_flags_commandlineflag_internal.lib</span><br><span class="line">absl_flags_config.lib</span><br><span class="line">absl_flags_internal.lib</span><br><span class="line">absl_flags_marshalling.lib</span><br><span class="line">absl_flags_parse.lib</span><br><span class="line">absl_flags_private_handle_accessor.lib</span><br><span class="line">absl_flags_program_name.lib</span><br><span class="line">absl_flags_reflection.lib</span><br><span class="line">absl_flags_usage.lib</span><br><span class="line">absl_flags_usage_internal.lib</span><br><span class="line">absl_graphcycles_internal.lib</span><br><span class="line">absl_hash.lib</span><br><span class="line">absl_hashtablez_sampler.lib</span><br><span class="line">absl_int128.lib</span><br><span class="line">absl_kernel_timeout_internal.lib</span><br><span class="line">absl_leak_check.lib</span><br><span class="line">absl_log_entry.lib</span><br><span class="line">absl_log_flags.lib</span><br><span class="line">absl_log_globals.lib</span><br><span class="line">absl_log_initialize.lib</span><br><span class="line">absl_log_internal_check_op.lib</span><br><span class="line">absl_log_internal_conditions.lib</span><br><span class="line">absl_log_internal_fnmatch.lib</span><br><span class="line">absl_log_internal_format.lib</span><br><span class="line">absl_log_internal_globals.lib</span><br><span class="line">absl_log_internal_log_sink_set.lib</span><br><span class="line">absl_log_internal_message.lib</span><br><span class="line">absl_log_internal_nullguard.lib</span><br><span class="line">absl_log_internal_proto.lib</span><br><span class="line">absl_log_severity.lib</span><br><span class="line">absl_log_sink.lib</span><br><span class="line">absl_low_level_hash.lib</span><br><span class="line">absl_malloc_internal.lib</span><br><span class="line">absl_periodic_sampler.lib</span><br><span class="line">absl_random_distributions.lib</span><br><span class="line">absl_random_internal_distribution_test_util.lib</span><br><span class="line">absl_random_internal_platform.lib</span><br><span class="line">absl_random_internal_pool_urbg.lib</span><br><span class="line">absl_random_internal_randen.lib</span><br><span class="line">absl_random_internal_randen_hwaes.lib</span><br><span class="line">absl_random_internal_randen_hwaes_impl.lib</span><br><span class="line">absl_random_internal_randen_slow.lib</span><br><span class="line">absl_random_internal_seed_material.lib</span><br><span class="line">absl_random_seed_gen_exception.lib</span><br><span class="line">absl_random_seed_sequences.lib</span><br><span class="line">absl_raw_hash_set.lib</span><br><span class="line">absl_raw_logging_internal.lib</span><br><span class="line">absl_scoped_set_env.lib</span><br><span class="line">absl_spinlock_wait.lib</span><br><span class="line">absl_stacktrace.lib</span><br><span class="line">absl_status.lib</span><br><span class="line">absl_statusor.lib</span><br><span class="line">absl_strerror.lib</span><br><span class="line">absl_strings.lib</span><br><span class="line">absl_strings_internal.lib</span><br><span class="line">absl_string_view.lib</span><br><span class="line">absl_str_format_internal.lib</span><br><span class="line">absl_symbolize.lib</span><br><span class="line">absl_synchronization.lib</span><br><span class="line">absl_throw_delegate.lib</span><br><span class="line">absl_time.lib</span><br><span class="line">absl_time_zone.lib</span><br><span class="line">absl_vlog_config_internal.lib</span><br><span class="line">libprotobuf-lite.lib</span><br><span class="line">libprotobuf.lib</span><br><span class="line">libprotoc.lib</span><br><span class="line">utf8_range.lib</span><br><span class="line">utf8_validity.lib</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">Person</span> &#123;</span><br><span class="line">  <span class="type">int32</span> id = <span class="number">1</span>;</span><br><span class="line">  <span class="type">bytes</span> name = <span class="number">2</span>;</span><br><span class="line">  <span class="type">string</span> sex = <span class="number">3</span>;</span><br><span class="line">  <span class="type">int32</span> age = <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protoc Person.proto --cpp_out=./</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Person.pb.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Person p;</span><br><span class="line">	p.<span class="built_in">set_id</span>(<span class="number">10086</span>);</span><br><span class="line">	p.<span class="built_in">set_name</span>(<span class="string">&quot;alice&quot;</span>);</span><br><span class="line">	p.<span class="built_in">set_sex</span>(<span class="string">&quot;man&quot;</span>);</span><br><span class="line">	p.<span class="built_in">set_age</span>(<span class="number">18</span>);</span><br><span class="line">	cout &lt;&lt; p.<span class="built_in">id</span>() &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; p.<span class="built_in">name</span>() &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; p.<span class="built_in">sex</span>() &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; p.<span class="built_in">age</span>() &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">test</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Protobuf</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/07/11/protobuf%E5%AE%89%E8%A3%85/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-萃取" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1232,6 +1135,110 @@
 
 
   
+    <article id="post-责任链模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/07/01/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F-md/" target="_blank">责任链模式.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/07/01/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
+        <time datetime="2024-07-01T08:50:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>​		责任链模式是⼀种⾏为型设计模式，它允许你构建⼀个对象链，让请求从链的⼀端进⼊，然后沿着链上的对象依次处理，直到链上的某个对象能够处理该请求为⽌。</p>
+<p>​		职责链上的处理者就是⼀个对象，可以对请求进⾏处理或者将请求转发给下⼀个节点，这个场景在⽣活中很常⻅，就是⼀个逐层向上递交的过程，最终的请求要么被处理者所处理，要么处理不了，这也因此可能导致请求⽆法被处理。</p>
+<h4 id="组成结构"><a href="#组成结构" class="headerlink" title="组成结构"></a>组成结构</h4><p>责任链模式包括以下⼏个基本结构：</p>
+<ol>
+<li>处理者Handler ：定义⼀个处理请求的接⼝，包含⼀个处理请求的抽象⽅法和⼀个指向下⼀个处理者的链接。</li>
+<li>具体处理者ConcreteHandler : 实现处理请求的⽅法，并判断能否处理请求，如果能够处理请求则进⾏处理，否则将请求传递给下⼀个处理者。</li>
+<li>客户端：创建并组装处理者对象链，并将请求发送到链上的第⼀个处理者。</li>
+</ol>
+<h4 id="使⽤场景"><a href="#使⽤场景" class="headerlink" title="使⽤场景"></a>使⽤场景</h4><p>责任链模式具有下⾯⼏个优点：</p>
+<ul>
+<li>降低耦合度：将请求的发送者和接收者解耦，每个具体处理者都只负责处理与⾃⼰相关的请求，客户端不需要知道具体是哪个处理者处理请求。</li>
+<li>增强灵活性：可以动态地添加或删除处理者，改变处理者之间的顺序以满⾜不同需求。</li>
+</ul>
+<p>但是由于⼀个请求可能会经过多个处理者，这可能会导致⼀些性能问题，并且如果整个链上也没有合适的处理者来处理请求，就会导致请求⽆法被处理。<br>责任链模式是设计模式中简单且常⻅的设计模式，在⽇常中也会经常使⽤到，⽐如Java开发中过滤器的链式处理，以及Spring框架中的拦截器，都组装成⼀个处理链对请求、响应进⾏处理。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">enum class</span> <span class="title class_">RequestType</span> :<span class="type">char</span> &#123;QingJia, ZhangXin, CiZhi&#125;;</span><br><span class="line"><span class="comment">// 抽象的管理者节点</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AbstractManager</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setNext</span><span class="params">(AbstractManager* next)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        m_next = next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">handleRequest</span><span class="params">(RequestType type)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">AbstractManager</span>() &#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    AbstractManager* m_next = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 底层管理者</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Manager</span> : <span class="keyword">public</span> AbstractManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">handleRequest</span><span class="params">(RequestType type)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (type)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> RequestType::QingJia:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;请假: 同意请假，好好休息~~~&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::ZhangXin:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;涨薪: 这个我得请示一下咱们CEO...&quot;</span> &lt;&lt; <span class="string">&quot; ====&gt; &quot;</span>;</span><br><span class="line">            m_next-&gt;<span class="built_in">handleRequest</span>(type);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::CiZhi:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;辞职: 我给你向上级反应一下...&quot;</span> &lt;&lt; <span class="string">&quot; ====&gt; &quot;</span>;</span><br><span class="line">            m_next-&gt;<span class="built_in">handleRequest</span>(type);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CEO</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CEO</span> : <span class="keyword">public</span> AbstractManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">handleRequest</span><span class="params">(RequestType type)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (type)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> RequestType::QingJia:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;请假: 同意请假, 下不为例...&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::ZhangXin:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;涨薪: 你工资不少了, 给你个购物券吧...&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::CiZhi:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;辞职: 这个我得问问咱们老板...&quot;</span> &lt;&lt; <span class="string">&quot; ====&gt; &quot;</span>;</span><br><span class="line">            m_next-&gt;<span class="built_in">handleRequest</span>(type);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// BOSS</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Boss</span> : <span class="keyword">public</span> AbstractManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">handleRequest</span><span class="params">(RequestType type)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (type)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> RequestType::QingJia:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;请假: 只有工作才能实现人生价值，回去好好坚守岗位！！！&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::ZhangXin:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;涨薪: 钱财乃身外之物, 要视其如粪土!!!&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::CiZhi:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;辞职: 巴洛克工作社就是你的家, 这次把你留下, 下次别再提了!!!&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交请求的类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DaCongMing</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">request</span><span class="params">(RequestType type, AbstractManager* manager)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        manager-&gt;<span class="built_in">handleRequest</span>(type);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Manager* manager = <span class="keyword">new</span> Manager;</span><br><span class="line">    CEO* ceo = <span class="keyword">new</span> CEO;</span><br><span class="line">    Boss* boss = <span class="keyword">new</span> Boss;</span><br><span class="line">    manager-&gt;<span class="built_in">setNext</span>(ceo);</span><br><span class="line">    ceo-&gt;<span class="built_in">setNext</span>(boss);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建员工的实例</span></span><br><span class="line">    DaCongMing* boy = <span class="keyword">new</span> DaCongMing;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;大聪明直接将请求提交给顶头上司&quot;</span> &lt;&lt; endl;</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::CiZhi, manager);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::ZhangXin, manager);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::QingJia, manager);</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;大聪明直接将请求提交给CEO&quot;</span> &lt;&lt; endl;</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::CiZhi, ceo);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::ZhangXin, ceo);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::QingJia, ceo);</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;大聪明直接将请求提交给boss&quot;</span> &lt;&lt; endl;</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::CiZhi, boss);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::ZhangXin, boss);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::QingJia, boss);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> boy;</span><br><span class="line">    <span class="keyword">delete</span> manager;</span><br><span class="line">    <span class="keyword">delete</span> ceo;</span><br><span class="line">    <span class="keyword">delete</span> boss;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1100">【设计模式专题之责任链模式】21-请假审批 (kamacoder.com)</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/07/01/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1365,15 +1372,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C++特性</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Qt</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color1">C++特性</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1381,15 +1384,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -142,114 +142,6 @@
             
 
   
-    <article id="post-建造者模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/06/26/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F-md/" target="_blank">建造者模式.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/06/26/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2024-06-26T03:28:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-26</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h4 id="什么是建造者模式"><a href="#什么是建造者模式" class="headerlink" title="什么是建造者模式"></a>什么是建造者模式</h4><p>​		建造者模式（也被成为⽣成器模式），是⼀种创建型设计模式，软件开发过程中有的时候需要创建很复杂的对象，⽽建造者模式的主要思想是将对象的构建过程分为多个步骤，并为每个步骤定义⼀个抽象的接⼝。具体的构建过程由实现了这些接⼝的具体建造者类来完成。同时有⼀个指导者类负责协调建造者的⼯作，按照⼀定的顺序或逻辑来执⾏构建步骤，最终⽣成产品。</p>
-<h4 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h4><p>建造者模式有下⾯⼏个关键⻆⾊：</p>
-<ul>
-<li><p>产品Product ：被构建的复杂对象, 包含多个组成部分。</p>
-</li>
-<li><p>抽象建造者Builder : 定义构建产品各个部分的抽象接⼝和⼀个返回复杂产品的⽅法getResult</p>
-</li>
-<li><p>具体建造者Concrete Builder ：实现抽象建造者接⼝，构建产品的各个组成部分，并提供⼀个⽅法返回最终的产品。</p>
-</li>
-<li><p>指导者Director ：调⽤具体建造者的⽅法，按照⼀定的顺序或逻辑来构建产品。</p>
-</li>
-</ul>
-<h4 id="使⽤场景"><a href="#使⽤场景" class="headerlink" title="使⽤场景"></a>使⽤场景</h4><p>使⽤建造者模式有下⾯⼏处优点：</p>
-<ul>
-<li>使⽤建造者模式可以将⼀个复杂对象的构建与其表示分离，通过将构建复杂对象的过程抽象出来，可以使客户端代码与具体的构建过程解耦</li>
-<li>同样的构建过程可以创建不同的表示，可以有多个具体的建造者(相互独⽴），可以更加灵活地创建不同组合的对象。</li>
-</ul>
-<p>对应的，建造者模式适⽤于复杂对象的创建，当对象构建过程相对复杂时可以考虑使⽤建造者模式，但是当产品的构建过程发⽣变化时，可能需要同时修改指导类和建造者类，这就使得重构变得相对困难。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//存储已经建造好的零部件</span></span><br><span class="line"><span class="comment">//Sunny号</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SunnyShip</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">addParts</span><span class="params">(string name)</span> </span>&#123;</span><br><span class="line">		m_parts.<span class="built_in">emplace_back</span>(name);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">showParts</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; item : m_parts) &#123;</span><br><span class="line">			cout &lt;&lt; item &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	vector&lt;string&gt; m_parts;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//Merry号</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MerryShip</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">addParts</span><span class="params">(string name, string parts)</span> </span>&#123;</span><br><span class="line">		m_parts[parts] = name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">showParts</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; item : m_parts) &#123;</span><br><span class="line">			cout &lt;&lt; item.first &lt;&lt; <span class="string">&quot; : &quot;</span> &lt;&lt; item.second;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	map&lt;string, string&gt; m_parts;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//定义生成器类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ShipBuilder</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">reset</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">buildBody</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">buildWeapon</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">buildEngine</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">buildInterior</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">virtual</span> ~<span class="built_in">ShipBuilder</span>() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SunnyBuilder</span> : <span class="keyword">public</span> ShipBuilder &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">SunnyBuilder</span>() &#123;</span><br><span class="line">		<span class="built_in">reset</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">reset</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_sunny = <span class="keyword">new</span> SunnyShip;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">SunnyShip* <span class="title">getSunnyShip</span><span class="params">()</span></span>&#123;</span><br><span class="line">		SunnyShip* ship = m_sunny;</span><br><span class="line">		m_sunny = <span class="literal">nullptr</span>;</span><br><span class="line">		<span class="keyword">return</span> ship;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildBody</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_sunny-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;船体是神树亚当&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildWeapon</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_sunny-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;武器是狮吼炮&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildEngine</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_sunny-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;可乐驱动的内燃机&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildInterior</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_sunny-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;非常豪华的内饰装修&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	~<span class="built_in">SunnyBuilder</span>() &#123;</span><br><span class="line">		<span class="keyword">if</span> (m_sunny)</span><br><span class="line">			<span class="keyword">delete</span> m_sunny;	</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	SunnyShip* m_sunny;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MerryBuilder</span> : <span class="keyword">public</span> ShipBuilder &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">MerryBuilder</span>() &#123;</span><br><span class="line">		<span class="built_in">reset</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">reset</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_merry = <span class="keyword">new</span> MerryShip;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">MerryShip* <span class="title">getMerryShip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		MerryShip* ship = m_merry;</span><br><span class="line">		m_merry = <span class="literal">nullptr</span>;</span><br><span class="line">		<span class="keyword">return</span> ship;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildBody</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_merry-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;优质木材&quot;</span>, <span class="string">&quot; 船体&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildWeapon</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_merry-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;四门大炮&quot;</span>, <span class="string">&quot; 武器&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildEngine</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_merry-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;烧煤的蒸汽机&quot;</span>, <span class="string">&quot; 动力&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildInterior</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">		m_merry-&gt;<span class="built_in">addParts</span>(<span class="string">&quot;非常豪华的内饰装修&quot;</span>, <span class="string">&quot; 内饰&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	~<span class="built_in">MerryBuilder</span>() &#123;</span><br><span class="line">		<span class="keyword">if</span> (m_merry)</span><br><span class="line">			<span class="keyword">delete</span> m_merry;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	MerryShip* m_merry;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义管理类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Director</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">setBuilder</span><span class="params">(ShipBuilder* builder)</span> </span>&#123;</span><br><span class="line">		m_builder = builder;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//简约</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildeSimpledShip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		m_builder-&gt;<span class="built_in">buildBody</span>();</span><br><span class="line">		m_builder-&gt;<span class="built_in">buildEngine</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//标准</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildeStandardShip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="built_in">buildeSimpledShip</span>();</span><br><span class="line">		m_builder-&gt;<span class="built_in">buildWeapon</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//豪华</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">buildeRegalShip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="built_in">buildeStandardShip</span>();</span><br><span class="line">		m_builder-&gt;<span class="built_in">buildInterior</span>();</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	ShipBuilder* m_builder = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建造桑尼号</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">buildSunnyShip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Director* director = <span class="keyword">new</span> Director;</span><br><span class="line">	SunnyBuilder* builder = <span class="keyword">new</span> SunnyBuilder;</span><br><span class="line">	<span class="comment">//简约型</span></span><br><span class="line">	director-&gt;<span class="built_in">setBuilder</span>(builder);</span><br><span class="line">	director-&gt;<span class="built_in">buildeSimpledShip</span>();</span><br><span class="line">	SunnyShip* ship = builder-&gt;<span class="built_in">getSunnyShip</span>();</span><br><span class="line">	ship-&gt;<span class="built_in">showParts</span>();</span><br><span class="line">	<span class="keyword">delete</span> ship;</span><br><span class="line">	<span class="comment">//标准型</span></span><br><span class="line">	builder-&gt;<span class="built_in">reset</span>();</span><br><span class="line">	director-&gt;<span class="built_in">setBuilder</span>(builder);</span><br><span class="line">	director-&gt;<span class="built_in">buildeStandardShip</span>();</span><br><span class="line">	ship = builder-&gt;<span class="built_in">getSunnyShip</span>();</span><br><span class="line">	ship-&gt;<span class="built_in">showParts</span>();</span><br><span class="line">	<span class="keyword">delete</span> ship;</span><br><span class="line">	<span class="comment">//豪华型</span></span><br><span class="line">	builder-&gt;<span class="built_in">reset</span>();</span><br><span class="line">	director-&gt;<span class="built_in">setBuilder</span>(builder);</span><br><span class="line">	director-&gt;<span class="built_in">buildeRegalShip</span>();</span><br><span class="line">	ship = builder-&gt;<span class="built_in">getSunnyShip</span>();</span><br><span class="line">	ship-&gt;<span class="built_in">showParts</span>();</span><br><span class="line">	<span class="keyword">delete</span> ship;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">delete</span> director;</span><br><span class="line">	<span class="keyword">delete</span> builder;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//建造梅利号</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">buildMerryShip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Director* director = <span class="keyword">new</span> Director;</span><br><span class="line">	MerryBuilder* builder = <span class="keyword">new</span> MerryBuilder;</span><br><span class="line">	<span class="comment">//简约型</span></span><br><span class="line">	director-&gt;<span class="built_in">setBuilder</span>(builder);</span><br><span class="line">	director-&gt;<span class="built_in">buildeSimpledShip</span>();</span><br><span class="line">	MerryShip* ship = builder-&gt;<span class="built_in">getMerryShip</span>();</span><br><span class="line">	ship-&gt;<span class="built_in">showParts</span>();</span><br><span class="line">	<span class="keyword">delete</span> ship;</span><br><span class="line">	<span class="comment">//标准型</span></span><br><span class="line">	builder-&gt;<span class="built_in">reset</span>();</span><br><span class="line">	director-&gt;<span class="built_in">setBuilder</span>(builder);</span><br><span class="line">	director-&gt;<span class="built_in">buildeStandardShip</span>();</span><br><span class="line">	ship = builder-&gt;<span class="built_in">getMerryShip</span>();</span><br><span class="line">	ship-&gt;<span class="built_in">showParts</span>();</span><br><span class="line">	<span class="keyword">delete</span> ship;</span><br><span class="line">	<span class="comment">//豪华型</span></span><br><span class="line">	builder-&gt;<span class="built_in">reset</span>();</span><br><span class="line">	director-&gt;<span class="built_in">setBuilder</span>(builder);</span><br><span class="line">	director-&gt;<span class="built_in">buildeRegalShip</span>();</span><br><span class="line">	ship = builder-&gt;<span class="built_in">getMerryShip</span>();</span><br><span class="line">	ship-&gt;<span class="built_in">showParts</span>();</span><br><span class="line">	<span class="keyword">delete</span> ship;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">delete</span> director;</span><br><span class="line">	<span class="keyword">delete</span> builder;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">buildMerryShip</span>();</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;===========================================&quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">buildSunnyShip</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1084">【设计模式专题之建造者模式】4. 自行车加工 (kamacoder.com)</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/06/26/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-工厂模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -727,6 +619,103 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2024/06/12/%E4%BA%A4%E9%9B%86%E5%92%8C%E5%B9%B6%E9%9B%86-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-protobuf安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/06/11/protobuf%E5%AE%89%E8%A3%85/" target="_blank">protobuf安装</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/06/11/protobuf%E5%AE%89%E8%A3%85/" class="archive-article-date">
+        <time datetime="2024-06-11T09:57:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-11</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p><a target="_blank" rel="noopener" href="https://mengbaoliang.cn/archives/92200/">Protobuf 编译安装教程</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1zi421v77c/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=54f770fab31251d4ff47d20981b523ca">Protobuf 编译安装视频</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">absl_bad_any_cast_impl.lib</span><br><span class="line">absl_bad_optional_access.lib</span><br><span class="line">absl_bad_variant_access.lib</span><br><span class="line">absl_base.lib</span><br><span class="line">absl_city.lib</span><br><span class="line">absl_civil_time.lib</span><br><span class="line">absl_cord.lib</span><br><span class="line">absl_cordz_functions.lib</span><br><span class="line">absl_cordz_handle.lib</span><br><span class="line">absl_cordz_info.lib</span><br><span class="line">absl_cordz_sample_token.lib</span><br><span class="line">absl_cord_internal.lib</span><br><span class="line">absl_crc32c.lib</span><br><span class="line">absl_crc_cord_state.lib</span><br><span class="line">absl_crc_cpu_detect.lib</span><br><span class="line">absl_crc_internal.lib</span><br><span class="line">absl_debugging_internal.lib</span><br><span class="line">absl_demangle_internal.lib</span><br><span class="line">absl_die_if_null.lib</span><br><span class="line">absl_examine_stack.lib</span><br><span class="line">absl_exponential_biased.lib</span><br><span class="line">absl_failure_signal_handler.lib</span><br><span class="line">absl_flags_commandlineflag.lib</span><br><span class="line">absl_flags_commandlineflag_internal.lib</span><br><span class="line">absl_flags_config.lib</span><br><span class="line">absl_flags_internal.lib</span><br><span class="line">absl_flags_marshalling.lib</span><br><span class="line">absl_flags_parse.lib</span><br><span class="line">absl_flags_private_handle_accessor.lib</span><br><span class="line">absl_flags_program_name.lib</span><br><span class="line">absl_flags_reflection.lib</span><br><span class="line">absl_flags_usage.lib</span><br><span class="line">absl_flags_usage_internal.lib</span><br><span class="line">absl_graphcycles_internal.lib</span><br><span class="line">absl_hash.lib</span><br><span class="line">absl_hashtablez_sampler.lib</span><br><span class="line">absl_int128.lib</span><br><span class="line">absl_kernel_timeout_internal.lib</span><br><span class="line">absl_leak_check.lib</span><br><span class="line">absl_log_entry.lib</span><br><span class="line">absl_log_flags.lib</span><br><span class="line">absl_log_globals.lib</span><br><span class="line">absl_log_initialize.lib</span><br><span class="line">absl_log_internal_check_op.lib</span><br><span class="line">absl_log_internal_conditions.lib</span><br><span class="line">absl_log_internal_fnmatch.lib</span><br><span class="line">absl_log_internal_format.lib</span><br><span class="line">absl_log_internal_globals.lib</span><br><span class="line">absl_log_internal_log_sink_set.lib</span><br><span class="line">absl_log_internal_message.lib</span><br><span class="line">absl_log_internal_nullguard.lib</span><br><span class="line">absl_log_internal_proto.lib</span><br><span class="line">absl_log_severity.lib</span><br><span class="line">absl_log_sink.lib</span><br><span class="line">absl_low_level_hash.lib</span><br><span class="line">absl_malloc_internal.lib</span><br><span class="line">absl_periodic_sampler.lib</span><br><span class="line">absl_random_distributions.lib</span><br><span class="line">absl_random_internal_distribution_test_util.lib</span><br><span class="line">absl_random_internal_platform.lib</span><br><span class="line">absl_random_internal_pool_urbg.lib</span><br><span class="line">absl_random_internal_randen.lib</span><br><span class="line">absl_random_internal_randen_hwaes.lib</span><br><span class="line">absl_random_internal_randen_hwaes_impl.lib</span><br><span class="line">absl_random_internal_randen_slow.lib</span><br><span class="line">absl_random_internal_seed_material.lib</span><br><span class="line">absl_random_seed_gen_exception.lib</span><br><span class="line">absl_random_seed_sequences.lib</span><br><span class="line">absl_raw_hash_set.lib</span><br><span class="line">absl_raw_logging_internal.lib</span><br><span class="line">absl_scoped_set_env.lib</span><br><span class="line">absl_spinlock_wait.lib</span><br><span class="line">absl_stacktrace.lib</span><br><span class="line">absl_status.lib</span><br><span class="line">absl_statusor.lib</span><br><span class="line">absl_strerror.lib</span><br><span class="line">absl_strings.lib</span><br><span class="line">absl_strings_internal.lib</span><br><span class="line">absl_string_view.lib</span><br><span class="line">absl_str_format_internal.lib</span><br><span class="line">absl_symbolize.lib</span><br><span class="line">absl_synchronization.lib</span><br><span class="line">absl_throw_delegate.lib</span><br><span class="line">absl_time.lib</span><br><span class="line">absl_time_zone.lib</span><br><span class="line">absl_vlog_config_internal.lib</span><br><span class="line">libprotobuf-lite.lib</span><br><span class="line">libprotobuf.lib</span><br><span class="line">libprotoc.lib</span><br><span class="line">utf8_range.lib</span><br><span class="line">utf8_validity.lib</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">Person</span> &#123;</span><br><span class="line">  <span class="type">int32</span> id = <span class="number">1</span>;</span><br><span class="line">  <span class="type">bytes</span> name = <span class="number">2</span>;</span><br><span class="line">  <span class="type">string</span> sex = <span class="number">3</span>;</span><br><span class="line">  <span class="type">int32</span> age = <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protoc Person.proto --cpp_out=./</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Person.pb.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Person p;</span><br><span class="line">	p.<span class="built_in">set_id</span>(<span class="number">10086</span>);</span><br><span class="line">	p.<span class="built_in">set_name</span>(<span class="string">&quot;alice&quot;</span>);</span><br><span class="line">	p.<span class="built_in">set_sex</span>(<span class="string">&quot;man&quot;</span>);</span><br><span class="line">	p.<span class="built_in">set_age</span>(<span class="number">18</span>);</span><br><span class="line">	cout &lt;&lt; p.<span class="built_in">id</span>() &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; p.<span class="built_in">name</span>() &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; p.<span class="built_in">sex</span>() &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; p.<span class="built_in">age</span>() &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">test</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Protobuf</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/06/11/protobuf%E5%AE%89%E8%A3%85/">展开全文 >></a>
     </p>
     
 
@@ -1291,15 +1280,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C++特性</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Qt</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color1">C++特性</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1307,15 +1292,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
