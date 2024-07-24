@@ -142,6 +142,122 @@
             
 
   
+    <article id="post-最大公约数和最小公倍数-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/04/16/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E5%92%8C%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0-md/" target="_blank">最大公约数和最小公倍数.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/04/16/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E5%92%8C%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0-md/" class="archive-article-date">
+        <time datetime="2024-04-16T06:45:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-16</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<h4 id="最大公约数"><a href="#最大公约数" class="headerlink" title="最大公约数"></a>最大公约数</h4><p>最大公约数（Greatest Common Divisor，GCD），也称最大公因数、最大公约数，指两个或多个整数共有约数中最大的一个。对于任意整数a，b，其最大公约数记为gcd(a,b)，也可以写成(a,b)。求最大公约数有多种方法，常见的有质因数分解法、短除法、辗转相除法、更相减损术等。</p>
+<p><code>辗转相除法</code>（也称为欧几里得算法）是求两个整数最大公约数的一种常用方法。它的基本思想是：对于整数a和b，gcd(a, b) 和 gcd(b, a mod b) 是相等的。因此，我们可以通过不断对较大的数取模较小的数，直到其中一个数为0，此时另一个数就是两者的最大公约数。</p>
+<p>例如，求48和18的最大公约数：</p>
+<ol>
+<li>48 ÷ 18 &#x3D; 2…12，即48&#x3D;18×2+12</li>
+<li>18 ÷ 12 &#x3D; 1…6，即18&#x3D;12×1+6</li>
+<li>12 ÷ 6 &#x3D; 2…0，即12&#x3D;6×2+0</li>
+</ol>
+<p>此时，余数为0，所以6就是48和18的最大公约数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b ? <span class="built_in">gcd</span>(b, a % b) : a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h4 id="最小公倍数"><a href="#最小公倍数" class="headerlink" title="最小公倍数"></a>最小公倍数</h4><p>最小公倍数可以通过两个数的乘积除以它们的最大公约数来得到。：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lcm(a, b) = (a * b) / gcd(a, b)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算两个数的最大公约数</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="number">0</span>) <span class="keyword">return</span> a;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">gcd</span>(b, a % b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用最大公约数计算两个数的最小公倍数</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lcm</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (a / <span class="built_in">gcd</span>(a, b)) * b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> num1 = <span class="number">12</span>;</span><br><span class="line">    <span class="type">int</span> num2 = <span class="number">15</span>;</span><br><span class="line">    <span class="type">int</span> lcmResult = <span class="built_in">lcm</span>(num1, num2);</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;The least common multiple of &quot;</span> &lt;&lt; num1 &lt;&lt; <span class="string">&quot; and &quot;</span> &lt;&lt; num2 &lt;&lt; <span class="string">&quot; is: &quot;</span> &lt;&lt; lcmResult &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>应用：</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/greatest-common-divisor-of-strings/description/">1071. 字符串的最大公因子 - 力扣（LeetCode）</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">gcdOfStrings</span><span class="params">(string str1, string str2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (str1 + str2 == str2 + str1)  ?  str1.<span class="built_in">substr</span>(<span class="number">0</span>, <span class="built_in">gcd</span>(str1.<span class="built_in">size</span>(), str2.<span class="built_in">size</span>()))  : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-greatest-common-divisor-of-array/description/">1979. 找出数组的最大公约数 - 力扣（LeetCode）</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findGCD</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">gcd</span>(nums[<span class="number">0</span>], nums.<span class="built_in">back</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">函数</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/04/16/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E5%92%8C%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-字典树-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1190,108 +1306,6 @@
 
 
   
-    <article id="post-模板类与友元-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/02/13/%E6%A8%A1%E6%9D%BF%E7%B1%BB%E4%B8%8E%E5%8F%8B%E5%85%83-md/" target="_blank">模板类与友元.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/02/13/%E6%A8%A1%E6%9D%BF%E7%B1%BB%E4%B8%8E%E5%8F%8B%E5%85%83-md/" class="archive-article-date">
-        <time datetime="2024-02-13T06:52:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-02-13</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ul>
-<li>非模板友元；</li>
-<li>约束（bound）模板友元，即友元的类型取决于类被实例化时的类型；</li>
-<li>非约束（unbound）模板友元，即友元的所有具体化都是类的每一个具体化的友元。</li>
-</ul>
-<h4 id="非模板友元"><a href="#非模板友元" class="headerlink" title="非模板友元"></a>非模板友元</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    <span class="type">int</span> secret;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="built_in">MyClass</span>(<span class="type">int</span> s) : <span class="built_in">secret</span>(s) &#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">friend</span> <span class="type">void</span> <span class="title">revealSecret</span><span class="params">(MyClass&amp; obj)</span></span>;  <span class="comment">// 声明非模板友元函数  </span></span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">revealSecret</span><span class="params">(MyClass&amp; obj)</span> </span>&#123;  </span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;The secret is: &quot;</span> &lt;&lt; obj.secret &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="function">MyClass <span class="title">obj</span><span class="params">(<span class="number">42</span>)</span></span>;  </span><br><span class="line">    <span class="built_in">revealSecret</span>(obj);  <span class="comment">// 可以访问obj的私有成员secret  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>所有类型共用一个友元函数。</p>
-<h4 id="约束（bound）模板友元"><a href="#约束（bound）模板友元" class="headerlink" title="约束（bound）模板友元"></a>约束（bound）模板友元</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    T secret;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="built_in">MyClass</span>(T s) : <span class="built_in">secret</span>(s) &#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U = T, std::<span class="type">enable_if_t</span>&lt;std::is_integral_v&lt;U&gt;, <span class="type">int</span>&gt; = <span class="number">0</span>&gt;  </span><br><span class="line">    <span class="keyword">friend</span> <span class="type">void</span> <span class="built_in">revealSecret</span>(MyClass&lt;U&gt;&amp; obj);  <span class="comment">// 约束模板友元函数  </span></span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">revealSecret</span><span class="params">(MyClass&lt;T&gt;&amp; obj)</span> <span class="keyword">requires</span> std::integral_constant&lt;T&gt; </span>&#123;  </span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;The secret is: &quot;</span> &lt;&lt; obj.secret &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="function">MyClass&lt;<span class="type">int</span>&gt; <span class="title">obj</span><span class="params">(<span class="number">42</span>)</span></span>;  </span><br><span class="line">    <span class="built_in">revealSecret</span>(obj);  <span class="comment">// 可以访问obj的私有成员secret，因为int是整数类型  </span></span><br><span class="line">    <span class="comment">// MyClass&lt;std::string&gt; strObj(&quot;hello&quot;);  </span></span><br><span class="line">    <span class="comment">// revealSecret(strObj);  // 这行代码会编译失败，因为std::string不是整数类型  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>每个类有其特有类型的友元函数，不同类之间不共用，同类之间共用。</p>
-<h4 id="非约束（unbound）模板友元"><a href="#非约束（unbound）模板友元" class="headerlink" title="非约束（unbound）模板友元"></a>非约束（unbound）模板友元</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    T secret;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="built_in">MyClass</span>(T s) : <span class="built_in">secret</span>(s) &#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt;  </span><br><span class="line">    <span class="function"><span class="keyword">friend</span> <span class="type">void</span> <span class="title">revealSecret</span><span class="params">(MyClass&lt;U&gt;&amp; obj)</span></span>;  <span class="comment">// 非约束模板友元函数  </span></span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">revealSecret</span><span class="params">(MyClass&lt;T&gt;&amp; obj)</span> </span>&#123;  </span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;The secret is: &quot;</span> &lt;&lt; obj.secret &lt;&lt; std::endl;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="function">MyClass&lt;<span class="type">int</span>&gt; <span class="title">obj</span><span class="params">(<span class="number">42</span>)</span></span>;  </span><br><span class="line">    <span class="built_in">revealSecret</span>(obj);  <span class="comment">// 可以访问obj的私有成员secret  </span></span><br><span class="line">    <span class="function">MyClass&lt;std::string&gt; <span class="title">strObj</span><span class="params">(<span class="string">&quot;hello&quot;</span>)</span></span>;  </span><br><span class="line">    <span class="built_in">revealSecret</span>(strObj);  <span class="comment">// 也可以访问strObj的私有成员secret，因为没有约束  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/02/13/%E6%A8%A1%E6%9D%BF%E7%B1%BB%E4%B8%8E%E5%8F%8B%E5%85%83-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
@@ -1445,11 +1459,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1465,15 +1479,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C++语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">

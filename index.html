@@ -492,6 +492,101 @@
 
 
   
+    <article id="post-syntax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/07/03/syntax/" target="_blank">C++ syntax</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/07/03/syntax/" class="archive-article-date">
+        <time datetime="2024-07-03T01:25:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-03</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<h4 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h4><h5 id="Placement-New"><a href="#Placement-New" class="headerlink" title="Placement New"></a>Placement New</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="type">int</span> value;</span><br><span class="line">  <span class="built_in">MyClass</span>(<span class="type">int</span> v) : <span class="built_in">value</span>(v) &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Constructor called with value &quot;</span> &lt;&lt; v &lt;&lt; std::endl;</span><br><span class="line">  &#125;</span><br><span class="line">  ~<span class="built_in">MyClass</span>() &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Destructor called\n&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 分配足够的内存来存放一个 MyClass 对象</span></span><br><span class="line">  <span class="type">void</span>* memory = <span class="keyword">operator</span> <span class="built_in">new</span>(<span class="built_in">sizeof</span>(MyClass));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 使用 int 值 42 构造 MyClass 对象</span></span><br><span class="line">  ::<span class="keyword">new</span> ((<span class="type">void</span>*)memory) <span class="built_in">MyClass</span>(<span class="number">42</span>);  <span class="comment">// 使用 (void*)memory 确保类型安全</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 使用对象</span></span><br><span class="line">  MyClass* myObject = <span class="built_in">static_cast</span>&lt;MyClass*&gt;(memory);</span><br><span class="line">  std::cout &lt;&lt; <span class="string">&quot;myObject-&gt;value = &quot;</span> &lt;&lt; myObject-&gt;value &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 销毁对象并释放内存</span></span><br><span class="line">  myObject-&gt;~<span class="built_in">MyClass</span>();</span><br><span class="line">  <span class="function"><span class="keyword">operator</span> <span class="title">delete</span><span class="params">(memory)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里使用 <code>(void*)memory</code> 确保了 <code>ptr</code> 被视为一个通用的内存地址，而不论 <code>T</code> 的具体类型是什么。</p>
+<ul>
+<li><strong>使用 <code>(void *)</code></strong> 确保 placement new 操作能够正确解析为通用内存地址，避免类型相关的歧义。</li>
+<li><strong>直接使用指针</strong> 在大多数现代编译器中通常可以正常工作，但在模板和泛型编程中使用 <code>(void*)</code> 是更好的实践。</li>
+<li><strong>最佳实践</strong> 是在进行 placement new 操作时显式地将指针转换为 <code>void*</code>，以确保类型安全和代码的通用性。</li>
+</ul>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++语法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/07/03/syntax/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-状态模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1135,110 +1230,6 @@
 
 
   
-    <article id="post-责任链模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/07/01/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F-md/" target="_blank">责任链模式.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/07/01/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2024-07-01T08:50:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-01</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>​		责任链模式是⼀种⾏为型设计模式，它允许你构建⼀个对象链，让请求从链的⼀端进⼊，然后沿着链上的对象依次处理，直到链上的某个对象能够处理该请求为⽌。</p>
-<p>​		职责链上的处理者就是⼀个对象，可以对请求进⾏处理或者将请求转发给下⼀个节点，这个场景在⽣活中很常⻅，就是⼀个逐层向上递交的过程，最终的请求要么被处理者所处理，要么处理不了，这也因此可能导致请求⽆法被处理。</p>
-<h4 id="组成结构"><a href="#组成结构" class="headerlink" title="组成结构"></a>组成结构</h4><p>责任链模式包括以下⼏个基本结构：</p>
-<ol>
-<li>处理者Handler ：定义⼀个处理请求的接⼝，包含⼀个处理请求的抽象⽅法和⼀个指向下⼀个处理者的链接。</li>
-<li>具体处理者ConcreteHandler : 实现处理请求的⽅法，并判断能否处理请求，如果能够处理请求则进⾏处理，否则将请求传递给下⼀个处理者。</li>
-<li>客户端：创建并组装处理者对象链，并将请求发送到链上的第⼀个处理者。</li>
-</ol>
-<h4 id="使⽤场景"><a href="#使⽤场景" class="headerlink" title="使⽤场景"></a>使⽤场景</h4><p>责任链模式具有下⾯⼏个优点：</p>
-<ul>
-<li>降低耦合度：将请求的发送者和接收者解耦，每个具体处理者都只负责处理与⾃⼰相关的请求，客户端不需要知道具体是哪个处理者处理请求。</li>
-<li>增强灵活性：可以动态地添加或删除处理者，改变处理者之间的顺序以满⾜不同需求。</li>
-</ul>
-<p>但是由于⼀个请求可能会经过多个处理者，这可能会导致⼀些性能问题，并且如果整个链上也没有合适的处理者来处理请求，就会导致请求⽆法被处理。<br>责任链模式是设计模式中简单且常⻅的设计模式，在⽇常中也会经常使⽤到，⽐如Java开发中过滤器的链式处理，以及Spring框架中的拦截器，都组装成⼀个处理链对请求、响应进⾏处理。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">enum class</span> <span class="title class_">RequestType</span> :<span class="type">char</span> &#123;QingJia, ZhangXin, CiZhi&#125;;</span><br><span class="line"><span class="comment">// 抽象的管理者节点</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AbstractManager</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setNext</span><span class="params">(AbstractManager* next)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        m_next = next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">handleRequest</span><span class="params">(RequestType type)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">AbstractManager</span>() &#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    AbstractManager* m_next = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 底层管理者</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Manager</span> : <span class="keyword">public</span> AbstractManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">handleRequest</span><span class="params">(RequestType type)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (type)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> RequestType::QingJia:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;请假: 同意请假，好好休息~~~&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::ZhangXin:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;涨薪: 这个我得请示一下咱们CEO...&quot;</span> &lt;&lt; <span class="string">&quot; ====&gt; &quot;</span>;</span><br><span class="line">            m_next-&gt;<span class="built_in">handleRequest</span>(type);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::CiZhi:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;辞职: 我给你向上级反应一下...&quot;</span> &lt;&lt; <span class="string">&quot; ====&gt; &quot;</span>;</span><br><span class="line">            m_next-&gt;<span class="built_in">handleRequest</span>(type);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CEO</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CEO</span> : <span class="keyword">public</span> AbstractManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">handleRequest</span><span class="params">(RequestType type)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (type)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> RequestType::QingJia:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;请假: 同意请假, 下不为例...&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::ZhangXin:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;涨薪: 你工资不少了, 给你个购物券吧...&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::CiZhi:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;辞职: 这个我得问问咱们老板...&quot;</span> &lt;&lt; <span class="string">&quot; ====&gt; &quot;</span>;</span><br><span class="line">            m_next-&gt;<span class="built_in">handleRequest</span>(type);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// BOSS</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Boss</span> : <span class="keyword">public</span> AbstractManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">handleRequest</span><span class="params">(RequestType type)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (type)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> RequestType::QingJia:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;请假: 只有工作才能实现人生价值，回去好好坚守岗位！！！&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::ZhangXin:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;涨薪: 钱财乃身外之物, 要视其如粪土!!!&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> RequestType::CiZhi:</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;辞职: 巴洛克工作社就是你的家, 这次把你留下, 下次别再提了!!!&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交请求的类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DaCongMing</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">request</span><span class="params">(RequestType type, AbstractManager* manager)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        manager-&gt;<span class="built_in">handleRequest</span>(type);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Manager* manager = <span class="keyword">new</span> Manager;</span><br><span class="line">    CEO* ceo = <span class="keyword">new</span> CEO;</span><br><span class="line">    Boss* boss = <span class="keyword">new</span> Boss;</span><br><span class="line">    manager-&gt;<span class="built_in">setNext</span>(ceo);</span><br><span class="line">    ceo-&gt;<span class="built_in">setNext</span>(boss);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建员工的实例</span></span><br><span class="line">    DaCongMing* boy = <span class="keyword">new</span> DaCongMing;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;大聪明直接将请求提交给顶头上司&quot;</span> &lt;&lt; endl;</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::CiZhi, manager);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::ZhangXin, manager);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::QingJia, manager);</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;大聪明直接将请求提交给CEO&quot;</span> &lt;&lt; endl;</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::CiZhi, ceo);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::ZhangXin, ceo);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::QingJia, ceo);</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;大聪明直接将请求提交给boss&quot;</span> &lt;&lt; endl;</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::CiZhi, boss);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::ZhangXin, boss);</span><br><span class="line">    boy-&gt;<span class="built_in">request</span>(RequestType::QingJia, boss);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> boy;</span><br><span class="line">    <span class="keyword">delete</span> manager;</span><br><span class="line">    <span class="keyword">delete</span> ceo;</span><br><span class="line">    <span class="keyword">delete</span> boss;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1100">【设计模式专题之责任链模式】21-请假审批 (kamacoder.com)</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/07/01/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1392,11 +1383,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1412,15 +1403,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C++语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">

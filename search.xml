@@ -61,6 +61,25 @@
     
     
     <entry>
+      <title>C++ syntax</title>
+      <link href="/2024/07/03/syntax/"/>
+      <url>/2024/07/03/syntax/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><h4 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h4><h5 id="Placement-New"><a href="#Placement-New" class="headerlink" title="Placement New"></a>Placement New</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="type">int</span> value;</span><br><span class="line">  <span class="built_in">MyClass</span>(<span class="type">int</span> v) : <span class="built_in">value</span>(v) &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Constructor called with value &quot;</span> &lt;&lt; v &lt;&lt; std::endl;</span><br><span class="line">  &#125;</span><br><span class="line">  ~<span class="built_in">MyClass</span>() &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Destructor called\n&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 分配足够的内存来存放一个 MyClass 对象</span></span><br><span class="line">  <span class="type">void</span>* memory = <span class="keyword">operator</span> <span class="built_in">new</span>(<span class="built_in">sizeof</span>(MyClass));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 使用 int 值 42 构造 MyClass 对象</span></span><br><span class="line">  ::<span class="keyword">new</span> ((<span class="type">void</span>*)memory) <span class="built_in">MyClass</span>(<span class="number">42</span>);  <span class="comment">// 使用 (void*)memory 确保类型安全</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 使用对象</span></span><br><span class="line">  MyClass* myObject = <span class="built_in">static_cast</span>&lt;MyClass*&gt;(memory);</span><br><span class="line">  std::cout &lt;&lt; <span class="string">&quot;myObject-&gt;value = &quot;</span> &lt;&lt; myObject-&gt;value &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 销毁对象并释放内存</span></span><br><span class="line">  myObject-&gt;~<span class="built_in">MyClass</span>();</span><br><span class="line">  <span class="function"><span class="keyword">operator</span> <span class="title">delete</span><span class="params">(memory)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这里使用 <code>(void*)memory</code> 确保了 <code>ptr</code> 被视为一个通用的内存地址，而不论 <code>T</code> 的具体类型是什么。</p><ul><li><strong>使用 <code>(void *)</code></strong> 确保 placement new 操作能够正确解析为通用内存地址，避免类型相关的歧义。</li><li><strong>直接使用指针</strong> 在大多数现代编译器中通常可以正常工作，但在模板和泛型编程中使用 <code>(void*)</code> 是更好的实践。</li><li><strong>最佳实践</strong> 是在进行 placement new 操作时显式地将指针转换为 <code>void*</code>，以确保类型安全和代码的通用性。</li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> C++语法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>状态模式.md</title>
       <link href="/2024/07/02/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F-md/"/>
       <url>/2024/07/02/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F-md/</url>
