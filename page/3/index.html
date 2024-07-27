@@ -1146,14 +1146,40 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) continue</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>单步执行</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) step</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) step  #如果当前语句执行某个函数会进入函数， continue 不会进入函数, next 会跳过内部执行</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>查看变量</strong>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) print variable_name</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>退出 GDB</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) quit</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) quit</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>设置观察点：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) watch variable_name</span><br><span class="line">(gdb) info watchpoints #查看 </span><br></pre></td></tr></table></figure></li>
 </ul>
+<p><strong>使用 <code>file</code> 命令加载符号表</strong>：如果已经在 GDB 中，但没有正确加载符号表，可以使用 <code>file</code> 命令明确加载可执行文件及其符号表。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file main</span><br></pre></td></tr></table></figure>
+
+<p><strong>快速查看文件内容不退出</strong>：<code>shell</code> 是 GDB 的一个命令，它允许在调试会话中执行任意的 shell 命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) shell <span class="built_in">cat</span> main.cpp</span><br></pre></td></tr></table></figure>
+
+<p><strong>日志输出</strong>：将调试会话的输出记录到一个日志文件中。启用日志记录后，GDB 会将所有的命令输出保存到一个文件中，这对于调试过程的记录和分析非常有用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">set</span> logging file my_log.txt    <span class="comment">#可选</span></span><br><span class="line">(gdb) <span class="built_in">set</span> logging on</span><br><span class="line">(gdb) <span class="built_in">set</span> logging off</span><br><span class="line"></span><br><span class="line">(gdb) <span class="built_in">set</span> logging overwrite off   <span class="comment">#追加</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>core文件生成：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ulimit</span> -c unlimited  //会话级别  配置core文件生成路径......</span><br><span class="line">sudo sysctl -w kernel.core_pattern=./core.%e.%p</span><br><span class="line"></span><br><span class="line">/etc/sysctl.conf -----&gt; kernel.core_pattern=./core.%e.%p</span><br><span class="line">kernel.core_pattern=./core.%e.%p  //写入配置文件</span><br><span class="line">sudo sysctl --system  //应用</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;ulimit -c unlimited&quot;</span> &gt;&gt; ~/.bashrc  //写入配置文件不用手动修改</span><br><span class="line"></span><br><span class="line">gdb main core.main.51089</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>输出shell脚本</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">mygdbscript.gdb</span></span><br><span class="line"></span><br><span class="line">define logcmd</span><br><span class="line">    printf &quot;\n&gt;&gt;&gt; Command: %s\n&quot;, $arg0</span><br><span class="line">    shell echo &quot;\n&gt;&gt;&gt; Command: $arg0&quot; &gt;&gt; debug_log.txt</span><br><span class="line">    if $debugging</span><br><span class="line">        $arg0</span><br><span class="line">    else</span><br><span class="line">        printf &quot;No process is running.\n&quot;</span><br><span class="line">        shell echo &quot;No process is running.\n&quot; &gt;&gt; debug_log.txt</span><br><span class="line">    end</span><br><span class="line">    shell echo &quot;\n&quot; &gt;&gt; debug_log.txt</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">document logcmd</span><br><span class="line">Run a command and log it to debug_log.txt.</span><br><span class="line">Usage: logcmd &lt;command&gt;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#一直运行程序调试</span></span><br><span class="line">gcc -g main.cpp -o main</span><br><span class="line">./main&amp;  // 后台执行</span><br><span class="line">ps -ef | grep main // 查找 pid</span><br><span class="line">gdb -p pid</span><br></pre></td></tr></table></figure>
+
 
     
 
@@ -1351,15 +1377,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1367,11 +1389,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1379,19 +1401,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C++语法</a>
+                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C++语法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1400,6 +1422,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
