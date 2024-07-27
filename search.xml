@@ -308,25 +308,6 @@
     
     
     <entry>
-      <title>github.md</title>
-      <link href="/2024/06/28/github-md/"/>
-      <url>/2024/06/28/github-md/</url>
-      
-        <content type="html"><![CDATA[<span id="more"></span><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">86157@BYSQ MINGW64 ~/Desktop/project1/MyTinySTL (master)</span><br><span class="line">$ git pull origin master</span><br><span class="line">From https://github.com/BZTWO/TinySTL</span><br><span class="line"> * branch            master     -&gt; FETCH_HEAD</span><br><span class="line">fatal: refusing to merge unrelated histories</span><br><span class="line">//本地仓库和远程仓库的初始提交没有共同的祖先（也就是说，它们的历史是不相关的）。这可能是因为你是从一个全新的本地仓库开始工作，而远程仓库已经存在了一些提交。</span><br><span class="line"></span><br><span class="line">Git 默认不会合并两个没有共同祖先的历史，因为这可能会导致非预期的冲突或问题。但是，你可以通过添加 --allow-unrelated-histories 选项来强制 Git 合并这些不相关的历史。</span><br><span class="line"></span><br><span class="line">1.使用带有 --allow-unrelated-histories 选项的 git pull 命令来合并远程仓库的 master 分支到你的本地仓库。</span><br><span class="line">git pull origin master --allow-unrelated-histories</span><br><span class="line">这个命令将会把远程仓库的 master 分支的提交合并到你的本地仓库，即使这两个仓库的历史是不相关的。</span><br><span class="line"></span><br><span class="line">2.在合并之后，如果你想要推送你的更改到远程仓库，你可以使用 git push 命令。</span><br><span class="line">git push -u origin master</span><br><span class="line">-u 或 --set-upstream 选项会设置本地分支跟踪远程分支，这样在将来的推送和拉取操作中你就不需要每次都指定远程分支了。</span><br><span class="line"></span><br><span class="line">请注意，虽然 --allow-unrelated-histories 可以解决这个特定的问题，但它也可能引入一些潜在的问题，特别是当两个仓库的历史存在冲突的文件或提交时。在合并之前，最好先检查两个仓库的提交历史，以确保合并是安全的。</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin 远程仓库URL   //关联远程仓库URL</span><br><span class="line">git remote -v                      //查看关联仓库的URL</span><br><span class="line">git add .                          //添加和提交项目</span><br><span class="line">git push -u origin master          //推送至远端仓库</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> github </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>桥接模式.md</title>
       <link href="/2024/06/26/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F-md/"/>
       <url>/2024/06/26/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F-md/</url>
@@ -574,6 +555,25 @@
     
     
     <entry>
+      <title>g++和gdb</title>
+      <link href="/2024/04/27/g-%E5%92%8Cgdb/"/>
+      <url>/2024/04/27/g-%E5%92%8Cgdb/</url>
+      
+        <content type="html"><![CDATA[<h2 id="g-编译"><a href="#g-编译" class="headerlink" title="g++编译"></a>g++编译</h2><h3 id="基本编译命令"><a href="#基本编译命令" class="headerlink" title="基本编译命令"></a>基本编译命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ [options] source_files -o output_file</span><br></pre></td></tr></table></figure><ul><li><code>source_files</code>：要编译的源代码文件（例如 <code>main.cpp</code>）。</li><li><code>-o output_file</code>：指定输出的可执行文件名（例如 <code>my_program</code>）。</li></ul><h3 id="常用编译选项"><a href="#常用编译选项" class="headerlink" title="常用编译选项"></a>常用编译选项</h3><h4 id="1-编译选项"><a href="#1-编译选项" class="headerlink" title="1. 编译选项"></a>1. <strong>编译选项</strong></h4><ul><li><p><code>-c</code>：只编译源文件，不进行链接，生成目标文件（<code>.o</code> 或 <code>.obj</code>）。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -c main.cpp</span><br></pre></td></tr></table></figure></li><li><p><code>-o</code>：指定输出文件名。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ main.cpp -o my_program</span><br></pre></td></tr></table></figure></li><li><p><code>-I</code>：指定包含头文件的目录。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -I/path/to/include main.cpp -o my_program</span><br></pre></td></tr></table></figure></li><li><p><code>-L</code>：指定库文件的目录。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -L/path/to/lib -o my_program main.cpp -lmy_lib</span><br></pre></td></tr></table></figure></li><li><p><code>-l</code>：链接库文件。 <code>-l</code> 后面跟库的名称（不包含前缀 <code>lib</code> 和文件扩展名）。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ main.cpp -o my_program -lmy_lib</span><br></pre></td></tr></table></figure></li></ul><h4 id="2-优化选项"><a href="#2-优化选项" class="headerlink" title="2. 优化选项"></a>2. <strong>优化选项</strong></h4><ul><li><p><code>-O0</code>：不进行优化（默认值）。</p></li><li><p><code>-O1</code>, <code>-O2</code>, <code>-O3</code>：不同级别的优化。 <code>-O2</code> 是常用的优化级别，<code>-O3</code> 会进行更多的优化，但可能会增加编译时间。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -O2 main.cpp -o my_program</span><br></pre></td></tr></table></figure></li><li><p><code>-Os</code>：优化以减少生成代码的大小。</p></li></ul><h4 id="3-调试选项"><a href="#3-调试选项" class="headerlink" title="3. 调试选项"></a>3. <strong>调试选项</strong></h4><ul><li><code>-g</code>：生成调试信息，便于使用调试器（如 GDB）进行调试。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -g main.cpp -o my_program</span><br></pre></td></tr></table></figure></li></ul><p><code>示例</code></p><ol><li><p><strong>编译一个源文件并生成可执行文件：</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -o my_program main.cpp</span><br></pre></td></tr></table></figure></li><li><p><strong>编译并启用调试信息：</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -g -o my_program main.cpp</span><br></pre></td></tr></table></figure></li><li><p><strong>编译并优化代码：</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -O2 -o my_program main.cpp</span><br></pre></td></tr></table></figure></li></ol><h2 id="gdb调试"><a href="#gdb调试" class="headerlink" title="gdb调试"></a>gdb调试</h2><h3 id="1-启用调试信息"><a href="#1-启用调试信息" class="headerlink" title="1. 启用调试信息"></a>1. 启用调试信息</h3><p>要启用调试信息，需要在编译时使用 <code>-g</code> 选项。这个选项告诉编译器生成包含调试信息的目标文件，使调试器能够提供更多的调试信息。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -g -o my_program my_program.cpp</span><br></pre></td></tr></table></figure><ul><li><code>-g</code>：生成调试信息。</li><li><code>-o my_program</code>：指定输出的可执行文件名。</li><li><code>my_program.cpp</code>：你的源代码文件。</li></ul><h3 id="2-编写调试语句"><a href="#2-编写调试语句" class="headerlink" title="2. 编写调试语句"></a>2. 编写调试语句</h3><p>在代码中，可以使用 <code>assert</code> 和日志语句来帮助调试。</p><h4 id="使用-assert-语句"><a href="#使用-assert-语句" class="headerlink" title="使用 assert 语句"></a>使用 <code>assert</code> 语句</h4><p><code>assert</code> 是一种在调试时检查条件的简单方法。它在条件为 <code>false</code> 时会终止程序执行，并打印出相关的错误信息。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cassert&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">someFunction</span><span class="params">(<span class="type">int</span> value)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">assert</span>(value &gt; <span class="number">0</span>); <span class="comment">// 如果 value &lt;= 0，程序将会终止并打印错误信息</span></span><br><span class="line">    <span class="comment">// 函数的其他代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="使用日志语句"><a href="#使用日志语句" class="headerlink" title="使用日志语句"></a>使用日志语句</h4><p>可以在代码中插入日志输出语句，以跟踪程序的执行状态。使用 <code>std::cerr</code> 或 <code>std::cout</code> 可以打印调试信息。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">someFunction</span><span class="params">(<span class="type">int</span> value)</span> </span>&#123;</span><br><span class="line">    std::cerr &lt;&lt; <span class="string">&quot;Entering someFunction with value = &quot;</span> &lt;&lt; value &lt;&lt; std::endl;</span><br><span class="line">    <span class="comment">// 函数的其他代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="3-调试程序"><a href="#3-调试程序" class="headerlink" title="3. 调试程序"></a>3. 调试程序</h3><p>编译并运行程序后，可以使用调试器（如 GDB）来调试程序。</p><h4 id="启动-GDB"><a href="#启动-GDB" class="headerlink" title="启动 GDB"></a>启动 GDB</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gdb ./my_program</span><br></pre></td></tr></table></figure><p>在 GDB 提示符下，可以使用以下命令进行调试：</p><ul><li><p><strong>运行程序</strong>：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) run</span><br></pre></td></tr></table></figure></li><li><p><strong>设置断点</strong>：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) break main</span><br></pre></td></tr></table></figure><p>或者设置在特定行：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) break 42</span><br></pre></td></tr></table></figure></li><li><p><strong>继续执行</strong>：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) continue</span><br></pre></td></tr></table></figure></li><li><p><strong>单步执行</strong>：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) step</span><br></pre></td></tr></table></figure></li><li><p><strong>查看变量</strong>：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) print variable_name</span><br></pre></td></tr></table></figure></li><li><p><strong>退出 GDB</strong>：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) quit</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>最大公约数和最小公倍数.md</title>
       <link href="/2024/04/16/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E5%92%8C%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0-md/"/>
       <url>/2024/04/16/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E5%92%8C%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0-md/</url>
@@ -642,6 +642,25 @@
         <tags>
             
             <tag> 算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>github.md</title>
+      <link href="/2024/03/28/github-md/"/>
+      <url>/2024/03/28/github-md/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">86157@BYSQ MINGW64 ~/Desktop/project1/MyTinySTL (master)</span><br><span class="line">$ git pull origin master</span><br><span class="line">From https://github.com/BZTWO/TinySTL</span><br><span class="line"> * branch            master     -&gt; FETCH_HEAD</span><br><span class="line">fatal: refusing to merge unrelated histories</span><br><span class="line">//本地仓库和远程仓库的初始提交没有共同的祖先（也就是说，它们的历史是不相关的）。这可能是因为你是从一个全新的本地仓库开始工作，而远程仓库已经存在了一些提交。</span><br><span class="line"></span><br><span class="line">Git 默认不会合并两个没有共同祖先的历史，因为这可能会导致非预期的冲突或问题。但是，你可以通过添加 --allow-unrelated-histories 选项来强制 Git 合并这些不相关的历史。</span><br><span class="line"></span><br><span class="line">1.使用带有 --allow-unrelated-histories 选项的 git pull 命令来合并远程仓库的 master 分支到你的本地仓库。</span><br><span class="line">git pull origin master --allow-unrelated-histories</span><br><span class="line">这个命令将会把远程仓库的 master 分支的提交合并到你的本地仓库，即使这两个仓库的历史是不相关的。</span><br><span class="line"></span><br><span class="line">2.在合并之后，如果你想要推送你的更改到远程仓库，你可以使用 git push 命令。</span><br><span class="line">git push -u origin master</span><br><span class="line">-u 或 --set-upstream 选项会设置本地分支跟踪远程分支，这样在将来的推送和拉取操作中你就不需要每次都指定远程分支了。</span><br><span class="line"></span><br><span class="line">请注意，虽然 --allow-unrelated-histories 可以解决这个特定的问题，但它也可能引入一些潜在的问题，特别是当两个仓库的历史存在冲突的文件或提交时。在合并之前，最好先检查两个仓库的提交历史，以确保合并是安全的。</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin 远程仓库URL   //关联远程仓库URL</span><br><span class="line">git remote -v                      //查看关联仓库的URL</span><br><span class="line">git add .                          //添加和提交项目</span><br><span class="line">git push -u origin master          //推送至远端仓库</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> github </tag>
             
         </tags>
       
@@ -745,7 +764,7 @@
     
     
     <entry>
-      <title>C++标准库迭代器类型.md</title>
+      <title>C++标准库迭代器类型</title>
       <link href="/2024/02/27/C-%E6%A0%87%E5%87%86%E5%BA%93%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%B1%BB%E5%9E%8B-md/"/>
       <url>/2024/02/27/C-%E6%A0%87%E5%87%86%E5%BA%93%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%B1%BB%E5%9E%8B-md/</url>
       

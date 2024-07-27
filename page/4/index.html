@@ -550,6 +550,97 @@
 
 
   
+    <article id="post-github-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/03/28/github-md/" target="_blank">github.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/03/28/github-md/" class="archive-article-date">
+        <time datetime="2024-03-28T14:23:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-28</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">86157@BYSQ MINGW64 ~/Desktop/project1/MyTinySTL (master)</span><br><span class="line">$ git pull origin master</span><br><span class="line">From https://github.com/BZTWO/TinySTL</span><br><span class="line"> * branch            master     -&gt; FETCH_HEAD</span><br><span class="line">fatal: refusing to merge unrelated histories</span><br><span class="line">//本地仓库和远程仓库的初始提交没有共同的祖先（也就是说，它们的历史是不相关的）。这可能是因为你是从一个全新的本地仓库开始工作，而远程仓库已经存在了一些提交。</span><br><span class="line"></span><br><span class="line">Git 默认不会合并两个没有共同祖先的历史，因为这可能会导致非预期的冲突或问题。但是，你可以通过添加 --allow-unrelated-histories 选项来强制 Git 合并这些不相关的历史。</span><br><span class="line"></span><br><span class="line">1.使用带有 --allow-unrelated-histories 选项的 git pull 命令来合并远程仓库的 master 分支到你的本地仓库。</span><br><span class="line">git pull origin master --allow-unrelated-histories</span><br><span class="line">这个命令将会把远程仓库的 master 分支的提交合并到你的本地仓库，即使这两个仓库的历史是不相关的。</span><br><span class="line"></span><br><span class="line">2.在合并之后，如果你想要推送你的更改到远程仓库，你可以使用 git push 命令。</span><br><span class="line">git push -u origin master</span><br><span class="line">-u 或 --set-upstream 选项会设置本地分支跟踪远程分支，这样在将来的推送和拉取操作中你就不需要每次都指定远程分支了。</span><br><span class="line"></span><br><span class="line">请注意，虽然 --allow-unrelated-histories 可以解决这个特定的问题，但它也可能引入一些潜在的问题，特别是当两个仓库的历史存在冲突的文件或提交时。在合并之前，最好先检查两个仓库的提交历史，以确保合并是安全的。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin 远程仓库URL   //关联远程仓库URL</span><br><span class="line">git remote -v                      //查看关联仓库的URL</span><br><span class="line">git add .                          //添加和提交项目</span><br><span class="line">git push -u origin master          //推送至远端仓库</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/03/28/github-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-scrapy-l-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1186,129 +1277,9 @@
 
 
   
-    <article id="post-C-标准库迭代器类型-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/02/27/C-%E6%A0%87%E5%87%86%E5%BA%93%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%B1%BB%E5%9E%8B-md/" target="_blank">C++标准库迭代器类型.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/02/27/C-%E6%A0%87%E5%87%86%E5%BA%93%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%B1%BB%E5%9E%8B-md/" class="archive-article-date">
-        <time datetime="2024-02-27T05:19:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-02-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>按照提供的操作和功能从低到高进行排序，C++标准库中的迭代器类型如下：</p>
-<h4 id="Output-Iterator-输出迭代器"><a href="#Output-Iterator-输出迭代器" class="headerlink" title="Output Iterator (输出迭代器)"></a><strong>Output Iterator</strong> (输出迭代器)</h4><ul>
-<li>仅支持解引用（<code>*it</code>）和后置递增（<code>it++</code>），用于输出操作。</li>
-<li>不支持读取、递减或其他算术运算</li>
-</ul>
-<h4 id="Input-Iterator-输入迭代器"><a href="#Input-Iterator-输入迭代器" class="headerlink" title="Input Iterator (输入迭代器)"></a><strong>Input Iterator</strong> (输入迭代器)</h4><ul>
-<li>支持解引用（<code>*it</code>）以读取元素。</li>
-<li>支持前置和后置递增（<code>++it</code>）。</li>
-<li>支持相等和不相等比较（<code>it1 == it2</code> 和 <code>it1 != it2</code>）。</li>
-<li>不保证支持递减、多次解引用或算术运算。</li>
-</ul>
-<h4 id="Forward-Iterator-前向迭代器"><a href="#Forward-Iterator-前向迭代器" class="headerlink" title="Forward Iterator (前向迭代器)"></a><strong>Forward Iterator</strong> (前向迭代器)</h4><ul>
-<li>是输入迭代器的超集，支持所有输入迭代器的操作。</li>
-<li>通常还支持后置递减（<code>it--</code>），但不保证支持前置递减。</li>
-<li>不保证支持迭代器间的算术运算。</li>
-<li>不保证能够访问元素的地址（即不支持 <code>&amp;*it</code> 操作）。</li>
-</ul>
-<h4 id="Bidirectional-Iterator-双向迭代器"><a href="#Bidirectional-Iterator-双向迭代器" class="headerlink" title="Bidirectional Iterator (双向迭代器)"></a><strong>Bidirectional Iterator</strong> (双向迭代器)</h4><ul>
-<li>是前向迭代器的超集，支持所有前向迭代器的操作。</li>
-<li>支持前置和后置递减，允许在容器中前后移动。</li>
-<li>不保证支持迭代器间的算术运算。</li>
-</ul>
-<h4 id="Random-Access-Iterator-随机访问迭代器"><a href="#Random-Access-Iterator-随机访问迭代器" class="headerlink" title="Random Access Iterator (随机访问迭代器)"></a><strong>Random Access Iterator</strong> (随机访问迭代器)</h4><ul>
-<li>是双向迭代器的超集，支持所有双向迭代器的操作。</li>
-<li>支持迭代器间的算术运算，包括加法和减法。</li>
-<li>支持使用迭代器进行关系运算和直接访问任意位置的元素。</li>
-</ul>
-<h4 id="STL迭代器类型提供"><a href="#STL迭代器类型提供" class="headerlink" title="STL迭代器类型提供"></a>STL迭代器类型提供</h4><ul>
-<li><code>std::vector</code>、<code>std::deque</code> 和 <code>std::array</code> 提供随机访问迭代器（<code>RandomAccessIterator</code>）。</li>
-<li><code>std::list</code> 和 <code>std::forward_list</code> 只提供双向迭代器（<code>BidirectionalIterator</code>）。</li>
-<li><code>std::set</code>、<code>std::map</code>、<code>std::multiset</code> 和 <code>std::multimap</code> 提供双向迭代器。</li>
-<li>一些容器如 <code>std::istream_iterator</code> 和 <code>std::ostream_iterator</code> 是专门用于输入&#x2F;输出操作的迭代器，属于输出迭代器（<code>OutputIterator</code>）。</li>
-</ul>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/02/27/C-%E6%A0%87%E5%87%86%E5%BA%93%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%B1%BB%E5%9E%8B-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1455,6 +1426,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
@@ -1487,11 +1462,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
               </li>
              
               <li class="article-tag-list-item">
