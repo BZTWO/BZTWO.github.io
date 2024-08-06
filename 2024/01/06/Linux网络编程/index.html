@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>about | BZTWO</title>
+  <title>Linux网络编程 | BZTWO</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://example.com/about/index.html">
+  <meta name="description" content="线程线程创建和终止 pthread_create：创建一个新线程。 pthread_exit：终止调用线程。 pthread_join：等待线程终止。  123456789101112131415161718192021222324252627#include &lt;pthread.h&gt;#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux网络编程">
+<meta property="og:url" content="http://example.com/2024/01/06/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="BZTWO">
+<meta property="og:description" content="线程线程创建和终止 pthread_create：创建一个新线程。 pthread_exit：终止调用线程。 pthread_join：等待线程终止。  123456789101112131415161718192021222324252627#include &lt;pthread.h&gt;#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;v">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-09T01:09:00.000Z">
-<meta property="article:modified_time" content="2023-11-09T01:09:00.045Z">
+<meta property="article:published_time" content="2024-01-06T08:31:02.000Z">
+<meta property="article:modified_time" content="2024-08-06T12:23:08.746Z">
 <meta property="article:author" content="an">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="BZTWO" type="application/atom+xml">
@@ -137,14 +140,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-Linux网络编程" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      about
+      Linux网络编程
     </h1>
   
 
@@ -156,8 +159,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2023-11-09T01:09:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-09</time>
+<a href="/2024/01/06/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="archive-article-date">
+        <time datetime="2024-01-06T08:31:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-06</time>
 </a>
 
   
@@ -170,7 +173,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">1.5k字</span>
     </span>
   </span>
 
@@ -179,7 +182,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">7分</span>
     </span>
   </span>
 </div>
@@ -190,7 +193,85 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <span id="more"></span>
+
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><h3 id="线程创建和终止"><a href="#线程创建和终止" class="headerlink" title="线程创建和终止"></a>线程创建和终止</h3><ul>
+<li><code>pthread_create</code>：创建一个新线程。</li>
+<li><code>pthread_exit</code>：终止调用线程。</li>
+<li><code>pthread_join</code>：等待线程终止。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span>* <span class="title function_">threadFunc</span><span class="params">(<span class="type">void</span>* arg)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello from the thread!\n&quot;</span>);</span><br><span class="line">    pthread_exit(<span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">pthread_t</span> thread;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建一个新线程</span></span><br><span class="line">    <span class="keyword">if</span> (pthread_create(&amp;thread, <span class="literal">NULL</span>, threadFunc, <span class="literal">NULL</span>)) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Error creating thread\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 等待新线程完成</span></span><br><span class="line">    <span class="keyword">if</span> (pthread_join(thread, <span class="literal">NULL</span>)) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Error joining thread\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Thread has finished execution\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h3><h4 id="互斥锁（Mutex）"><a href="#互斥锁（Mutex）" class="headerlink" title="互斥锁（Mutex）"></a>互斥锁（Mutex）</h4><ul>
+<li><code>pthread_mutex_init</code>：初始化互斥锁。</li>
+<li><code>pthread_mutex_destroy</code>：销毁互斥锁。</li>
+<li><code>pthread_mutex_lock</code>：加锁。</li>
+<li><code>pthread_mutex_unlock</code>：解锁。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">pthread_mutex_t</span> lock;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span>* <span class="title function_">threadFunc</span><span class="params">(<span class="type">void</span>* arg)</span> &#123;</span><br><span class="line">    pthread_mutex_lock(&amp;lock);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Thread %ld has entered the critical section\n&quot;</span>, (<span class="type">long</span>)arg);</span><br><span class="line">    sleep(<span class="number">1</span>); <span class="comment">// 模拟一些工作</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Thread %ld is leaving the critical section\n&quot;</span>, (<span class="type">long</span>)arg);</span><br><span class="line">    pthread_mutex_unlock(&amp;lock);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">pthread_t</span> threads[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    pthread_mutex_init(&amp;lock, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">long</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (pthread_create(&amp;threads[i], <span class="literal">NULL</span>, threadFunc, (<span class="type">void</span>*)i)) &#123;</span><br><span class="line">            <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Error creating thread\n&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</span><br><span class="line">        pthread_join(threads[i], <span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pthread_mutex_destroy(&amp;lock);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="条件变量（Condition-Variable）"><a href="#条件变量（Condition-Variable）" class="headerlink" title="条件变量（Condition Variable）"></a>条件变量（Condition Variable）</h4><ul>
+<li><code>pthread_cond_init</code>：初始化条件变量。</li>
+<li><code>pthread_cond_destroy</code>：销毁条件变量。</li>
+<li><code>pthread_cond_wait</code>：等待条件变量。</li>
+<li><code>pthread_cond_signal</code>：发送信号。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">pthread_mutex_t</span> lock;</span><br><span class="line"><span class="type">pthread_cond_t</span> cond;</span><br><span class="line"><span class="type">int</span> ready = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span>* <span class="title function_">threadFunc</span><span class="params">(<span class="type">void</span>* arg)</span> &#123;</span><br><span class="line">    pthread_mutex_lock(&amp;lock);</span><br><span class="line">    <span class="keyword">while</span> (!ready) &#123;</span><br><span class="line">        pthread_cond_wait(&amp;cond, &amp;lock);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Thread %ld is proceeding\n&quot;</span>, (<span class="type">long</span>)arg);</span><br><span class="line">    pthread_mutex_unlock(&amp;lock);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">pthread_t</span> thread;</span><br><span class="line"></span><br><span class="line">    pthread_mutex_init(&amp;lock, <span class="literal">NULL</span>);</span><br><span class="line">    pthread_cond_init(&amp;cond, <span class="literal">NULL</span>);</span><br><span class="line">	</span><br><span class="line">    <span class="type">int</span> result = pthread_create(&amp;thread, <span class="literal">NULL</span>, threadFunc, (<span class="type">void</span>*)<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (result) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Error creating thread: %s\n&quot;</span>, strerror(result));  <span class="comment">// 返回非 0 ，打印错误信息</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sleep(<span class="number">1</span>); <span class="comment">// 模拟一些准备工作</span></span><br><span class="line">    pthread_mutex_lock(&amp;lock);</span><br><span class="line">    ready = <span class="number">1</span>;</span><br><span class="line">    pthread_cond_signal(&amp;cond);</span><br><span class="line">    pthread_mutex_unlock(&amp;lock);</span><br><span class="line"></span><br><span class="line">    pthread_join(thread, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    pthread_mutex_destroy(&amp;lock);</span><br><span class="line">    pthread_cond_destroy(&amp;cond);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="读写锁（Read-Write-Lock）"><a href="#读写锁（Read-Write-Lock）" class="headerlink" title="读写锁（Read-Write Lock）"></a>读写锁（Read-Write Lock）</h3><ul>
+<li><code>pthread_rwlock_init</code>：初始化读写锁。</li>
+<li><code>pthread_rwlock_destroy</code>：销毁读写锁。</li>
+<li><code>pthread_rwlock_rdlock</code>：获取读锁。</li>
+<li><code>pthread_rwlock_wrlock</code>：获取写锁。</li>
+<li><code>pthread_rwlock_unlock</code>：释放锁。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">pthread_rwlock_t</span> rwlock;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span>* <span class="title function_">reader</span><span class="params">(<span class="type">void</span>* arg)</span> &#123;</span><br><span class="line">    pthread_rwlock_rdlock(&amp;rwlock);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Reader %ld is reading\n&quot;</span>, (<span class="type">long</span>)arg);</span><br><span class="line">    sleep(<span class="number">1</span>); <span class="comment">// 模拟一些工作</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Reader %ld has finished reading\n&quot;</span>, (<span class="type">long</span>)arg);</span><br><span class="line">    pthread_rwlock_unlock(&amp;rwlock);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span>* <span class="title function_">writer</span><span class="params">(<span class="type">void</span>* arg)</span> &#123;</span><br><span class="line">    pthread_rwlock_wrlock(&amp;rwlock);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Writer %ld is writing\n&quot;</span>, (<span class="type">long</span>)arg);</span><br><span class="line">    sleep(<span class="number">2</span>); <span class="comment">// 模拟一些工作</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Writer %ld has finished writing\n&quot;</span>, (<span class="type">long</span>)arg);</span><br><span class="line">    pthread_rwlock_unlock(&amp;rwlock);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">pthread_t</span> readers[<span class="number">2</span>], writers[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    pthread_rwlock_init(&amp;rwlock, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">long</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</span><br><span class="line">        pthread_create(&amp;readers[i], <span class="literal">NULL</span>, reader, (<span class="type">void</span>*)i);</span><br><span class="line">        pthread_create(&amp;writers[i], <span class="literal">NULL</span>, writer, (<span class="type">void</span>*)i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</span><br><span class="line">        pthread_join(readers[i], <span class="literal">NULL</span>);</span><br><span class="line">        pthread_join(writers[i], <span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pthread_rwlock_destroy(&amp;rwlock);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="线程属性"><a href="#线程属性" class="headerlink" title="线程属性"></a>线程属性</h3><ul>
+<li><code>pthread_attr_init</code>：初始化线程属性对象。</li>
+<li><code>pthread_attr_destroy</code>：销毁线程属性对象。</li>
+<li><code>pthread_attr_setdetachstate</code>：设置线程分离状态。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span>* <span class="title function_">threadFunc</span><span class="params">(<span class="type">void</span>* arg)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Thread is running\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">pthread_t</span> thread;</span><br><span class="line">    <span class="type">pthread_attr_t</span> attr;</span><br><span class="line"></span><br><span class="line">    pthread_attr_init(&amp;attr);</span><br><span class="line">    pthread_attr_setdetachstate(&amp;attr, PTHREAD_CREATE_DETACHED);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (pthread_create(&amp;thread, &amp;attr, threadFunc, <span class="literal">NULL</span>)) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Error creating thread\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pthread_attr_destroy(&amp;attr);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 主线程继续运行，不等待分离线程</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Main thread is continuing\n&quot;</span>);</span><br><span class="line">    sleep(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>信号量（Semaphore）是一种用于进程同步的机制，用于控制对共享资源的访问。信号量可以用于解决多线程环境中的竞争条件和资源共享问题。</p>
+<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><p>信号量是一种计数器，表示资源的可用数量。信号量有两种类型：</p>
+<ol>
+<li><strong>计数信号量（Counting Semaphore）</strong>：用于管理多个资源的访问。它的值可以是大于或等于零的整数。</li>
+<li><strong>二进制信号量（Binary Semaphore）</strong>：也称为互斥锁（Mutex），用于管理单个资源的访问。它的值只能是0或1。</li>
+</ol>
+<h3 id="信号量的基本操作"><a href="#信号量的基本操作" class="headerlink" title="信号量的基本操作"></a>信号量的基本操作</h3><p>信号量有两个主要操作：</p>
+<ul>
+<li><strong>等待操作（P操作或wait操作）</strong>：尝试获取资源。如果信号量的值大于0，则将其值减1；如果信号量的值等于0，则等待直到信号量的值大于0。</li>
+<li><strong>释放操作（V操作或signal操作）</strong>：释放资源，将信号量的值加1，并唤醒等待的线程（如果有）。</li>
+</ul>
+<h3 id="在POSIX中的信号量"><a href="#在POSIX中的信号量" class="headerlink" title="在POSIX中的信号量"></a>在POSIX中的信号量</h3><p>在POSIX标准中，信号量的实现可以使用以下函数：</p>
+<ul>
+<li><p><code>sem_init(sem_t *sem, int pshared, unsigned int value)</code>: 初始化一个信号量。</p>
+<ul>
+<li><code>sem</code>：指向信号量的指针。</li>
+<li><code>pshared</code>：为0时表示信号量用于线程之间的同步，为非0时表示信号量用于进程之间的同步。</li>
+<li><code>value</code>：信号量的初始值。</li>
+</ul>
+</li>
+<li><p><code>sem_wait(sem_t *sem)</code>: 等待信号量。</p>
+<ul>
+<li><code>sem</code>：指向信号量的指针。如果信号量的值大于0，则将其值减1。如果信号量的值等于0，则阻塞直到信号量的值大于0。</li>
+</ul>
+</li>
+<li><p><code>sem_post(sem_t *sem)</code>: 释放信号量。</p>
+<ul>
+<li><code>sem</code>：指向信号量的指针。将信号量的值加1，并唤醒等待的线程（如果有）。</li>
+</ul>
+</li>
+<li><p><code>sem_destroy(sem_t *sem)</code>: 销毁信号量。</p>
+<ul>
+<li><code>sem</code>：指向信号量的指针。</li>
+</ul>
+</li>
+</ul>
+<h3 id="信号量示例代码"><a href="#信号量示例代码" class="headerlink" title="信号量示例代码"></a>信号量示例代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;semaphore.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BUFFER_SIZE 5</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> buffer[BUFFER_SIZE];</span><br><span class="line"><span class="type">int</span> in = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> out = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">sem_t</span> empty; <span class="comment">// 计数信号量，表示空的缓冲区槽</span></span><br><span class="line"><span class="type">sem_t</span> full;  <span class="comment">// 计数信号量，表示满的缓冲区槽</span></span><br><span class="line"><span class="type">pthread_mutex_t</span> mutex; <span class="comment">// 互斥锁，保护缓冲区</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span>* <span class="title function_">producer</span><span class="params">(<span class="type">void</span>* arg)</span> &#123;</span><br><span class="line">    <span class="type">int</span> item;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        item = rand() % <span class="number">100</span>; <span class="comment">// 生成一个随机数</span></span><br><span class="line">        sem_wait(&amp;empty); <span class="comment">// 等待空槽</span></span><br><span class="line">        pthread_mutex_lock(&amp;mutex); <span class="comment">// 加锁</span></span><br><span class="line">        buffer[in] = item;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Produced: %d\n&quot;</span>, item);</span><br><span class="line">        in = (in + <span class="number">1</span>) % BUFFER_SIZE;</span><br><span class="line">        pthread_mutex_unlock(&amp;mutex); <span class="comment">// 解锁</span></span><br><span class="line">        sem_post(&amp;full); <span class="comment">// 增加满槽计数</span></span><br><span class="line">        sleep(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span>* <span class="title function_">consumer</span><span class="params">(<span class="type">void</span>* arg)</span> &#123;</span><br><span class="line">    <span class="type">int</span> item;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        sem_wait(&amp;full); <span class="comment">// 等待满槽</span></span><br><span class="line">        pthread_mutex_lock(&amp;mutex); <span class="comment">// 加锁</span></span><br><span class="line">        item = buffer[out];</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Consumed: %d\n&quot;</span>, item);</span><br><span class="line">        out = (out + <span class="number">1</span>) % BUFFER_SIZE;</span><br><span class="line">        pthread_mutex_unlock(&amp;mutex); <span class="comment">// 解锁</span></span><br><span class="line">        sem_post(&amp;empty); <span class="comment">// 增加空槽计数</span></span><br><span class="line">        sleep(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">pthread_t</span> prod, cons;</span><br><span class="line"></span><br><span class="line">    sem_init(&amp;empty, <span class="number">0</span>, BUFFER_SIZE); <span class="comment">// 初始化空槽信号量</span></span><br><span class="line">    sem_init(&amp;full, <span class="number">0</span>, <span class="number">0</span>); <span class="comment">// 初始化满槽信号量</span></span><br><span class="line">    pthread_mutex_init(&amp;mutex, <span class="literal">NULL</span>); <span class="comment">// 初始化互斥锁</span></span><br><span class="line"></span><br><span class="line">    pthread_create(&amp;prod, <span class="literal">NULL</span>, producer, <span class="literal">NULL</span>);</span><br><span class="line">    pthread_create(&amp;cons, <span class="literal">NULL</span>, consumer, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    pthread_join(prod, <span class="literal">NULL</span>);</span><br><span class="line">    pthread_join(cons, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    sem_destroy(&amp;empty);</span><br><span class="line">    sem_destroy(&amp;full);</span><br><span class="line">    pthread_mutex_destroy(&amp;mutex);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
     
 
     
@@ -204,7 +285,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/about/index.html" title="about" target="_blank">http://example.com/about/index.html</a>
+          <a href="http://example.com/2024/01/06/Linux网络编程/" title="Linux网络编程" target="_blank">http://example.com/2024/01/06/Linux网络编程/</a>
         </li>
         
         <li>
@@ -221,6 +302,17 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
@@ -271,7 +363,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2024/01/06/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -283,6 +375,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2024/01/09/cmake-md/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          cmake.md
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">线程函数.md</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -352,7 +463,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
