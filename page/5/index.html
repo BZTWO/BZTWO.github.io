@@ -1067,6 +1067,102 @@
 
 
   
+    <article id="post-epoll触发模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/01/11/epoll%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/" target="_blank">epoll触发模式</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/01/11/epoll%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+        <time datetime="2024-01-11T13:42:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-11</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> efd, i;</span><br><span class="line">    <span class="type">int</span> pfd[<span class="number">2</span>];</span><br><span class="line">    <span class="type">pid_t</span> pid;</span><br><span class="line">    <span class="type">char</span> buf[MAXLINE], ch = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">    <span class="built_in">pipe</span>(pfd);</span><br><span class="line">    pid = fork();</span><br><span class="line">    <span class="keyword">if</span>(pid == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">close</span>(pfd[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; MAXLINE / <span class="number">2</span>; i++)&#123;</span><br><span class="line">                buf[i] = ch;</span><br><span class="line">            &#125;</span><br><span class="line">            buf[i - <span class="number">1</span>] = <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">            ch++;</span><br><span class="line">            <span class="keyword">for</span>(; i &lt; MAXLINE; i++)&#123;</span><br><span class="line">                buf[i] = ch;</span><br><span class="line">            &#125;</span><br><span class="line">            buf[i - <span class="number">1</span>] = <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">            ch++;</span><br><span class="line">            <span class="built_in">write</span>(pfd[<span class="number">1</span>], buf, <span class="built_in">sizeof</span>(buf));</span><br><span class="line">            <span class="built_in">sleep</span>(<span class="number">5</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">close</span>(pfd[<span class="number">1</span>]);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pid &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">struct</span> epoll_event event, resevent[<span class="number">10</span>];</span><br><span class="line">        <span class="type">int</span> res, len;</span><br><span class="line">        <span class="built_in">close</span>(pfd[<span class="number">1</span>]);</span><br><span class="line">        efd = <span class="built_in">epoll_create</span>(<span class="number">10</span>);</span><br><span class="line">        event.events = EPOLLIN | EPOLLET;  <span class="comment">// 边缘触发</span></span><br><span class="line">		<span class="comment">//event.events = EPOLLIN;          // 电平触发</span></span><br><span class="line">        event.data.fd = pfd[<span class="number">0</span>];</span><br><span class="line">        <span class="built_in">epoll_ctl</span>(efd, EPOLL_CTL_ADD, pfd[<span class="number">0</span>], &amp;event);</span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">            res = <span class="built_in">epoll_wait</span>(efd, resevent, <span class="number">10</span>, <span class="number">-1</span>);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;res %d\n&quot;</span>, res);</span><br><span class="line">            <span class="keyword">if</span>(resevent[<span class="number">0</span>].data.fd == pfd[<span class="number">0</span>])&#123;</span><br><span class="line">                len = <span class="built_in">read</span>(pfd[<span class="number">0</span>], buf, MAXLINE / <span class="number">2</span>);</span><br><span class="line">                <span class="built_in">write</span>(STDOUT_FILENO, buf, len);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">close</span>(pfd[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">close</span>(efd);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">perror</span>(<span class="string">&quot;fork&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>边缘触发与电平触发:</strong></p>
+<ul>
+<li><strong>边缘触发 (<code>EPOLLET</code>)</strong>: 仅在文件描述符状态变化时触发事件。在此情况下，只有当新数据到达时才会通知父进程。父进程需要在 <code>epoll_wait</code> 再次触发之前读取所有可用的数据。(缓冲区剩余未读尽的数据不会导致 epoll_wait 返回)</li>
+<li><strong>电平触发 (默认模式)</strong>: 只要条件（例如有数据可读）存在，事件就会反复触发。如果你移除 <code>EPOLLET</code>，父进程将在管道未被清空之前反复收到通知。(缓冲区剩余未读尽的数据会导致 epoll_wait 返回)</li>
+</ul>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/01/11/epoll%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-cmake-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1202,153 +1298,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2024/01/09/cmake-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-半关闭" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/01/09/%E5%8D%8A%E5%85%B3%E9%97%AD/" target="_blank">半关闭</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/01/09/%E5%8D%8A%E5%85%B3%E9%97%AD/" class="archive-article-date">
-        <time datetime="2024-01-09T13:13:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-09</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h3 id="close"><a href="#close" class="headerlink" title="close"></a><code>close</code></h3><ul>
-<li><strong>作用</strong>: 关闭一个文件描述符，使其不再引用任何文件，并且该文件描述符可以被重新使用。</li>
-<li><strong>用法</strong>:<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> result = close(fd);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>fd</code>: 你想关闭的文件描述符。</li>
-<li><strong>返回值</strong>: 成功返回 <code>0</code>，出错返回 <code>-1</code>。</li>
-</ul>
-</li>
-<li><strong>详细说明</strong>:<ul>
-<li>一旦关闭了文件描述符，你就不能再用它进行读、写或其他操作。</li>
-<li>如果是关闭一个套接字，则 <code>close()</code> 会关闭连接，发送一个 TCP <code>FIN</code> 到对端，启动连接终止过程。</li>
-</ul>
-</li>
-</ul>
-<h3 id="shutdown"><a href="#shutdown" class="headerlink" title="shutdown"></a><code>shutdown</code></h3><ul>
-<li><p><strong>作用</strong>: 禁止对一个套接字进行进一步的发送和&#x2F;或接收操作。</p>
-</li>
-<li><p><strong>用法</strong>:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> result = shutdown(fd, how);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>fd</code>: 套接字的文件描述符。</li>
-<li><code>how</code>: 指定关闭连接的哪一部分：<ul>
-<li><code>SHUT_RD</code> (0): 禁止接收操作。</li>
-<li><code>SHUT_WR</code> (1): 禁止发送操作。</li>
-<li><code>SHUT_RDWR</code> (2): 禁止接收和发送操作。</li>
-</ul>
-</li>
-<li><strong>返回值</strong>: 成功返回 <code>0</code>，出错返回 <code>-1</code>。</li>
-</ul>
-</li>
-<li><p><strong>详细说明</strong>:</p>
-<ul>
-<li><code>shutdown()</code> 常用于当你只想关闭套接字的某一方向（发送或接收）时。即使关闭了发送方向，你仍然可以接收数据。</li>
-<li>需要注意的是，<code>shutdown()</code> 并不会关闭文件描述符，你仍然需要在 <code>shutdown()</code> 后用 <code>close()</code> 关闭套接字。</li>
-</ul>
-</li>
-</ul>
-<h3 id="dup2"><a href="#dup2" class="headerlink" title="dup2"></a><code>dup2</code></h3><ul>
-<li><p><strong>作用</strong>: 复制一个文件描述符，使它成为另一个文件描述符的副本。</p>
-</li>
-<li><p><strong>用法</strong>:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> result = dup2(oldfd, newfd);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>oldfd</code>: 你想复制的文件描述符。</li>
-<li><code>newfd</code>: 你想用来接收复制结果的文件描述符。</li>
-<li><strong>返回值</strong>: 成功返回新的文件描述符，出错返回 <code>-1</code>。</li>
-</ul>
-</li>
-<li><p><strong>详细说明</strong>:</p>
-<ul>
-<li>如果 <code>newfd</code> 已经打开，<code>dup2</code> 会在复制前关闭它。</li>
-<li><code>dup2</code> 通常用于 shell 编程，特别是用于输入&#x2F;输出重定向（例如将 <code>stdout</code> 重定向到一个文件）。</li>
-</ul>
-</li>
-</ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li><strong><code>close</code></strong>: 当你不再需要一个文件描述符并且想释放相关资源时使用。</li>
-<li><strong><code>shutdown</code></strong>: 当你想禁止套接字的进一步发送或接收，但又不想完全关闭文件描述符时使用。</li>
-<li><strong><code>dup2</code></strong>: 当你需要将一个文件描述符重定向到另一个文件描述符时使用，通常用于输入&#x2F;输出重定向。</li>
-</ul>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/01/09/%E5%8D%8A%E5%85%B3%E9%97%AD/">展开全文 >></a>
     </p>
     
 
@@ -1519,10 +1468,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -1547,15 +1492,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1567,15 +1512,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">函数</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
