@@ -142,227 +142,6 @@
             
 
   
-    <article id="post-g-和gdb" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/04/27/g-%E5%92%8Cgdb/" target="_blank">g++和gdb</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/04/27/g-%E5%92%8Cgdb/" class="archive-article-date">
-        <time datetime="2024-04-27T03:42:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-04-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="g-编译"><a href="#g-编译" class="headerlink" title="g++编译"></a>g++编译</h2><h3 id="基本编译命令"><a href="#基本编译命令" class="headerlink" title="基本编译命令"></a>基本编译命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ [options] source_files -o output_file</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>source_files</code>：要编译的源代码文件（例如 <code>main.cpp</code>）。</li>
-<li><code>-o output_file</code>：指定输出的可执行文件名（例如 <code>my_program</code>）。</li>
-</ul>
-<h3 id="常用编译选项"><a href="#常用编译选项" class="headerlink" title="常用编译选项"></a>常用编译选项</h3><h4 id="1-编译选项"><a href="#1-编译选项" class="headerlink" title="1. 编译选项"></a>1. <strong>编译选项</strong></h4><ul>
-<li><p><code>-c</code>：只编译源文件，不进行链接，生成目标文件（<code>.o</code> 或 <code>.obj</code>）。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -c main.cpp</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>-o</code>：指定输出文件名。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ main.cpp -o my_program</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>-I</code>：指定包含头文件的目录。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -I/path/to/include main.cpp -o my_program</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>-L</code>：指定库文件的目录。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -L/path/to/lib -o my_program main.cpp -lmy_lib</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>-l</code>：链接库文件。 <code>-l</code> 后面跟库的名称（不包含前缀 <code>lib</code> 和文件扩展名）。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ main.cpp -o my_program -lmy_lib</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="2-优化选项"><a href="#2-优化选项" class="headerlink" title="2. 优化选项"></a>2. <strong>优化选项</strong></h4><ul>
-<li><p><code>-O0</code>：不进行优化（默认值）。</p>
-</li>
-<li><p><code>-O1</code>, <code>-O2</code>, <code>-O3</code>：不同级别的优化。 <code>-O2</code> 是常用的优化级别，<code>-O3</code> 会进行更多的优化，但可能会增加编译时间。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -O2 main.cpp -o my_program</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>-Os</code>：优化以减少生成代码的大小。</p>
-</li>
-</ul>
-<h4 id="3-调试选项"><a href="#3-调试选项" class="headerlink" title="3. 调试选项"></a>3. <strong>调试选项</strong></h4><ul>
-<li><code>-g</code>：生成调试信息，便于使用调试器（如 GDB）进行调试。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -g main.cpp -o my_program</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p><code>示例</code></p>
-<ol>
-<li><p><strong>编译一个源文件并生成可执行文件：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -o my_program main.cpp</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>编译并启用调试信息：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -g -o my_program main.cpp</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>编译并优化代码：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -O2 -o my_program main.cpp</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="gdb调试"><a href="#gdb调试" class="headerlink" title="gdb调试"></a>gdb调试</h2><h3 id="1-启用调试信息"><a href="#1-启用调试信息" class="headerlink" title="1. 启用调试信息"></a>1. 启用调试信息</h3><p>要启用调试信息，需要在编译时使用 <code>-g</code> 选项。这个选项告诉编译器生成包含调试信息的目标文件，使调试器能够提供更多的调试信息。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -g -o my_program my_program.cpp</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>-g</code>：生成调试信息。</li>
-<li><code>-o my_program</code>：指定输出的可执行文件名。</li>
-<li><code>my_program.cpp</code>：你的源代码文件。</li>
-</ul>
-<h3 id="2-编写调试语句"><a href="#2-编写调试语句" class="headerlink" title="2. 编写调试语句"></a>2. 编写调试语句</h3><p>在代码中，可以使用 <code>assert</code> 和日志语句来帮助调试。</p>
-<h4 id="使用-assert-语句"><a href="#使用-assert-语句" class="headerlink" title="使用 assert 语句"></a>使用 <code>assert</code> 语句</h4><p><code>assert</code> 是一种在调试时检查条件的简单方法。它在条件为 <code>false</code> 时会终止程序执行，并打印出相关的错误信息。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cassert&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">someFunction</span><span class="params">(<span class="type">int</span> value)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">assert</span>(value &gt; <span class="number">0</span>); <span class="comment">// 如果 value &lt;= 0，程序将会终止并打印错误信息</span></span><br><span class="line">    <span class="comment">// 函数的其他代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="使用日志语句"><a href="#使用日志语句" class="headerlink" title="使用日志语句"></a>使用日志语句</h4><p>可以在代码中插入日志输出语句，以跟踪程序的执行状态。使用 <code>std::cerr</code> 或 <code>std::cout</code> 可以打印调试信息。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">someFunction</span><span class="params">(<span class="type">int</span> value)</span> </span>&#123;</span><br><span class="line">    std::cerr &lt;&lt; <span class="string">&quot;Entering someFunction with value = &quot;</span> &lt;&lt; value &lt;&lt; std::endl;</span><br><span class="line">    <span class="comment">// 函数的其他代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-调试程序"><a href="#3-调试程序" class="headerlink" title="3. 调试程序"></a>3. 调试程序</h3><p>编译并运行程序后，可以使用调试器（如 GDB）来调试程序。</p>
-<h4 id="启动-GDB"><a href="#启动-GDB" class="headerlink" title="启动 GDB"></a>启动 GDB</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gdb ./my_program</span><br></pre></td></tr></table></figure>
-
-<p>在 GDB 提示符下，可以使用以下命令进行调试：</p>
-<ul>
-<li><p><strong>运行程序</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) run</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>设置断点</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) break main</span><br></pre></td></tr></table></figure>
-<p>或者设置在特定行：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) break 42</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>继续执行</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) continue</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>单步执行</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) step  #如果当前语句执行某个函数会进入函数， continue 不会进入函数, next 会跳过内部执行</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>查看变量</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) print variable_name</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>退出 GDB</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) quit</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>设置观察点：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) watch variable_name</span><br><span class="line">(gdb) info watchpoints #查看 </span><br></pre></td></tr></table></figure></li>
-</ul>
-<p><strong>使用 <code>file</code> 命令加载符号表</strong>：如果已经在 GDB 中，但没有正确加载符号表，可以使用 <code>file</code> 命令明确加载可执行文件及其符号表。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file main</span><br></pre></td></tr></table></figure>
-
-<p><strong>快速查看文件内容不退出</strong>：<code>shell</code> 是 GDB 的一个命令，它允许在调试会话中执行任意的 shell 命令。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) shell <span class="built_in">cat</span> main.cpp</span><br></pre></td></tr></table></figure>
-
-<p><strong>日志输出</strong>：将调试会话的输出记录到一个日志文件中。启用日志记录后，GDB 会将所有的命令输出保存到一个文件中，这对于调试过程的记录和分析非常有用。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">set</span> logging file my_log.txt    <span class="comment">#可选</span></span><br><span class="line">(gdb) <span class="built_in">set</span> logging on</span><br><span class="line">(gdb) <span class="built_in">set</span> logging off</span><br><span class="line"></span><br><span class="line">(gdb) <span class="built_in">set</span> logging overwrite off   <span class="comment">#追加</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>core文件生成：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ulimit</span> -c unlimited  //会话级别  配置core文件生成路径......</span><br><span class="line">sudo sysctl -w kernel.core_pattern=./core.%e.%p</span><br><span class="line"></span><br><span class="line">/etc/sysctl.conf -----&gt; kernel.core_pattern=./core.%e.%p</span><br><span class="line">kernel.core_pattern=./core.%e.%p  //写入配置文件</span><br><span class="line">sudo sysctl --system  //应用</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;ulimit -c unlimited&quot;</span> &gt;&gt; ~/.bashrc  //写入配置文件不用手动修改</span><br><span class="line"></span><br><span class="line">gdb main core.main.51089</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>输出shell脚本</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">mygdbscript.gdb</span></span><br><span class="line"></span><br><span class="line">define logcmd</span><br><span class="line">    printf &quot;\n&gt;&gt;&gt; Command: %s\n&quot;, $arg0</span><br><span class="line">    shell echo &quot;\n&gt;&gt;&gt; Command: $arg0&quot; &gt;&gt; debug_log.txt</span><br><span class="line">    if $debugging</span><br><span class="line">        $arg0</span><br><span class="line">    else</span><br><span class="line">        printf &quot;No process is running.\n&quot;</span><br><span class="line">        shell echo &quot;No process is running.\n&quot; &gt;&gt; debug_log.txt</span><br><span class="line">    end</span><br><span class="line">    shell echo &quot;\n&quot; &gt;&gt; debug_log.txt</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">document logcmd</span><br><span class="line">Run a command and log it to debug_log.txt.</span><br><span class="line">Usage: logcmd &lt;command&gt;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#一直运行程序调试</span></span><br><span class="line">gcc -g main.cpp -o main</span><br><span class="line">./main&amp;  // 后台执行</span><br><span class="line">ps -ef | grep main // 查找 pid</span><br><span class="line">gdb -p pid</span><br></pre></td></tr></table></figure>
-
-<h2 id="binutils调试文件分离"><a href="#binutils调试文件分离" class="headerlink" title="binutils调试文件分离"></a>binutils调试文件分离</h2><h3 id="strip-命令"><a href="#strip-命令" class="headerlink" title="strip 命令"></a><code>strip</code> 命令</h3><p><code>strip</code> 是用来删除二进制文件中的符号和调试信息的工具。使用 <code>strip</code> 可以从可执行文件中移除调试信息和符号表，从而减小文件的大小。默认情况下，<code>strip</code> 会移除所有的调试符号和其他非必要的信息，使得生成的可执行文件更小。</p>
-<p>例如：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strip my_executable</span><br></pre></td></tr></table></figure>
-
-<h3 id="objcopy-命令"><a href="#objcopy-命令" class="headerlink" title="objcopy 命令"></a><code>objcopy</code> 命令</h3><p><code>objcopy</code> 是 GNU Binutils 提供的一个工具，可以用来复制和转换对象文件。它支持多种功能，包括分离调试信息。你可以使用 <code>objcopy</code> 将调试信息从可执行文件中分离出来，并将其保存到一个单独的文件中。例如：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objcopy --only-keep-debug my_executable my_executable.debug</span><br></pre></td></tr></table></figure>
-<p>然后，可以使用 <code>objcopy</code> 来移除调试信息：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objcopy --strip-debug my_executable</span><br></pre></td></tr></table></figure>
-
-<h3 id="strip-生成更小的文件"><a href="#strip-生成更小的文件" class="headerlink" title="strip 生成更小的文件"></a><code>strip</code> 生成更小的文件</h3><ol>
-<li><p><strong>功能和目标</strong>：</p>
-<ul>
-<li><code>strip</code> 直接从文件中删除所有调试符号和其他符号表，目的是最大程度地减小文件的大小。</li>
-<li><code>objcopy</code> 分离调试信息时，会保留一部分调试信息（例如，行号、文件名等），这样即使调试信息被分离到一个独立的文件中，主可执行文件仍然可以保持一定的调试能力。</li>
-</ul>
-</li>
-<li><p><strong>效率</strong>：</p>
-<ul>
-<li><code>strip</code> 专注于文件的瘦身，可以更高效地移除不必要的符号，可能会导致比 <code>objcopy</code> 更小的文件。</li>
-<li><code>objcopy</code> 在处理过程中可能会保留一些额外的元数据或调试信息，这会使得最终的可执行文件稍微大一些。</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">objcopy --only-keep-debug ./mian main.debug</span><br><span class="line"></span><br><span class="line">1.objcopy --strip-debug ./main</span><br><span class="line">2.strip ./main -o main</span><br><span class="line"></span><br><span class="line">objcopy --add-gnu-debuglink=main.debug main</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/04/27/g-%E5%92%8Cgdb/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-最大公约数和最小公倍数-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1397,6 +1176,107 @@
 
 
   
+    <article id="post-precisionANDsetprecision-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/03/01/precisionANDsetprecision-md/" target="_blank">precisionANDsetprecision.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/03/01/precisionANDsetprecision-md/" class="archive-article-date">
+        <time datetime="2024-03-01T04:14:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-03-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p><code>std::setprecision()</code>和<code>std::cout.precision()</code>都是与浮点数的输出精度相关的函数，但它们的功能和用途有所区别：</p>
+<h3 id="std-setprecision"><a href="#std-setprecision" class="headerlink" title="std::setprecision()"></a>std::setprecision()</h3><p><code>std::setprecision()</code>是一个流操作符，它用于设置浮点数的输出精度。它接受一个整数参数，该参数指定了小数点后应该显示的位数或有效数字位数，具体取决于是否使用了<code>std::fixed</code>或<code>std::scientific</code>格式。</p>
+<ul>
+<li>如果使用了<code>std::fixed</code>，则<code>std::setprecision(n)</code>将设置小数点后应显示的位数为<code>n</code>。</li>
+<li>如果没有使用<code>std::fixed</code>或<code>std::scientific</code>，则<code>std::setprecision(n)</code>将设置有效数字的位数为<code>n</code>。这意味着小数点前和后的位数都会受到影响，以确保总共有<code>n</code>个有效数字。</li>
+</ul>
+<p><code>std::setprecision()</code>是一个流操作符，因此它返回流对象本身，以便进行链式操作。</p>
+<h3 id="std-cout-precision"><a href="#std-cout-precision" class="headerlink" title="std::cout.precision()"></a>std::cout.precision()</h3><p><code>std::cout.precision()</code>是一个成员函数，它返回当前设置的浮点精度。这个值表示小数点后应该显示的位数或有效数字的位数，具体取决于当前的浮点数格式。</p>
+<p>如果想要查看当前的浮点精度设置，可以使用<code>std::cout.precision()</code>。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> pi = <span class="number">3.141592653589793</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查看当前的浮点精度</span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Current precision is: &quot;</span> &lt;&lt; std::cout.<span class="built_in">precision</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置浮点精度为3位有效数字</span></span><br><span class="line">    std::cout &lt;&lt; std::<span class="built_in">setprecision</span>(<span class="number">3</span>) &lt;&lt; pi &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 再次查看当前的浮点精度</span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;New precision is: &quot;</span> &lt;&lt; std::cout.<span class="built_in">precision</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置固定小数点表示，并保留小数点后3位</span></span><br><span class="line">    std::cout &lt;&lt; std::fixed &lt;&lt; std::<span class="built_in">setprecision</span>(<span class="number">3</span>) &lt;&lt; pi &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第一次调用<code>std::cout.precision()</code>将显示默认的浮点精度（通常是6）。</p>
+<p>使用<code>std::setprecision(3)</code>设置有效数字位数为3，并再次调用<code>std::cout.precision()</code>将显示新的精度设置。</p>
+<p>通过结合使用<code>std::fixed</code>和<code>std::setprecision(3)</code>，将输出格式设置为固定小数点表示，并保留小数点后3位数字。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/03/01/precisionANDsetprecision-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
@@ -1534,11 +1414,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">Qt</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Qt</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1566,15 +1446,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1590,15 +1474,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
