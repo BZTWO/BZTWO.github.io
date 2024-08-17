@@ -973,6 +973,133 @@
 
 
   
+    <article id="post-eventfd异步事件通知" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/01/17/eventfd%E5%BC%82%E6%AD%A5%E4%BA%8B%E4%BB%B6%E9%80%9A%E7%9F%A5/" target="_blank">eventfd异步事件通知</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/01/17/eventfd%E5%BC%82%E6%AD%A5%E4%BA%8B%E4%BB%B6%E9%80%9A%E7%9F%A5/" class="archive-article-date">
+        <time datetime="2024-01-17T00:55:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-17</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p><code>eventfd</code>用于在进程或线程之间传递信号或通知。它可以用于实现异步事件通知机制，特别是在事件驱动编程中。例如，它可以被用于唤醒某个线程或者作为 I&#x2F;O 事件循环的一部分。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/eventfd.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">eventfd</span><span class="params">(<span class="type">unsigned</span> <span class="type">int</span> initval, <span class="type">int</span> flags)</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ol>
+<li><p><strong><code>unsigned int initval</code></strong></p>
+<ul>
+<li><strong>含义</strong>: <code>eventfd</code> 文件描述符的初始值。</li>
+<li><strong>解释</strong>: 该值表示 <code>eventfd</code> 中计数器的初始值。当事件触发时，计数器可以通过 <code>eventfd_write</code> 函数进行增加，通过 <code>eventfd_read</code> 函数进行读取和清空。通常，这个值初始化为 0，但可以根据需要设置为其他值。</li>
+</ul>
+</li>
+<li><p><strong><code>int flags</code></strong></p>
+<ul>
+<li><strong>含义</strong>: 控制 <code>eventfd</code> 行为的标志。</li>
+<li><strong>可选标志</strong>:<ul>
+<li><strong><code>EFD_SEMAPHORE</code></strong>:<ul>
+<li>使 <code>eventfd</code> 的行为类似于信号量。在这种情况下，每次调用 <code>eventfd_read</code> 将减少计数器的值 1（而不是返回当前值并清空计数器）。</li>
+</ul>
+</li>
+<li><strong><code>EFD_CLOEXEC</code></strong>:<ul>
+<li>如果设置此标志，<code>eventfd</code> 文件描述符在 <code>exec</code> 系列系统调用中将自动关闭。这是为了避免文件描述符泄露到新执行的程序中。</li>
+</ul>
+</li>
+<li><strong><code>EFD_NONBLOCK</code></strong>:<ul>
+<li>设置为非阻塞模式。如果没有事件可读取，<code>eventfd_read</code> 调用将立即返回 <code>-1</code>，并将 <code>errno</code> 设置为 <code>EAGAIN</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>成功时：返回一个新的文件描述符，表示 <code>eventfd</code> 对象。</p>
+<p>失败时：返回 <code>-1</code> 并设置 <code>errno</code> 来指示错误原因。</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li><strong>进程&#x2F;线程间同步</strong>: <code>eventfd</code> 可以用于进程或线程之间的同步，例如通知某个线程某些数据已经准备好或者任务完成。</li>
+<li><strong>事件驱动编程</strong>: 在 <code>epoll</code> 或者 <code>select</code> 循环中，<code>eventfd</code> 可以作为一个事件源，用来唤醒等待的线程或处理其他异步事件。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/eventfd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdint.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> efd = eventfd(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (efd == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;eventfd&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">uint64_t</span> u = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 写入 eventfd</span></span><br><span class="line">    write(efd, &amp;u, <span class="keyword">sizeof</span>(<span class="type">uint64_t</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 读取 eventfd</span></span><br><span class="line">    <span class="type">uint64_t</span> result;</span><br><span class="line">    read(efd, &amp;result, <span class="keyword">sizeof</span>(<span class="type">uint64_t</span>));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Read value: %llu\n&quot;</span>, (<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>)result);</span><br><span class="line"></span><br><span class="line">    close(efd);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>eventfd</code> 被初始化为 0。然后，程序写入一个值（1）到 <code>eventfd</code>，接着从 <code>eventfd</code> 中读取这个值。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/01/17/eventfd%E5%BC%82%E6%AD%A5%E4%BA%8B%E4%BB%B6%E9%80%9A%E7%9F%A5/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-域名解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1243,102 +1370,6 @@
 
 
   
-    <article id="post-epoll触发模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/01/11/epoll%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/" target="_blank">epoll触发模式</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/01/11/epoll%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-        <time datetime="2024-01-11T13:42:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-11</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-
-
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> efd, i;</span><br><span class="line">    <span class="type">int</span> pfd[<span class="number">2</span>];</span><br><span class="line">    <span class="type">pid_t</span> pid;</span><br><span class="line">    <span class="type">char</span> buf[MAXLINE], ch = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">    <span class="built_in">pipe</span>(pfd);</span><br><span class="line">    pid = fork();</span><br><span class="line">    <span class="keyword">if</span>(pid == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">close</span>(pfd[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; MAXLINE / <span class="number">2</span>; i++)&#123;</span><br><span class="line">                buf[i] = ch;</span><br><span class="line">            &#125;</span><br><span class="line">            buf[i - <span class="number">1</span>] = <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">            ch++;</span><br><span class="line">            <span class="keyword">for</span>(; i &lt; MAXLINE; i++)&#123;</span><br><span class="line">                buf[i] = ch;</span><br><span class="line">            &#125;</span><br><span class="line">            buf[i - <span class="number">1</span>] = <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">            ch++;</span><br><span class="line">            <span class="built_in">write</span>(pfd[<span class="number">1</span>], buf, <span class="built_in">sizeof</span>(buf));</span><br><span class="line">            <span class="built_in">sleep</span>(<span class="number">5</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">close</span>(pfd[<span class="number">1</span>]);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pid &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">struct</span> epoll_event event, resevent[<span class="number">10</span>];</span><br><span class="line">        <span class="type">int</span> res, len;</span><br><span class="line">        <span class="built_in">close</span>(pfd[<span class="number">1</span>]);</span><br><span class="line">        efd = <span class="built_in">epoll_create</span>(<span class="number">10</span>);</span><br><span class="line">        event.events = EPOLLIN | EPOLLET;  <span class="comment">// 边缘触发</span></span><br><span class="line">		<span class="comment">//event.events = EPOLLIN;          // 电平触发</span></span><br><span class="line">        event.data.fd = pfd[<span class="number">0</span>];</span><br><span class="line">        <span class="built_in">epoll_ctl</span>(efd, EPOLL_CTL_ADD, pfd[<span class="number">0</span>], &amp;event);</span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">            res = <span class="built_in">epoll_wait</span>(efd, resevent, <span class="number">10</span>, <span class="number">-1</span>);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;res %d\n&quot;</span>, res);</span><br><span class="line">            <span class="keyword">if</span>(resevent[<span class="number">0</span>].data.fd == pfd[<span class="number">0</span>])&#123;</span><br><span class="line">                len = <span class="built_in">read</span>(pfd[<span class="number">0</span>], buf, MAXLINE / <span class="number">2</span>);</span><br><span class="line">                <span class="built_in">write</span>(STDOUT_FILENO, buf, len);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">close</span>(pfd[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">close</span>(efd);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">perror</span>(<span class="string">&quot;fork&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>边缘触发与电平触发:</strong></p>
-<ul>
-<li><strong>边缘触发 (<code>EPOLLET</code>)</strong>: 仅在文件描述符状态变化时触发事件。在此情况下，只有当新数据到达时才会通知父进程。父进程需要在 <code>epoll_wait</code> 再次触发之前读取所有可用的数据。(缓冲区剩余未读尽的数据不会导致 epoll_wait 返回)</li>
-<li><strong>电平触发 (默认模式)</strong>: 只要条件（例如有数据可读）存在，事件就会反复触发。如果你移除 <code>EPOLLET</code>，父进程将在管道未被清空之前反复收到通知。(缓冲区剩余未读尽的数据会导致 epoll_wait 返回)</li>
-</ul>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/01/11/epoll%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
@@ -1476,15 +1507,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Qt</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1520,7 +1551,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1528,15 +1567,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">

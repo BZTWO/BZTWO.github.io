@@ -142,6 +142,102 @@
             
 
   
+    <article id="post-epoll触发模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/01/11/epoll%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/" target="_blank">epoll触发模式</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/01/11/epoll%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+        <time datetime="2024-01-11T13:42:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-11</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> efd, i;</span><br><span class="line">    <span class="type">int</span> pfd[<span class="number">2</span>];</span><br><span class="line">    <span class="type">pid_t</span> pid;</span><br><span class="line">    <span class="type">char</span> buf[MAXLINE], ch = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">    <span class="built_in">pipe</span>(pfd);</span><br><span class="line">    pid = fork();</span><br><span class="line">    <span class="keyword">if</span>(pid == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="built_in">close</span>(pfd[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; MAXLINE / <span class="number">2</span>; i++)&#123;</span><br><span class="line">                buf[i] = ch;</span><br><span class="line">            &#125;</span><br><span class="line">            buf[i - <span class="number">1</span>] = <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">            ch++;</span><br><span class="line">            <span class="keyword">for</span>(; i &lt; MAXLINE; i++)&#123;</span><br><span class="line">                buf[i] = ch;</span><br><span class="line">            &#125;</span><br><span class="line">            buf[i - <span class="number">1</span>] = <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">            ch++;</span><br><span class="line">            <span class="built_in">write</span>(pfd[<span class="number">1</span>], buf, <span class="built_in">sizeof</span>(buf));</span><br><span class="line">            <span class="built_in">sleep</span>(<span class="number">5</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">close</span>(pfd[<span class="number">1</span>]);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(pid &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">struct</span> epoll_event event, resevent[<span class="number">10</span>];</span><br><span class="line">        <span class="type">int</span> res, len;</span><br><span class="line">        <span class="built_in">close</span>(pfd[<span class="number">1</span>]);</span><br><span class="line">        efd = <span class="built_in">epoll_create</span>(<span class="number">10</span>);</span><br><span class="line">        event.events = EPOLLIN | EPOLLET;  <span class="comment">// 边缘触发</span></span><br><span class="line">		<span class="comment">//event.events = EPOLLIN;          // 电平触发</span></span><br><span class="line">        event.data.fd = pfd[<span class="number">0</span>];</span><br><span class="line">        <span class="built_in">epoll_ctl</span>(efd, EPOLL_CTL_ADD, pfd[<span class="number">0</span>], &amp;event);</span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">            res = <span class="built_in">epoll_wait</span>(efd, resevent, <span class="number">10</span>, <span class="number">-1</span>);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;res %d\n&quot;</span>, res);</span><br><span class="line">            <span class="keyword">if</span>(resevent[<span class="number">0</span>].data.fd == pfd[<span class="number">0</span>])&#123;</span><br><span class="line">                len = <span class="built_in">read</span>(pfd[<span class="number">0</span>], buf, MAXLINE / <span class="number">2</span>);</span><br><span class="line">                <span class="built_in">write</span>(STDOUT_FILENO, buf, len);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">close</span>(pfd[<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">close</span>(efd);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">perror</span>(<span class="string">&quot;fork&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>边缘触发与电平触发:</strong></p>
+<ul>
+<li><strong>边缘触发 (<code>EPOLLET</code>)</strong>: 仅在文件描述符状态变化时触发事件。在此情况下，只有当新数据到达时才会通知父进程。父进程需要在 <code>epoll_wait</code> 再次触发之前读取所有可用的数据。(缓冲区剩余未读尽的数据不会导致 epoll_wait 返回)</li>
+<li><strong>电平触发 (默认模式)</strong>: 只要条件（例如有数据可读）存在，事件就会反复触发。如果你移除 <code>EPOLLET</code>，父进程将在管道未被清空之前反复收到通知。(缓冲区剩余未读尽的数据会导致 epoll_wait 返回)</li>
+</ul>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/01/11/epoll%E8%A7%A6%E5%8F%91%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-cmake-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1420,159 +1516,6 @@
 
 
   
-    <article id="post-Lambda表达式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/11/14/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F-md/" target="_blank">Lambda表达式.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/11/14/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2023-11-14T09:36:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h4 id="Lambda表达式概述"><a href="#Lambda表达式概述" class="headerlink" title="Lambda表达式概述"></a>Lambda表达式概述</h4><p> Lambda表达式是现代C++在C ++ 11和更高版本中的一个新的语法糖 ，在C++11、C++14、C++17和C++20中Lambda表达的内容还在不断更新。 lambda表达式（也称为lambda函数）是在调用或作为函数参数传递的位置处定义匿名函数对象的便捷方法。通常，lambda用于封装传递给算法或异步方法的几行代码 。本文主要介绍Lambda的工作原理以及使用方法。</p>
-<p>语法定义：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[函数对象参数](函数参数)修饰符-&gt;返回值类型&#123;函数体&#125;;</span><br></pre></td></tr></table></figure>
-
-<h4 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h4><h5 id="函数对象参数"><a href="#函数对象参数" class="headerlink" title="函数对象参数"></a>函数对象参数</h5><p>“[]”<strong>标识</strong>一个Lambda表达式的开始，这一部分是不可以忽略的。编译器根据该引出符判断接下来的代码是否是Lambda函数，捕获列表能够捕捉上下文中的变量以供Lambda函数使用。</p>
-<ul>
-<li>[]：表示不捕获任何变量；</li>
-<li>&amp;：代表以<strong>引用</strong>传递的方式捕获Lambda表达式外的变量；</li>
-<li>&#x3D;：代表以<strong>值传递</strong>的方式捕获Lambda表达式外的变量，即以const引用的方式传值；</li>
-<li>this：表示Lambda表达式可以使用Lambda表达式<strong>所在类的成员变量；</strong></li>
-<li>a 或 &#x3D;a：表示以<strong>值引用</strong>的方式传递变量a，即const int a,在函数体内<strong>不可改变</strong>a的值；但是可以对Lambda表达式使用mutable修饰符修饰，使得函数对象参数可以进行赋值，但是该函数对象参数不是被修改为引用传递方式；</li>
-<li>&amp;a：表示以引用传递的方式传递变量a，在函数体内可以改变a的值；</li>
-<li>x，&amp;y：x为值传递方式，y为引用传值方式；</li>
-<li>&#x3D;，&amp;x，&amp;y：除x，y为引用传递方式以外，其他参数都为值传递方式进行传递；</li>
-<li>&amp;，x，y：除x，y为值传递方式以外，其他参数都为引用传递方式进行传递。</li>
-</ul>
-<h5 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h5><p>与普通函数的参数列表一致。如果不需要参数传递，则可以连同括号“()”一起省略。</p>
-<p>无参：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> f = [] &#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;Hello&quot;</span> &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>有参：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> f = [] (string s) &#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;Hello &quot;</span> &lt;&lt; s &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">f</span>(world);</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h5><p>这一部分是可以省略的，常见的修饰符有两个，一个是<strong>mutable</strong>，另一个是<strong>exception</strong>。</p>
-<p>mutable：当函数参数以值引用传递方式传递时，在函数体内是不可以修改该函数参数的值的，我们可以使用mutable修饰符，使得该函数参数可以<strong>在函数体内改变</strong>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">auto</span> test = [x] () <span class="keyword">mutable</span> &#123; x++; cout &lt;&lt; x &lt;&lt; <span class="string">&#x27; &#x27;</span>; &#125;;</span><br><span class="line"><span class="built_in">test</span>();cout &lt;&lt; x &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出：2 1</span></span><br><span class="line"><span class="comment">//被mutable修饰的函数参数，该函数参数可以在函数体内改变，也就是说不会改变函数体外该变量的值，我们也可以理解为在函数体内拷贝了这个变量的同名变量</span></span><br></pre></td></tr></table></figure>
-
-<p>exception：你可以使用 throw() 异常规范来指示 lambda 表达式不会引发任何异常。与普通函数一样，如果 lambda 表达式声明 C4297 异常规范且 lambda 体引发异常，Visual C++ 编译器将生成警告 throw()。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> <span class="comment">// C4297 expected </span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line"> 	[]() <span class="keyword">throw</span>() &#123; <span class="keyword">throw</span> <span class="number">5</span>; &#125;(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="返回值类型"><a href="#返回值类型" class="headerlink" title="返回值类型"></a>返回值类型</h5><p>Lambda表达式的返回类型会自动推导。除非你指定了返回类型，否则不必使用关键字。返回型类似于通常的方法或函数的返回型部分。但是，返回类型必须在参数列表之后，并且必须在返回类型-&gt;之前包含类型关键字。如果lambda主体仅包含一个return语句或该表达式未返回值，则可以省略Lambda表达式的return-type部分。如果lambda主体包含一个return语句，则编译器将从return表达式的类型中推断出return类型。否则，编译器将返回类型推导为void。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> x1 = [](<span class="type">int</span> i)&#123; <span class="keyword">return</span> i; &#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="函数体"><a href="#函数体" class="headerlink" title="函数体"></a>函数体</h5><p> Lambda表达式的lambda主体（标准语法中的<em>复合语句</em>）可以包含普通方法或函数的主体可以包含的任何内容。普通函数和lambda表达式的主体都可以访问以下类型的变量：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- 捕获变量</span><br><span class="line">- 形参变量</span><br><span class="line">- 局部声明的变量</span><br><span class="line">- 类数据成员，当在类内声明**`this`**并被捕获时</span><br><span class="line">- 具有静态存储持续时间的任何变量，例如全局变量</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="type">int</span> m = <span class="number">0</span>;</span><br><span class="line">   <span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">   [&amp;, n] (<span class="type">int</span> a) <span class="keyword">mutable</span> &#123; m = ++n + a; &#125;(<span class="number">4</span>);</span><br><span class="line">   cout &lt;&lt; m &lt;&lt; endl &lt;&lt; n &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="Lambda优缺点"><a href="#Lambda优缺点" class="headerlink" title="Lambda优缺点"></a>Lambda优缺点</h4><h5 id="Lambda表达式的优点"><a href="#Lambda表达式的优点" class="headerlink" title="Lambda表达式的优点"></a>Lambda表达式的优点</h5><ul>
-<li><p>可以直接在需要调用函数的位置定义短小精悍的函数，而不需要预先定义好函数</p>
-</li>
-<li><p>使用Lamdba表达式变得更加紧凑，结构层次更加明显、代码可读性更好</p>
-</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std::<span class="built_in">find_if</span>(v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>(), [](<span class="type">int</span>&amp; item)&#123;<span class="keyword">return</span> item &gt; <span class="number">2</span>&#125;);</span><br></pre></td></tr></table></figure>
-
-<h5 id="Lambda表达式的缺点"><a href="#Lambda表达式的缺点" class="headerlink" title="Lambda表达式的缺点"></a>Lambda表达式的缺点</h5><ul>
-<li>Lamdba表达式语法比较灵活，增加了阅读代码的难度</li>
-<li>对于函数复用无能为力</li>
-</ul>
-<h4 id="Lamdba表达式应用于STL算法库"><a href="#Lamdba表达式应用于STL算法库" class="headerlink" title="Lamdba表达式应用于STL算法库"></a>Lamdba表达式应用于STL<strong>算法库</strong></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// for_each应用实例</span></span><br><span class="line"><span class="type">int</span> a[<span class="number">4</span>] = &#123;<span class="number">11</span>, <span class="number">2</span>, <span class="number">33</span>, <span class="number">4</span>&#125;;</span><br><span class="line"><span class="built_in">sort</span>(a, a+<span class="number">4</span>, [=](<span class="type">int</span> x, <span class="type">int</span> y) -&gt; <span class="type">bool</span> &#123; <span class="keyword">return</span> x%<span class="number">10</span> &lt; y%<span class="number">10</span>; &#125; );</span><br><span class="line">for_each(a, a+<span class="number">4</span>, [=](<span class="type">int</span> x) &#123; cout &lt;&lt; x &lt;&lt; <span class="string">&quot; &quot;</span>;&#125; );</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// find_if应用实例</span></span><br><span class="line"><span class="type">int</span> x = <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> y = <span class="number">10</span>;</span><br><span class="line">deque&lt;<span class="type">int</span>&gt; coll = &#123; <span class="number">1</span>, <span class="number">3</span>, <span class="number">19</span>, <span class="number">5</span>, <span class="number">13</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">2</span>, <span class="number">17</span> &#125;;</span><br><span class="line"><span class="keyword">auto</span> pos = <span class="built_in">find_if</span>(coll.<span class="built_in">cbegin</span>(), coll.<span class="built_in">cend</span>(), [=](<span class="type">int</span> i) &#123;                 </span><br><span class="line">    <span class="keyword">return</span> i &gt; x &amp;&amp; i &lt; y;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// remove_if应用实例</span></span><br><span class="line">std::vector&lt;<span class="type">int</span>&gt; vec_data = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>&#125;;</span><br><span class="line"><span class="type">int</span> x = <span class="number">5</span>;</span><br><span class="line">vec_data.<span class="built_in">erase</span>(std::<span class="built_in">remove_if</span>(vec.date.<span class="built_in">begin</span>(), vec_data.<span class="built_in">end</span>(), [](<span class="type">int</span> i) &#123; </span><br><span class="line">    <span class="keyword">return</span> n &lt; x;&#125;), vec_data.<span class="built_in">end</span>());</span><br><span class="line"></span><br><span class="line">std::for_each(vec.date.<span class="built_in">begin</span>(), vec_data.<span class="built_in">end</span>(), [](<span class="type">int</span> i) &#123; </span><br><span class="line">    std::cout &lt;&lt; i &lt;&lt; std::endl;&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="Lamdba表达式应用于多线程"><a href="#Lamdba表达式应用于多线程" class="headerlink" title="Lamdba表达式应用于多线程"></a>Lamdba表达式应用于多线程</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// vector 容器存储线程</span></span><br><span class="line">    std::vector&lt;std::thread&gt; workers;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) </span><br><span class="line">    &#123;</span><br><span class="line">        workers.<span class="built_in">push_back</span>(std::<span class="built_in">thread</span>([]() </span><br><span class="line">        &#123;</span><br><span class="line">            std::cout &lt;&lt; <span class="string">&quot;thread function\n&quot;</span>;</span><br><span class="line">        &#125;));</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;main thread\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过 for_each 循环每一个线程</span></span><br><span class="line">    <span class="comment">// 第三个参数赋值一个task任务</span></span><br><span class="line">    <span class="comment">// 符号&#x27;[]&#x27;会告诉编译器我们正在用一个匿名函数</span></span><br><span class="line">    <span class="comment">// lambda函数将它的参数作为线程的引用t</span></span><br><span class="line">    <span class="comment">// 然后一个一个的join</span></span><br><span class="line">    std::for_each(workers.<span class="built_in">begin</span>(), workers.<span class="built_in">end</span>(), [](std::thread &amp;t;) </span><br><span class="line">    &#123;</span><br><span class="line">        t.<span class="built_in">join</span>();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">std::mutex mutex;</span><br><span class="line">std::condition_variable condition;</span><br><span class="line">std::queue&lt;std::string&gt; queue_data;</span><br><span class="line"></span><br><span class="line"><span class="function">std::thread <span class="title">threadBody</span><span class="params">([&amp;]&#123;</span></span></span><br><span class="line"><span class="params"><span class="function">	std::unique_lock&lt;std::mutex&gt; lock_log(mutex);</span></span></span><br><span class="line"><span class="params"><span class="function">	condition.wait(lock_log, [&amp;]&#123;</span></span></span><br><span class="line"><span class="params"><span class="function">		<span class="keyword">return</span> !queue_data.front();</span></span></span><br><span class="line"><span class="params"><span class="function">	&#125;);</span></span></span><br><span class="line"><span class="params"><span class="function">	std::cout &lt;&lt; <span class="string">&quot;queue data: &quot;</span> &lt;&lt; queue_data.front();</span></span></span><br><span class="line"><span class="params"><span class="function">	lock_log.unlock();</span></span></span><br><span class="line"><span class="params"><span class="function">&#125;)</span></span>;</span><br><span class="line"></span><br><span class="line">queue_data.<span class="built_in">push</span>(<span class="string">&quot;this is my data&quot;</span>);</span><br><span class="line">condition.<span class="built_in">notity_one</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(threadBody.<span class="built_in">joinable</span>())</span><br><span class="line">&#123;</span><br><span class="line">	threadBody.<span class="built_in">join</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/11/14/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">Next &amp;raquo;</a>
@@ -1710,15 +1653,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Qt</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1754,7 +1697,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1762,15 +1713,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
