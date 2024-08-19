@@ -879,6 +879,151 @@
 
 
   
+    <article id="post-RPC服务" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/01/19/RPC%E6%9C%8D%E5%8A%A1/" target="_blank">RPC服务</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/01/19/RPC%E6%9C%8D%E5%8A%A1/" class="archive-article-date">
+        <time datetime="2024-01-19T08:37:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-19</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<h3 id="descriptor"><a href="#descriptor" class="headerlink" title="descriptor()"></a><code>descriptor()</code></h3><p><code>descriptor()</code> 函数返回一个指向 <code>google::protobuf::ServiceDescriptor</code> 对象的指针。</p>
+<h4 id="ServiceDescriptor-结构"><a href="#ServiceDescriptor-结构" class="headerlink" title="ServiceDescriptor 结构"></a>ServiceDescriptor 结构</h4><p><code>ServiceDescriptor</code> 是 Google Protocol Buffers 中的一个类，它包含了关于 RPC 服务的元数据。这个对象的结构包括以下主要部分：</p>
+<ol>
+<li><strong><code>name()</code></strong>:<ul>
+<li>返回服务的名称。</li>
+</ul>
+</li>
+<li><strong><code>method_count()</code></strong>:<ul>
+<li>返回服务中定义的方法数量。</li>
+</ul>
+</li>
+<li><strong><code>method(index)</code></strong>:<ul>
+<li>返回指定索引位置的 <code>MethodDescriptor</code> 对象指针。<code>MethodDescriptor</code> 描述了服务中的一个方法。</li>
+</ul>
+</li>
+<li><strong><code>FindMethodByName(name)</code></strong>:<ul>
+<li><code>const google::protobuf::MethodDescriptor* FindMethodByName(const std::string&amp; name) const;</code></li>
+<li>根据方法名称查找并返回 <code>MethodDescriptor</code> 对象指针。如果找不到该方法，返回 <code>nullptr</code>。</li>
+</ul>
+</li>
+</ol>
+<p>关键结构和功能： </p>
+<ul>
+<li><p><strong>服务名称</strong>: 服务的名称是一个字符串标识，用于识别服务。</p>
+</li>
+<li><p><strong>方法列表</strong>: 通过 <code>method_count()</code> 和 <code>method(index)</code> 函数，你可以获取服务中所有方法的列表。每个方法的描述由 <code>MethodDescriptor</code> 提供。</p>
+</li>
+</ul>
+<h4 id="MethodDescriptor-结构"><a href="#MethodDescriptor-结构" class="headerlink" title="MethodDescriptor 结构"></a>MethodDescriptor 结构</h4><p>关于 RPC 方法的详细信息：</p>
+<ul>
+<li><p><strong><code>name()</code></strong>:</p>
+<ul>
+<li>返回方法的名称。</li>
+</ul>
+</li>
+<li><p><strong><code>input_type()</code></strong>:</p>
+<ul>
+<li>返回方法的输入消息类型的描述符（<code>Descriptor</code>）。</li>
+</ul>
+</li>
+<li><p><strong><code>output_type()</code></strong>:</p>
+<ul>
+<li>返回方法的输出消息类型的描述符（<code>Descriptor</code>）。</li>
+</ul>
+</li>
+<li><p><strong><code>client_streaming()</code></strong>:</p>
+<ul>
+<li>返回一个布尔值，指示是否是客户端流式传输。</li>
+</ul>
+</li>
+<li><p><strong><code>server_streaming()</code></strong>:</p>
+<ul>
+<li>返回一个布尔值，指示是否是服务器流式传输。</li>
+</ul>
+</li>
+</ul>
+<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><p>下面的示例展示了如何使用 <code>ServiceDescriptor</code> 和 <code>MethodDescriptor</code> 来获取服务和方法的信息：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;google/protobuf/service.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;google/protobuf/descriptor.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">PrintServiceInfo</span><span class="params">(<span class="type">const</span> google::protobuf::Service* service)</span> </span>&#123;</span><br><span class="line">    <span class="type">const</span> google::protobuf::ServiceDescriptor* descriptor = service-&gt;<span class="built_in">GetDescriptor</span>();</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Service Name: &quot;</span> &lt;&lt; descriptor-&gt;<span class="built_in">name</span>() &lt;&lt; std::endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; descriptor-&gt;<span class="built_in">method_count</span>(); ++i) &#123;</span><br><span class="line">        <span class="type">const</span> google::protobuf::MethodDescriptor* method = descriptor-&gt;<span class="built_in">method</span>(i);</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Method Name: &quot;</span> &lt;&lt; method-&gt;<span class="built_in">name</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Input Type: &quot;</span> &lt;&lt; method-&gt;<span class="built_in">input_type</span>()-&gt;<span class="built_in">name</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Output Type: &quot;</span> &lt;&lt; method-&gt;<span class="built_in">output_type</span>()-&gt;<span class="built_in">name</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Client Streaming: &quot;</span> &lt;&lt; (method-&gt;<span class="built_in">client_streaming</span>() ? <span class="string">&quot;true&quot;</span> : <span class="string">&quot;false&quot;</span>) &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Server Streaming: &quot;</span> &lt;&lt; (method-&gt;<span class="built_in">server_streaming</span>() ? <span class="string">&quot;true&quot;</span> : <span class="string">&quot;false&quot;</span>) &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Assuming MyService is a generated service class.</span></span><br><span class="line">    MyService service;</span><br><span class="line">    <span class="built_in">PrintServiceInfo</span>(&amp;service);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/01/19/RPC%E6%9C%8D%E5%8A%A1/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-二分查找-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1276,100 +1421,6 @@
 
 
   
-    <article id="post-kmp-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/01/14/kmp-md/" target="_blank">kmp.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/01/14/kmp-md/" class="archive-article-date">
-        <time datetime="2024-01-14T09:05:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>kmp算法：</p>
-<p>KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特-莫里斯-普拉特操作（简称KMP算法）。 KMP算法的关键是利用匹配失败后的信息，尽量减少模式串与主串的匹配次数以达到快速匹配的目的。具体实现就是通过一个next()函数实现，函数本身包含了模式串的局部匹配信息。</p>
-<p>KMP算法的主要思想是：在文本串（文章）中查找模式串（关键字）时，利用模式串和文本串中已经匹配的部分，跳过一些无用的比较，使文本串的标记指针不会回溯，模式串的标记指针移动。例如：文本串：abcaabce 模式串：abce，上面的文本串和模式串第一次比较时，由于索引为3的位置a和e不相同，假设文本串的索引i&#x3D;3，模式串的索引j&#x3D;3，kmp的思想是由于前面的abc已经匹配完成，我们从中可以知道里面没有a，所以此时我们的文本串中标记指针不变依然是i&#x3D;3，但是模式串的指针变化j&#x3D;0，这样可以省略一些无用的比较，所以我们需要研究模式串发现其中的规律。</p>
-<p>此外，KMP算法利用模式串的最长的相同的前后缀进行移动，而主串不需要回溯，从而达到快速匹配的目的。例如：在箭头处发生不匹配时，找到箭头之前模式串子串的最长的相同的前后缀，为AB；然后把前缀AB移动到后缀AB的位置；再继续进行匹配，同理，发生不匹配时，找到箭头之前模式串子串的最长的相同的前后缀，为A；然后把前缀A移动到后缀A的位置，因为超出主串长度所以匹配失败。</p>
-<p>c++函数实现</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">compute_prefix_function</span><span class="params">(std::string pattern)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = pattern.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">prefix</span><span class="params">(m, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; pattern[j] != pattern[i]) &#123;</span><br><span class="line">                j = prefix[j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (pattern[j] == pattern[i]) &#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            prefix[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prefix;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">kmp_search</span><span class="params">(std::string text, std::string pattern)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = text.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> m = pattern.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; pos;</span><br><span class="line">        <span class="keyword">if</span> (m == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; prefix = <span class="built_in">compute_prefix_function</span>(pattern);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; text[i] != pattern[j])</span><br><span class="line">                j = prefix[j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (text[i] == pattern[j])</span><br><span class="line">                j++;</span><br><span class="line">            <span class="keyword">if</span> (j == m) &#123;</span><br><span class="line">                pos.<span class="built_in">emplace_back</span>(i - j + <span class="number">1</span>);</span><br><span class="line">                j = prefix[j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/01/14/kmp-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
@@ -1507,10 +1558,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Qt</a>
               </li>
              
@@ -1519,11 +1566,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1535,15 +1582,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1551,7 +1594,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1559,11 +1602,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">函数</a>
+                <a href="javascript:void(0)" class="js-tag color1">C++语法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C++语法</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1571,7 +1614,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1579,7 +1622,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C++多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
