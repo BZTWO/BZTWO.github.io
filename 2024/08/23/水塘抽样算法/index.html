@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2024 | BZTWO</title>
+  <title>水塘抽样算法 | BZTWO</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="BZTWO">
-<meta property="og:url" content="http://example.com/archives/2024/page/2/index.html">
+  <meta name="description" content="1到100的数字中随机选择10个样本： C++ 简单实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;cstdlib&gt;#include &amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="水塘抽样算法">
+<meta property="og:url" content="http://example.com/2024/08/23/%E6%B0%B4%E5%A1%98%E6%8A%BD%E6%A0%B7%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="BZTWO">
+<meta property="og:description" content="1到100的数字中随机选择10个样本： C++ 简单实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;cstdlib&gt;#include &amp;l">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-23T02:58:39.000Z">
+<meta property="article:modified_time" content="2024-08-23T03:02:50.721Z">
 <meta property="article:author" content="an">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="BZTWO" type="application/atom+xml">
@@ -135,456 +140,237 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-水塘抽样算法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2024/07/02/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2024-07-02T02:28:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-02</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2024/07/02/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F-md/" target="_blank">迭代器模式.md</a>
   
+    <h1 class="article-title" itemprop="name">
+      水塘抽样算法
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2024/08/23/%E6%B0%B4%E5%A1%98%E6%8A%BD%E6%A0%B7%E7%AE%97%E6%B3%95/" class="archive-article-date">
+        <time datetime="2024-08-23T02:58:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-08-23</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">803字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">3分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p>1到100的数字中随机选择10个样本：</p>
+<h3 id="C-简单实现"><a href="#C-简单实现" class="headerlink" title="C++ 简单实现"></a>C++ 简单实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 水塘抽样算法</span></span><br><span class="line"><span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">reservoirSampling</span><span class="params">(<span class="type">const</span> std::vector&lt;<span class="type">int</span>&gt;&amp; stream, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; reservoir;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 遍历数据流</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; stream.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; k) &#123;</span><br><span class="line">            <span class="comment">// 如果还没有填满水塘，则直接插入</span></span><br><span class="line">            reservoir.<span class="built_in">push_back</span>(stream[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 以 k/(i+1) 的概率选择当前元素</span></span><br><span class="line">            <span class="type">int</span> j = std::<span class="built_in">rand</span>() % (i + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (j &lt; k) &#123;</span><br><span class="line">                reservoir[j] = stream[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> reservoir;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 初始化随机数种子</span></span><br><span class="line">    std::<span class="built_in">srand</span>(<span class="built_in">static_cast</span>&lt;<span class="type">unsigned</span>&gt;(std::<span class="built_in">time</span>(<span class="number">0</span>)));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建数据流（1到100的数字）</span></span><br><span class="line">    <span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">data_stream</span><span class="params">(<span class="number">100</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; ++i) &#123;</span><br><span class="line">        data_stream[i] = i + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从数据流中抽取10个随机样本</span></span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; sampled_data = <span class="built_in">reservoirSampling</span>(data_stream, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印抽取的样本</span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;抽取的样本: &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> num : sampled_data) &#123;</span><br><span class="line">        std::cout &lt;&lt; num &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>初始化水塘</strong>：<code>reservoir</code> 向量用来存储随机抽取的样本。</p>
+<p><strong>遍历数据流</strong>：遍历输入流中的每个元素。</p>
+<ul>
+<li>如果当前元素的索引小于 <code>k</code>，直接将其插入水塘。</li>
+<li>如果当前元素的索引大于等于 <code>k</code>，以 <code>k/(i+1)</code> 的概率决定是否将其插入水塘。</li>
+</ul>
+<p>**使用 <code>std::rand()</code>**：生成一个随机索引 <code>j</code> 来决定是否替换水塘中的元素。</p>
+<p>水塘抽样算法确保每个样本在整个数据流中被选中的概率是相等的。</p>
+<hr>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>在 10x10 的网格中放置 10 个雷</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"></span><br><span class="line">std::vector&lt;std::vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">placeMinesWithReservoirSampling</span>(<span class="type">int</span> rows, <span class="type">int</span> cols, <span class="type">int</span> numMines) &#123;</span><br><span class="line">    <span class="type">int</span> totalCells = rows * cols;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; reservoir;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化随机数生成器</span></span><br><span class="line">    std::<span class="built_in">srand</span>(<span class="built_in">static_cast</span>&lt;<span class="type">unsigned</span>&gt;(std::<span class="built_in">time</span>(<span class="literal">nullptr</span>)));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; totalCells; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; numMines) &#123;</span><br><span class="line">            reservoir.<span class="built_in">push_back</span>(i);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">int</span> j = std::<span class="built_in">rand</span>() % (i + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (j &lt; numMines) &#123;</span><br><span class="line">                reservoir[j] = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 转换成二维网格的雷位置</span></span><br><span class="line">    std::vector&lt;std::vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">grid</span>(rows, std::<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(cols, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> index : reservoir) &#123;</span><br><span class="line">        <span class="type">int</span> r = index / cols;</span><br><span class="line">        <span class="type">int</span> c = index % cols;</span><br><span class="line">        grid[r][c] = <span class="number">1</span>;  <span class="comment">// 放置雷</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> grid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> rows = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> cols = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> numMines = <span class="number">10</span>;</span><br><span class="line">    std::vector&lt;std::vector&lt;<span class="type">int</span>&gt;&gt; grid = <span class="built_in">placeMinesWithReservoirSampling</span>(rows, cols, numMines);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印结果</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; row : grid) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> cell : row) &#123;</span><br><span class="line">            std::cout &lt;&lt; cell &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        std::cout &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>随机数生成</strong>：</p>
+<ul>
+<li>使用 <code>std::srand</code> 初始化随机数生成器，以确保每次运行时生成不同的雷分布。</li>
+<li><code>std::rand()</code> 用于生成随机数，范围为 <code>[0, i]</code>，以模拟水塘抽样中的替换逻辑。</li>
+</ul>
+<p><strong>水塘抽样</strong>：</p>
+<ul>
+<li>在每个网格位置 <code>i</code>，如果 <code>i</code> 小于雷的数量，直接添加到 <code>reservoir</code> 中。</li>
+<li>否则，生成一个随机索引 <code>j</code>，如果 <code>j</code> 小于 <code>numMines</code>，则用当前索引 <code>i</code> 替换 <code>reservoir</code> 中的索引 <code>j</code>。</li>
+</ul>
+<p><strong>网格转换</strong>：</p>
+<ul>
+<li>将 <code>reservoir</code> 中的索引转换为二维网格中的行列位置，并在对应位置放置雷。</li>
+</ul>
+<p><strong>输出</strong>：</p>
+<ul>
+<li>最后输出生成的 10x10 网格，其中 <code>1</code> 表示雷的位置，<code>0</code> 表示空白区域。</li>
+</ul>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          an
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://example.com/2024/08/23/水塘抽样算法/" title="水塘抽样算法" target="_blank">http://example.com/2024/08/23/水塘抽样算法/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2024/08/23/%E6%B0%B4%E5%A1%98%E6%8A%BD%E6%A0%B7%E7%AE%97%E6%B3%95/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2024/07/01/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2024-07-01T08:50:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-01</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2024/07/09/%E8%90%83%E5%8F%96/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">萃取</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2024/07/01/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F-md/" target="_blank">责任链模式.md</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2024/07/01/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2024-07-01T08:49:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-01</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2024/07/01/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F-md/" target="_blank">代理模式.md</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2024/07/01/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2024-07-01T03:06:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-01</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2024/07/01/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F-md/" target="_blank">享元模式.md</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2024/07/01/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2024-07-01T03:06:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-01</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2024/07/01/%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F-md/" target="_blank">外观模式.md</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2024/07/01/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2024-07-01T03:05:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-01</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2024/07/01/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F-md/" target="_blank">装饰模式.md</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2024/07/01/%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2024-07-01T03:05:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-01</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2024/07/01/%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F-md/" target="_blank">组合模式.md</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2024/06/26/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2024-06-26T11:23:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-26</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2024/06/26/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F-md/" target="_blank">桥接模式.md</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2024/06/26/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2024-06-26T05:25:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-26</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2024/06/26/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F-md/" target="_blank">适配器模式.md</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2024/06/26/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2024-06-26T05:24:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-26</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2024/06/26/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-md/" target="_blank">原型模式.md</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2024/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2024/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2024/page/3/">3</a><a class="page-number" href="/archives/2024/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2024/page/6/">6</a><a class="extend next" rel="next" href="/archives/2024/page/3/">Next &amp;raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -625,8 +411,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
