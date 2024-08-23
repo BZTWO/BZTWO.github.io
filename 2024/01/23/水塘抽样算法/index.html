@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="1到100的数字中随机选择10个样本： C++ 简单实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;cstdlib&gt;#include &amp;l">
+  <meta name="description" content="介绍水塘抽样算法是一种用于从一个非常大的数据流中随机抽取固定数量样本的算法，确保每个样本被选择的概率相等。  1到100的数字中随机选择10个样本： C++ 简单实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include &lt;iostream&gt;#in">
 <meta property="og:type" content="article">
 <meta property="og:title" content="水塘抽样算法">
 <meta property="og:url" content="http://example.com/2024/01/23/%E6%B0%B4%E5%A1%98%E6%8A%BD%E6%A0%B7%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="BZTWO">
-<meta property="og:description" content="1到100的数字中随机选择10个样本： C++ 简单实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;cstdlib&gt;#include &amp;l">
+<meta property="og:description" content="介绍水塘抽样算法是一种用于从一个非常大的数据流中随机抽取固定数量样本的算法，确保每个样本被选择的概率相等。  1到100的数字中随机选择10个样本： C++ 简单实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include &lt;iostream&gt;#in">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-01-23T02:58:39.000Z">
-<meta property="article:modified_time" content="2024-08-23T03:03:40.774Z">
+<meta property="article:modified_time" content="2024-08-23T03:04:56.167Z">
 <meta property="article:author" content="an">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -173,7 +173,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">803字</span>
+      <span class="post-count">854字</span>
     </span>
   </span>
 
@@ -195,6 +195,8 @@
     
     <span id="more"></span>
 
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>水塘抽样算法是一种用于从一个非常大的数据流中随机抽取固定数量样本的算法，确保每个样本被选择的概率相等。</p>
+<hr>
 <p>1到100的数字中随机选择10个样本：</p>
 <h3 id="C-简单实现"><a href="#C-简单实现" class="headerlink" title="C++ 简单实现"></a>C++ 简单实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 水塘抽样算法</span></span><br><span class="line"><span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">reservoirSampling</span><span class="params">(<span class="type">const</span> std::vector&lt;<span class="type">int</span>&gt;&amp; stream, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; reservoir;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 遍历数据流</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; stream.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; k) &#123;</span><br><span class="line">            <span class="comment">// 如果还没有填满水塘，则直接插入</span></span><br><span class="line">            reservoir.<span class="built_in">push_back</span>(stream[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 以 k/(i+1) 的概率选择当前元素</span></span><br><span class="line">            <span class="type">int</span> j = std::<span class="built_in">rand</span>() % (i + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (j &lt; k) &#123;</span><br><span class="line">                reservoir[j] = stream[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> reservoir;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 初始化随机数种子</span></span><br><span class="line">    std::<span class="built_in">srand</span>(<span class="built_in">static_cast</span>&lt;<span class="type">unsigned</span>&gt;(std::<span class="built_in">time</span>(<span class="number">0</span>)));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建数据流（1到100的数字）</span></span><br><span class="line">    <span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">data_stream</span><span class="params">(<span class="number">100</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; ++i) &#123;</span><br><span class="line">        data_stream[i] = i + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从数据流中抽取10个随机样本</span></span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; sampled_data = <span class="built_in">reservoirSampling</span>(data_stream, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印抽取的样本</span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;抽取的样本: &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> num : sampled_data) &#123;</span><br><span class="line">        std::cout &lt;&lt; num &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -528,15 +530,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,11 +550,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
+                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
+                <a href="javascript:void(0)" class="js-tag color1">python基础语法</a>
               </li>
              
               <li class="article-tag-list-item">
