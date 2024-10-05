@@ -142,6 +142,100 @@
             
 
   
+    <article id="post-二分查找-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/01/18/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-md/" target="_blank">二分查找.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/01/18/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-md/" class="archive-article-date">
+        <time datetime="2024-01-18T08:05:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-18</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<p>二分查找算法（Binary Search）是一种在有序数组中查找某一特定元素的搜索算法。搜索过程从数组的中间元素开始，如果中间元素正好是目标值，则搜索过程结束；如果目标值大于或小于中间元素，则在数组大于或小于中间元素的那一半中查找，而且同样从中间元素开始比较。如果在某一步骤数组为空，则代表找不到。这种搜索算法每一次比较都使搜索范围缩小一半。</p>
+<p>数组有序：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>  </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">binarySearch</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> x)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123;  </span><br><span class="line">        <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;  </span><br><span class="line">        <span class="keyword">if</span> (arr[mid] == x) &#123;  </span><br><span class="line">            <span class="keyword">return</span> mid;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">if</span> (arr[mid] &lt; x) &#123;  </span><br><span class="line">            l = mid + <span class="number">1</span>;  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            r = mid - <span class="number">1</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">// 如果找不到目标值，则返回-1  </span></span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="type">int</span> arr[] = &#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">10</span>, <span class="number">40</span>&#125;;  </span><br><span class="line">    <span class="type">int</span> n = <span class="built_in">sizeof</span>(arr) / <span class="built_in">sizeof</span>(arr[<span class="number">0</span>]);  </span><br><span class="line">    <span class="type">int</span> x = <span class="number">10</span>;  </span><br><span class="line">    <span class="type">int</span> result = <span class="built_in">binarySearch</span>(arr, <span class="number">0</span>, n - <span class="number">1</span>, x);  </span><br><span class="line">    (result == <span class="number">-1</span>) ? cout &lt;&lt; <span class="string">&quot;Element is not present in array&quot;</span> : cout &lt;&lt; <span class="string">&quot;Element is present at index &quot;</span> &lt;&lt; result;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有序 + 旋转：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">    <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (nums[mid] == target) <span class="keyword">return</span> mid;</span><br><span class="line">    <span class="keyword">if</span> (nums[<span class="number">0</span>] &lt;= nums[mid]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[<span class="number">0</span>] &lt;= target &amp;&amp; target &lt; nums[mid]) &#123;</span><br><span class="line">            r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &lt; target &amp;&amp; target &lt;= nums[n - <span class="number">1</span>]) &#123;</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">搜索算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/01/18/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-eventfd异步事件通知" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1510,114 +1604,6 @@
 
 
   
-    <article id="post-插入and希尔排序-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/11/21/%E6%8F%92%E5%85%A5and%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F-md/" target="_blank">插入and希尔排序.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/11/21/%E6%8F%92%E5%85%A5and%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F-md/" class="archive-article-date">
-        <time datetime="2023-11-21T10:37:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h4 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h4><p><strong>插入排序（Insertion Sort）</strong>是一种简单直观且稳定的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上通常使用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。</p>
-<p>插入排序的时间复杂度是O(n^2)，其中n是待排序数组的元素个数。在最坏情况下，需要进行n(n-1)&#x2F;2次比较和n-1次插入操作。在最好情况下，即待排序数组已经有序，只需要进行n-1次比较，时间复杂度为O(n)。</p>
-<p>插入排序的空间复杂度是O(1)，因为它是就地排序，不需要使用额外的辅助空间。</p>
-<p>代码实现：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert_sort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="type">int</span> key = nums[i];</span><br><span class="line">		<span class="type">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; nums[j] &gt; key) &#123;      <span class="comment">//当前元素值大于key值时（前面大于后面）将 j 位置上的元素往后移动一位到 j+1 </span></span><br><span class="line">			nums[j + <span class="number">1</span>] = nums[j];      <span class="comment">// j~0是有序的，前面全部元素都大于 key ，即 j&lt;0 时结束</span></span><br><span class="line">			j--;                        <span class="comment">//当到前面有元素 nums[j] &lt;= key 时结束</span></span><br><span class="line">		&#125;</span><br><span class="line">		nums[j + <span class="number">1</span>] = key;      <span class="comment">//将移动之后的空位赋值为 key</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h4><p><strong>希尔排序（Shell Sort）</strong>是插入排序的一种又称“缩小增量排序”（Diminishing Increment Sort），是直接插入排序算法的一种更高效的改进版本。希尔排序是<strong>非稳定排序算法</strong>。该方法因 D.L.Shell 于 1959 年提出而得名。希尔排序是把记录按下标的一定增量分组，对每组使用直接插入排序算法排序；随着增量逐渐减少，每组包含的关键词越来越多，当增量减至 1 时，整个文件恰被分成一组，算法便终止。</p>
-<p>希尔排序的时间复杂度为O(nlogn)，与增量序列的选择有关。</p>
-<p>希尔排序与直接插入排序一样，并没有借助中间变量，空间复杂度为O(1)。</p>
-<p>代码实现：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">shell_sort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> key;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> inc = n / <span class="number">2</span>; inc &gt; <span class="number">0</span>; inc /= <span class="number">2</span> ) &#123;      <span class="comment">//初始增量和增量变化</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = inc; i &lt; n; i++) &#123;</span><br><span class="line">			key = nums[i];</span><br><span class="line">			<span class="type">int</span> j;</span><br><span class="line">			<span class="keyword">for</span> (j = i; j &gt;= inc &amp;&amp; key &lt; nums[j - inc]; j -= inc) &#123;      <span class="comment">//相距 inc 的坐标对应的元素 nums[j - inc] &gt; ums[j] 时进行交换</span></span><br><span class="line">				nums[j] = nums[j - inc];</span><br><span class="line">			&#125;</span><br><span class="line">			nums[j] = key;      <span class="comment">//全部大于，全部小于，找到对应位置</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; nums = &#123; <span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span> &#125;;</span><br><span class="line">	<span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">	<span class="comment">//insert_sort(nums, n);</span></span><br><span class="line">	<span class="built_in">shell_sort</span>(nums, n);</span><br><span class="line">	for_each(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(),[](<span class="keyword">auto</span> num) &#123;cout &lt;&lt; num &lt;&lt; <span class="string">&quot; &quot;</span>; &#125;);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出：</p>
-<img src="/2023/11/21/%E6%8F%92%E5%85%A5and%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F-md/Snipaste_2023-11-21_20-50-32.png" class="" title="Snipaste_2023-11-21_20-50-32">
-
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>插入排序和希尔排序都是基于比较的排序算法，但它们在处理数据时采用了不同的策略。</p>
-<p>插入排序的基本思想是将一个记录插入到已经排好序的有序表中，从而形成一个新的、记录数增1的有序表。它逐个比较待排序记录和已排序记录，找到合适的插入位置，直到整个序列排为有序。</p>
-<p>希尔排序是基于插入排序的，它首先将待排序记录分割成若干子序列，分别进行插入排序，待整个序列中的记录”基本有序”时，再对全体记录进行一次插入排序。希尔排序的效率比插入排序要高，尤其是当数据量较大时。</p>
-<p>因此，可以说<strong>希尔排序</strong>是<strong>插入排序</strong>的一种<strong>改进版本</strong>，通过更有效地组织数据来提高排序效率。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">排序算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/11/21/%E6%8F%92%E5%85%A5and%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">Next &amp;raquo;</a>
@@ -1771,11 +1757,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1784,10 +1774,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hexo相关</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
