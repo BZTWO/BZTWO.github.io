@@ -142,6 +142,99 @@
             
 
   
+    <article id="post-原型模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/06/26/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-md/" target="_blank">原型模式.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/06/26/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
+        <time datetime="2024-06-26T05:24:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<h4 id="什么是原型模式"><a href="#什么是原型模式" class="headerlink" title="什么是原型模式"></a>什么是原型模式</h4><p>​		原型模式⼀种创建型设计模式，该模式的核⼼思想是基于现有的对象创建新的对象，⽽不是从头开始创建。在原型模式中，通常有⼀个原型对象，它被⽤作创建新对象的模板。新对象通过复制原型对象的属性和状态来创建，⽽⽆需知道具体的创建细节。</p>
+<h4 id="为什么要使⽤原型模式"><a href="#为什么要使⽤原型模式" class="headerlink" title="为什么要使⽤原型模式"></a>为什么要使⽤原型模式</h4><p>​		如果⼀个对象的创建过程⽐较复杂时（⽐如需要经过⼀系列的计算和资源消耗），那每次创建该对象都需要消耗资源，⽽通过原型模式就可以复制现有的⼀个对象来迅速创建&#x2F;克隆⼀个新对象，不必关⼼具体的创建细节，可以降低对象创建的成本。</p>
+<h4 id="什么时候实现原型模式"><a href="#什么时候实现原型模式" class="headerlink" title="什么时候实现原型模式"></a>什么时候实现原型模式</h4><p>​		相⽐于直接实例化对象，通过原型模式复制对象可以减少资源消耗，提⾼性能，尤其在对象的创建过程复杂或对象的创建代价较⼤的情况下。当需要频繁创建相似对象、并且可以通过克隆避免重复初始化⼯作的场景时可以考虑使⽤原型模式，在克隆对象的时候还可以动态地添加或删除原型对象的属性，创造出相似但不完全相同的对象，提⾼了灵活性。<br>​		但是使⽤原型模式也需要考虑到如果对象的内部状态包含了引⽤类型的成员变量，那么实现深拷⻉就会变得较为复杂，需要考虑引⽤类型对象的克隆问题。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 父类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">GermaSoldier</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> GermaSoldier* <span class="title">clone</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> string <span class="title">whoAmI</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">GermaSoldier</span>() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Soldier66</span> : <span class="keyword">public</span> GermaSoldier</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">GermaSoldier* <span class="title">clone</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Soldier66</span>(*<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">string <span class="title">whoAmI</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;我是 Soldier66 的士兵!!!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Soldier67</span> : <span class="keyword">public</span> GermaSoldier</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">GermaSoldier* <span class="title">clone</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Soldier67</span>(*<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">string <span class="title">whoAmI</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;我是 Soldier67 的士兵!!!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    GermaSoldier* obj = <span class="keyword">new</span> Soldier66;</span><br><span class="line">    GermaSoldier* soldier = obj-&gt;<span class="built_in">clone</span>();</span><br><span class="line">    cout &lt;&lt; soldier-&gt;<span class="built_in">whoAmI</span>();</span><br><span class="line">    <span class="keyword">delete</span> soldier;</span><br><span class="line">    <span class="keyword">delete</span> obj;</span><br><span class="line"></span><br><span class="line">    obj = <span class="keyword">new</span> Soldier67;</span><br><span class="line">    soldier = obj-&gt;<span class="built_in">clone</span>();</span><br><span class="line">    cout &lt;&lt; soldier-&gt;<span class="built_in">whoAmI</span>();</span><br><span class="line">    <span class="keyword">delete</span> soldier;</span><br><span class="line">    <span class="keyword">delete</span> obj;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://kamacoder.com/designpattern.php">卡码网KamaCoder</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/06/26/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-建造者模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -616,7 +709,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2024/06/19/Redis%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4-md/" target="_blank">Redis基本命令.md</a>
+	  <a class="article-title" href="/2024/06/19/Redis%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4-md/" target="_blank">Redis基本命令</a>
   
     </h1>
   
@@ -639,7 +732,13 @@
     
     <span id="more"></span>
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 切换目录命令示例：</span><br><span class="line"></span><br><span class="line">例：<span class="built_in">cd</span> // 显示当前目录</span><br><span class="line"></span><br><span class="line">例：<span class="built_in">cd</span> … // 进入父目录</span><br><span class="line"></span><br><span class="line">例：<span class="built_in">cd</span> /d d: // 进入上次d盘所在的目录（或在直接输入：d:）</span><br><span class="line"></span><br><span class="line">例：<span class="built_in">cd</span> /d d:\ // 进入d盘根目录</span><br><span class="line"></span><br><span class="line">例：<span class="built_in">cd</span> d: // 显示上次d盘所在的目录</span><br><span class="line"></span><br><span class="line">例：<span class="built_in">cd</span> /d d:\src // 进入d:\src目录</span><br></pre></td></tr></table></figure>
+<p>操作Redis：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动</span></span><br><span class="line">systemctl start redis</span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">systemctl stop redis</span><br><span class="line"><span class="comment"># 重启</span></span><br><span class="line">systemctl restart redis</span><br><span class="line"><span class="comment"># 查看状态</span></span><br><span class="line">systemctl status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动指定</span></span><br><span class="line">redis-cli -h [ip地址] -p [端口号] -a [密码]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动后指定</span></span><br><span class="line">AUTH [密码]</span><br></pre></td></tr></table></figure>
+
+
+
+<p>查询帮助文档</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">help</span> @[...]</span><br></pre></td></tr></table></figure>
 
 
 
@@ -1128,111 +1227,9 @@
 
 
   
-    <article id="post-并查集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/05/03/%E5%B9%B6%E6%9F%A5%E9%9B%86/" target="_blank">并查集</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/05/03/%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="archive-article-date">
-        <time datetime="2024-05-03T01:09:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-03</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>并查集是一种用于管理元素所属集合的数据结构，实现为一个森林，其中每棵树表示一个集合，树中的节点表示对应集合中的元素。</p>
-<p>顾名思义，并查集支持两种操作：</p>
-<ul>
-<li>合并（Union）：合并两个元素所属集合（合并对应的树）</li>
-<li>查询（Find）：查询某个元素所属集合（查询对应的树的根节点），这可以用于判断两个元素是否属于同一集合</li>
-</ul>
-<p>并查集在经过修改后可以支持单个元素的删除、移动；使用动态开点线段树还可以实现可持久化并查集。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">UnionFind</span> &#123;  </span><br><span class="line"><span class="keyword">private</span>:  </span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; parent; <span class="comment">// 存储每个节点的父节点  </span></span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; size;   <span class="comment">// 存储以每个节点为根的子树大小  </span></span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 查找根节点，并进行路径压缩  </span></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">if</span> (parent[x] != x) &#123;  </span><br><span class="line">            parent[x] = <span class="built_in">find</span>(parent[x]); <span class="comment">// 路径压缩  </span></span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">return</span> parent[x];  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span>:  </span><br><span class="line">    <span class="built_in">UnionFind</span>(<span class="type">int</span> n) &#123;  </span><br><span class="line">        parent.<span class="built_in">resize</span>(n);  </span><br><span class="line">        size.<span class="built_in">resize</span>(n, <span class="number">1</span>); <span class="comment">// 初始时，每个节点的子树大小为1  </span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;  </span><br><span class="line">            parent[i] = i; <span class="comment">// 初始时，每个节点的父节点是它自己  </span></span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 合并两个集合  </span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">unionSets</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;  </span><br><span class="line">        <span class="type">int</span> rootX = <span class="built_in">find</span>(x);  </span><br><span class="line">        <span class="type">int</span> rootY = <span class="built_in">find</span>(y);  </span><br><span class="line">        <span class="keyword">if</span> (rootX != rootY) &#123;  </span><br><span class="line">            <span class="comment">// 按大小合并  </span></span><br><span class="line">            <span class="keyword">if</span> (size[rootX] &lt; size[rootY]) &#123;  </span><br><span class="line">                std::<span class="built_in">swap</span>(rootX, rootY);  </span><br><span class="line">            &#125;  </span><br><span class="line">            parent[rootY] = rootX; <span class="comment">// 将rootY合并到rootX  </span></span><br><span class="line">            size[rootX] += size[rootY]; <span class="comment">// 更新rootX的子树大小  </span></span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 判断两个元素是否属于同一个集合  </span></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">connected</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">find</span>(x) == <span class="built_in">find</span>(y);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="type">int</span> n = <span class="number">5</span>; <span class="comment">// 假设有5个元素  </span></span><br><span class="line">    <span class="function">UnionFind <span class="title">uf</span><span class="params">(n)</span></span>;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 合并操作  </span></span><br><span class="line">    uf.<span class="built_in">unionSets</span>(<span class="number">0</span>, <span class="number">1</span>);  </span><br><span class="line">    uf.<span class="built_in">unionSets</span>(<span class="number">1</span>, <span class="number">2</span>);  </span><br><span class="line">    uf.<span class="built_in">unionSets</span>(<span class="number">3</span>, <span class="number">4</span>);  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 判断连通性  </span></span><br><span class="line">    std::cout &lt;&lt; std::boolalpha; <span class="comment">// 输出bool值为true/false  </span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Is 0 connected to 2? &quot;</span> &lt;&lt; uf.<span class="built_in">connected</span>(<span class="number">0</span>, <span class="number">2</span>) &lt;&lt; std::endl; <span class="comment">// 应该输出true  </span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Is 0 connected to 3? &quot;</span> &lt;&lt; uf.<span class="built_in">connected</span>(<span class="number">0</span>, <span class="number">3</span>) &lt;&lt; std::endl; <span class="comment">// 应该输出false  </span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/making-a-large-island/">827. 最大人工岛 - 力扣（LeetCode）</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; p;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; size;</span><br><span class="line">    <span class="type">int</span> count;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">largestIsland</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = grid.<span class="built_in">size</span>();</span><br><span class="line">        count = n * n;</span><br><span class="line">        p.<span class="built_in">resize</span>(n * n);</span><br><span class="line">        size = <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n * n, <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//iota(p.begin(), p.end(), 0);  </span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n * n; i++)&#123;</span><br><span class="line">            p[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j] == <span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(j + <span class="number">1</span> &lt; n &amp;&amp; grid[i][j + <span class="number">1</span>] == <span class="number">1</span>)&#123;</span><br><span class="line">                        <span class="built_in">merge</span>(i * n + j, i * n + j + <span class="number">1</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(i + <span class="number">1</span> &lt; n &amp;&amp; grid[i + <span class="number">1</span>][j] == <span class="number">1</span>)&#123;</span><br><span class="line">                        <span class="built_in">merge</span>(i * n + j, (i + <span class="number">1</span>) * n + j);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; count;</span><br><span class="line">        <span class="keyword">if</span>(count == <span class="number">1</span>) <span class="keyword">return</span> n * n;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">                <span class="type">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">                unordered_set&lt;<span class="type">int</span>&gt; hash;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j] == <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(i - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; grid[i - <span class="number">1</span>][j] == <span class="number">1</span>)&#123;</span><br><span class="line">                        <span class="type">int</span> pos = <span class="built_in">find</span>((i - <span class="number">1</span>) * n + j);</span><br><span class="line">                        tmp += size[pos];</span><br><span class="line">                        hash.<span class="built_in">insert</span>(pos);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(i + <span class="number">1</span> &lt; n &amp;&amp; grid[i + <span class="number">1</span>][j] == <span class="number">1</span> &amp;&amp; hash.<span class="built_in">find</span>(<span class="built_in">find</span>((i + <span class="number">1</span>) * n + j)) == hash.<span class="built_in">end</span>())&#123;</span><br><span class="line">                        <span class="type">int</span> pos = <span class="built_in">find</span>((i + <span class="number">1</span>) * n + j);</span><br><span class="line">                        tmp += size[pos];</span><br><span class="line">                        hash.<span class="built_in">insert</span>(pos);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(j - <span class="number">1</span> &gt;= <span class="number">0</span> &amp;&amp; grid[i][j - <span class="number">1</span>] == <span class="number">1</span> &amp;&amp; hash.<span class="built_in">find</span>(<span class="built_in">find</span>(i * n + j - <span class="number">1</span>)) == hash.<span class="built_in">end</span>())&#123;</span><br><span class="line">                        <span class="type">int</span> pos = <span class="built_in">find</span>(i * n + j - <span class="number">1</span>);</span><br><span class="line">                        tmp += size[pos];</span><br><span class="line">                        hash.<span class="built_in">insert</span>(pos);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(j + <span class="number">1</span> &lt; n &amp;&amp; grid[i][j + <span class="number">1</span>] == <span class="number">1</span> &amp;&amp; hash.<span class="built_in">find</span>(<span class="built_in">find</span>(i * n + j + <span class="number">1</span>)) == hash.<span class="built_in">end</span>())&#123;</span><br><span class="line">                        tmp += size[<span class="built_in">find</span>(i * n + j + <span class="number">1</span>)];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, tmp + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> p[x] == x ? x : p[x] = <span class="built_in">find</span>(p[x]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">        x = <span class="built_in">find</span>(x);</span><br><span class="line">        y = <span class="built_in">find</span>(y);</span><br><span class="line">        <span class="keyword">if</span>(x != y)&#123;</span><br><span class="line">            <span class="keyword">if</span>(size[x] &lt; size[y])</span><br><span class="line">                <span class="built_in">swap</span>(x, y);</span><br><span class="line">            p[y] = x;</span><br><span class="line">            size[x] += size[y];</span><br><span class="line">            count--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-islands/">200. 岛屿数量 - 力扣（LeetCode）</a></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-provinces/submissions/">547. 省份数量 - 力扣（LeetCode）</a></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-with-minimum-effort/">1631. 最小体力消耗路径 - 力扣（LeetCode）</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/05/03/%E5%B9%B6%E6%9F%A5%E9%9B%86/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1244,7 +1241,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023-2024 <a href="http://example.com/" target="_blank">an</a>
+    		&copy; 2023-2025 <a href="http://example.com/" target="_blank">an</a>
     	</div>
       	<div class="footer-right">
 			
@@ -1379,23 +1376,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1403,7 +1384,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1411,11 +1404,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C++语法</a>
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1424,6 +1417,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C++语法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1440,6 +1437,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">OpenCV</a>
               </li>
             
             <div class="clearfix"></div>

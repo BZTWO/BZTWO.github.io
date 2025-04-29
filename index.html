@@ -142,6 +142,101 @@
             
 
   
+    <article id="post-顶帽运算" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2025/04/29/%E9%A1%B6%E5%B8%BD%E8%BF%90%E7%AE%97/" target="_blank">顶帽、黑帽运算</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2025/04/29/%E9%A1%B6%E5%B8%BD%E8%BF%90%E7%AE%97/" class="archive-article-date">
+        <time datetime="2025-04-29T07:19:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-04-29</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<h2 id="顶帽运算"><a href="#顶帽运算" class="headerlink" title="顶帽运算"></a>顶帽运算</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">顶帽 = 原图 - 开运算（去除外面的噪点）(得到大图形外的小图形)</span><br><span class="line">morphologyEx(img, MORPH_TOPHAT, kernel)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&quot;./tophat.png&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># kernel = np.ones((3,3), np.uint8)</span></span><br><span class="line">kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (<span class="number">15</span>, <span class="number">15</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># dst = cv2.erode(img, kernel, iterations=1)</span></span><br><span class="line"><span class="comment"># dst = cv2.dilate(img, kernel=kernel, iterations=1)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开运算 = 腐蚀  +  膨胀</span></span><br><span class="line"><span class="comment"># dst = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel=kernel)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 梯度 = 原图 - 腐蚀 = 边缘</span></span><br><span class="line"><span class="comment"># dst = cv2.morphologyEx(img, cv2.MORPH_GRADIENT, kernel=kernel)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 顶帽运算</span></span><br><span class="line">dst = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, kernel=kernel)</span><br><span class="line"></span><br><span class="line">cv2.imshow(<span class="string">&#x27;img&#x27;</span>, img)</span><br><span class="line"></span><br><span class="line">cv2.imshow(<span class="string">&#x27;dst&#x27;</span>, dst)</span><br><span class="line"></span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="黑帽运算"><a href="#黑帽运算" class="headerlink" title="黑帽运算"></a>黑帽运算</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">顶帽 = 原图 - 闭运算（去除内部的噪点）(得到大图形内的小图形)</span><br><span class="line">morphologyEx(img, MORPH_BLACKHAT, kernel)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&quot;./tophat.png&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># kernel = np.ones((3,3), np.uint8)</span></span><br><span class="line">kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (<span class="number">15</span>, <span class="number">15</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># dst = cv2.erode(img, kernel, iterations=1)</span></span><br><span class="line"><span class="comment"># dst = cv2.dilate(img, kernel=kernel, iterations=1)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开运算 = 腐蚀  +  膨胀</span></span><br><span class="line"><span class="comment"># dst = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel=kernel)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 梯度 = 原图 - 腐蚀 = 边缘</span></span><br><span class="line"><span class="comment"># dst = cv2.morphologyEx(img, cv2.MORPH_GRADIENT, kernel=kernel)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 顶帽运算</span></span><br><span class="line"><span class="comment"># dst = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, kernel=kernel)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 黑帽运算</span></span><br><span class="line">dst = cv2.morphologyEx(img, cv2.MORPH_BLACKHAT, kernel=kernel)</span><br><span class="line"></span><br><span class="line">cv2.imshow(<span class="string">&#x27;img&#x27;</span>, img)</span><br><span class="line"></span><br><span class="line">cv2.imshow(<span class="string">&#x27;dst&#x27;</span>, dst)</span><br><span class="line"></span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">OpenCV</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2025/04/29/%E9%A1%B6%E5%B8%BD%E8%BF%90%E7%AE%97/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-聊天系统文件发送" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1164,118 +1259,9 @@
 
 
   
-    <article id="post-中介者模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/07/02/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F-md/" target="_blank">中介者模式.md</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/07/02/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
-        <time datetime="2024-07-02T02:34:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-02</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>​		中介者模式（Mediator Pattern）也被称为调停者模式，是⼀种⾏为型设计模式，它通过⼀个中介对象来封装⼀组对象之间的交互，从⽽使这些对象不需要直接相互引⽤。这样可以降低对象之间的耦合度，使系统更容易维护和扩展。</p>
-<h4 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h4><p>中介者模式包括以下⼏个重要⻆⾊：</p>
-<ul>
-<li>抽象中介者（Mediator）： 定义中介者的接⼝，⽤于各个具体同事对象之间的通信。</li>
-<li>具体中介者（Concrete Mediator）： 实现抽象中介者接⼝，负责协调各个具体同事对象的交互关系，它需要知道所有具体同事类，并具体同事接收消息，向具体同事对象发出命令。</li>
-<li>抽象同事类（Colleague）： 定义同事类的接⼝，维护⼀个对中介者对象的引⽤，⽤于通信。</li>
-<li>具体同事类（Concrete Colleague）： 实现抽象同事类接⼝，每个具体同事类只知道⾃⼰的⾏为，⽽不了解其他同事类的情况，因为它们都需要与中介者通信，通过中介者协调与其他同事对象的交互。</li>
-</ul>
-<h4 id="使⽤场景"><a href="#使⽤场景" class="headerlink" title="使⽤场景"></a>使⽤场景</h4><p>​		中介者模式使得同事对象不需要知道彼此的细节，只需要与中介者进⾏通信，简化了系统的复杂度，也降低了各对象之间的耦合度，但是这也会使得中介者对象变得过于庞⼤和复杂，如果中介者对象出现问题，整个系统可能会受到影响。<br>​		中介者模式适⽤于当系统对象之间存在复杂的交互关系或者系统需要在不同对象之间进⾏灵活的通信时使⽤，可以使得问题简化。</p>
-<h4 id="扩展：和代理模式的区别"><a href="#扩展：和代理模式的区别" class="headerlink" title="扩展：和代理模式的区别"></a>扩展：和代理模式的区别</h4><p>​		中介者模式（Mediator Pattern）和代理模式（Proxy Pattern) 在某些表述上有些类似，但是他们是完全不同的两个设计模式，中介者模式的⽬的是降低系统中各个对象之间的直接耦合，通过引⼊⼀个中介者对象，使对象之间的通信集中在中介者上。⽽在代理模式中，客户端通过代理与⽬标对象进⾏通信。代理可以在调⽤⽬标对象的⽅法前后进⾏⼀些额外的操作，其⽬的是控制对对象的访问，它们分别解决了不同类型的问题。</p>
-<p>Madiator-17.h</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Country</span>;</span><br><span class="line"><span class="comment">// 中介者类的基类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MediatorOrg</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">addMember</span><span class="params">(Country* country)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">declare</span><span class="params">(string msg, Country* country, string name)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">MediatorOrg</span>() &#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    map&lt;string, Country*&gt; m_countryMap;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 世界政府</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">WorldGovt</span> : <span class="keyword">public</span> MediatorOrg</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">declare</span><span class="params">(string msg, Country* country, string name)</span> <span class="keyword">override</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 革命军</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">GeMingArmy</span> : <span class="keyword">public</span> MediatorOrg</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">declare</span><span class="params">(string msg, Country* country, string name)</span> <span class="keyword">override</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>Country-17.h</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Mediator-17.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义国家类的基类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Country</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Country</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="built_in">Country</span>(MediatorOrg* org) : <span class="built_in">m_org</span>(org) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setMediator</span><span class="params">(MediatorOrg* org)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        m_org = org;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">declare</span><span class="params">(string msg, string country = string())</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">setMessage</span><span class="params">(string msg)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> string <span class="title">getName</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Country</span>() &#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    MediatorOrg* m_org;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 阿拉巴斯坦</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Alabasta</span> : <span class="keyword">public</span> Country</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> Country::Country;</span><br><span class="line">    <span class="built_in">Alabasta</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">declare</span><span class="params">(string msg, string country = string())</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;阿拉巴斯坦开始发布公告: &quot;</span> &lt;&lt; endl;</span><br><span class="line">        m_org-&gt;<span class="built_in">declare</span>(msg, <span class="keyword">this</span>, country);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setMessage</span><span class="params">(string msg)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;阿拉巴斯坦得到的消息: &quot;</span> &lt;&lt; msg &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">string <span class="title">getName</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;阿拉巴斯坦&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 德雷斯罗萨</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dressrosa</span> : <span class="keyword">public</span> Country</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> Country::Country;</span><br><span class="line">    <span class="built_in">Dressrosa</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">declare</span><span class="params">(string msg, string country = string())</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;德雷斯罗萨开始发布公告: &quot;</span> &lt;&lt; endl;</span><br><span class="line">        m_org-&gt;<span class="built_in">declare</span>(msg, <span class="keyword">this</span>, country);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setMessage</span><span class="params">(string msg)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;德雷斯罗萨得到的消息: &quot;</span> &lt;&lt; msg &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">string <span class="title">getName</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;德雷斯罗萨&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 露露西亚王国</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Lulusia</span> : <span class="keyword">public</span> Country</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> Country::Country;</span><br><span class="line">    <span class="built_in">Lulusia</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">declare</span><span class="params">(string msg, string country = string())</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;露露西亚王国发布公告: &quot;</span> &lt;&lt; endl;</span><br><span class="line">        m_org-&gt;<span class="built_in">declare</span>(msg, <span class="keyword">this</span>, country);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setMessage</span><span class="params">(string msg)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;露露西亚王国得到的消息: &quot;</span> &lt;&lt; msg &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">string <span class="title">getName</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;露露西亚王国&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 卡玛巴卡王国</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Kamabaka</span> : <span class="keyword">public</span> Country</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> Country::Country;</span><br><span class="line">    <span class="built_in">Kamabaka</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">declare</span><span class="params">(string msg, string country = string())</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;卡玛巴卡王国发布公告: &quot;</span> &lt;&lt; endl;</span><br><span class="line">        m_org-&gt;<span class="built_in">declare</span>(msg, <span class="keyword">this</span>, country);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setMessage</span><span class="params">(string msg)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;卡玛巴卡王国得到的消息: &quot;</span> &lt;&lt; msg &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">string <span class="title">getName</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;卡玛巴卡王国&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>mian.cpp</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Mediator-17.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Country-17.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MediatorOrg::addMember</span><span class="params">(Country* country)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    country-&gt;<span class="built_in">setMediator</span>(<span class="keyword">this</span>);</span><br><span class="line">    m_countryMap.<span class="built_in">insert</span>(<span class="built_in">make_pair</span>(country-&gt;<span class="built_in">getName</span>(), country));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">WorldGovt::declare</span><span class="params">(string msg, Country* country, string name)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (m_countryMap.<span class="built_in">find</span>(name) != m_countryMap.<span class="built_in">end</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        string str = msg + <span class="string">&quot;【来自: &quot;</span> + country-&gt;<span class="built_in">getName</span>() + <span class="string">&quot;】&quot;</span>;</span><br><span class="line">        m_countryMap[name]-&gt;<span class="built_in">setMessage</span>(str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">GeMingArmy::declare</span><span class="params">(string msg, Country* country, string name)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string str = msg + <span class="string">&quot;【来自: &quot;</span> + country-&gt;<span class="built_in">getName</span>() + <span class="string">&quot;】&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; item : m_countryMap)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (item.second == country)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        item.second-&gt;<span class="built_in">setMessage</span>(str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 世界政府</span></span><br><span class="line">    WorldGovt* world = <span class="keyword">new</span> WorldGovt;</span><br><span class="line">    <span class="comment">// 加盟国对象</span></span><br><span class="line">    Alabasta* alaba = <span class="keyword">new</span> Alabasta;</span><br><span class="line">    Dressrosa* dress = <span class="keyword">new</span> Dressrosa;</span><br><span class="line"></span><br><span class="line">    world-&gt;<span class="built_in">addMember</span>(alaba);</span><br><span class="line">    world-&gt;<span class="built_in">addMember</span>(dress);</span><br><span class="line"></span><br><span class="line">    alaba-&gt;<span class="built_in">declare</span>(<span class="string">&quot;德雷斯罗萨倒卖军火, 搞得我国连年打仗, 必须给个说法!!!&quot;</span>, dress-&gt;<span class="built_in">getName</span>());</span><br><span class="line">    dress-&gt;<span class="built_in">declare</span>(<span class="string">&quot;天龙人都和我多弗朗明哥做生意, 你算老几, 呸!!!&quot;</span>, alaba-&gt;<span class="built_in">getName</span>());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 革命军</span></span><br><span class="line">    GeMingArmy* geming = <span class="keyword">new</span> GeMingArmy;</span><br><span class="line">    <span class="comment">// 加盟国对象</span></span><br><span class="line">    Lulusia* lulu = <span class="keyword">new</span> Lulusia;</span><br><span class="line">    Kamabaka* kama = <span class="keyword">new</span> Kamabaka;</span><br><span class="line"></span><br><span class="line">    geming-&gt;<span class="built_in">addMember</span>(lulu);</span><br><span class="line">    geming-&gt;<span class="built_in">addMember</span>(kama);</span><br><span class="line"></span><br><span class="line">    lulu-&gt;<span class="built_in">declare</span>(<span class="string">&quot;我草, 我的国家被伊姆毁灭了!!!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> world;</span><br><span class="line">    <span class="keyword">delete</span> geming;</span><br><span class="line">    <span class="keyword">delete</span> alaba;</span><br><span class="line">    <span class="keyword">delete</span> dress;</span><br><span class="line">    <span class="keyword">delete</span> kama;</span><br><span class="line">    <span class="keyword">delete</span> lulu;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1094">【设计模式专题之中介者模式】16-简易聊天室 (kamacoder.com)</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/07/02/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F-md/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1287,7 +1273,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023-2024 <a href="http://example.com/" target="_blank">an</a>
+    		&copy; 2023-2025 <a href="http://example.com/" target="_blank">an</a>
     	</div>
       	<div class="footer-right">
 			
@@ -1422,23 +1408,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1446,7 +1416,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cmake使用基本命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1454,11 +1436,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+                <a href="javascript:void(0)" class="js-tag color4">Protobuf</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C++语法</a>
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1467,6 +1449,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C++语法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1483,6 +1469,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">OpenCV</a>
               </li>
             
             <div class="clearfix"></div>
