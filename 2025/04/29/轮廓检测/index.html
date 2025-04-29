@@ -6,25 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>线程函数.md | BZTWO</title>
+  <title>轮廓检测 | BZTWO</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="joinable()joinable() 是 C++ 中的一个函数，用于检查一个线程是否可以被加入（joined）。如果一个线程是可加入的，那么就可以通过 join() 或 detach() 函数来等待它结束。如果一个线程已经被 join() 或 detach()，那么再次调用 joinable() 会返回 false。 在 std::thread 对象上调用 joinable() 可以返回一">
+  <meta name="description" content="1234567891011contours, hierarchy &#x3D; findContours(img, mode, ApproximationMode...)# mode# RETR_EXTERNAL &#x3D; O,表示只检测外轮廓# RETR_LIST &#x3D; 1，检测的轮廓不建立等级关系(从里到外，从右到左)# RETR_CCOMP &#x3D; 2,每层最多两级# RETR_TREE &#x3D; 3，按树形存储轮">
 <meta property="og:type" content="article">
-<meta property="og:title" content="线程函数.md">
-<meta property="og:url" content="http://example.com/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/index.html">
+<meta property="og:title" content="轮廓检测">
+<meta property="og:url" content="http://example.com/2025/04/29/%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B/index.html">
 <meta property="og:site_name" content="BZTWO">
-<meta property="og:description" content="joinable()joinable() 是 C++ 中的一个函数，用于检查一个线程是否可以被加入（joined）。如果一个线程是可加入的，那么就可以通过 join() 或 detach() 函数来等待它结束。如果一个线程已经被 join() 或 detach()，那么再次调用 joinable() 会返回 false。 在 std::thread 对象上调用 joinable() 可以返回一">
+<meta property="og:description" content="1234567891011contours, hierarchy &#x3D; findContours(img, mode, ApproximationMode...)# mode# RETR_EXTERNAL &#x3D; O,表示只检测外轮廓# RETR_LIST &#x3D; 1，检测的轮廓不建立等级关系(从里到外，从右到左)# RETR_CCOMP &#x3D; 2,每层最多两级# RETR_TREE &#x3D; 3，按树形存储轮">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/Snipaste_2023-11-25_13-37-41.png">
-<meta property="og:image" content="http://example.com/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/Snipaste_2023-11-25_13-36-06.png">
-<meta property="article:published_time" content="2023-11-25T05:20:58.000Z">
-<meta property="article:modified_time" content="2023-11-25T13:19:27.834Z">
+<meta property="article:published_time" content="2025-04-29T10:02:13.000Z">
+<meta property="article:modified_time" content="2025-04-29T11:05:10.788Z">
 <meta property="article:author" content="an">
-<meta property="article:tag" content="C++多线程">
+<meta property="article:tag" content="OpenCV">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/Snipaste_2023-11-25_13-37-41.png">
   
     <link rel="alternative" href="/atom.xml" title="BZTWO" type="application/atom+xml">
   
@@ -143,14 +140,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-线程函数-md" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-轮廓检测" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      线程函数.md
+      轮廓检测
     </h1>
   
 
@@ -162,8 +159,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/" class="archive-article-date">
-        <time datetime="2023-11-25T05:20:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-25</time>
+<a href="/2025/04/29/%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B/" class="archive-article-date">
+        <time datetime="2025-04-29T10:02:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-04-29</time>
 </a>
 
   
@@ -176,7 +173,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1k字</span>
+      <span class="post-count">219字</span>
     </span>
   </span>
 
@@ -185,7 +182,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">4分</span>
+      <span class="post-count">1分</span>
     </span>
   </span>
 </div>
@@ -198,33 +195,14 @@
     
     <span id="more"></span>
 
-<h4 id="joinable"><a href="#joinable" class="headerlink" title="joinable()"></a>joinable()</h4><p><code>joinable()</code> 是 C++ 中的一个函数，用于检查一个线程是否可以被加入（joined）。如果一个线程是可加入的，那么就可以通过 <code>join()</code> 或 <code>detach()</code> 函数来等待它结束。如果一个线程已经被 <code>join()</code> 或 <code>detach()</code>，那么再次调用 <code>joinable()</code> 会返回 false。</p>
-<p>在 <code>std::thread</code> 对象上调用 <code>joinable()</code> 可以返回一个布尔值，表示该线程是否可以被加入。如果返回 true，则该线程可以被加入；如果返回 false，则该线程已经结束或者尚未被启动。</p>
-<p>以下是 <code>joinable()</code> 的一个简单示例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(foo)</span></span>;</span><br><span class="line">    <span class="keyword">if</span> (t.<span class="built_in">joinable</span>()) &#123;</span><br><span class="line">        t.<span class="built_in">join</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这个示例中，我们创建了一个名为 <code>t</code> 的新线程，然后检查它是否可以被加入。如果可以，我们就调用 <code>join()</code> 等待它结束。</p>
-<h4 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h4><p>在C++中，<code>std::join</code>函数是用于等待一个线程结束的函数，可以使用C++的多线程库（例如<code>std::thread</code>）来创建和管理多个线程，并使用<code>std::join</code>函数来等待这些线程的结束。</p>
-<p>使用<code>std::thread</code>和<code>std::join</code>函数的多线程示例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">threadFunction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Hello from thread!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(threadFunction)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (t.<span class="built_in">joinable</span>()) &#123;</span><br><span class="line">        t.<span class="built_in">join</span>();</span><br><span class="line">    &#125;   </span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Hello from main thread!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/Snipaste_2023-11-25_13-37-41.png" class="" title="Snipaste_2023-11-25_13-37-41">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">contours, hierarchy = findContours(img, mode, ApproximationMode...)</span><br><span class="line"></span><br><span class="line"><span class="comment"># mode</span></span><br><span class="line"><span class="comment"># RETR_EXTERNAL = O,表示只检测外轮廓</span></span><br><span class="line"><span class="comment"># RETR_LIST = 1，检测的轮廓不建立等级关系(从里到外，从右到左)</span></span><br><span class="line"><span class="comment"># RETR_CCOMP = 2,每层最多两级</span></span><br><span class="line"><span class="comment"># RETR_TREE = 3，按树形存储轮廓(从右到左，从大到小)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ApproximationMode</span></span><br><span class="line"><span class="comment"># CHAIN_APPROX_NONE，保存所有轮廓上的点</span></span><br><span class="line"><span class="comment"># CHAIN_APPROX_SIMPLE，只保存角点</span></span><br></pre></td></tr></table></figure>
 
-<p>我们创建了一个新的线程<code>t</code>，并将它绑定到一个名为<code>threadFunction</code>的函数上。然后，使用<code>std::join</code>函数等待该线程的结束。注意，在调用<code>std::join</code>之前，我们必须先检查线程是否可加入（使用<code>joinable</code>函数）。如果线程已经终止，那么调用<code>std::join</code>将导致程序立即终止。最后，在主线程中打印一条消息。</p>
-<p>由于线程的执行顺序是不确定的，因此输出顺序可能会有所不同。</p>
-<h4 id="detach"><a href="#detach" class="headerlink" title="detach()"></a>detach()</h4><p><code>detach()</code>函数用于将线程从主线程中分离出去，使其成为一个独立的线程。当一个线程被<code>detach()</code>后，它将不再与主线程关联，不会受到主线程的影响。具体来说，被<code>detach()</code>的线程会继续执行，直到其完成或发生异常退出。但是，被<code>detach()</code>的线程无法再被主线程控制或访问。</p>
-<p>使用场景：</p>
-<ol>
-<li>在主线程结束时，将其他线程<code>detach()</code>可以确保这些线程能够继续执行，而不会受到主线程结束的影响。</li>
-<li>在某些情况下，我们可能希望将一些任务交给另一个线程去执行，但是这些任务完成后并不需要主线程进行任何操作。这时，可以使用<code>detach()</code>将该线程与主线程分离，让其在后台独立执行。</li>
-</ol>
-<p>需要注意的是，被<code>detach()</code>的线程在完成执行后会自动退出，但是其资源并不会被自动回收。如果需要手动回收资源，可以通过使用<code>join()</code>函数等待线程结束。</p>
-<p><code>detach</code>函数在多线程中的示例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">workerThread</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">1</span>));</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Worker thread finished&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(workerThread)</span></span>;</span><br><span class="line">    </span><br><span class="line">    t.<span class="built_in">detach</span>(); <span class="comment">// 将线程与当前对象分离</span></span><br><span class="line">    </span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Main thread is running&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 在主线程中执行其他任务</span></span><br><span class="line">    std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">2</span>));</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Main thread finished&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/Snipaste_2023-11-25_13-36-06.png" class="" title="Snipaste_2023-11-25_13-36-06">
+<p>drawContours</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">drawContours(img,contours, contourldx, color, thickness ...)</span><br><span class="line"></span><br><span class="line"><span class="comment"># contourIdx，-1 表示绘制所有轮廓</span></span><br><span class="line"><span class="comment"># color，颜色(0,0,255)</span></span><br><span class="line"><span class="comment"># thickness，线宽，-1是全部填充</span></span><br></pre></td></tr></table></figure>
 
-<p>在这个示例中，创建了一个名为<code>t</code>的线程对象，并将其绑定到名为<code>workerThread</code>的函数上。然后，使用<code>detach</code>函数将线程与当前对象分离，使其在后台运行。接着，在主线程中执行其他任务。当主线程执行完毕后，即使后台线程仍在运行，程序也会正常结束。</p>
-<p><code>注意共享空间的使用配合 detach() 函数可能会导致崩溃。</code></p>
-<p><code>并且不能和 join() 函数一起使用，只能使用其中一个</code></p>
-<h4 id="ref（）"><a href="#ref（）" class="headerlink" title="ref（）"></a>ref（）</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># img = cv2.imread(&#x27;./contours1.jpeg&#x27;)</span></span><br><span class="line">img = cv2.imread(<span class="string">&quot;./tophat.png&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(img.shape)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转变为单通道</span></span><br><span class="line">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 二值化</span></span><br><span class="line">ret, binary = cv2.threshold(gray, <span class="number">150</span>, <span class="number">255</span>, cv2.THRESH_BINARY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 轮廓查找</span></span><br><span class="line">contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制轮廓</span></span><br><span class="line">cv2.drawContours(img, contours, -<span class="number">1</span>, (<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>), <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算面积</span></span><br><span class="line">area = cv2.contourArea(contours[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算周长</span></span><br><span class="line"><span class="built_in">len</span> = cv2.arcLength(contours[<span class="number">0</span>], <span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cv2.imshow(<span class="string">&#x27;img&#x27;</span>, img)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;binary&#x27;</span>, binary)</span><br><span class="line"></span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
     
 
     
@@ -238,7 +216,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/2023/11/25/线程函数-md/" title="线程函数.md" target="_blank">http://example.com/2023/11/25/线程函数-md/</a>
+          <a href="http://example.com/2025/04/29/轮廓检测/" title="轮廓检测" target="_blank">http://example.com/2025/04/29/轮廓检测/</a>
         </li>
         
         <li>
@@ -260,7 +238,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C++多线程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">OpenCV</a>
         		</li>
       		
 		</ul>
@@ -316,7 +294,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/11/25/%E7%BA%BF%E7%A8%8B%E5%87%BD%E6%95%B0-md/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2025/04/29/%E8%BD%AE%E5%BB%93%E6%A3%80%E6%B5%8B/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -331,18 +309,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2024/01/06/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Linux网络编程
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/11/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8-md/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">多线程使用.md</div>
+    <a href="/2025/04/29/%E9%A1%B6%E5%B8%BD%E8%BF%90%E7%AE%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">顶帽、黑帽运算</div>
       <i class="icon-circle-right"></i>
     </a>
   

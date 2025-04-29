@@ -142,6 +142,109 @@
             
 
   
+    <article id="post-适配器模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/06/26/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F-md/" target="_blank">适配器模式.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/06/26/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F-md/" class="archive-article-date">
+        <time datetime="2024-06-26T05:25:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-06-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<h4 id="什么是适配器"><a href="#什么是适配器" class="headerlink" title="什么是适配器"></a>什么是适配器</h4><p>​		适配器模式Adapter 是⼀种结构型设计模式，它可以将⼀个类的接⼝转换成客户希望的另⼀个接⼝，主要⽬的是充当两个不同接⼝之间的桥梁，使得原本接⼝不兼容的类能够⼀起⼯作。</p>
+<h4 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h4><p>适配器模式分为以下⼏个基本⻆⾊：</p>
+<ul>
+<li>⽬标接⼝Target : 客户端希望使⽤的接⼝</li>
+<li>适配器类Adapter : 实现客户端使⽤的⽬标接⼝，持有⼀个需要适配的类实例。</li>
+<li>被适配者Adaptee : 需要被适配的类</li>
+</ul>
+<h4 id="应⽤场景"><a href="#应⽤场景" class="headerlink" title="应⽤场景"></a>应⽤场景</h4><p>在开发过程中，适配器模式往往扮演者“补救”和“扩展”的⻆⾊：</p>
+<ul>
+<li>当使⽤⼀个已经存在的类，但是它的接⼝与你的代码不兼容时，可以使⽤适配器模式。</li>
+<li>在系统扩展阶段需要增加新的类时，并且类的接⼝和系统现有的类不⼀致时，可以使⽤适配器模式。</li>
+</ul>
+<p>使⽤适配器模式可以将客户端代码与具体的类解耦，客户端不需要知道被适配者的细节，客户端代码也不需要修改，这使得它具有良好的扩展性，但是这也势必导致系统变得更加复杂。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="comment">// 适配器类和熊猫类是关联关系</span></span><br><span class="line"><span class="comment">// 外国人</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Foreigner</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> string <span class="title">confession</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setResult</span><span class="params">(string res)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Panda say: &quot;</span> &lt;&lt; res &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Foreigner</span>() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 美国人</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">American</span> : <span class="keyword">public</span> Foreigner</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">confession</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;我有罪, 我不要脸!!!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 法国人</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">French</span> : <span class="keyword">public</span> Foreigner</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">confession</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;我是强盗, 我该死!!!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 熊猫</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Panda</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">recvMessage</span><span class="params">(string msg)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; msg &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">string <span class="title">sendMessage</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">string</span>(<span class="string">&quot;强盗、凶手、罪人是不可能被宽恕和原谅的！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 适配器类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AbstractChopper</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">AbstractChopper</span>(Foreigner* foreigner) : <span class="built_in">m_foreigner</span>(foreigner) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">translateToPanda</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">translateToHuman</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">AbstractChopper</span>() &#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    Panda m_panda;</span><br><span class="line">    Foreigner* m_foreigner;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">EnglishChopper</span>: <span class="keyword">public</span> AbstractChopper</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> AbstractChopper::AbstractChopper;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">translateToPanda</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        string msg = m_foreigner-&gt;<span class="built_in">confession</span>();</span><br><span class="line">        <span class="comment">// 解析熊猫的语言, 并将数据传递给熊猫</span></span><br><span class="line">        m_panda.<span class="built_in">recvMessage</span>(<span class="string">&quot;美国人说: &quot;</span> + msg);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">translateToHuman</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        string msg = m_panda.<span class="built_in">sendMessage</span>();</span><br><span class="line">        <span class="comment">// 将熊猫语言转换为英语, 在传递给外国人</span></span><br><span class="line">        m_foreigner-&gt;<span class="built_in">setResult</span>(<span class="string">&quot;美国佬: &quot;</span> + msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FrechChopper</span> : <span class="keyword">public</span> AbstractChopper</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> AbstractChopper::AbstractChopper;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">translateToPanda</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        string msg = m_foreigner-&gt;<span class="built_in">confession</span>();</span><br><span class="line">        <span class="comment">// 解析熊猫的语言, 并将数据传递给熊猫</span></span><br><span class="line">        m_panda.<span class="built_in">recvMessage</span>(<span class="string">&quot;法国人说: &quot;</span> + msg);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">translateToHuman</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        string msg = m_panda.<span class="built_in">sendMessage</span>();</span><br><span class="line">        <span class="comment">// 将熊猫语言转换为英语, 在传递给外国人</span></span><br><span class="line">        m_foreigner-&gt;<span class="built_in">setResult</span>(<span class="string">&quot;法国佬: &quot;</span> + msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 1</span></span><br><span class="line"><span class="comment">// 适配器类和熊猫类是继承关系</span></span><br><span class="line"><span class="comment">// 外国人</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Foreigner</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> string <span class="title">confession</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">setResult</span><span class="params">(string res)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Panda say: &quot;</span> &lt;&lt; res &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Foreigner</span>() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 美国人</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">American</span> : <span class="keyword">public</span> Foreigner</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">confession</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;我有罪, 我不要脸!!!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 法国人</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">French</span> : <span class="keyword">public</span> Foreigner</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">confession</span><span class="params">()</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;我是强盗, 我该死!!!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 熊猫</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Panda</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">recvMessage</span><span class="params">(string msg)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; msg &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">string <span class="title">sendMessage</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">string</span>(<span class="string">&quot;强盗、凶手、罪人是不可能被宽恕和原谅的！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 适配器类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AbstractChopper</span> : <span class="keyword">public</span> Panda</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">AbstractChopper</span>(Foreigner* foreigner) : <span class="built_in">m_foreigner</span>(foreigner) &#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">translateToPanda</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">translateToHuman</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">AbstractChopper</span>() &#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    Foreigner* m_foreigner;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">EnglishChopper</span> : <span class="keyword">public</span> AbstractChopper</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> AbstractChopper::AbstractChopper;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">translateToPanda</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        string msg = m_foreigner-&gt;<span class="built_in">confession</span>();</span><br><span class="line">        <span class="comment">// 解析熊猫的语言, 并将数据传递给熊猫</span></span><br><span class="line">        <span class="built_in">recvMessage</span>(<span class="string">&quot;美国人说: &quot;</span> + msg);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">translateToHuman</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        string msg = <span class="built_in">sendMessage</span>();</span><br><span class="line">        <span class="comment">// 将熊猫语言转换为英语, 在传递给外国人</span></span><br><span class="line">        m_foreigner-&gt;<span class="built_in">setResult</span>(<span class="string">&quot;美国佬: &quot;</span> + msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FrechChopper</span> : <span class="keyword">public</span> AbstractChopper</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> AbstractChopper::AbstractChopper;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">translateToPanda</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        string msg = m_foreigner-&gt;<span class="built_in">confession</span>();</span><br><span class="line">        <span class="comment">// 解析熊猫的语言, 并将数据传递给熊猫</span></span><br><span class="line">        <span class="built_in">recvMessage</span>(<span class="string">&quot;法国人说: &quot;</span> + msg);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">translateToHuman</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        string msg = <span class="built_in">sendMessage</span>();</span><br><span class="line">        <span class="comment">// 将熊猫语言转换为英语, 在传递给外国人</span></span><br><span class="line">        m_foreigner-&gt;<span class="built_in">setResult</span>(<span class="string">&quot;法国佬: &quot;</span> + msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Foreigner* foreigner = <span class="keyword">new</span> American;</span><br><span class="line">    AbstractChopper* adapter = <span class="keyword">new</span> <span class="built_in">EnglishChopper</span>(foreigner);</span><br><span class="line">    adapter-&gt;<span class="built_in">translateToPanda</span>();</span><br><span class="line">    adapter-&gt;<span class="built_in">translateToHuman</span>();</span><br><span class="line">    <span class="keyword">delete</span> foreigner;</span><br><span class="line">    <span class="keyword">delete</span> adapter;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;=========================&quot;</span> &lt;&lt; endl;</span><br><span class="line">    foreigner = <span class="keyword">new</span> French;</span><br><span class="line">    adapter = <span class="keyword">new</span> <span class="built_in">FrechChopper</span>(foreigner);</span><br><span class="line">    adapter-&gt;<span class="built_in">translateToPanda</span>();</span><br><span class="line">    adapter-&gt;<span class="built_in">translateToHuman</span>();</span><br><span class="line">    <span class="keyword">delete</span> foreigner;</span><br><span class="line">    <span class="keyword">delete</span> adapter;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1085">【设计模式专题之适配器模式】6. 扩展坞 (kamacoder.com)</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/06/26/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F-md/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-原型模式-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1094,139 +1197,6 @@
 
 
   
-    <article id="post-new" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/05/29/new/" target="_blank">new</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/05/29/new/" class="archive-article-date">
-        <time datetime="2024-05-29T13:08:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-29</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <span id="more"></span>
-
-<p>在C++中，new有三种典型的使用方法：<code>plain new</code>，<code>nothrownew </code>和<code>placementnew</code>;</p>
-<h3 id="plain-new"><a href="#plain-new" class="headerlink" title="plain new"></a>plain new</h3><p><code>plain new</code> 是指 C++ 中的标准 <code>new</code> 操作符，它负责分配内存并构造对象,有两个主要版本：</p>
-<ol>
-<li><p><strong>普通 <code>new</code></strong>:</p>
-<ul>
-<li>用于分配内存并调用构造函数。</li>
-<li>如果内存分配失败，通常会抛出 <code>std::bad_alloc</code> 异常。</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyClass* obj = <span class="keyword">new</span> <span class="built_in">MyClass</span>();  <span class="comment">// 分配内存并调用构造函数</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong><code>new[]</code></strong>:</p>
-<ul>
-<li>用于分配内存以存储数组，并调用每个元素的构造函数。</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyClass* arr = <span class="keyword">new</span> MyClass[<span class="number">10</span>];  <span class="comment">// 分配内存以存储 10 个 MyClass 对象，并调用每个对象的构造函数</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ol>
-<li><strong>内存分配</strong>:<ul>
-<li><code>new</code> 操作符不仅分配足够的内存来存储对象，还会调用对象的构造函数以初始化对象。</li>
-</ul>
-</li>
-<li><strong>异常处理</strong>:<ul>
-<li>当内存分配失败时，<code>new</code> 操作符会抛出 <code>std::bad_alloc</code> 异常。如果你希望避免异常，可以使用 <code>std::nothrow</code> 版本的 <code>new</code>（<code>new(std::nothrow)</code>），它会在分配失败时返回 <code>nullptr</code>。</li>
-</ul>
-</li>
-<li><strong>内存释放</strong>:<ul>
-<li>对于 <code>new</code> 分配的对象，你需要使用 <code>delete</code> 来释放内存，以调用对象的析构函数并释放内存。</li>
-<li>对于 <code>new[]</code> 分配的数组，你需要使用 <code>delete[]</code> 来释放内存，以调用每个元素的析构函数。</li>
-</ul>
-</li>
-</ol>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;new&gt;</span>  <span class="comment">// 包含 std::nothrow</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MyClass</span>() &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;MyClass constructed&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">MyClass</span>() &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;MyClass destructed&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 使用 plain new 创建单个对象</span></span><br><span class="line">    MyClass* obj = <span class="keyword">new</span> <span class="built_in">MyClass</span>();  <span class="comment">// 分配内存并调用构造函数</span></span><br><span class="line">    <span class="keyword">delete</span> obj;  <span class="comment">// 释放内存并调用析构函数</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用 new[] 创建对象数组</span></span><br><span class="line">    MyClass* arr = <span class="keyword">new</span> MyClass[<span class="number">3</span>];  <span class="comment">// 分配内存并调用构造函数</span></span><br><span class="line">    <span class="keyword">delete</span>[] arr;  <span class="comment">// 释放内存并调用每个对象的析构函数</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用 std::nothrow 版本的 new</span></span><br><span class="line">    MyClass* safeObj = <span class="built_in">new</span>(std::nothrow) <span class="built_in">MyClass</span>();</span><br><span class="line">    <span class="keyword">if</span> (safeObj == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Memory allocation failed&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">delete</span> safeObj;  <span class="comment">// 确保释放内存</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="nothrow"><a href="#nothrow" class="headerlink" title="nothrow"></a>nothrow</h3><h4 id="特性-1"><a href="#特性-1" class="headerlink" title="特性"></a>特性</h4><p><code>nothrow</code> 是 C++ 中的一种用于防止 <code>new</code> 操作符抛出异常的机制。通常，当 <code>new</code> 操作符分配内存失败时，会抛出一个 <code>std::bad_alloc</code> 异常。</p>
-<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;new&gt;</span>  <span class="comment">// 必须包含 &lt;new&gt; 头文件以使用 std::nothrow</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 尝试分配内存，使用 nothrow 版本的 new</span></span><br><span class="line">    <span class="type">int</span>* ptr = <span class="built_in">new</span>(std::nothrow) <span class="type">int</span>[<span class="number">100000000000000</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (ptr == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Memory allocation failed.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Memory allocation succeeded.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="comment">// 使用分配的内存</span></span><br><span class="line">        <span class="keyword">delete</span>[] ptr;  <span class="comment">// 别忘了释放内存</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="placement-new"><a href="#placement-new" class="headerlink" title="placement new"></a>placement new</h3><h4 id="特性-2"><a href="#特性-2" class="headerlink" title="特性"></a>特性</h4><p><code>placement new</code> 是 C++ 中的一种特殊的 <code>new</code> 操作符，用于在特定的内存地址上构造对象。与常规的 <code>new</code> 操作符不同，<code>placement new</code> 不分配内存，而是在已有的内存位置上直接调用构造函数来构造对象。</p>
-<h4 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;new&gt;</span>  <span class="comment">// 必须包含 &lt;new&gt; 头文件以使用 placement new</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MyClass</span>(<span class="type">int</span> x) : <span class="built_in">value</span>(x) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;MyClass constructed with value &quot;</span> &lt;&lt; value &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ~<span class="built_in">MyClass</span>() &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;MyClass destructed&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> value;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 手动分配一块足够大的内存空间来存储一个 MyClass 对象</span></span><br><span class="line">    <span class="type">char</span> buffer[<span class="built_in">sizeof</span>(MyClass)];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在指定的内存地址上使用 placement new 构造 MyClass 对象</span></span><br><span class="line">    MyClass* obj = <span class="built_in">new</span> (buffer) <span class="built_in">MyClass</span>(<span class="number">42</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 手动调用析构函数来销毁对象</span></span><br><span class="line">    obj-&gt;~<span class="built_in">MyClass</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
-<li><strong>手动析构</strong>: 使用 <code>placement new</code> 构造的对象不会自动调用析构函数，因此必须手动调用析构函数来释放资源。</li>
-<li><strong>内存对齐</strong>: 需要确保传给 <code>placement new</code> 的内存地址满足对象的对齐要求，否则可能会导致未定义行为。</li>
-<li><strong>内存泄漏风险</strong>: 如果没有正确管理内存或手动调用析构函数，可能会导致内存泄漏。</li>
-</ul>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C++特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2024/05/29/new/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
@@ -1364,11 +1334,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Qt</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">Qt</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1392,11 +1362,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1412,11 +1382,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">C++语法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C++语法</a>
+                <a href="javascript:void(0)" class="js-tag color5">搜索算法</a>
               </li>
              
               <li class="article-tag-list-item">
